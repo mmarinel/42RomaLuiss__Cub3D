@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   is_file_type.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 09:45:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 14:45:35 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/26 14:38:52 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/26 15:45:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-size_t	ft_strlen(const char *str)
+t_bool	is_file_type( const char* path_name, const char* extension )
 {
-	size_t	i;
+	size_t	end;
+	size_t	start;
 
-	if (NULL == str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	end = ft_strlen(path_name) - 1;
+	start = end - ft_strlen(extension);
+	if (end < 0)
+		return (e_false);
+	else
+		return (
+			ft_strcmp(
+				path_name + start,
+				extension
+			)
+		);
 }

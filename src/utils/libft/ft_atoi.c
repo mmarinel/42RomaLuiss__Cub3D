@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:09:08 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 09:51:30 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:46:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,21 @@ int	ft_atoi(const char *str)
 	int	nb;
 	int	check_overflow;
 
-	sign = 1;
-	nb = 0;
-	if (*str == '\0')
+	if (NULL == str)
 		return (0);
-	ft_scroll_initial(&str, &sign);
-	if (!ft_memcmp(str, "2147483648", 10) && sign == -1)
-		return (-2147483648);
-	check_overflow = 0;
-	ft_take_number(str, &nb, sign, &check_overflow);
-	return (nb * sign);
+	else
+	{
+		sign = 1;
+		nb = 0;
+		if (*str == '\0')
+			return (0);
+		ft_scroll_initial(&str, &sign);
+		if (!ft_memcmp(str, "2147483648", 10) && sign == -1)
+			return (-2147483648);
+		check_overflow = 0;
+		ft_take_number(str, &nb, sign, &check_overflow);
+		return (nb * sign);
+	}
 }
 
 static int	ft_take_number(const char *str, int *nb, int sign,

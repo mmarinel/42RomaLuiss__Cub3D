@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/25 17:27:01 by earendil         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:06:34 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// # include "utils/libft/libft.h" //TODO DA AGGIUNGERE
+# include "utils/libft/libft.h"
 # include "../types.h"
 #include "gnl/get_next_line_module.h"
 

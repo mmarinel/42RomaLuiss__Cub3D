@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:55:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 10:04:20 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:50:09 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	i;
 
 	i = 0;
+	if ( NULL == s1 || NULL == s2 )
+		return (1);
 	if (n == 0)
 		return (0);
 	while (i < (n - 1) && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])

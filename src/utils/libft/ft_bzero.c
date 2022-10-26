@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:27:37 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 09:52:07 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:47:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ void	ft_bzero(void *s, size_t n)
 	char		*str;
 	size_t		i;
 
-	str = s;
-	i = 0;
-	while (i < n)
-		str[i++] = '\0';
+	if (NULL == s)
+		return ;
+	else
+	{
+		str = s;
+		i = 0;
+		while (i < n)
+			str[i++] = '\0';
+	}
 }

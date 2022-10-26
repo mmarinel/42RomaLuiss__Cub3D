@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 09:45:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 14:45:35 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/26 16:01:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_free( void** ptr )
 {
-	size_t	i;
-
-	if (NULL == str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	free(*ptr);
+	*ptr = NULL;
 }
