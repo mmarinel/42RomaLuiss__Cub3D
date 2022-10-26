@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 16:00:27 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:31:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		ft_tolower(int c);
 //* Conversions
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+void	pf_put_nbr_base(long long num, const char *base, int base_num);
 
 //* lists and maps
 t_list	*ft_lstnew(void *content);
@@ -88,9 +89,13 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 //* Printing
+void	ft_write( int fd, const char* str );
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+//* math
+unsigned long long	ft_abs(long long nbr);
 
 #endif
