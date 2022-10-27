@@ -53,7 +53,17 @@ put () {
 			fi
 		done
 }
-
+#TODO per aggiornare l'header:           date +%F | sed 's/-/\//g'
+#TODO 43 max len of file name
+#TODO 9 max len of user name $USER
+HEADER_CHARS_PER_LINE=80
+for (( i=1; i<=$N; i++ ))
+	do
+		for (( j=1; j<=$N; j++ ))
+			do
+				if [[ $i = 4 ]]
+			done
+	done
 # making Makefile
 echo "# **************************************************************************** #
 #                                                                              #
