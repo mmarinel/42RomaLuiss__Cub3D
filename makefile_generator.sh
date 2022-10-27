@@ -20,6 +20,16 @@ BACKUP_FILE="$MAKEFILE".copy;
 INCLUDES=$(find . -name "*.h" -print | sed 's/\.h/\.h\\/g');
 # penultimate cmd removes ./ at the beginning of each file
 SRC_NOPREFIX=$(find . -name "*.c" -print | sed 's/\.\///' | sed 's/\.c/\.c\\/g')
+# penultimate cmd removes ./ at the beginning of each file
+SRC_SUBDIRS=$(find ./src/* -type d -not -path "*/.*" | sed 's/\.\///')
+
+for dir in $SRC_SUBDIRS
+	do
+		if [[ -f "$dir"/Makefile ]]
+		then
+			echo "found Makefile in "$dir;
+		fi
+	done
 
 #	This function puts a series of strings in a file.
 #
