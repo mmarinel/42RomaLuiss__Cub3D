@@ -16,18 +16,21 @@ MAKEFILE_OPS_BEGIN=$(grep -n -m1 CC Makefile | awk -F ":" '{ print $1 }')
 MAKEFILE=Makefile;
 BACKUP_FILE="$MAKEFILE".copy;
 
-# last cmd adds a '\' (i.e.: line break) at the end of each header file name
-INCLUDES=$(find . -name "*.h" -print | sed 's/\.h/\.h\\/g');
-# penultimate cmd removes ./ at the beginning of each file
-SRC_NOPREFIX=$(find . -name "*.c" -print | sed 's/\.\///' | sed 's/\.c/\.c\\/g')
+# initialized with headers at the root of src subfolder
+INCLUDES=$(find ./src/*.h -name "*.h" | sed 's/\.h/\.h\\/g')
+# initialized with srcs at the root of src subfolder
+SRC_NOPREFIX=$(find ./src/*.c -name "*.c" | sed 's/\.c/\.c\\/g')
 # penultimate cmd removes ./ at the beginning of each file
 SRC_SUBDIRS=$(find ./src/* -type d -not -path "*/.*" | sed 's/\.\///')
-
+# taking all project specific (no library) srcs
 for dir in $SRC_SUBDIRS
 	do
-		if [[ -f "$dir"/Makefile ]]
+		# if a Makefile is present, it means the sources in this library refer to an external library
+		if [[ ! -f "$dir"/Makefile ]]
 		then
-			echo "found Makefile in "$dir;
+			# we need a redirection to stderr in the case this folder does not contain srcs per se, but just subfolders of srcs
+			SRC_NOPREFIX+=" "$(find ./"$dir"/*.c -name "*c" 2>/dev/null | sed 's/\.c/\.c\\/g')
+			INCLUDES+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
 		fi
 	done
 

@@ -6,20 +6,27 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/27 09:36:39 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/27 16:06:38 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDES=\
+./src/colors.h\
+./src/types.h\
+./src/map_validation/map_validation.h\
 ./src/map_validation/gnl/get_next_line.h\
 ./src/map_validation/gnl/get_next_line_module.h\
-./src/types.h\
+./src/utils/simple_printf/ft_printf.h\
+./src/utils/simple_printf/ft_printf_module.h\
 
-OBJS_NOPREFIX=\
-src/main.o
-src/map_validation/gnl/get_next_line_utils.o
-src/map_validation/gnl/get_next_line.o
-src/map_validation/validate.o
+SRC_NOPREFIX=\
+./src/main.c\
+./src/map_validation/validate.c\
+./src/map_validation/gnl/get_next_line.c\
+./src/map_validation/gnl/get_next_line_utils.c\
+./src/utils/simple_printf/ft_printf.c\
+./src/utils/simple_printf/printf_cases.c\
+./src/utils/simple_printf/printf_writer.c\
 
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
