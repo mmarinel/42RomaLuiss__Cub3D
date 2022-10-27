@@ -6,13 +6,21 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 07:59:42 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/27 09:23:22 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:32:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_multisplit( const char* str, const char* delimiters )
+/**
+ * @brief 
+ * 
+ * @param str 
+ * @param delimiters 
+ * @param del_sep seprator for the delimiters string
+ * @return char** 
+ */
+char	**ft_multisplit( const char* str, const char* delimiters, char del_sep )
 {
 	char	**ret;
 	char	**first_split;
@@ -20,7 +28,7 @@ char	**ft_multisplit( const char* str, const char* delimiters )
 
 	if (NULL == str || NULL == delimiters)
 		return (NULL);
-	dels = ft_split(delimiters, ' ');
+	dels = ft_split(delimiters, del_sep);
 	first_split = ft_split(str, dels[0]);
 	ret = ft_multisplit_rec( first_split, dels + 1 );
 	ft_splitclear(dels);
