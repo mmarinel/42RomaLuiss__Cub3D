@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_splitlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/27 07:48:37 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/27 08:37:22 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/27 08:38:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "libft.h"
 
-# ifndef T_BOOL
-#  define T_BOOL
-typedef enum e_bool
+size_t	ft_splitlen(char **split)
 {
-	e_true = 1,
-	e_false = 0
-}	t_bool;
-# endif
+	size_t	i;
 
-typedef enum e_tile
-{
-	e_FLOOR,
-	e_WALL,
-	e_EMPTY
-}	t_tile;
-
-typedef struct s_map_holder
-{
-	t_tile	**map;
-	size_t	size;
-}	t_map_holder;
-
-#endif
+	if (split == NULL)
+		return (0);
+	else
+	{
+		i = 0;
+		while (split[i])
+			i++;
+		return (i);
+	}
+}

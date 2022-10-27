@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_splitcpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/27 07:48:37 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/27 08:43:39 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/27 09:05:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "libft.h"
 
-# ifndef T_BOOL
-#  define T_BOOL
-typedef enum e_bool
+char	**ft_splitcpy(char **split_buf, char **split_src, size_t copy_len)
 {
-	e_true = 1,
-	e_false = 0
-}	t_bool;
-# endif
+	size_t	i;
 
-typedef enum e_tile
-{
-	e_FLOOR,
-	e_WALL,
-	e_EMPTY
-}	t_tile;
-
-typedef struct s_map_holder
-{
-	t_tile	**map;
-	size_t	size;
-}	t_map_holder;
-
-#endif
+	if (NULL == split_buf)
+		split_buf = ft_splitinit(copy_len);
+	i = 0;
+	while (i < copy_len)
+	{
+		split_buf[i] = ft_strcpy(
+			split_buf[i],
+			split_src[i],
+			ft_strlen(split_src[i])
+			);
+		i++;
+	}
+	return (split_buf);
+}

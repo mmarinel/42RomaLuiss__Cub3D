@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/27 07:48:37 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/27 08:46:13 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/27 08:49:30 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "libft.h"
 
-# ifndef T_BOOL
-#  define T_BOOL
-typedef enum e_bool
+char	*ft_strcpy(char *buf, char *src, int copy_len)
 {
-	e_true = 1,
-	e_false = 0
-}	t_bool;
-# endif
+	size_t	i;
 
-typedef enum e_tile
-{
-	e_FLOOR,
-	e_WALL,
-	e_EMPTY
-}	t_tile;
-
-typedef struct s_map_holder
-{
-	t_tile	**map;
-	size_t	size;
-}	t_map_holder;
-
-#endif
+	if (NULL == buf)
+	{
+		buf = (char *) malloc((copy_len + 1) * sizeof(char));
+		buf[copy_len] = '\0';
+	}
+	i = 0;
+	while (i < copy_len)
+	{
+		buf[i] = src[i];
+		i++;
+	}
+	return (buf);
+}

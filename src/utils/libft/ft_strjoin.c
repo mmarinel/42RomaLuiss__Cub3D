@@ -6,27 +6,30 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:22:37 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 10:03:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:09:06 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *pre, char *post, t_bool free_pre, t_bool free_post)
 {
-	size_t	s1_len;
-	size_t	s2_len;
-	char	*s_join;
+	char	*joined;
 
-	if (!s1 || !s2)
+	if ( NULL == pre && NULL == post)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	s_join = (char *) malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (s_join == NULL)
-		return (NULL);
-	return ((char *) ft_memcpy(
-			ft_memcpy(s_join, s1, s1_len) + s1_len,
-			s2,
-			s2_len + 1) - s1_len);
+	if ( NULL == pre)
+		return (ft_strjoin(post, "", free_post, e_false));
+	if ( NULL == post)
+		return (ft_strjoin(pre, "", free_pre, e_false));
+	joined = (char *) malloc(sizeof(char)
+			* (ft_strlen(pre) + ft_strlen(post) + 1));
+	joined[ft_strlen(pre) + ft_strlen(post)] = '\0';
+	ft_strcpy(joined, pre, ft_strlen(pre));
+	ft_strcpy(joined + ft_strlen(pre), post, ft_strlen(post));
+	if (free_pre && pre)
+		free(pre);
+	if (free_post && post)
+		free(post);
+	return (joined);
 }

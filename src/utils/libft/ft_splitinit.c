@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_splitinit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/27 07:48:37 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/27 08:58:13 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/27 09:01:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "libft.h"
 
-# ifndef T_BOOL
-#  define T_BOOL
-typedef enum e_bool
+char	**ft_splitinit( size_t size )
 {
-	e_true = 1,
-	e_false = 0
-}	t_bool;
-# endif
+	char	**split;
+	size_t	i;
 
-typedef enum e_tile
-{
-	e_FLOOR,
-	e_WALL,
-	e_EMPTY
-}	t_tile;
-
-typedef struct s_map_holder
-{
-	t_tile	**map;
-	size_t	size;
-}	t_map_holder;
-
-#endif
+	split = (char **) malloc(sizeof(char *) * (size + 1) );
+	i = 0;
+	while (i < size)
+	{
+		split[i] = NULL;
+		i++;
+	}
+	split[size] = NULL;
+	return (split);
+}

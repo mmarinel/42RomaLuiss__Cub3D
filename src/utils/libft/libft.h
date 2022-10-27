@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 18:31:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:10:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 //* strings
+char	*ft_strcpy(char *buf, char *src, int copy_len);
 char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *pre, char *post, t_bool free_pre, t_bool free_post);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -65,6 +66,14 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
+
+//* split utils
+void	*ft_splitclear(char **split);
+char	**ft_splitcpy(char **buf, char **src, size_t copy_len);
+size_t	ft_splitlen(char **split);
+char	**ft_splitinit( size_t size );
+char	**ft_splitjoin( char** pre, char** post,
+			t_bool free_pre, t_bool free_post );
 
 //* ASCII manipulations
 int		ft_toupper(int c);
