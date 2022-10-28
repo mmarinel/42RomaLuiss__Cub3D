@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/26 14:23:01 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/28 09:43:27 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,10 +66,20 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(SRC_NOPREFIX:.c=.o))
 
 RMF = @/bin/rm -rf
 
+NAME = libft.a
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(INCLUDES)
 	ar -rc $(NAME) $(OBJS) && ranlib $(NAME)
+
+#
+#	this rule compiles sources in <path>.c and puts them in <obj_dir>/<path>.o
+#
+#
+$(shell echo $(OBJS_DIR))/%.o: %.c $(INCLUDES)#		$(wildcard $(<D)/*.h)------this recompiles only for headers in the same folder!
+	@mkdir -p '$(@D)'
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	$(RMF) $(OBJS)

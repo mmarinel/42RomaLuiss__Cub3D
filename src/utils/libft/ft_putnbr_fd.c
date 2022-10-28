@@ -6,13 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:21:55 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/18 15:35:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:44:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_abs(int n);
 static void	ft_putnbr_fd_rec(unsigned int n, int fd);
 
 void	ft_putnbr_fd(int n, int fd)
@@ -36,11 +35,4 @@ static void	ft_putnbr_fd_rec(unsigned int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 	digit = (n % 10) + 48;
 	write(fd, &digit, 1);
-}
-
-static int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
 }

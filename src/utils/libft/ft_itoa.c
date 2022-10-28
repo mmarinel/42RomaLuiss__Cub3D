@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 18:01:41 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 09:57:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:44:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define MIN_INT_SIZE 11
 
 static long	ft_itoa_rec(int n, size_t pos, int is_neg, char **result);
-static int	ft_abs(int n);
 
 char	*ft_itoa(int n)
 {
@@ -53,11 +52,4 @@ static long	ft_itoa_rec(int n, size_t pos, int is_neg, char **result)
 		return (-1);
 	*(*result + index) = (n % 10) + 48;
 	return (index + 1);
-}
-
-static int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/27 09:34:27 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/28 08:44:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		ft_tolower(int c);
 //* Conversions
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
-void	pf_put_nbr_base(long long num, const char *base, int base_num);
+void	ft_put_nbr_base(long long num, const char *base, int base_num);
 
 //* lists and maps
 t_list	*ft_lstnew(void *content);

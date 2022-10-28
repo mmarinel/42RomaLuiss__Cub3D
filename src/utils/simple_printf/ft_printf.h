@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:56 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/26 18:54:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/10/28 08:47:39 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	pf_case_str(char *str, int *count);
 void	pf_case_int(int n, int *count);
 void	pf_case_hexa(long long n, int *count);
 
-//* printf writer
-void	pf_write(const char *c, int *count);
+//* printf utils
+void				pf_write(const char *c, int *count);
+void				pf_put_nbr_base(long long num, const char *base,
+						int base_num, int *count);
+unsigned long long	pf_abs(long long nbr);
 
 #endif

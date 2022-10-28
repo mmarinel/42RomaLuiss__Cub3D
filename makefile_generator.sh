@@ -31,6 +31,10 @@ for dir in $SRC_SUBDIRS
 			# we need a redirection to stderr in the case this folder does not contain srcs per se, but just subfolders of srcs
 			SRC_NOPREFIX+=" "$(find ./"$dir"/*.c -name "*c" 2>/dev/null | sed 's/\.c/\.c\\/g')
 			INCLUDES+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
+		else
+			#there must be sources if there is a Makefile....so no redirection of stderr to /dev/null here...
+			# SRC_USR_LIB+=$(find ./"$dir"/*.c -name "*c" | sed 's/\.c/\.c\\/g')" "
+			USR_LIBS+="$dir""\ "
 		fi
 	done
 
@@ -56,14 +60,14 @@ put () {
 #TODO per aggiornare l'header:           date +%F | sed 's/-/\//g'
 #TODO 43 max len of file name
 #TODO 9 max len of user name $USER
-HEADER_CHARS_PER_LINE=80
-for (( i=1; i<=$N; i++ ))
-	do
-		for (( j=1; j<=$N; j++ ))
-			do
-				if [[ $i = 4 ]]
-			done
-	done
+# HEADER_CHARS_PER_LINE=80
+# for (( i=1; i<=$N; i++ ))
+# 	do
+# 		for (( j=1; j<=$N; j++ ))
+# 			do
+# 				if [[ $i = 4 ]]
+# 			done
+# 	done
 # making Makefile
 echo "# **************************************************************************** #
 #                                                                              #
@@ -79,6 +83,8 @@ echo "# ************************************************************************
 " > $BACKUP_FILE
 put "INCLUDES=\\" $INCLUDES $BACKUP_FILE
 put "SRC_NOPREFIX=\\" $SRC_NOPREFIX $BACKUP_FILE
+put "USR_LIBS=\\" $USR_LIBS $BACKUP_FILE
+echo 'SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")' >> $BACKUP_FILE && echo >> $BACKUP_FILE
 awk "NR >= $MAKEFILE_OPS_BEGIN { print }" < $MAKEFILE >> $BACKUP_FILE
 
 mv $BACKUP_FILE $MAKEFILE
