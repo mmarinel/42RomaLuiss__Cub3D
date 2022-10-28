@@ -33,7 +33,9 @@ for dir in $SRC_SUBDIRS
 			INCLUDES+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
 		else
 			#there must be sources if there is a Makefile....so no redirection of stderr to /dev/null here...
-			# SRC_USR_LIB+=$(find ./"$dir"/*.c -name "*c" | sed 's/\.c/\.c\\/g')" "
+			###		take only the first occurrence of the word 'NAME', split it on the '=',
+			###		remove the lib part and the extension (.a) part, and finally remove any space
+			LIBS_FLAGS+="-L./"$dir" -l"$(cat ./$dir/Makefile | grep -m1 "NAME" | awk -F "=" '{ print $2}' | sed 's/lib//' | sed 's/\.a//g' | sed 's/ //g')" "
 			USR_LIBS+="$dir""\ "
 		fi
 	done
@@ -83,8 +85,12 @@ echo "# ************************************************************************
 " > $BACKUP_FILE
 put "INCLUDES=\\" $INCLUDES $BACKUP_FILE
 put "SRC_NOPREFIX=\\" $SRC_NOPREFIX $BACKUP_FILE
+
 put "USR_LIBS=\\" $USR_LIBS $BACKUP_FILE
 echo 'SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")' >> $BACKUP_FILE && echo >> $BACKUP_FILE
+echo "LIBS_FLAGS="$LIBS_FLAGS >> $BACKUP_FILE && echo >> $BACKUP_FILE
+
+#		copying Makefile operations to backup file
 awk "NR >= $MAKEFILE_OPS_BEGIN { print }" < $MAKEFILE >> $BACKUP_FILE
 
 mv $BACKUP_FILE $MAKEFILE

@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/28 10:48:39 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/28 16:44:08 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ src/utils/libft\
 
 SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 
+LIBS_FLAGS=-L./src/utils/libft -lft
+
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
 MLX_FLAGS = TODO
@@ -42,7 +44,7 @@ OBJS_DIR = bin
 OBJS_NOPREFIX = ${SRC_NOPREFIX:%.c=%.o}
 OBJS = $(addprefix $(OBJS_DIR)/, $(OBJS_NOPREFIX))
 
-NAME = minishell
+NAME = cub3D
 
 	# all: .BUILD
 
@@ -50,7 +52,7 @@ NAME = minishell
 
 $(NAME): $(OBJS) $(SRC_USR_LIBS)
 	@$(MAKE) .DO_LIBS
-	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) $(USR_LIBS_AR) -o $(NAME)
+	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) $(LIBS_FLAGS) -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
 	@echo "\033[0;37m"
 
