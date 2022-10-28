@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 08:44:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:47:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 //* strings
-char	*ft_strcpy(char *buf, char *src, int copy_len);
+char	*ft_strcpy(char *buf, char *src, size_t copy_len);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *pre, char *post, t_bool free_pre, t_bool free_post);
 char	**ft_multisplit( const char* str, const char* delimiters,

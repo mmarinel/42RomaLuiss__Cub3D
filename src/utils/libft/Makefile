@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
+#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/28 09:43:27 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ INCLUDES=\
 ./libft.h\
 
 SRC_NOPREFIX=\
+ft_abs.c\
 ft_atoi.c\
 ft_bzero.c\
 ft_calloc.c\
+ft_free.c\
 ft_isalnum.c\
 ft_isalpha.c\
 ft_isascii.c\
@@ -37,12 +39,21 @@ ft_memcmp.c\
 ft_memcpy.c\
 ft_memmove.c\
 ft_memset.c\
+ft_multisplit.c\
+ft_put_nbr_base.c\
 ft_putchar_fd.c\
 ft_putendl_fd.c\
 ft_putnbr_fd.c\
 ft_putstr_fd.c\
 ft_split.c\
+ft_split_join.c\
+ft_splitclear.c\
+ft_splitcpy.c\
+ft_splitinit.c\
+ft_splitlen.c\
 ft_strchr.c\
+ft_strcmp.c\
+ft_strcpy.c\
 ft_strdup.c\
 ft_striteri.c\
 ft_strjoin.c\
@@ -57,12 +68,14 @@ ft_strtrim.c\
 ft_substr.c\
 ft_tolower.c\
 ft_toupper.c\
+ft_write.c\
+is_file_type.c\
 
 CC = @gcc
 CFLAGS = -Wall -Wextra -Werror
 
 OBJS_DIR = bin
-OBJS = $(addprefix $(OBJS_DIR)/, $(SRC_NOPREFIX:.c=.o))
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRC_NOPREFIX:%.c=%.o))
 
 RMF = @/bin/rm -rf
 

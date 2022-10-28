@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/28 10:24:33 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/28 10:48:39 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ NAME = minishell
 
 $(NAME): $(OBJS) $(SRC_USR_LIBS)
 	@$(MAKE) .DO_LIBS
-	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) $(USR_LIBS_AR) -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
 	@echo "\033[0;37m"
 

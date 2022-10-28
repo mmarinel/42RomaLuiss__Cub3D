@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:46:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/27 08:49:30 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:47:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *buf, char *src, int copy_len)
+char	*ft_strcpy(char *buf, char *src, size_t copy_len)
 {
 	size_t	i;
 
