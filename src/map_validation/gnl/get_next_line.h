@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:14:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/25 17:30:39 by earendil         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:51:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef enum e_bool
 
 //* utils
 
-void	ft_strcpy(char *dst, char *src);
-void	ft_strlcpy(char **dst, char *src, int dst_len);
-char	*ft_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post);
-size_t	ft_strlen(const char *str);
-void	*ft_memset(void *b, int c, size_t len);
+void	gnl_strcpy(char *dst, char *src);
+void	gnl_strlcpy(char **dst, char *src, int dst_len);
+char	*gnl_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post);
+size_t	gnl_strlen(const char *str);
+void	*gnl_memset(void *b, int c, size_t len);
 
 #endif

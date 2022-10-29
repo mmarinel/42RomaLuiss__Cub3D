@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 10:47:29 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:03:40 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ size_t	ft_splitlen(char **split);
 char	**ft_splitinit( size_t size );
 char	**ft_splitjoin( char** pre, char** post,
 			t_bool free_pre, t_bool free_post );
+void	ft_splitprint( char** split );
 
 //* ASCII manipulations
 int		ft_toupper(int c);

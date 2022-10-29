@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 18:34:31 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/08/27 00:03:04 by earendil         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:50:39 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post)
+char	*gnl_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post)
 {
 	size_t	pre_len;
 	size_t	post_len;
 	char	*s_join;
 
 	if (!pre)
-		return (ft_strjoin(post, "", free_post, e_false));
+		return (gnl_strjoin(post, "", free_post, e_false));
 	if (!post)
-		return (ft_strjoin(pre, "", free_pre, e_false));
-	pre_len = ft_strlen(pre);
-	post_len = ft_strlen(post);
+		return (gnl_strjoin(pre, "", free_pre, e_false));
+	pre_len = gnl_strlen(pre);
+	post_len = gnl_strlen(post);
 	s_join = (char *) malloc((pre_len + post_len + 1) * sizeof(char));
 	if (s_join == NULL)
 		return (NULL);
-	ft_strcpy((char *) s_join, (char *) pre);
-	ft_strcpy((char *) s_join + pre_len, (char *) post);
+	gnl_strcpy((char *) s_join, (char *) pre);
+	gnl_strcpy((char *) s_join + pre_len, (char *) post);
 	if (free_pre && pre)
 		free((char *) pre);
 	if (free_post && post)
@@ -36,7 +36,7 @@ char	*ft_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free
 	return (s_join);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	gnl_strlen(const char *str)
 {
 	size_t	i;
 
@@ -46,7 +46,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void	ft_strcpy(char *dst, char *src)
+void	gnl_strcpy(char *dst, char *src)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ void	ft_strcpy(char *dst, char *src)
 	dst[i] = src[i];
 }
 
-void	ft_strlcpy(char **dst, char *src, int dst_len)
+void	gnl_strlcpy(char **dst, char *src, int dst_len)
 {
 	int	i;
 	int	dstsize;
@@ -67,7 +67,7 @@ void	ft_strlcpy(char **dst, char *src, int dst_len)
 	i = 0;
 	dstsize = dst_len + 1;
 	*dst = (char *) malloc(dstsize * sizeof(char));
-	ft_memset(*dst, '\0', dstsize);
+	gnl_memset(*dst, '\0', dstsize);
 	while (i < dst_len && src[i])
 	{
 		(*dst)[i] = src[i];
@@ -76,7 +76,7 @@ void	ft_strlcpy(char **dst, char *src, int dst_len)
 	(*dst)[i] = '\0';
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*gnl_memset(void *b, int c, size_t len)
 {
 	size_t			i;
 	unsigned char	*s;

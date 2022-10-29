@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:34:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 10:43:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:52:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char**	empty_split( void );
 //* end of static declarations
-
+#include <stdio.h>
 char	**ft_splitjoin( char** pre, char** post, t_bool free_pre, t_bool free_post )
 {
 	char	**joined;
@@ -29,9 +29,12 @@ char	**ft_splitjoin( char** pre, char** post, t_bool free_pre, t_bool free_post 
 		return (ft_splitjoin(pre, empty_split(), free_pre, e_true));
 	len_pre = ft_splitlen(pre);
 	len_post = ft_splitlen(post);
+	printf("lens: %zu, %zu\n", len_pre, len_post);
 	joined = ft_splitinit(len_pre + len_post);
 	ft_splitcpy(joined, pre, ft_splitlen(pre));
 	ft_splitcpy(joined + ft_splitlen(pre), post, ft_splitlen(post));
+	ft_splitprint(joined);
+	exit(0);
 	if (free_pre)
 		ft_splitclear(pre);
 	if (free_post)

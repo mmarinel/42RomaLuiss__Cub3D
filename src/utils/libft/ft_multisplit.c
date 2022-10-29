@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 07:59:42 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 10:42:26 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:13:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ char	**ft_multisplit( const char* str, const char* delimiters, char del_sep )
 	if (NULL == str || NULL == delimiters)
 		return (NULL);
 	dels = ft_split(delimiters, del_sep);
+	ft_splitprint(dels);
+	// exit(0);
 	first_split = ft_split(str, dels[0][0]);
+	ft_splitprint(first_split);
+	exit(0);
 	ret = ft_multisplit_rec( first_split, dels + 1 );
 	ft_splitclear(dels);
 	ft_splitclear(first_split);

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_splitcpy.c                                      :+:      :+:    :+:   */
+/*   ft_splitprint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 08:43:39 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:39:58 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/29 16:01:30 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/29 16:12:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_splitcpy(char **split_buf, char **split_src, size_t copy_len)
+# include <stdio.h>
+
+void	ft_splitprint( char** split )
 {
 	size_t	i;
 
-	if (NULL == split_buf)
-		split_buf = ft_splitinit(copy_len);
+	if (NULL == split)
+		return ;
 	i = 0;
-	while (i < copy_len)
+	while (split[i])
 	{
-		split_buf[i] = ft_strcpy(
-			split_buf[i],
-			split_src[i],
-			ft_strlen(split_src[i])
-			);
-		// split_buf[i][ft_strlen(split_src[i])] = '\0';
+		if (0 == ft_strcmp(split[i]," "))
+			printf("split[%zu]: <space>\n", i);
+		else if (0 == ft_strcmp(split[i], "\t"))
+			printf("split[%zu]: <tab>\n", i);
+		else
+			printf("split[%zu]: %s\n", i, split[i]);
 		i++;
 	}
-	return (split_buf);
 }

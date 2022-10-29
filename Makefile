@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/29 15:46:11 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/29 16:49:21 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 LIBS_FLAGS=-L./src/utils/libft -lft
 
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -fsanitize=address -Wall -Werror -Wextra
 MLX_FLAGS = TODO
 
 
@@ -46,9 +46,9 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(OBJS_NOPREFIX))
 
 NAME = cub3D
 
-	# all: .BUILD
+all: $(NAME)
 
-	# bonus: .BUILD
+# bonus: .BUILD
 
 $(NAME): $(OBJS) $(SRC_USR_LIBS)
 	@$(MAKE) .DO_LIBS
