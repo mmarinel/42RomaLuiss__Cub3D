@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 17:01:11 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:28:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(int argc, char const *argv[])
 		printf("argv[%zu]: %s\n", i, split[i]);
 		i++;
 	}
+	ft_splitclear(split);
 	// char	**splittoo = ft_split("ciao pippo mario", ' ');
 	// char	**splittaa = ft_split("salveAphilipASuper", 'A');
 	// char	**splittii = ft_split("bonjour\vjesuis\vtriste", '\v');
@@ -38,3 +39,4 @@ int main(int argc, char const *argv[])
 	// ft_splitprint(join);
 	return 0;
 }
+//		*test	leaks --atExit -- ./cub3D "Ciao vincenzo, come stai?"
