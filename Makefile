@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/29 13:36:05 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/29 15:46:11 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,10 +85,10 @@ re: fclean all
 
 .DO_LIBS:
 	@for LIB in $(USR_LIBS); do \
-		LIB_NAME := $(shell echo $$LIB | awk -F "/" '{print $$NF}' ) \
+		LIB_NAME=$$( echo $$LIB | awk -F "/" '{print $$NF}' ); \
 		echo "lib is "$$LIB; \
 		echo "lib is "$$LIB_NAME; \
-		make -C $$LIB | sed "s/all/porcodio$$LIB_NAME/g"; \
+		make -C $$LIB | sed "s/all/$$LIB_NAME/g"; \
 		touch /dev/null; \
 	done
 
