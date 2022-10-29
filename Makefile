@@ -6,7 +6,7 @@
 #    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/29 17:04:01 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/29 18:34:23 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(SRC_USR_LIBS)
 	@$(MAKE) .DO_LIBS
+	@echo "linking compiled objects and libraries..."
 	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) $(LIBS_FLAGS) -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
 	@echo "\033[0;37m"
@@ -84,13 +85,14 @@ re: fclean all
 	@$(MAKE) $(NAME)
 
 .DO_LIBS:
+	@echo "making static libraries..."
 	@for LIB in $(USR_LIBS); do \
 		LIB_NAME=$$( echo $$LIB | awk -F "/" '{print $$NF}' ); \
 		echo "lib is "$$LIB; \
 		echo "lib is "$$LIB_NAME; \
 		make -C $$LIB | sed "s/all/$$LIB_NAME/g"; \
-		touch /dev/null; \
 	done
+#touch /dev/null; \
 
 .DESTROY_LIBS:
 	@for LIB in $(USR_LIBS); do \
