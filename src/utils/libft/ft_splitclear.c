@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.h                                   :+:      :+:    :+:   */
+/*   ft_splitclear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/30 15:13:06 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/27 08:30:00 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 14:47:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_H
-# define MAP_VALIDATION_H
+# include "libft.h"
+#include <stdio.h>
+void	*ft_splitclear(char **split)
+{
+	size_t	i;
+	char	**backup;
 
-# include "../colors.h"
-# include "../types.h"
-# include "../utils/libft/libft.h"
-# include "../utils/simple_printf/ft_printf_module.h"
-# include "gnl/get_next_line_module.h"
-
-# include <unistd.h>
-# include <fcntl.h>
-
-# define MAP_FILE_EXTENSION ".cub"
-# define ERROR_SIG "Error\n"
-
-#endif
+	// printf("ft_splitclear called on %p\n", split);
+	if ( NULL == split )
+		return (NULL);
+	else
+	{
+		backup = split;
+		i = 0;
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free(backup);
+	}
+	return (NULL);
+}

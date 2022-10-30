@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_module.h                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:19:06 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 12:19:36 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/30 14:32:15 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 14:32:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_MODULE_H
-# define LIBFT_MODULE_H
+#include "libft.h"
 
-# include "src/libft.h"
-
-#endif
+t_bool	ft_isspace(char c)
+{
+	return (c == 32 || (c >= '\t' && c <= '\r'));
+}

@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.h                                   :+:      :+:    :+:   */
+/*   ft_str_isempty.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/30 15:13:06 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/30 14:34:51 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 14:43:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_H
-# define MAP_VALIDATION_H
+#include "libft.h"
 
-# include "../colors.h"
-# include "../types.h"
-# include "../utils/libft/libft.h"
-# include "../utils/simple_printf/ft_printf_module.h"
-# include "gnl/get_next_line_module.h"
+t_bool	ft_str_isempty( const char* str )
+{
+	size_t	cursor;
 
-# include <unistd.h>
-# include <fcntl.h>
-
-# define MAP_FILE_EXTENSION ".cub"
-# define ERROR_SIG "Error\n"
-
-#endif
+	if (NULL == str)
+		return (e_true);
+	else
+	{
+		cursor = 0;
+		while (str[cursor])
+		{
+			if (e_false == ft_isspace(str[cursor]))
+				return (e_false);
+			cursor += 1;
+		}
+		return (e_true);
+	}
+}

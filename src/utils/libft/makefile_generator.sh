@@ -17,11 +17,11 @@ MAKEFILE=Makefile;
 BACKUP_FILE="$MAKEFILE".copy;
 
 # initialized with headers at the root of src subfolder
-INCLUDES=$(find ./src/*.h -name "*.h" 2>/dev/null | sed 's/\.h/\.h\\/g')
+INCLUDES=$(find ./*.h -name "*.h" | sed 's/\.h/\.h\\/g')
 # initialized with srcs at the root of src subfolder
-SRC_NOPREFIX=$(find ./src/*.c -name "*.c" | sed 's/\.c/\.c\\/g')
+SRC_NOPREFIX=$(find ./*.c -name "*.c" | sed 's/\.c/\.c\\/g')
 # penultimate cmd removes ./ at the beginning of each file
-SRC_SUBDIRS=$(find ./src/* -type d -not -path "*/.*" | sed 's/\.\///')
+SRC_SUBDIRS=$(find ./* -type d -not -path "*/.*" | sed 's/\.\///')
 # taking all project specific (no library) srcs
 for dir in $SRC_SUBDIRS
 	do
