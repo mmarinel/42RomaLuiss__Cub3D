@@ -6,14 +6,14 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:56:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/20 10:01:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:34:33 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static size_t	ft_count_words(char *s, char c);
-static int		ft_get_words_len(char *s, char c, char **words_len);
+static int		ft_allocate_words(char *s, char c, char **words_len);
 static void		ft_get_split(char *s, char c, char **split);
 static int		ft_allocate_word(char **split, size_t *word_len);
 
@@ -22,21 +22,22 @@ char	**ft_split(char const *s, char c)
 	size_t	size;
 	char	**split;
 
-	if (!s)
+	if (NULL == s)
 		return (NULL);
 	size = ft_count_words((char *) s, c);
-	split = (char **) malloc((size + 1) * sizeof(char *));
-	if (!split)
-		return (NULL);
-	if (size == 0)
+	split = ft_splitinit(size);
+	if (NULL == split || size == 0)
 	{
-		*split = NULL;
+		if (split)
+			split[0] = NULL;
 		return (split);
 	}
-	if (!ft_get_words_len((char *) s, c, split))
+	if (!ft_allocate_words((char *) s, c, split))
+	{
+		ft_splitclear(split);
 		return (NULL);
+	}
 	ft_get_split((char *) s, c, split);
-	split[size] = NULL;
 	return (split);
 }
 
@@ -64,7 +65,7 @@ static size_t	ft_count_words(char *s, char c)
 	return (size);
 }
 
-static int	ft_get_words_len(char *s, char c, char **split)
+static int	ft_allocate_words(char *s, char c, char **split)
 {
 	size_t	word_len;
 

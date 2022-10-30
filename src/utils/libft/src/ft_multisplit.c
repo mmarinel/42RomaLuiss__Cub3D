@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 07:59:42 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 12:10:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:25:27 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static char	get_dels_separator( const char* delimiters );
 //* end of static declarations
 
 /**
- * @brief this functions splits a strings on multiple delimiters.
+ * @brief this function splits a string on multiple delimiters.
  * 
  * @param str 
  * @param delimiters a string of delimiters separated by a special character.
  * @return char** the splitted string if the delimiter string is well formed,
- * otherwise behavior is undefined.
+ * otherwise undefined behavior emerges.
  */
 char	**ft_multisplit( const char* str, const char* delimiters )
 {

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:58:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/27 09:01:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:31:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@ char	**ft_splitinit( size_t size )
 	size_t	i;
 
 	split = (char **) malloc(sizeof(char *) * (size + 1) );
-	i = 0;
-	while (i < size)
+	if ( NULL == split )
+		return (NULL);
+	else
 	{
-		split[i] = NULL;
-		i++;
+		i = 0;
+		while (i < size)
+		{
+			split[i] = NULL;
+			i++;
+		}
+		split[size] = NULL;
+		return (split);
 	}
-	split[size] = NULL;
-	return (split);
 }
