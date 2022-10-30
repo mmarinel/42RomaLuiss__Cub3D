@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 09:48:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/15 09:48:22 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 12:17:42 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-static int	ft_isupper(int c);
-static int	ft_islower(int c);
-
-int	ft_isalpha(int c)
+void	ft_free( void** ptr )
 {
-	return (ft_isupper(c) || ft_islower(c));
-}
-
-static int	ft_isupper(int c)
-{
-	return (c >= 'A' && c <= 'Z');
-}
-
-static int	ft_islower(int c)
-{
-	return (c >= 'a' && c <= 'z');
+	free(*ptr);
+	*ptr = NULL;
 }

@@ -6,38 +6,36 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 07:59:42 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 18:27:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:10:57 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static char	**ft_multisplit_rec( char** str_s, char** delimiters);
-// static char	**ft_non_empty_split( char const *str, char del );
+static char	get_dels_separator( const char* delimiters );
 //* end of static declarations
 
 /**
- * @brief 
+ * @brief this functions splits a strings on multiple delimiters.
  * 
  * @param str 
- * @param delimiters 
- * @param del_sep seprator for the delimiters string
- * @return char** 
+ * @param delimiters a string of delimiters separated by a special character.
+ * @return char** the splitted string if the delimiter string is well formed,
+ * otherwise behavior is undefined.
  */
-char	**ft_multisplit( const char* str, const char* delimiters, char del_sep )
+char	**ft_multisplit( const char* str, const char* delimiters )
 {
 	char	**ret;
 	char	**first_split;
 	char	**dels;
+	char	del_sep;
 
 	if (NULL == str || NULL == delimiters)
 		return (NULL);
+	del_sep = get_dels_separator(delimiters);
 	dels = ft_split(delimiters, del_sep);
-	// ft_splitprint(dels);
-	// exit(0);
 	first_split = ft_split(str, dels[0][0]);
-	// ft_splitprint(first_split);
-	// exit(0);
 	ret = ft_multisplit_rec( first_split, dels + 1 );
 	ft_splitclear(dels);
 	ft_splitclear(first_split);
@@ -66,15 +64,16 @@ static char	**ft_multisplit_rec( char** str_s, char** delimiters)
 	return (ret);
 }
 
-// static char	**ft_non_empty_split( char const *str, char del )
-// {
-// 	char	**split;
+static char	get_dels_separator( const char* delimiters )
+{
+	size_t	cursor;
 
-// 	split = ft_split(str, del);
-// 	if (NULL == split || NULL == split[0])
-// 	{
-// 		ft_splitclear(split);
-// 		split = NULL;
-// 	}
-// 	return (split);
-// }
+	cursor = 0;
+	while ( delimiters[cursor] )
+	{
+		if ( ft_str_member(delimiters, delimiters[cursor]) > 1 )
+			return (delimiters[cursor]);
+		cursor++;
+	}
+	return ('\0');
+}

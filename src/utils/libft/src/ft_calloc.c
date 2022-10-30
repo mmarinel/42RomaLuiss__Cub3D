@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 10:45:12 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/01/16 10:34:14 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 12:17:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void	ft_free( void** ptr )
+void	*ft_calloc(size_t count, size_t size)
 {
-	free(*ptr);
-	*ptr = NULL;
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (NULL);
+	return (ft_memset(ptr, 0, count * size));
 }

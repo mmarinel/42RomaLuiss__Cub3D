@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 10:00:31 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/15 10:05:50 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/01/15 09:48:20 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 12:17:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
-{
-	char	*last_occ;
+static int	ft_isupper(int c);
+static int	ft_islower(int c);
 
-	last_occ = (char *) 0;
-	while (*s != '\0')
-	{
-		if (*s == (char) c)
-			last_occ = (char *) s;
-		s++;
-	}
-	if (((char) c) == '\0')
-		return ((char *) s);
-	return (last_occ);
+int	ft_isalpha(int c)
+{
+	return (ft_isupper(c) || ft_islower(c));
+}
+
+static int	ft_isupper(int c)
+{
+	return (c >= 'A' && c <= 'Z');
+}
+
+static int	ft_islower(int c)
+{
+	return (c >= 'a' && c <= 'z');
 }

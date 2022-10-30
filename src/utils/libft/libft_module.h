@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   libft_module.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 17:27:37 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 15:47:25 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/30 12:19:06 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 12:19:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_MODULE_H
+# define LIBFT_MODULE_H
 
-void	ft_bzero(void *s, size_t n)
-{
-	char		*str;
-	size_t		i;
+# include "src/libft.h"
 
-	if (NULL == s)
-		return ;
-	else
-	{
-		str = s;
-		i = 0;
-		while (i < n)
-			str[i++] = '\0';
-	}
-}
+#endif

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.h                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/30 12:20:11 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/01/15 09:44:18 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 11:42:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_H
-# define MAP_VALIDATION_H
+#include "libft.h"
 
-# include "../colors.h"
-# include "../types.h"
-# include "../utils/libft/libft_module.h"
-# include "../utils/simple_printf/ft_printf_module.h"
-# include "gnl/get_next_line_module.h"
-
-# include <unistd.h>
-# include <fcntl.h>
-
-# define MAP_FILE_EXTENSION ".cub"
-# define ERROR_SIG "Error\n"
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	if (NULL == s)
+		return ((char *)0);
+	while (*s != '\0')
+	{
+		if (*s == (char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (((char) c) == '\0')
+		return ((char *) s);
+	return ((char *)0);
+}

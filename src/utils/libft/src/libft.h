@@ -6,12 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:03:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:08:46 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H 
+
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -54,8 +55,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strcpy(char *buf, char *src, size_t copy_len);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *pre, char *post, t_bool free_pre, t_bool free_post);
-char	**ft_multisplit( const char* str, const char* delimiters,
-			char del_sep );
+char	**ft_multisplit( const char* str, const char* delimiters );
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -68,6 +68,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
+size_t	ft_str_member( const char* str, char c );
 
 //* split utils
 void	*ft_splitclear(char **split);

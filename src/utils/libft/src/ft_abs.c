@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 10:34:14 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/01/16 10:47:58 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/26 18:29:55 by earendil          #+#    #+#             */
+/*   Updated: 2022/10/30 12:17:55 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+unsigned long long	ft_abs(long long nbr)
 {
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	return (ft_memset(ptr, 0, count * size));
+	if (nbr < 0)
+		return (nbr * -1);
+	return (nbr);
 }

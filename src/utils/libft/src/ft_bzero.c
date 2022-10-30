@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 18:29:55 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/26 18:30:55 by earendil         ###   ########.fr       */
+/*   Created: 2022/01/11 17:27:37 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/30 12:17:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long long	ft_abs(long long nbr)
+void	ft_bzero(void *s, size_t n)
 {
-	if (nbr < 0)
-		return (nbr * -1);
-	return (nbr);
+	char		*str;
+	size_t		i;
+
+	if (NULL == s)
+		return ;
+	else
+	{
+		str = s;
+		i = 0;
+		while (i < n)
+			str[i++] = '\0';
+	}
 }

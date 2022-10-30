@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
+#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/29 18:34:23 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ re: fclean all
 	@$(MAKE) $(NAME)
 
 .DO_LIBS:
-	@echo "making static libraries..."
+	@echo "making user static libraries..."
 	@for LIB in $(USR_LIBS); do \
 		LIB_NAME=$$( echo $$LIB | awk -F "/" '{print $$NF}' ); \
 		echo "lib is "$$LIB; \
