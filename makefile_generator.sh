@@ -40,6 +40,18 @@ for dir in $SRC_SUBDIRS
 		fi
 	done
 
+#					* PER DOMANIIIIIIIIIII
+#					
+#	SRC_SUBDIRS=$(find ./src/* -type d -not -path "*/.*" | sed 's/\.\///' | sed 's/ /\\n/')
+#	USR_LIBS_DIRS=$( find $(find ./src -name "Makefile" | sed 's/\/Makefile//') -type d -not -path "*/.*"  | sed 's/\.\///' | sed 's/ /\\n/')
+#	put $USR_LIBS_DIRS .usr_libs_dirs
+#	put $SRC_SUBDIRS .src_subdirs
+#	sort -o .usr_libs_dirs .usr_libs_dirs
+#	sort -o .src_subdirs .src_subdirs
+#	SRC_SUBDIRS=$(comm -23 .src_subdirs .usr_libs_dirs)
+#	$RM .src_subdirs .usr_libs_dirs
+#
+
 #	This function puts a series of strings in a file.
 #
 #	usage:	put("Hello", "42RomaLuiss", filetto.txt)
