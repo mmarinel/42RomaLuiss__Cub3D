@@ -37,14 +37,13 @@ MAKEFILE=Makefile;
 BACKUP_FILE="$MAKEFILE".copy;
 
 # initialized with headers at the root of src subfolder. (last command adds a line break (\) at the end of each name)
-INCLUDES=$(find ./src/*.h -name "*.h" 2>/dev/null | sed 's/\.h/\.h\\/g')" "
-INCLUDES+=$(find . -name "*.h" | grep "module" | sed 's/\.h/\.h\\/g')
+INCLUDES=$(find ./src/*.h -name "*.h" 2>/dev/null | sed 's/\.h/\.h\\/g')
 # initialized with srcs at the root of src subfolder. (last command adds a line break (\) at the end of each name)
 SRC_NOPREFIX=$(find ./src/*.c -name "*.c" | sed 's/\.c/\.c\\/g')
 # all the folders and subfolders of user defined libraries included in this project
 # find all those subfolders of src where a Makefile is present at the root. Then take this folder as well as all subfolders (except hidden ones),
 # remove the './' at the beginning, and separate each name with a new line
-USR_LIBS_DIRS=$(find $(find ./src -name "Makefile" | sed 's/\/Makefile//') -type d -not -path "*/.*" 2>/dev/null | sed 's/\.\///' | sed 's/ /\\n/')
+USR_LIBS_DIRS=$( find $(find ./src -name "Makefile" | sed 's/\/Makefile//') -type d -not -path "*/.*"  | sed 's/\.\///' | sed 's/ /\\n/')
 # all of the subfolders of the src folder which are not part of a user library. (last cmd removes ./ at the beginning of each file)
 SRC_SUBDIRS=$(find ./src/* -type d -not -path "*/.*" | sed 's/\.\///')
 put $USR_LIBS_DIRS .usr_libs_dirs
@@ -62,6 +61,7 @@ for dir in $SRC_SUBDIRS
 			INCLUDES+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
 	done
 
+
 # taking all user library srcs
 for dir in $USR_LIBS_DIRS
 	do
@@ -75,39 +75,8 @@ for dir in $USR_LIBS_DIRS
 		fi
 	done
 
-#TODO per aggiornare l'header:           date +%F | sed 's/-/\//g'
-#TODO 43 max len of file name
-#TODO 9 max len of user name $USER
-# HEADER_CHARS_PER_LINE=80
-# for (( i=1; i<=$N; i++ ))
-# 	do
-# 		for (( j=1; j<=$N; j++ ))
-# 			do
-# 				if [[ $i = 4 ]]
-# 			done
-# 	done
-# making Makefile
-echo "# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-" > $BACKUP_FILE
-put "INCLUDES=\\" $INCLUDES $BACKUP_FILE
-put "SRC_NOPREFIX=\\" $SRC_NOPREFIX $BACKUP_FILE
-
-put "USR_LIBS=\\" $USR_LIBS $BACKUP_FILE
-echo 'SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")' >> $BACKUP_FILE && echo >> $BACKUP_FILE
-echo "LIBS_FLAGS="$LIBS_FLAGS >> $BACKUP_FILE && echo >> $BACKUP_FILE
-
-#		copying Makefile operations to backup file
-awk "NR >= $MAKEFILE_OPS_BEGIN { print }" < $MAKEFILE >> $BACKUP_FILE
-
-mv $BACKUP_FILE $MAKEFILE
-$RM $BACKUP_FILE
+echo $LIBS_FLAGS $USR_LIBS
+echo "............................................."
+put $SRC_NOPREFIX .bo
+cat .bo
+rm -rf .bo

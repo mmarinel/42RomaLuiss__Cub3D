@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.h                                   :+:      :+:    :+:   */
+/*   libft_module.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/31 08:02:27 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/10/31 08:01:25 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/10/31 08:01:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_H
-# define MAP_VALIDATION_H
+#ifndef LIBFT_MODULE_H
+# define LIBFT_MODULE_H
 
-# include "../colors.h"
-# include "../types.h"
-# include "../utils/libft/libft_module.h"
-# include "../utils/simple_printf/ft_printf_module.h"
-# include "gnl/get_next_line_module.h"
-
-# include <unistd.h>
-# include <fcntl.h>
-
-# define MAP_FILE_EXTENSION ".cub"
-# define ERROR_SIG "Error\n"
+# include "src/libft.h"
 
 #endif
