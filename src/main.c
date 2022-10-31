@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 10:08:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:58:09 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,22 @@ int main(int argc, char const *argv[])
 
 	// int		fd = open(argv[1], O_RDONLY);
 	if (is_valid_map(argv[1], &map_handle))
+	{
 		printf( GREEN "map is ok" RESET );
+		printf(
+			"\n\
+			no_texture: %s\n\
+			so_texture: %s\n\
+			we_texture: %s\n\
+			ea_texture: %s\n\
+			f_color.red: %d, f_color.green: %d, f_color.blue: %d f_color.alpha: %lf\n\
+			c_color.red: %d, c_color.green: %d, c_color.blue: %d f_color.alpha: %lf\n\
+			",
+			map_handle.no_texture, map_handle.so_texture, map_handle.we_texture, map_handle.ea_texture,
+			map_handle.f_color.red, map_handle.f_color.green, map_handle.f_color.blue, map_handle.f_color.alpha,
+			map_handle.c_color.red, map_handle.c_color.green, map_handle.c_color.blue, map_handle.c_color.alpha
+		);
+	}
 	else
 		printf( RED "map not ok" RESET );
 	free(map_handle.no_texture);

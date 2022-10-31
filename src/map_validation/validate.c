@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/31 11:18:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:49:40 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
 static t_bool	map_fields_complete( t_map_holder* map_handle );
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
-t_bool	is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
+static size_t	map_row_len( const char* map_string );
+static char		*read_map( int map_fd );
+t_bool			is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
 //* end of static declarations
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
@@ -163,7 +165,57 @@ static void	parse_rgb_item( short* item_ref, const char* channel,
 
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 {
-	(void) map_fd;
-	(void) map_holder;
-	return (e_true);
+	t_bool	error_found;
+	char	**map_string;
+	int		max_row_len;
+
+	error_found = e_false;
+	map_string = read_map(map_fd);
+	max_row_len = map_row_len(map_string);
+	if (max_row_len < 0)
+		error_found = e_true;
+	else
+	{
+		map_holder->size = max_row_len;
+		parse_map(map_holder->map, &error_found);
+	}
+	free(map_string);
+	return (error_found == e_false);
+}
+
+static size_t	map_row_len( const char* map_string )
+{
+	int		max_row_len;
+	int		cur_row_len;
+	char	**splitted;
+	size_t	cursor;
+
+	max_row_len = 0;
+	splitted = ft_split(map_string, '\n');
+	cursor = 0;
+	while (splitted[cursor])
+	{
+		cur_row_len = ft_strlen(splitted[cursor]);
+		if (cur_row_len > max_row_len)
+			max_row_len = cur_row_len;
+		cursor += 1;
+	}
+	ft_splitclear(splitted);
+}
+
+static char	*read_map( int map_fd )
+{
+	char	*map_string;
+	char	*line;
+
+	map_string = NULL;
+	while (e_true)
+	{
+		line = get_next_line(map_fd);
+		if (NULL == line)
+			break ;
+		map_string = ft_strjoin(map_string, line, e_true, e_false);
+		free(line);
+	}
+	return (map_string);
 }

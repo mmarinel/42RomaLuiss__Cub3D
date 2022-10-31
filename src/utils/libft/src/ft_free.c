@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 12:17:42 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:17:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_free( void** ptr )
 {
-	free(*ptr);
+	if (*ptr)
+		free(*ptr);
 	*ptr = NULL;
 }
