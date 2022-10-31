@@ -13,22 +13,22 @@
 INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
-./src/map_validation/gnl/get_next_line_module.h\
 ./src/map_validation/map_validation_module.h\
+./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
 ./src/utils/simple_printf/ft_printf_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
-./src/map_validation/gnl/get_next_line.h\
-./src/map_validation/gnl/get_next_line_module.h\
+./src/utils/gnl/get_next_line.h\
+./src/utils/gnl/get_next_line_module.h\
 ./src/utils/simple_printf/ft_printf.h\
 ./src/utils/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
 ./src/map_validation/validate.c\
-./src/map_validation/gnl/get_next_line.c\
-./src/map_validation/gnl/get_next_line_utils.c\
+./src/utils/gnl/get_next_line.c\
+./src/utils/gnl/get_next_line_utils.c\
 ./src/utils/simple_printf/ft_printf.c\
 ./src/utils/simple_printf/printf_cases.c\
 ./src/utils/simple_printf/printf_utils.c\

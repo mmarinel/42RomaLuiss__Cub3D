@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 14:48:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 08:41:27 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "map_validation/gnl/get_next_line_module.h"
+# include "utils/gnl/get_next_line_module.h"
 
 int main(int argc, char const *argv[])
 {
