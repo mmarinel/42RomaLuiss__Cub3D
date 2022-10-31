@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/31 12:49:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:16:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ static void	parse_rgb_item( short* item_ref, const char* channel,
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 {
 	t_bool	error_found;
-	char	**map_string;
+	char	*map_string;
 	int		max_row_len;
 
 	error_found = e_false;
@@ -177,10 +177,38 @@ static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 	else
 	{
 		map_holder->size = max_row_len;
-		parse_map(map_holder->map, &error_found);
+		parse_map(map_holder, map_string, &error_found);
 	}
 	free(map_string);
 	return (error_found == e_false);
+}
+
+//*			DOING THIS
+//*							
+//*							
+static void	parse_map( t_map_holder *map_handle, char* map_string,
+			t_bool* err_flag )
+{
+	char	**splitted;
+	char	*row;
+	size_t	cursor;
+
+	map_handle->map = (t_tile **) malloc(sizeof(t_tile *) * map_handle->size);
+	splitted = ft_split(map_string, '\n');
+	cursor = 0;
+	while (splitted[cursor] && e_false == *err_flag)
+	{
+		row = ft_strjoin(
+			splitted[cursor],
+			ft_string_new(' ', map_handle->size - ft_strlen(splitted[cursor])),
+			e_false, e_true
+		);
+		parse_row(map_handle, cursor, row, err_flag);
+		cursor += 1;
+	}
+	ft_splitclear(splitted);
+	if (*err_flag)
+		ft_free_map(map_handle->map);
 }
 
 static size_t	map_row_len( const char* map_string )
