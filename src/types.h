@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/30 14:04:16 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 09:21:44 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ typedef enum e_bool
 }	t_bool;
 # endif
 
+# ifndef T_COLOR
+#  define T_COLOR
+typedef struct s_color
+{
+	short	red;
+	short	green;
+	short	blue;
+	double	alpha;
+}	t_color;
+# endif
+
 typedef enum e_tile
 {
 	e_FLOOR,
@@ -39,8 +50,8 @@ typedef struct s_map_holder
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	char	*f_texture;
-	char	*c_texture;
+	t_color	f_color;
+	t_color	c_color;
 }	t_map_holder;
 
 #endif

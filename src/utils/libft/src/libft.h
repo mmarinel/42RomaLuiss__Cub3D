@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 14:34:30 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:50:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
+t_bool	ft_isdigit_string( const char* string );
+t_bool	ft_iscolor( long long red, long long green, long long blue );
 int		ft_isprint(int c);
 t_bool	ft_str_isempty( const char* str );
 t_bool	is_file_type( const char* path_name, const char* extension );
@@ -80,6 +82,7 @@ size_t	ft_splitlen(char **split);
 char	**ft_splitinit( size_t size );
 char	**ft_splitjoin( char** pre, char** post,
 			t_bool free_pre, t_bool free_post );
+char	*ft_split_merge(char	**split, char *const sep, t_bool free_split);
 void	ft_splitprint( char** split );
 
 //* ASCII manipulations

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 08:41:27 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:08:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int main(int argc, char const *argv[])
 	map_handle.so_texture = NULL;
 	map_handle.we_texture = NULL;
 	map_handle.ea_texture = NULL;
-	map_handle.c_texture = NULL;
-	map_handle.f_texture = NULL;
+	map_handle.c_color.alpha = -1;
+	map_handle.f_color.alpha = -1;
 
 	// int		fd = open(argv[1], O_RDONLY);
 	if (is_valid_map(argv[1], &map_handle))
@@ -45,8 +45,6 @@ int main(int argc, char const *argv[])
 	free(map_handle.so_texture);
 	free(map_handle.we_texture);
 	free(map_handle.ea_texture);
-	free(map_handle.c_texture);
-	free(map_handle.f_texture);
 	return 0;
 }
 //		*test	leaks --atExit -- ./cub3D "Ciao vincenzo, come stai?"

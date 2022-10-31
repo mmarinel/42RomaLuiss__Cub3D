@@ -23,7 +23,9 @@ SRC_NOPREFIX=\
 ./src/ft_isalnum.c\
 ./src/ft_isalpha.c\
 ./src/ft_isascii.c\
+./src/ft_iscolor.c\
 ./src/ft_isdigit.c\
+./src/ft_isdigit_string.c\
 ./src/ft_isprint.c\
 ./src/ft_isspace.c\
 ./src/ft_itoa.c\
@@ -49,6 +51,7 @@ SRC_NOPREFIX=\
 ./src/ft_putstr_fd.c\
 ./src/ft_split.c\
 ./src/ft_split_join.c\
+./src/ft_split_merge.c\
 ./src/ft_splitclear.c\
 ./src/ft_splitcpy.c\
 ./src/ft_splitinit.c\
