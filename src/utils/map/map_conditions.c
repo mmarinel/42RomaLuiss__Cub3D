@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils_module.h                                 :+:      :+:    :+:   */
+/*   map_conditions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/01 17:39:13 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/01 17:38:57 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_UTILS_MODULE_H
-# define MAP_UTILS_MODULE_H
+#include "map_utils.h"
 
-# include "../../types.h"
+t_bool	is_map_char( char c )
+{
+	return (
+		e_true == ft_isspace(c)
+		|| '0' == c
+		|| '1' == c
+		|| 'N' == c
+		|| 'S' == c
+		|| 'W' == c
+		|| 'E' == c
+	);
+}
 
-//*		memory
-void	ft_free_map( t_tile*** map_ref, size_t rows );
-t_tile	**ft_map_init( size_t rows, size_t columns );
+t_bool	is_player_map_char( char c )
+{
+	return (
+		'N' == c
+		|| 'S' == c
+		|| 'W' == c
+		|| 'E' == c
+	);
+}
 
-//*		conditions
-t_bool	is_map_char( char c );
-t_bool	is_player_map_char( char c );
-t_bool	is_floor_map_char( char c );
-
-#endif
+t_bool	is_floor_map_char( char c )
+{
+	return ('0' == c );
+}

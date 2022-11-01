@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/01 10:15:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:00:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_free_map( t_tile*** map_ref, size_t rows )
 	size_t	cursor;
 
 	map = *map_ref;
+	if (NULL == map)
+		return ;
 	cursor = 0;
 	while (cursor < rows)
 	{

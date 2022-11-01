@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 12:28:34 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:58:32 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
 static t_bool	map_fields_complete( t_map_holder* map_handle );
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
+static t_bool	is_map_char_pos_valid(
+					char map_char,
+					size_t row_index, size_t col_index,
+					t_map_holder *map_handle
+				);
 static void		map_size( const char* map_string,
 					size_t* rows, size_t* columns );
 static char		*read_map( int map_fd );
@@ -29,10 +34,12 @@ t_bool			is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
 {
-	if (e_false == is_file_type(path, MAP_FILE_EXTENSION))
+	if (e_false == is_file_type(path, MAP_FILE_EXTENSION)
+		|| e_false == is_file_content_valid(path, map_handle))
+	{
+		ft_free_map(map_handle->map, map_handle->rows);
 		return (e_false);
-	if (e_false == is_file_content_valid(path, map_handle))
-		return (e_false);
+	}
 	return (e_true);
 }
 
@@ -206,11 +213,12 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 			e_false, e_true
 		);
 		parse_row(map_handle, cursor, row, err_flag);
+		free(row);
 		cursor += 1;
 	}
 	ft_splitclear(splitted);
-	if (*err_flag)
-		ft_free_map(map_handle->map, map_handle->rows);
+	// if (*err_flag)
+	// 	ft_free_map(map_handle->map, map_handle->rows);
 }
 
 static void	parse_row( t_map_holder *map_handle, size_t row_index,
@@ -229,8 +237,8 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 		{
 			if (e_false == is_map_char(row[cursor])
 				|| (is_player_map_char(row[cursor]) && player_found)
-				|| (e_false == is_map_char_pos_valid(row, row_index, cursor,
-								map_handle->map
+				|| (e_false == is_map_char_pos_valid(row[cursor],
+								row_index, cursor, map_handle->map
 							)
 					)
 			)
@@ -243,6 +251,30 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 	}
 }
 
+static t_bool	is_map_char_pos_valid(
+					char map_char,
+					size_t row_index, size_t col_index,
+					t_map_holder *map_handle
+)
+{
+		if (is_floor_map_char(map_char) || is_player_map_char(map_char))
+			if (
+				(row_index == 0
+					|| e_EMPTY == map_handle->map[row_index - 1][col_index]
+				)
+				|| (row_index == map_handle->rows - 1
+					|| e_EMPTY == map_handle->map[row_index + 1][col_index]
+				)
+				|| (col_index == 0
+					|| e_EMPTY == map_handle->map[row_index][col_index - 1]
+				)
+				|| (col_index == map_handle->columns - 1
+					|| e_EMPTY == map_handle->map[row_index][col_index + 1]
+				)
+			)
+				return (e_false);
+	return (e_true);
+}
 
 static t_tile	ft_char_to_tile( char c, t_bool* player_found )
 {
@@ -257,28 +289,6 @@ static t_tile	ft_char_to_tile( char c, t_bool* player_found )
 		return (e_WALL);
 	else
 		return (e_EMPTY);
-}
-
-//TODO Cambiare nome, forse aggiungere altro, e spostare in map utils !
-static t_bool	is_row_chars_valid( const char* row )
-{
-	size_t	cursor;
-
-	cursor = 0;
-	while (row[cursor])
-	{
-		if (e_false == ft_isspace(row[cursor])
-			&& '0' != row[cursor]
-			&& '1' != row[cursor]
-			&& 'N' != row[cursor]
-			&& 'S' != row[cursor]
-			&& 'W' != row[cursor]
-			&& 'E' != row[cursor]
-		)
-			return (e_false);
-		cursor += 1;
-	}
-	return (e_true);
 }
 
 static void	map_size( const char* map_string,
