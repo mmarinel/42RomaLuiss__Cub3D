@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 09:14:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:28:34 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,9 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 	char	*row;
 	size_t	cursor;
 
-	map_handle->map
-		= (t_tile **) ft_calloc(map_handle->rows, sizeof(t_tile *));
+	map_handle->map = ft_map_init(map_handle->rows, map_handle->columns);
+	if (NULL == map_handle->map)
+		*err_flag = e_true;
 	splitted = ft_split(map_string, '\n');
 	cursor = 0;
 	while (splitted[cursor] && e_false == *err_flag)
@@ -209,7 +210,7 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 	}
 	ft_splitclear(splitted);
 	if (*err_flag)
-		ft_free_map(map_handle->map);
+		ft_free_map(map_handle->map, map_handle->rows);
 }
 
 static void	parse_row( t_map_holder *map_handle, size_t row_index,
@@ -222,8 +223,6 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 		*err_flag = e_true;
 	else
 	{
-		map_handle->map[row_index]
-			= (t_tile *) ft_calloc(map_handle->columns, sizeof(t_tile));
 		player_found = e_false;
 		cursor = 0;
 		while (row[cursor] && e_false == *err_flag)
@@ -231,27 +230,33 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 			if (e_false == is_map_char(row[cursor])
 				|| (is_player_map_char(row[cursor]) && player_found)
 				|| (e_false == is_map_char_pos_valid(row, row_index, cursor,
-								map_handle->map)
+								map_handle->map
 							)
+					)
 			)
 				*err_flag = e_true;
 			else
-			{
-				map_handle->map[row_index] = ft_char_to_tile(row[cursor]);
-				if (map_char_is_player(map_handle->map[row_index]))
-					player_found = e_true;
-			}
+				map_handle->map[row_index][cursor]
+					= ft_char_to_tile(row[cursor], &player_found);
 			cursor += 1;
 		}
 	}
 }
 
-static t_bool	is_valid_char_map(
-					const char* row,
-					size_t row_index, size_t col_index,
-					t_tile** map
-)
+
+static t_tile	ft_char_to_tile( char c, t_bool* player_found )
 {
+	if (is_player_map_char(c))
+	{
+		*player_found = e_true;
+		return (c);
+	}
+	else if ('0' == c)
+		return (e_FLOOR);
+	else if ('1' == c)
+		return (e_WALL);
+	else
+		return (e_EMPTY);
 }
 
 //TODO Cambiare nome, forse aggiungere altro, e spostare in map utils !

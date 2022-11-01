@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 16:03:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:13:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define MAP_UTILS_H
 
 # include "../../types.h"
+# include "../libft/libft_module.h"
 
 #endif

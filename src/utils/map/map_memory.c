@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 16:08:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:15:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,26 @@ void	ft_free_map( t_tile*** map_ref, size_t rows )
 	}
 	free(map);
 	*map_ref = NULL;
+}
+
+t_tile	**ft_map_init( size_t rows, size_t columns )
+{
+	t_tile	**map;
+	size_t	cursor;
+
+	map = (t_tile **) ft_calloc(rows, sizeof(t_tile *));
+	if (NULL == map)
+		return (NULL);
+	cursor = 0;
+	while (cursor < rows)
+	{
+		map[cursor] = (t_tile *) ft_calloc(columns, sizeof(t_tile));
+		if (NULL == map[cursor])
+		{
+			ft_free_map(&map, cursor);
+			return (NULL);
+		}
+		cursor++;
+	}
+	return (map);
 }

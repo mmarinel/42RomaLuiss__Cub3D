@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 08:37:38 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:29:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ typedef struct s_color
 
 typedef enum e_tile
 {
-	e_PLAYER,
+	e_PLAYER_N = 'N',
+	e_PLAYER_S = 'S',
+	e_PLAYER_E = 'E',
+	e_PLAYER_W = 'W',
 	e_FLOOR,
 	e_WALL,
 	e_EMPTY
@@ -55,5 +58,12 @@ typedef struct s_map_holder
 	t_color	f_color;
 	t_color	c_color;
 }	t_map_holder;
+
+typedef struct s_game
+{
+
+	t_map_holder	map_handle;
+	// t_vector		player_dir;
+}	t_game;
 
 #endif
