@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/31 16:16:52 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/01 09:14:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
 static t_bool	map_fields_complete( t_map_holder* map_handle );
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
-static size_t	map_row_len( const char* map_string );
+static void		map_size( const char* map_string,
+					size_t* rows, size_t* columns );
 static char		*read_map( int map_fd );
 t_bool			is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
 //* end of static declarations
@@ -167,18 +168,14 @@ static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 {
 	t_bool	error_found;
 	char	*map_string;
-	int		max_row_len;
 
 	error_found = e_false;
 	map_string = read_map(map_fd);
-	max_row_len = map_row_len(map_string);
-	if (max_row_len < 0)
+	map_size(map_string, &map_holder->rows, &map_holder->columns);
+	if (0 == map_holder->columns + map_holder->rows)
 		error_found = e_true;
 	else
-	{
-		map_holder->size = max_row_len;
 		parse_map(map_holder, map_string, &error_found);
-	}
 	free(map_string);
 	return (error_found == e_false);
 }
@@ -193,14 +190,18 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 	char	*row;
 	size_t	cursor;
 
-	map_handle->map = (t_tile **) malloc(sizeof(t_tile *) * map_handle->size);
+	map_handle->map
+		= (t_tile **) ft_calloc(map_handle->rows, sizeof(t_tile *));
 	splitted = ft_split(map_string, '\n');
 	cursor = 0;
 	while (splitted[cursor] && e_false == *err_flag)
 	{
 		row = ft_strjoin(
 			splitted[cursor],
-			ft_string_new(' ', map_handle->size - ft_strlen(splitted[cursor])),
+			ft_string_new(
+				' ',
+				map_handle->columns - ft_strlen(splitted[cursor])
+			),
 			e_false, e_true
 		);
 		parse_row(map_handle, cursor, row, err_flag);
@@ -211,7 +212,72 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 		ft_free_map(map_handle->map);
 }
 
-static size_t	map_row_len( const char* map_string )
+static void	parse_row( t_map_holder *map_handle, size_t row_index,
+				const char* row, t_bool* err_flag )
+{
+	t_bool	player_found;
+	size_t	cursor;
+
+	if (ft_str_isempty(row))
+		*err_flag = e_true;
+	else
+	{
+		map_handle->map[row_index]
+			= (t_tile *) ft_calloc(map_handle->columns, sizeof(t_tile));
+		player_found = e_false;
+		cursor = 0;
+		while (row[cursor] && e_false == *err_flag)
+		{
+			if (e_false == is_map_char(row[cursor])
+				|| (is_player_map_char(row[cursor]) && player_found)
+				|| (e_false == is_map_char_pos_valid(row, row_index, cursor,
+								map_handle->map)
+							)
+			)
+				*err_flag = e_true;
+			else
+			{
+				map_handle->map[row_index] = ft_char_to_tile(row[cursor]);
+				if (map_char_is_player(map_handle->map[row_index]))
+					player_found = e_true;
+			}
+			cursor += 1;
+		}
+	}
+}
+
+static t_bool	is_valid_char_map(
+					const char* row,
+					size_t row_index, size_t col_index,
+					t_tile** map
+)
+{
+}
+
+//TODO Cambiare nome, forse aggiungere altro, e spostare in map utils !
+static t_bool	is_row_chars_valid( const char* row )
+{
+	size_t	cursor;
+
+	cursor = 0;
+	while (row[cursor])
+	{
+		if (e_false == ft_isspace(row[cursor])
+			&& '0' != row[cursor]
+			&& '1' != row[cursor]
+			&& 'N' != row[cursor]
+			&& 'S' != row[cursor]
+			&& 'W' != row[cursor]
+			&& 'E' != row[cursor]
+		)
+			return (e_false);
+		cursor += 1;
+	}
+	return (e_true);
+}
+
+static void	map_size( const char* map_string,
+					size_t* rows, size_t* columns )
 {
 	int		max_row_len;
 	int		cur_row_len;
@@ -219,18 +285,24 @@ static size_t	map_row_len( const char* map_string )
 	size_t	cursor;
 
 	max_row_len = 0;
-	splitted = ft_split(map_string, '\n');
 	cursor = 0;
-	while (splitted[cursor])
+	splitted = ft_split(map_string, '\n');
+	if (NULL == splitted)
 	{
-		cur_row_len = ft_strlen(splitted[cursor]);
-		if (cur_row_len > max_row_len)
-			max_row_len = cur_row_len;
-		cursor += 1;
+		while (splitted[cursor])
+		{
+			cur_row_len = ft_strlen(splitted[cursor]);
+			if (cur_row_len > max_row_len)
+				max_row_len = cur_row_len;
+			cursor += 1;
+		}
 	}
 	ft_splitclear(splitted);
+	*columns = max_row_len;
+	*rows = cursor;
 }
 
+//* I Know this is (perhaps) bad !!!!
 static char	*read_map( int map_fd )
 {
 	char	*map_string;
