@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 08:33:23 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 09:19:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ static char		*read_map( int map_fd );
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
 {
+	if (e_true == is_file_type(path, MAP_FILE_EXTENSION))
+		printf( GREEN "FILE EXTENTSION OK\n" RESET );
+	else
+		printf( RED "FILE EXTENTSION NOT OK\n" RESET );
 	if (e_false == is_file_type(path, MAP_FILE_EXTENSION)
 		|| e_false == is_file_content_valid(path, map_handle))
 	{
@@ -183,6 +187,8 @@ static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 
 	error_found = e_false;
 	map_string = read_map(map_fd);
+	printf("map string:\n%s\n\n", map_string);
+	// exit(0);
 	map_size(map_string, &map_holder->rows, &map_holder->columns);
 	if (0 == map_holder->columns + map_holder->rows)
 		error_found = e_true;
@@ -205,6 +211,8 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 	map_handle->map = ft_map_init(map_handle->rows, map_handle->columns);
 	if (NULL == map_handle->map)
 		*err_flag = e_true;
+	// else
+	// 	printf(YELLOW "HEREEEE\n" RESET);
 	splitted = ft_split(map_string, '\n');
 	cursor = 0;
 	while (splitted[cursor] && e_false == *err_flag)
@@ -217,6 +225,7 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 			),
 			e_false, e_true
 		);
+		printf(YELLOW "row: %s\n" RESET, row);
 		parse_row(map_handle, cursor, row, err_flag);
 		free(row);
 		cursor += 1;
@@ -235,6 +244,7 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 		*err_flag = e_true;
 	else
 	{
+		// printf(YELLOW "HEREEEE\n" RESET);
 		cursor = 0;
 		while (row[cursor] && e_false == *err_flag)
 		{
