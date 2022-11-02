@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 12:49:11 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:08:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 					t_bool* err_flag );
 static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
+static t_bool	is_file_type_valid(const char* path);
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
 static void		parse_map( t_map_holder *map_handle, char** map,
 					t_bool* err_flag );
@@ -42,14 +43,23 @@ char			*ft_normalized_map_row( const char* row );
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
 {
-	if (e_true == is_file_type(path, MAP_FILE_EXTENSION))
-		printf( GREEN "FILE EXTENTSION OK\n" RESET );
-	else
-		printf( RED "FILE EXTENTSION NOT OK\n" RESET );
-	if (e_false == is_file_type(path, MAP_FILE_EXTENSION)
-		|| e_false == is_file_content_valid(path, map_handle))
+	if (
+		e_false == is_file_type_valid(path)
+		||
+		e_false == is_file_content_valid(path, map_handle)
+	)
 	{
 		ft_free_map(&map_handle->map, map_handle->rows);
+		return (e_false);
+	}
+	return (e_true);
+}
+
+static t_bool	is_file_type_valid(const char* path)
+{
+	if (e_false == is_file_type(path, MAP_FILE_EXTENSION))
+	{
+		ft_write(STDERR_FILENO, RED "Error:\n" RESET "map: wrong file type\n");
 		return (e_false);
 	}
 	return (e_true);
@@ -194,7 +204,7 @@ static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 	// printf("map string:\n%s\n\n", map_string);
 	// exit(0);
 	// map_size(map_string, &map_holder->rows, &map_holder->columns);
-	if (0 == map_holder->columns + map_holder->rows)
+	if (0 == map_holder->columns)
 		error_found = e_true;
 	else
 		parse_map(map_holder, map, &error_found);
@@ -213,14 +223,17 @@ static void	parse_map( t_map_holder *map_handle, char** map,
 	map_handle->map = ft_map_init(map_handle->rows, map_handle->columns);
 	if (NULL == map_handle->map)
 		*err_flag = e_true;
-	cursor = 0;
-	while(ft_str_isempty(map[cursor]))
-		cursor += 1;
-	while (map[cursor] && e_false == *err_flag)
-	{
-		parse_row(map_handle, map, cursor, err_flag);
-		cursor += 1;
-	}
+	// if (map)//* MAP CANNOT BE NULL here!! (si sarebbe fermata all'interno della condizione (0 == map_holder->columns)) !!!
+	// {
+		cursor = 0;
+		while(ft_str_isempty(map[cursor]))
+			cursor += 1;
+		while (map[cursor] && e_false == *err_flag)
+		{
+			parse_row(map_handle, map, cursor, err_flag);
+			cursor += 1;
+		}
+	// }
 }
 
 static void	parse_row( t_map_holder *map_handle, char **map, size_t row_index,
@@ -335,9 +348,12 @@ static void	map_size( const char* map_string,
 	{
 		while (splitted[cursor])
 		{
-			cur_row_len = ft_strlen(splitted[cursor]);
-			if (cur_row_len > max_row_len)
-				max_row_len = cur_row_len;
+			if (e_false == ft_str_isempty(splitted[cursor]))
+			{
+				cur_row_len = ft_strlen(splitted[cursor]);
+				if (cur_row_len > max_row_len)
+					max_row_len = cur_row_len;
+			}
 			cursor += 1;
 		}
 	}
