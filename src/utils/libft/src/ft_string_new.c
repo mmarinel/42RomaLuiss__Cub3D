@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:48:36 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 09:18:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:48:30 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ char	*ft_string_new( char c, long len )
 		return (NULL);
 	ret = (char *) malloc((len + 1) * sizeof(char));
 	ft_memset(ret, c, len);
-	ret[len + 1] = '\0';
+	ret[len] = '\0';
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 12:29:29 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:36:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef enum e_tile
 	e_PLAYER_S = 'S',
 	e_PLAYER_E = 'E',
 	e_PLAYER_W = 'W',
-	e_FLOOR,
-	e_WALL,
+	e_FLOOR = '0',
+	e_WALL = '1',
 	e_EMPTY
 }	t_tile;
 

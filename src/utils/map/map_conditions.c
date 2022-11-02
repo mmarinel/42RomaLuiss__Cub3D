@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 09:14:38 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:39:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 /**
  * @brief this functions returns true iff [c] is a valid map character.
- * Valid map characters are wall, floor and player characters;
+ * Valid map characters are wall, floor and player characters,
  * with the player characters been excluded when player has already been found.
  * 
  * @param c 
@@ -47,21 +47,21 @@ t_bool	is_valid_map_char( char c )
 t_bool	is_player_map_char( char c )
 {
 	return (
-		'N' == c
-		|| 'S' == c
-		|| 'W' == c
-		|| 'E' == c
+		e_PLAYER_N == c
+		|| e_PLAYER_S == c
+		|| e_PLAYER_W == c
+		|| e_PLAYER_E == c
 	);
 }
 
 t_bool	is_floor_map_char( char c )
 {
-	return ('0' == c );
+	return (e_FLOOR == c );
 }
 
 t_bool	is_wall_map_char( char c )
 {
-	return ('1' == c );
+	return (e_WALL == c );
 }
 
 t_bool	is_empty_map_char( char c )

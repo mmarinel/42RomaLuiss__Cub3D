@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 10:18:36 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:49:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,22 @@ static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
-static void		parse_map( t_map_holder *map_handle, char* map_string,
+static void		parse_map( t_map_holder *map_handle, char** map,
 					t_bool* err_flag );
-char			*complete_map_row( char *split_row, size_t missing );
-static void		parse_row( t_map_holder *map_handle, size_t row_index,
-					const char* row, t_bool* err_flag );
+static void		parse_row( t_map_holder *map_handle, char **map, size_t row_index,
+					t_bool* err_flag );
 static t_bool	is_map_char_pos_valid(
-					char map_char,
 					t_map_holder *map_handle,
+					char **map,
 					size_t row_index, size_t col_index
 				);
-static t_tile	ft_char_to_tile( char c );
+// static t_tile	ft_char_to_tile( char c );
+static char		**read_map( int map_fd, t_map_holder* map_handle );
 static void		map_size( const char* map_string,
 					size_t* rows, size_t* columns );
-static char		*read_map( int map_fd );
+char			**complete_map( const char* normalized_map_string, t_map_holder *map_handle );
+char			*complete_map_row( char *split_row, size_t missing );
+char			*ft_normalized_map_row( const char* row );
 //* end of static declarations
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
@@ -184,129 +186,138 @@ static void	parse_rgb_item( short* item_ref, const char* channel,
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 {
 	t_bool	error_found;
-	char	*map_string;
+	char	**map;
 
 	error_found = e_false;
-	map_string = read_map(map_fd);
-	printf("map string:\n%s\n\n", map_string);
+	map = read_map(map_fd, map_holder);
+	printf("\nmap: \n"); ft_splitprint(map);
+	// printf("map string:\n%s\n\n", map_string);
 	// exit(0);
-	map_size(map_string, &map_holder->rows, &map_holder->columns);
+	// map_size(map_string, &map_holder->rows, &map_holder->columns);
 	if (0 == map_holder->columns + map_holder->rows)
 		error_found = e_true;
 	else
-		parse_map(map_holder, map_string, &error_found);
-	free(map_string);
+		parse_map(map_holder, map, &error_found);
+	ft_splitclear(map);
 	return (error_found == e_false);
 }
 
 //*			DOING THIS
 //*							
 //*							
-static void	parse_map( t_map_holder *map_handle, char* map_string,
+static void	parse_map( t_map_holder *map_handle, char** map,
 			t_bool* err_flag )
 {
-	char	**splitted;
-	char	*row;
 	size_t	cursor;
 
 	map_handle->map = ft_map_init(map_handle->rows, map_handle->columns);
 	if (NULL == map_handle->map)
 		*err_flag = e_true;
-	splitted = ft_split(map_string, '\n');
 	cursor = 0;
-	while(ft_str_isempty(splitted[cursor]))
+	while(ft_str_isempty(map[cursor]))
 		cursor += 1;
-	while (splitted[cursor] && e_false == *err_flag)
+	while (map[cursor] && e_false == *err_flag)
 	{
-		row = complete_map_row(
-				splitted[cursor],
-				map_handle->columns - ft_strlen(splitted[cursor])
-			);
-		printf(YELLOW "row: %s\n" RESET, row);
-		parse_row(map_handle, cursor, row, err_flag);
-		free(row);
+		parse_row(map_handle, map, cursor, err_flag);
 		cursor += 1;
 	}
-	ft_splitclear(splitted);
 }
 
-char	*complete_map_row( char *split_row, size_t missing )
-{
-	return (
-		ft_strjoin(
-			split_row,
-			ft_string_new(' ', missing),
-			e_false, e_true
-		)
-	);
-}
-
-static void	parse_row( t_map_holder *map_handle, size_t row_index,
-				const char* row, t_bool* err_flag )
+static void	parse_row( t_map_holder *map_handle, char **map, size_t row_index,
+				t_bool* err_flag )
 {
 	size_t			cursor;
 	static t_bool	empty_line_found = e_false;
 
-	if (ft_str_isempty(row))
+	if (ft_str_isempty(map[row_index]))
 		empty_line_found = e_true;
 	else
 	{
 		if (empty_line_found)
 			*err_flag = e_true;
-		// printf(YELLOW "HEREEEE\n" RESET);
 		cursor = 0;
-		while (row[cursor] && e_false == *err_flag)
+		while (map[row_index][cursor] && e_false == *err_flag)
 		{
-			if (e_false == is_valid_map_char(row[cursor])
-				|| e_false == is_map_char_pos_valid(row[cursor], map_handle,
+			if (e_false == is_valid_map_char(map[row_index][cursor])
+				|| e_false == is_map_char_pos_valid(
+								map_handle, map,
 								row_index, cursor
 							)
 			)
 				*err_flag = e_true;
 			else
-				map_handle->map[row_index][cursor] = ft_char_to_tile(row[cursor]);
+				map_handle->map[row_index][cursor] = map[row_index][cursor];//ft_char_to_tile(row[cursor]);
 			cursor += 1;
 		}
 	}
 }
 
 static t_bool	is_map_char_pos_valid(
-					char map_char,
 					t_map_holder *map_handle,
+					char **map,
 					size_t row_index, size_t col_index
 )
 {
-		if (is_floor_map_char(map_char) || is_player_map_char(map_char))
+		if (is_floor_map_char(map[row_index][col_index])
+			|| is_player_map_char(map[row_index][col_index]))
 			if (
 				(row_index == 0
-					|| e_EMPTY == map_handle->map[row_index - 1][col_index]
+					|| is_empty_map_char(map[row_index - 1][col_index])
 				)
 				|| (row_index == map_handle->rows - 1
-					|| e_EMPTY == map_handle->map[row_index + 1][col_index]
+					|| is_empty_map_char(map[row_index + 1][col_index])
 				)
 				|| (col_index == 0
-					|| e_EMPTY == map_handle->map[row_index][col_index - 1]
+					|| is_empty_map_char(map[row_index][col_index - 1])
 				)
 				|| (col_index == map_handle->columns - 1
-					|| e_EMPTY == map_handle->map[row_index][col_index + 1]
+					|| is_empty_map_char(map[row_index][col_index + 1])
 				)
 			)
 				return (e_false);
 	return (e_true);
 }
 
-static t_tile	ft_char_to_tile( char c )
+// static t_tile	ft_char_to_tile( char c )
+// {
+// 	if (is_player_map_char(c))
+// 	{
+// 		return (c);
+// 	}
+// 	else if ('0' == c)
+// 		return (e_FLOOR);
+// 	else if ('1' == c)
+// 		return (e_WALL);
+// 	else
+// 		return (e_EMPTY);
+// }
+
+//* I Know this is (perhaps) bad !!!!
+static char	**read_map( int map_fd, t_map_holder* map_handle )
 {
-	if (is_player_map_char(c))
+	char	**map;
+	char	*map_string;
+	char	*line;
+
+	map_string = NULL;
+	while (e_true)
 	{
-		return (c);
+		line = get_next_line(map_fd);
+		if (NULL == line)
+			break ;
+		map_string = ft_strjoin(
+			map_string,
+			ft_normalized_map_row(line),
+			e_true, e_true
+		);
+		free(line);
 	}
-	else if ('0' == c)
-		return (e_FLOOR);
-	else if ('1' == c)
-		return (e_WALL);
-	else
-		return (e_EMPTY);
+	printf("\nmap_string is: %s\n\n", map_string);
+	map_size(map_string, &map_handle->rows, &map_handle->columns);
+	map = complete_map(map_string, map_handle);
+	if (NULL != map_string)
+		free(map_string);
+	return (map);
 }
 
 static void	map_size( const char* map_string,
@@ -335,24 +346,49 @@ static void	map_size( const char* map_string,
 	*rows = cursor;
 }
 
-//* I Know this is (perhaps) bad !!!!
-static char	*read_map( int map_fd )
+char	**complete_map( const char* normalized_map_string, t_map_holder *map_handle )
 {
-	char	*map_string;
-	char	*line;
+	char	**splitted;
+	size_t	cursor;
 
-	map_string = NULL;
-	while (e_true)
+	splitted = ft_split(normalized_map_string, '\n');
+	if (NULL == splitted)
+		return (NULL);
+	cursor = 0;
+	while (splitted[cursor])
 	{
-		line = get_next_line(map_fd);
-		if (NULL == line)
-			break ;
-		map_string = ft_strjoin(
-			map_string, 
-			ft_strjoin(" ", line, e_false, e_false),//*		we add a whole bunch of spaces to the left of our map so that the split on the '\n' doesn't give empty lines
-			e_true, e_true
+		splitted[cursor] = complete_map_row(
+			splitted[cursor],
+			map_handle->columns - ft_strlen(splitted[cursor])
 		);
-		free(line);
+		cursor += 1;
 	}
-	return (map_string);
+	return (splitted);
+}
+
+char	*complete_map_row( char *split_row, size_t missing )
+{
+	return (
+		ft_strjoin(
+			split_row,
+			ft_string_new(' ', missing),
+			e_true, e_true
+		)
+	);
+}
+
+/**
+ * @brief this functions returns a normalized map row.
+ * Normalized map rows always begin with at least 1 space character,
+ * so that we can still detect empty lines
+ * when splitting the map on the [\n] character
+ * 
+ * @param row 
+ * @return char* 
+ */
+char	*ft_normalized_map_row( const char* row )
+{
+	return (
+		ft_strjoin(" ", (char *)row, e_false, e_false)
+	);
 }
