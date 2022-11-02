@@ -6,23 +6,34 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/01 17:38:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 07:51:48 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_utils.h"
 
-t_bool	is_map_char( char c )
+/**
+ * @brief this functions returns true iff [c] is a valid map character.
+ * Valid map characters are wall, floor and player characters;
+ * with the player characters been excluded when player has already been found.
+ * 
+ * @param c 
+ * @return t_bool 
+ */
+t_bool	is_valid_map_char( char c )
 {
-	return (
-		e_true == ft_isspace(c)
-		|| '0' == c
-		|| '1' == c
-		|| 'N' == c
-		|| 'S' == c
-		|| 'W' == c
-		|| 'E' == c
-	);
+	static t_bool	player_found = e_false;
+
+	if (is_player_map_char(c) && e_false == player_found)
+	{
+		player_found = e_true;
+		return (e_true);
+	}
+	if (is_floor_map_char(c) || is_wall_map_char(c))
+	{
+		return (e_true);
+	}
+	return (e_false);
 }
 
 t_bool	is_player_map_char( char c )
@@ -38,4 +49,9 @@ t_bool	is_player_map_char( char c )
 t_bool	is_floor_map_char( char c )
 {
 	return ('0' == c );
+}
+
+t_bool	is_wall_map_char( char c )
+{
+	return ('1' == c );
 }

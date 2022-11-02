@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils_module.h                                 :+:      :+:    :+:   */
+/*   game_utils_module.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 07:52:05 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/02 08:24:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_UTILS_MODULE_H
-# define MAP_UTILS_MODULE_H
+#ifndef GAME_MEMORY_H
+# define GAME_MEMORY_H
 
 # include "../../types.h"
+# include "game_utils.h"
 
-//*		memory
-void	ft_free_map( t_tile*** map_ref, size_t rows );
-t_tile	**ft_map_init( size_t rows, size_t columns );
-
-//*		conditions
-t_bool	is_valid_map_char( char c );
-t_bool	is_player_map_char( char c );
-t_bool	is_floor_map_char( char c );
-t_bool	is_wall_map_char( char c );
+//*		game memory management
+void	ft_game_init( t_game* game_ref );
 
 #endif

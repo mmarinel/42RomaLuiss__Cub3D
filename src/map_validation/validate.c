@@ -6,30 +6,35 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 17:58:32 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 08:33:23 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_validation.h"
 #include <stdio.h>
 static t_bool	is_file_content_valid( const char* path, t_map_holder* map_handle );
+t_bool			is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
+static t_bool	map_fields_complete( t_map_holder* map_handle );
 static void		parse_fields_line( t_map_holder *map_handle, const char* line,
 					t_bool* err_flag);
 static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 					t_bool* err_flag );
 static void		parse_rgb_item( short* item_ref, const char* channel,
 					t_bool* err_flag );
-static t_bool	map_fields_complete( t_map_holder* map_handle );
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
+static void		parse_map( t_map_holder *map_handle, char* map_string,
+					t_bool* err_flag );
+static void		parse_row( t_map_holder *map_handle, size_t row_index,
+					const char* row, t_bool* err_flag );
 static t_bool	is_map_char_pos_valid(
 					char map_char,
-					size_t row_index, size_t col_index,
-					t_map_holder *map_handle
+					t_map_holder *map_handle,
+					size_t row_index, size_t col_index
 				);
+static t_tile	ft_char_to_tile( char c );
 static void		map_size( const char* map_string,
 					size_t* rows, size_t* columns );
 static char		*read_map( int map_fd );
-t_bool			is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
 //* end of static declarations
 
 t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
@@ -37,7 +42,7 @@ t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
 	if (e_false == is_file_type(path, MAP_FILE_EXTENSION)
 		|| e_false == is_file_content_valid(path, map_handle))
 	{
-		ft_free_map(map_handle->map, map_handle->rows);
+		ft_free_map(&map_handle->map, map_handle->rows);
 		return (e_false);
 	}
 	return (e_true);
@@ -224,28 +229,23 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 static void	parse_row( t_map_holder *map_handle, size_t row_index,
 				const char* row, t_bool* err_flag )
 {
-	t_bool	player_found;
 	size_t	cursor;
 
 	if (ft_str_isempty(row))
 		*err_flag = e_true;
 	else
 	{
-		player_found = e_false;
 		cursor = 0;
 		while (row[cursor] && e_false == *err_flag)
 		{
-			if (e_false == is_map_char(row[cursor])
-				|| (is_player_map_char(row[cursor]) && player_found)
-				|| (e_false == is_map_char_pos_valid(row[cursor],
-								row_index, cursor, map_handle->map
+			if (e_false == is_valid_map_char(row[cursor])
+				|| e_false == is_map_char_pos_valid(row[cursor], map_handle,
+								row_index, cursor
 							)
-					)
 			)
 				*err_flag = e_true;
 			else
-				map_handle->map[row_index][cursor]
-					= ft_char_to_tile(row[cursor], &player_found);
+				map_handle->map[row_index][cursor] = ft_char_to_tile(row[cursor]);
 			cursor += 1;
 		}
 	}
@@ -253,8 +253,8 @@ static void	parse_row( t_map_holder *map_handle, size_t row_index,
 
 static t_bool	is_map_char_pos_valid(
 					char map_char,
-					size_t row_index, size_t col_index,
-					t_map_holder *map_handle
+					t_map_holder *map_handle,
+					size_t row_index, size_t col_index
 )
 {
 		if (is_floor_map_char(map_char) || is_player_map_char(map_char))
@@ -276,11 +276,10 @@ static t_bool	is_map_char_pos_valid(
 	return (e_true);
 }
 
-static t_tile	ft_char_to_tile( char c, t_bool* player_found )
+static t_tile	ft_char_to_tile( char c )
 {
 	if (is_player_map_char(c))
 	{
-		*player_found = e_true;
 		return (c);
 	}
 	else if ('0' == c)
@@ -302,7 +301,7 @@ static void	map_size( const char* map_string,
 	max_row_len = 0;
 	cursor = 0;
 	splitted = ft_split(map_string, '\n');
-	if (NULL == splitted)
+	if (NULL != splitted)
 	{
 		while (splitted[cursor])
 		{

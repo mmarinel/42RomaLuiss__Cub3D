@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/01 10:30:01 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 08:07:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 # include "../colors.h"
 # include "../types.h"
-# include "../utils/libft/libft_module.h"
-# include "../utils/simple_printf/ft_printf_module.h"
-# include "../utils/map/map_utils_module.h"
-# include "../utils/gnl/get_next_line_module.h"
+# include "../utils/utils_module.h"
 
 # include <unistd.h>
 # include <fcntl.h>

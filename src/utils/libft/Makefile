@@ -63,6 +63,7 @@ SRC_NOPREFIX=\
 ./src/ft_strcmp.c\
 ./src/ft_strcpy.c\
 ./src/ft_strdup.c\
+./src/ft_string_new.c\
 ./src/ft_striteri.c\
 ./src/ft_strjoin.c\
 ./src/ft_strlcat.c\
