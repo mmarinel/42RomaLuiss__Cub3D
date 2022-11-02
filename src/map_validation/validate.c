@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 09:19:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:18:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		parse_rgb_item( short* item_ref, const char* channel,
 static t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
 static void		parse_map( t_map_holder *map_handle, char* map_string,
 					t_bool* err_flag );
+char			*complete_map_row( char *split_row, size_t missing );
 static void		parse_row( t_map_holder *map_handle, size_t row_index,
 					const char* row, t_bool* err_flag );
 static t_bool	is_map_char_pos_valid(
@@ -211,39 +212,47 @@ static void	parse_map( t_map_holder *map_handle, char* map_string,
 	map_handle->map = ft_map_init(map_handle->rows, map_handle->columns);
 	if (NULL == map_handle->map)
 		*err_flag = e_true;
-	// else
-	// 	printf(YELLOW "HEREEEE\n" RESET);
 	splitted = ft_split(map_string, '\n');
 	cursor = 0;
+	while(ft_str_isempty(splitted[cursor]))
+		cursor += 1;
 	while (splitted[cursor] && e_false == *err_flag)
 	{
-		row = ft_strjoin(
-			splitted[cursor],
-			ft_string_new(
-				' ',
+		row = complete_map_row(
+				splitted[cursor],
 				map_handle->columns - ft_strlen(splitted[cursor])
-			),
-			e_false, e_true
-		);
+			);
 		printf(YELLOW "row: %s\n" RESET, row);
 		parse_row(map_handle, cursor, row, err_flag);
 		free(row);
 		cursor += 1;
 	}
 	ft_splitclear(splitted);
-	// if (*err_flag)
-	// 	ft_free_map(map_handle->map, map_handle->rows);
+}
+
+char	*complete_map_row( char *split_row, size_t missing )
+{
+	return (
+		ft_strjoin(
+			split_row,
+			ft_string_new(' ', missing),
+			e_false, e_true
+		)
+	);
 }
 
 static void	parse_row( t_map_holder *map_handle, size_t row_index,
 				const char* row, t_bool* err_flag )
 {
-	size_t	cursor;
+	size_t			cursor;
+	static t_bool	empty_line_found = e_false;
 
 	if (ft_str_isempty(row))
-		*err_flag = e_true;
+		empty_line_found = e_true;
 	else
 	{
+		if (empty_line_found)
+			*err_flag = e_true;
 		// printf(YELLOW "HEREEEE\n" RESET);
 		cursor = 0;
 		while (row[cursor] && e_false == *err_flag)
@@ -338,7 +347,11 @@ static char	*read_map( int map_fd )
 		line = get_next_line(map_fd);
 		if (NULL == line)
 			break ;
-		map_string = ft_strjoin(map_string, line, e_true, e_false);
+		map_string = ft_strjoin(
+			map_string, 
+			ft_strjoin(" ", line, e_false, e_false),//*		we add a whole bunch of spaces to the left of our map so that the split on the '\n' doesn't give empty lines
+			e_true, e_true
+		);
 		free(line);
 	}
 	return (map_string);
