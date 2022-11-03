@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_conditions_complex.c                           :+:      :+:    :+:   */
+/*   map_logic_conditions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:41:55 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 17:43:19 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:02:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,15 @@ static t_bool	player_tracker(char c);
  */
 t_bool	is_valid_map_char( char c )
 {
-	static t_bool	player_found = e_false;
-
-	player_tracker(c);
 	if (is_player_map_char(c))
 	{
-		if (e_false == player_found)
+		if (is_player_found())
+			return (e_false);
+		else
 		{
-			player_found = e_true;
+			player_tracker(c);
 			return (e_true);
 		}
-		else
-			return (e_false);
 	}
 	if (is_floor_map_char(c)
 		|| is_wall_map_char(c)
@@ -49,7 +46,7 @@ t_bool	is_valid_map_char( char c )
 
 t_bool	is_player_found()
 {
-	return (player_tracker('\0'));
+	return (player_tracker(e_WALL));
 }
 
 /**
