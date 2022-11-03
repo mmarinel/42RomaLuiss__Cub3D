@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/03 17:25:14 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:29:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int main(int argc, char const *argv[])
 	}
 	else
 		printf( RED "map not ok\n" RESET );
+	ft_free_map(&game.map_handle.map, game.map_handle.rows);
 	free(game.map_handle.no_texture);
 	free(game.map_handle.so_texture);
 	free(game.map_handle.we_texture);

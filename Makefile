@@ -34,6 +34,9 @@ INCLUDES=\
 
 SRC_NOPREFIX=\
 ./src/main.c\
+./src/map_validation/map_attributes.c\
+./src/map_validation/map_content.c\
+./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/gnl/get_next_line.c\

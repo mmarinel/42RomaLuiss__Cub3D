@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 08:07:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:21:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@
 
 # include <unistd.h>
 # include <fcntl.h>
+#include <stdio.h>//! REMOVE!!!
 
 # define MAP_FILE_EXTENSION ".cub"
 # define ERROR_SIG "Error\n"
+
+
+t_bool	is_map_attributes_ok( int map_fd, t_map_holder* map_handle );
+t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder);
+char		**read_map( int map_fd, t_map_holder* map_handle );
 
 #endif
