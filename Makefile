@@ -13,13 +13,13 @@
 INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
-./src/map_validation/map_validation_module.h\
-./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
 ./src/utils/map/map_utils_module.h\
+./src/utils/game/game_utils_module.h\
 ./src/utils/simple_printf/ft_printf_module.h\
 ./src/utils/utils_module.h\
+./src/map_validation/map_validation_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
 ./src/utils/utils_module.h\
@@ -38,7 +38,8 @@ SRC_NOPREFIX=\
 ./src/utils/game/game_memory.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_utils.c\
-./src/utils/map/map_conditions.c\
+./src/utils/map/map_chars_conditions.c\
+./src/utils/map/map_logic_conditions.c\
 ./src/utils/map/map_memory.c\
 ./src/utils/simple_printf/ft_printf.c\
 ./src/utils/simple_printf/printf_cases.c\

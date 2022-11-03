@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_file_type.c                                     :+:      :+:    :+:   */
+/*   map_conditions_simple.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 14:38:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/03 16:46:23 by earendil         ###   ########.fr       */
+/*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/03 17:43:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "map_utils.h"
+#include <stdio.h>
 
-t_bool	is_file_type( const char* path_name, const char* extension )
+t_bool	is_player_map_char( char c )
 {
-	size_t	end;
-	int		start;
+	return (
+		e_PLAYER_N == c
+		|| e_PLAYER_S == c
+		|| e_PLAYER_W == c
+		|| e_PLAYER_E == c
+	);
+}
 
-	end = ft_strlen(path_name);
-	start = end - ft_strlen(extension);
-	if (start < 0)
-		return (e_false);
-	else
-		return (
-			0 == ft_strcmp(
-				path_name + start,
-				extension
-			)
-		);
+t_bool	is_floor_map_char( char c )
+{
+	return (e_FLOOR == c );
+}
+
+t_bool	is_wall_map_char( char c )
+{
+	return (e_WALL == c );
+}
+
+t_bool	is_empty_map_char( char c )
+{
+	return (ft_isspace(c));
 }

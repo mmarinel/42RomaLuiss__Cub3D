@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_conditions.c                                   :+:      :+:    :+:   */
+/*   map_conditions_complex.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 11:39:04 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/03 17:41:55 by earendil          #+#    #+#             */
+/*   Updated: 2022/11/03 17:43:19 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_utils.h"
-#include <stdio.h>
+
+static t_bool	player_tracker(char c);
+//* end of static declarations
+
 /**
  * @brief this functions returns true iff [c] is a valid map character.
  * Valid map characters are wall, floor and player characters,
@@ -24,6 +27,7 @@ t_bool	is_valid_map_char( char c )
 {
 	static t_bool	player_found = e_false;
 
+	player_tracker(c);
 	if (is_player_map_char(c))
 	{
 		if (e_false == player_found)
@@ -40,31 +44,27 @@ t_bool	is_valid_map_char( char c )
 	{
 		return (e_true);
 	}
-		printf("HEREEEE\n");
 	return (e_false);
 }
 
-t_bool	is_player_map_char( char c )
+t_bool	is_player_found()
 {
-	return (
-		e_PLAYER_N == c
-		|| e_PLAYER_S == c
-		|| e_PLAYER_W == c
-		|| e_PLAYER_E == c
-	);
+	return (player_tracker('\0'));
 }
 
-t_bool	is_floor_map_char( char c )
+/**
+ * @brief This function returns true iff player has already been found.
+ * That means if a previous call to this function was successful
+ * or the given input is a player map character.
+ * 
+ * @param c a map character
+ * @return t_bool 
+ */
+t_bool	player_tracker(char c)
 {
-	return (e_FLOOR == c );
-}
+	static t_bool	player_found = e_false;
 
-t_bool	is_wall_map_char( char c )
-{
-	return (e_WALL == c );
-}
-
-t_bool	is_empty_map_char( char c )
-{
-	return (ft_isspace(c));
+	if (is_player_map_char(c))
+		player_found = e_true;
+	return (player_found);
 }

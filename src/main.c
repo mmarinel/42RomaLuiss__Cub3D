@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 08:27:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:25:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
 	ft_game_init(&game);
 	if (is_valid_map(argv[1], &game.map_handle))
 	{
-		printf( GREEN "map is ok" RESET );
+		printf( GREEN "map is ok\n" RESET );
 		printf(
 			"\n\
 			no_texture: %s\n\
@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
 		);
 	}
 	else
-		printf( RED "map not ok" RESET );
+		printf( RED "map not ok\n" RESET );
 	free(game.map_handle.no_texture);
 	free(game.map_handle.so_texture);
 	free(game.map_handle.we_texture);

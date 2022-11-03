@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 16:08:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:18:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,8 @@ static void	parse_map( t_map_holder *map_handle, char** map,
 			parse_row(map_handle, map, cursor, err_flag);
 			cursor += 1;
 		}
+		if (e_false == is_player_found())
+			*err_flag = e_true;
 	// }
 }
 
