@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 11:45:43 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 11:48:26 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:27:57 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-size_t	ft_str_member( const char* str, char c )
+size_t	ft_str_member( const char *str, char c )
 {
 	size_t	occurrences;
 	size_t	cursor;
@@ -23,9 +23,9 @@ size_t	ft_str_member( const char* str, char c )
 	{
 		occurrences = 0;
 		cursor = 0;
-		while ( str[cursor] )
+		while (str[cursor])
 		{
-			if ( c == str[cursor] )
+			if (c == str[cursor])
 				occurrences += 1;
 			cursor++;
 		}

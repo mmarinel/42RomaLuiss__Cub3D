@@ -13,6 +13,9 @@
 INCLUDES=\
 ./src/libft.h\
 ./libft_module.h\
+./src/simple_printf/ft_printf_module.h\
+./src/simple_printf/ft_printf.h\
+./src/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
 ./src/ft_abs.c\
@@ -79,6 +82,9 @@ SRC_NOPREFIX=\
 ./src/ft_toupper.c\
 ./src/ft_write.c\
 ./src/is_file_type.c\
+./src/simple_printf/ft_printf.c\
+./src/simple_printf/printf_cases.c\
+./src/simple_printf/printf_utils.c\
 
 USR_LIBS=\
 

@@ -6,22 +6,22 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 09:22:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:07:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_validation.h"
 
-static t_bool	is_file_type_valid(const char* path);
-static t_bool	is_file_content_valid( const char* path, t_map_holder* map_handle );
+static t_bool	is_file_type_valid(const char *path);
+static t_bool	is_file_content_valid( const char *path,
+					t_map_holder *map_handle );
 //* end of static declarations
 
-t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
+t_bool	is_valid_map( const char *path, t_map_holder *map_handle )
 {
 	if (
 		e_false == is_file_type_valid(path)
-		||
-		e_false == is_file_content_valid(path, map_handle)
+		|| e_false == is_file_content_valid(path, map_handle)
 	)
 	{
 		ft_free_map(&map_handle->map, map_handle->rows);
@@ -30,7 +30,7 @@ t_bool	is_valid_map( const char* path, t_map_holder* map_handle )
 	return (e_true);
 }
 
-static t_bool	is_file_type_valid(const char* path)
+static t_bool	is_file_type_valid(const char *path)
 {
 	if (e_false == is_file_type(path, MAP_FILE_EXTENSION))
 	{
@@ -40,10 +40,8 @@ static t_bool	is_file_type_valid(const char* path)
 	return (e_true);
 }
 
-static t_bool	is_file_content_valid(
-	const char* path,
-	t_map_holder* map_handle
-	)
+static t_bool	is_file_content_valid( const char *path,
+					t_map_holder *map_handle )
 {
 	int	map_fd;
 

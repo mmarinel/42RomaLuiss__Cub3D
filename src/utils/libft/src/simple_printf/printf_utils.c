@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:34 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/28 08:47:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:14:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pf_write(const char *c, int *count)
 	write(STDOUT_FILENO, c, sizeof(char));
 	*count = *count + 1;
 }
+
 void	pf_put_nbr_base(long long num, const char *base,
 			int base_num, int *count)
 {

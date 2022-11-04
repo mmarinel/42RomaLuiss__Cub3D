@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:34:51 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 14:43:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:27:34 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_str_isempty( const char* str )
+t_bool	ft_str_isempty( const char *str )
 {
 	size_t	cursor;
 

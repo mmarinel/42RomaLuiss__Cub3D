@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 12:17:36 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:19:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void	ft_free( void** ptr )
+void	ft_free( void **ptr )
 {
 	if (*ptr)
 		free(*ptr);

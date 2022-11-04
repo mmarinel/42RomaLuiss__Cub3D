@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:17:59 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/03 16:45:47 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:20:57 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	if (!f || !lst || !ft_lstmap_rec(lst, &new_list, f))
 		return (NULL);
 	if (del)
-	{}
+	{
+	}
 	return (new_list);
 }
 

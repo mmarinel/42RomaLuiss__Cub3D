@@ -6,11 +6,11 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:58:19 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 10:02:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:20:07 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 t_bool	ft_iscolor( long long red, long long green, long long blue )
 {

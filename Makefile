@@ -13,13 +13,13 @@
 INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
+./src/map_validation/map_validation_module.h\
+./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
+./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/map/map_utils_module.h\
-./src/utils/game/game_utils_module.h\
-./src/utils/simple_printf/ft_printf_module.h\
 ./src/utils/utils_module.h\
-./src/map_validation/map_validation_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
 ./src/utils/utils_module.h\
@@ -29,8 +29,6 @@ INCLUDES=\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/map/map_utils.h\
 ./src/utils/map/map_utils_module.h\
-./src/utils/simple_printf/ft_printf.h\
-./src/utils/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -41,12 +39,10 @@ SRC_NOPREFIX=\
 ./src/utils/game/game_memory.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_utils.c\
+./src/utils/map/atttrs_chars_conditions.c\
 ./src/utils/map/map_chars_conditions.c\
 ./src/utils/map/map_logic_conditions.c\
 ./src/utils/map/map_memory.c\
-./src/utils/simple_printf/ft_printf.c\
-./src/utils/simple_printf/printf_cases.c\
-./src/utils/simple_printf/printf_utils.c\
 
 USR_LIBS=\
 src/utils/libft\
@@ -59,6 +55,7 @@ CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
 MLX_FLAGS = TODO
 
+RMF = /bin/rm -rf
 
 OBJS_DIR = bin
 OBJS_NOPREFIX = ${SRC_NOPREFIX:%.c=%.o}
@@ -88,13 +85,13 @@ $(shell echo $(OBJS_DIR))/%.o: %.c $(INCLUDES)#		$(wildcard $(<D)/*.h)------this
 clean:
 	@printf "removing Object files...\n"
 	@$(MAKE) .DESTROY_LIBS
-	@/bin/rm -f $(OBJS)
+	@$(RMF) $(OBJS) $(OBJS_DIR)
 	@printf "\033[0;35mObject files removed!\n"
 	@echo "\033[0;37m"
 
 fclean: clean
 	@printf "removing program executable...\n"
-	@/bin/rm -f $(NAME)
+	@$(RMF) $(NAME)
 	@printf "\033[0;35mExecutable removed!\n"
 	@echo "\033[0;37m"
 

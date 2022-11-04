@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:32:31 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 08:32:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:24:34 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param free_split true iff the input has to be freed
  * @return char* 
  */
-char	*ft_split_merge(char	**split, char *const sep, t_bool free_split)
+char	*ft_split_merge(char **split, char *const sep, t_bool free_split)
 {
 	char	*merge;
 	size_t	i;
@@ -36,9 +36,9 @@ char	*ft_split_merge(char	**split, char *const sep, t_bool free_split)
 			merge = ft_strdup(split[i]);
 		else
 			merge = ft_strjoin(
-						ft_strjoin(merge, sep, e_true, e_false),
-						split[i],
-						e_true, e_false
+					ft_strjoin(merge, sep, e_true, e_false),
+					split[i],
+					e_true, e_false
 					);
 		i++;
 	}

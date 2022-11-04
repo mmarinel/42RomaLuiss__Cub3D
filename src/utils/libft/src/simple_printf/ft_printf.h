@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:56 by earendil          #+#    #+#             */
-/*   Updated: 2022/10/28 08:47:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:11:59 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include <unistd.h>
 
 //* user defined exposed functions
-int		ft_printf(const char *format_string, ...);
+int					ft_printf(const char *format_string, ...);
 
 //* printf cases
-void	pf_case_str(char *str, int *count);
-void	pf_case_int(int n, int *count);
-void	pf_case_hexa(long long n, int *count);
+void				pf_case_str(char *str, int *count);
+void				pf_case_int(int n, int *count);
+void				pf_case_hexa(long long n, int *count);
 
 //* printf utils
 void				pf_write(const char *c, int *count);

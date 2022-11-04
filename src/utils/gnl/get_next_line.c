@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:07:21 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:51:09 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:10:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*get_next_line_rec(int fd, t_fd_buffer *buf_handle)
 		{
 			buf_handle->buffer_size = buf_handle->buffer_size + 5;
 			return (gnl_strjoin(str, get_next_line_rec(fd, buf_handle),
-						e_true, e_true));
+					e_true, e_true));
 		}
 		buf_handle->offset = 0;
 	}
@@ -65,7 +65,9 @@ static char	*get_next_line_rec(int fd, t_fd_buffer *buf_handle)
  */
 static t_bool	gnl_read_file_in_buf(t_fd_buffer *buf_handle, int fd)
 {
-	buf_handle->buf = (char *) malloc((buf_handle->buffer_size + 1) * sizeof(char));
+	buf_handle->buf = (char *) malloc(
+			(buf_handle->buffer_size + 1) * sizeof(char)
+			);
 	gnl_memset(buf_handle->buf, '\0', buf_handle->buffer_size + 1);
 	if (read(fd, buf_handle->buf, buf_handle->buffer_size) <= 0)
 	{
@@ -93,14 +95,12 @@ static t_bool	gnl_get_line_from_buffer(t_fd_buffer *buf_handle, char **str)
 	size_t	i;
 
 	i = gnl_scan_next_line_in_buf(buf_handle, &nl_found);
-	//* setting_next_line_len
 	{
 		if (buf_handle->buf[i] == '\0')
 			line_len = i - buf_handle->offset;
 		else
 			line_len = i - buf_handle->offset + 1;
 	}
-	//* updating_buffer_offset
 	{
 		buffer_start = buf_handle->offset;
 		if (i == buf_handle->buffer_size - 1

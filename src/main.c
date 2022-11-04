@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/03 18:29:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 09:26:35 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int main(int argc, char const *argv[])
 	free(game.map_handle.so_texture);
 	free(game.map_handle.we_texture);
 	free(game.map_handle.ea_texture);
+
+	ft_printf(YELLOW "\n\n.......leaks program output......\n\n" RESET);
 	return 0;
 }
 //		*test	leaks --atExit -- ./cub3D "Ciao vincenzo, come stai?"

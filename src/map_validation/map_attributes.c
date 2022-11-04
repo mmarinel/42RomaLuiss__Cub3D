@@ -6,22 +6,24 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 09:20:10 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:40:48 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_validation.h"
 
-static t_bool	map_fields_complete( t_map_holder* map_handle );
-static void		parse_fields_line( t_map_holder *map_handle, const char* line,
-					t_bool* err_flag);
-static void		parse_rgb_field( t_color *color_field, char* rgb_string,
-					t_bool* err_flag );
-static void		parse_rgb_item( short* item_ref, const char* channel,
-					t_bool* err_flag );
+static void		parse_fields_line( t_map_holder *map_handle, const char *line,
+					t_bool *err_flag);
+static void		parse_wall_texture( t_map_holder *map_handle,
+					const char *id, const char *path );
+static void		parse_rgb_field( t_map_holder *map_handle,
+					const char *id, char *rgb_string,
+					t_bool *err_flag );
+static void		parse_rgb_item( short *item_ref, const char *channel,
+					t_bool *err_flag );
 //* end of static declarations
 
-t_bool	is_map_attributes_ok( int map_fd, t_map_holder* map_handle )
+t_bool	is_map_attributes_ok( int map_fd, t_map_holder *map_handle )
 {
 	t_bool	error_found;
 	char	*next_line;
@@ -45,42 +47,23 @@ t_bool	is_map_attributes_ok( int map_fd, t_map_holder* map_handle )
 	return (error_found == e_false);
 }
 
-static t_bool	map_fields_complete( t_map_holder* map_handle )
-{
-	return (
-		map_handle->no_texture && map_handle->so_texture
-		&& map_handle->we_texture && map_handle->ea_texture
-		&& -1 != map_handle->f_color.alpha && -1 != map_handle->c_color.alpha
-	);
-}
-
-static void		parse_fields_line( t_map_holder *map_handle, const char* line,
-					t_bool* err_flag)
+static void	parse_fields_line( t_map_holder *map_handle, const char *line,
+					t_bool *err_flag)
 {
 	char	**splitted;
 	char	*right_hand_side;
 
 	splitted = ft_multisplit(line, " VV\t");
-	printf("printing cur line split\n");
-	ft_splitprint(splitted);
-	printf("printing END..............\n");
 	if (ft_splitlen(splitted) < 2)
 		*err_flag = e_true;
 	else
 	{
 		right_hand_side = ft_split_merge(splitted + 1, " ", e_false);
-		if (0 == ft_strcmp(splitted[0], "NO"))
-			map_handle->no_texture = ft_strdup(splitted[1]);
-		else if (0 == ft_strcmp(splitted[0], "SO"))
-			map_handle->so_texture = ft_strdup(splitted[1]);
-		else if (0 == ft_strcmp(splitted[0], "WE"))
-			map_handle->we_texture = ft_strdup(splitted[1]);
-		else if (0 == ft_strcmp(splitted[0], "EA"))
-			map_handle->ea_texture = ft_strdup(splitted[1]);
-		else if (0 == ft_strcmp(splitted[0], "F"))
-			parse_rgb_field(&map_handle->f_color, right_hand_side, err_flag);
-		else if (0 == ft_strcmp(splitted[0], "C"))
-			parse_rgb_field(&map_handle->c_color, right_hand_side, err_flag);
+		if (is_attrs_player_dir_char(splitted[0]))
+			parse_wall_texture(map_handle, splitted[0], splitted[1]);
+		else if (is_attrs_color_field_char(splitted[0]))
+			parse_rgb_field(map_handle, splitted[0], right_hand_side,
+				err_flag);
 		else
 			*err_flag = e_true;
 		free(right_hand_side);
@@ -88,16 +71,31 @@ static void		parse_fields_line( t_map_holder *map_handle, const char* line,
 	ft_splitclear(&splitted);
 }
 
-static void		parse_rgb_field( t_color *color_field, char* rgb_string,
-					t_bool* err_flag )
+static void	parse_wall_texture( t_map_holder *map_handle,
+				const char *id, const char *path )
+{
+	if (0 == ft_strcmp(id, "NO"))
+		map_handle->no_texture = ft_strdup(path);
+	else if (0 == ft_strcmp(id, "SO"))
+		map_handle->so_texture = ft_strdup(path);
+	else if (0 == ft_strcmp(id, "WE"))
+		map_handle->we_texture = ft_strdup(path);
+	else if (0 == ft_strcmp(id, "EA"))
+		map_handle->ea_texture = ft_strdup(path);
+}
+
+static void	parse_rgb_field( t_map_holder *map_handle,
+				const char *id, char *rgb_string,
+				t_bool *err_flag )
 {
 	char	**splitted;
+	t_color	*color_field;
 
-	printf("parse_rgb_field: rgb_string = %s\n", rgb_string);
+	if (is_floor_color_id(id))
+		color_field = &map_handle->c_color;
+	else
+		color_field = &map_handle->f_color;
 	splitted = ft_split(rgb_string, ',');
-	printf("..printing rgb val split:\n");
-	ft_splitprint(splitted);
-	printf(".............................................\n");
 	if (ft_splitlen(splitted) != 3)
 		*err_flag = e_true;
 	else
@@ -105,9 +103,8 @@ static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 		parse_rgb_item(&color_field->red, splitted[0], err_flag);
 		parse_rgb_item(&color_field->green, splitted[1], err_flag);
 		parse_rgb_item(&color_field->blue, splitted[2], err_flag);
-		if (e_false == *err_flag
-			&&
-			ft_iscolor(color_field->red, color_field->green, color_field->blue)
+		if (ft_iscolor(color_field->red, color_field->green, color_field->blue)
+			&& e_false == *err_flag
 		)
 			color_field->alpha = 1;
 		else
@@ -116,15 +113,13 @@ static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 	ft_splitclear(&splitted);
 }
 
-static void	parse_rgb_item( short* item_ref, const char* channel,
-				t_bool* err_flag )
+static void	parse_rgb_item( short *item_ref, const char *channel,
+				t_bool *err_flag )
 {
-	printf("parse_rgb_item: input is %s\n", channel);
 	if (ft_isdigit_string(channel))
 		*item_ref = ft_atoi(channel);
 	else
 	{
-		printf("ft_isdigit_string failed for %s\n", channel);
 		*item_ref = -1;
 		*err_flag = e_true;
 	}

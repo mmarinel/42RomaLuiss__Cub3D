@@ -6,11 +6,11 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:30:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 09:18:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:25:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 void	*ft_splitclear(char ***split_ref)
 {
@@ -18,7 +18,7 @@ void	*ft_splitclear(char ***split_ref)
 	char	**_split;
 	char	**_backup;
 
-	if ( NULL == split_ref || NULL == *split_ref )
+	if (NULL == split_ref || NULL == *split_ref)
 		return (NULL);
 	else
 	{

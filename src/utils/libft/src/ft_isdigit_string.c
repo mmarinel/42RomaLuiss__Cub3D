@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:47:02 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/31 11:16:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:20:26 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_isdigit_string( const char* string )
+t_bool	ft_isdigit_string( const char *string )
 {
 	size_t	cursor;
 

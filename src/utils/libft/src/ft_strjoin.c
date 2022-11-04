@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:22:37 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/27 09:09:06 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:28:35 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char	*ft_strjoin(char *pre, char *post, t_bool free_pre, t_bool free_post)
 {
 	char	*joined;
 
-	if ( NULL == pre && NULL == post)
+	if (NULL == pre && NULL == post)
 		return (NULL);
-	if ( NULL == pre)
+	if (NULL == pre)
 		return (ft_strjoin(post, "", free_post, e_false));
-	if ( NULL == post)
+	if (NULL == post)
 		return (ft_strjoin(pre, "", free_pre, e_false));
 	joined = (char *) malloc(sizeof(char)
 			* (ft_strlen(pre) + ft_strlen(post) + 1));

@@ -6,13 +6,15 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 18:34:31 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:50:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:11:17 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*gnl_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post)
+char	*gnl_strjoin(char const *pre, char const *post,
+			t_bool free_pre, t_bool free_post
+)
 {
 	size_t	pre_len;
 	size_t	post_len;

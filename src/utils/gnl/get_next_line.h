@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:14:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:51:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:10:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_fd_buffer {
 
 # ifndef T_BOOL
 #  define T_BOOL
+
 typedef enum e_bool
 {
 	e_true = 1,
@@ -41,7 +42,9 @@ typedef enum e_bool
 
 void	gnl_strcpy(char *dst, char *src);
 void	gnl_strlcpy(char **dst, char *src, int dst_len);
-char	*gnl_strjoin(char const *pre, char const *post, t_bool free_pre, t_bool free_post);
+char	*gnl_strjoin(char const *pre, char const *post,
+			t_bool free_pre, t_bool free_post
+			);
 size_t	gnl_strlen(const char *str);
 void	*gnl_memset(void *b, int c, size_t len);
 

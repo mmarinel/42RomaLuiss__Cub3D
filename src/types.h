@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/02 11:36:41 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:37:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # ifndef T_BOOL
 #  define T_BOOL
+
 typedef enum e_bool
 {
 	e_true = 1,
@@ -26,6 +27,7 @@ typedef enum e_bool
 
 # ifndef T_COLOR
 #  define T_COLOR
+
 typedef struct s_color
 {
 	short	red;
@@ -61,9 +63,12 @@ typedef struct s_map_holder
 
 typedef struct s_game
 {
-
 	t_map_holder	map_handle;
-	// t_vector		player_dir;
 }	t_game;
+/**
+ * fields:
+ * 			1) t_vector		player_dir;
+ * 
+ */
 
 #endif

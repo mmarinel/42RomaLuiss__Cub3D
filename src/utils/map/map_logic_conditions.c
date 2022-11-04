@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_logic_conditions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:41:55 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 18:02:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ t_bool	is_valid_map_char( char c )
 	return (e_false);
 }
 
-t_bool	is_player_found()
+t_bool	is_player_found(void)
 {
 	return (player_tracker(e_WALL));
+}
+
+t_bool	map_fields_complete( t_map_holder *map_handle )
+{
+	return (
+		map_handle->no_texture && map_handle->so_texture
+		&& map_handle->we_texture && map_handle->ea_texture
+		&& -1 != map_handle->f_color.alpha && -1 != map_handle->c_color.alpha
+	);
 }
 
 /**

@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/01 16:00:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:18:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_utils.h"
 
-void	ft_free_map( t_tile*** map_ref, size_t rows )
+void	ft_free_map( t_tile ***map_ref, size_t rows )
 {
 	t_tile	**map;
 	size_t	cursor;

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:02:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/26 18:06:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:37:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLORS_H
-#define COLORS_H
+# define COLORS_H
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"

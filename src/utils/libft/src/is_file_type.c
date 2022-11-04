@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_file_type.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:38:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/03 16:46:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:29:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-t_bool	is_file_type( const char* path_name, const char* extension )
+t_bool	is_file_type( const char *path_name, const char *extension )
 {
 	size_t	end;
 	int		start;
