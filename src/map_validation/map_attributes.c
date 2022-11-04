@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_attributes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 18:13:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 09:20:10 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		parse_fields_line( t_map_holder *map_handle, const char* line,
 			*err_flag = e_true;
 		free(right_hand_side);
 	}
-	ft_splitclear(splitted);
+	ft_splitclear(&splitted);
 }
 
 static void		parse_rgb_field( t_color *color_field, char* rgb_string,
@@ -113,7 +113,7 @@ static void		parse_rgb_field( t_color *color_field, char* rgb_string,
 		else
 			*err_flag = e_true;
 	}
-	ft_splitclear(splitted);
+	ft_splitclear(&splitted);
 }
 
 static void	parse_rgb_item( short* item_ref, const char* channel,

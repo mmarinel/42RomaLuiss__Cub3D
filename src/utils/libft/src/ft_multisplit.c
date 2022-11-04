@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 07:59:42 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 12:25:27 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 09:23:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**ft_multisplit_rec( char** str_s, char** delimiters);
+static char	**ft_multisplit_rec( char** cur_split, char** delimiters);
 static char	get_dels_separator( const char* delimiters );
 //* end of static declarations
 
@@ -37,30 +37,33 @@ char	**ft_multisplit( const char* str, const char* delimiters )
 	dels = ft_split(delimiters, del_sep);
 	first_split = ft_split(str, dels[0][0]);
 	ret = ft_multisplit_rec( first_split, dels + 1 );
-	ft_splitclear(dels);
-	ft_splitclear(first_split);
+	ft_splitclear(&dels);
+	ft_splitclear(&first_split);
 	return (ret);
 }
 
-static char	**ft_multisplit_rec( char** str_s, char** delimiters)
+static char	**ft_multisplit_rec( char** cur_split, char** delimiters)
 {
 	char	**ret;
-	char	**first_splitted;
+	char	**first_el_splitted;
+	char	**tail;
 
-	if ( NULL == str_s || NULL == str_s[0] )
+	if ( NULL == cur_split || NULL == cur_split[0] )
 		return (NULL);
-	ret = str_s;
 	if ( NULL != delimiters[0] )
 	{
-		first_splitted = ft_split(str_s[0], delimiters[0][0]);
+		first_el_splitted = ft_split(cur_split[0], delimiters[0][0]);
+		tail = ft_splitcpy(NULL, cur_split + 1, ft_splitlen(cur_split) - 1);
 		ret = ft_splitjoin(
-				ft_multisplit_rec(first_splitted, delimiters + 1),
-				ft_multisplit_rec(str_s + 1, delimiters),
+				ft_multisplit_rec(first_el_splitted, delimiters + 1),
+				ft_multisplit_rec(tail, delimiters),
 				e_true, e_true
 			);
-		if (delimiters[1])
-			ft_splitclear(first_splitted);
+		ft_splitclear(&first_el_splitted);
+		ft_splitclear(&tail);
 	}
+	else
+		ret = ft_splitcpy(NULL, cur_split, ft_splitlen(cur_split));
 	return (ret);
 }
 

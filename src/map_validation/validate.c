@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 18:39:26 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 09:22:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static t_bool	is_file_content_valid(
 		perror(RED ERROR_SIG RESET "map");
 	else if (e_false == is_map_attributes_ok(map_fd, map_handle))
 		ft_write(STDERR_FILENO, RED "Error\n" RESET "map: fields error\n");
-	// else if (e_false == is_map_content_ok(map_fd, map_handle))
-	// 	ft_write(STDERR_FILENO, RED "Error\n" RESET "map: invalid map\n");
-	// else
-	// 	return (e_true);
+	else if (e_false == is_map_content_ok(map_fd, map_handle))
+		ft_write(STDERR_FILENO, RED "Error\n" RESET "map: invalid map\n");
+	else
+		return (e_true);
 	return (e_false);
 }

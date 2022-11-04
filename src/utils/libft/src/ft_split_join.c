@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:34:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 18:24:36 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:32:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	**ft_splitjoin( char** pre, char** post, t_bool free_pre, t_bool free_post 
 	// ft_splitprint(joined);
 	// exit(0);
 	if (free_pre)
-		ft_splitclear(pre);
+		ft_splitclear(&pre);
 	if (free_post)
-		ft_splitclear(post);
+		ft_splitclear(&post);
 	return (joined);
 }
 

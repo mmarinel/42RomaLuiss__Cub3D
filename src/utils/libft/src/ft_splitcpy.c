@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:43:39 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/29 16:39:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:42:42 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	**ft_splitcpy(char **split_buf, char **split_src, size_t copy_len)
 	while (i < copy_len)
 	{
 		split_buf[i] = ft_strcpy(
-			split_buf[i],
-			split_src[i],
-			ft_strlen(split_src[i])
-			);
+						split_buf[i],
+						split_src[i],
+						ft_strlen(split_src[i])
+					);
 		// split_buf[i][ft_strlen(split_src[i])] = '\0';
 		i++;
 	}

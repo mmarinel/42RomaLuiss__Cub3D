@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 18:19:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:33:17 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 		error_found = e_true;
 	else
 		parse_map(map_holder, map, &error_found);
-	ft_splitclear(map);
+	ft_splitclear(&map);
 	return (error_found == e_false);
 }
 

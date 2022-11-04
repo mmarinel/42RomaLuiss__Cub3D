@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:16:43 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/03 18:19:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:33:12 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	map_size( const char* map_string,
 			cursor += 1;
 		}
 	}
-	ft_splitclear(splitted);
+	ft_splitclear(&splitted);
 	*columns = max_row_len;
 	*rows = cursor;
 }

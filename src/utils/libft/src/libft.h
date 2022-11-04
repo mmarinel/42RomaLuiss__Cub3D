@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/02 09:19:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:50:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ size_t	ft_str_member( const char* str, char c );
 char	*ft_string_new( char c, long len );
 
 //* split utils
-void	*ft_splitclear(char **split);
+void	*ft_splitclear(char ***split_ref);
 char	**ft_splitcpy(char **buf, char **src, size_t copy_len);
 size_t	ft_splitlen(char **split);
 char	**ft_splitinit( size_t size );

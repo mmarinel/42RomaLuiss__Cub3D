@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:56:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/30 12:34:33 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 08:32:40 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_split(char const *s, char c)
 	}
 	if (!ft_allocate_words((char *) s, c, split))
 	{
-		ft_splitclear(split);
+		ft_splitclear(&split);
 		return (NULL);
 	}
 	ft_get_split((char *) s, c, split);
