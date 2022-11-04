@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 09:26:35 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:48:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "map_validation/map_validation_module.h"
 // # include "utils/gnl/get_next_line_module.h"
 
+
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -56,6 +58,12 @@ int main(int argc, char const *argv[])
 	free(game.map_handle.we_texture);
 	free(game.map_handle.ea_texture);
 
+	void	*mlx;
+	void	*window;
+
+	mlx = mlx_init();
+	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
+	mlx_loop(mlx);
 	ft_printf(YELLOW "\n\n.......leaks program output......\n\n" RESET);
 	return 0;
 }

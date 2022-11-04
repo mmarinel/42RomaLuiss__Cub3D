@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/11/04 17:18:29 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,16 +61,33 @@ OBJS_DIR = bin
 OBJS_NOPREFIX = ${SRC_NOPREFIX:%.c=%.o}
 OBJS = $(addprefix $(OBJS_DIR)/, $(OBJS_NOPREFIX))
 
+# A library is tracked with its path and its build target
+# which can be the same used by its Makefile or a .dylib
+# file we need to import in our project directory root.
+# in the first case, both us and its Makefile will attempt to delete the file,
+# so -rf is used in order to keep double deletions silent.
+MLX_LIB_DIR = mlx
+MLX_TARGET = libmlx.dylib
+
+MLX_SRC_FLAGS = -Imlx
+MLX_LINK_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+SYS_LIBS+=\
+$(MLX_LIB_DIR)\
+
+SYS_TARGETS+=\
+$(MLX_TARGET)\
+
 NAME = cub3D
 
 all: $(NAME)
 
 # bonus: .BUILD
 
-$(NAME): $(OBJS) $(SRC_USR_LIBS)
+$(NAME): $(OBJS) $(SRC_USR_LIBS) $(SYS_TARGETS)
 	@$(MAKE) .DO_LIBS
 	@echo "linking compiled objects and libraries..."
-	$(CC) $(CFLAGS) $(READLINE_FLAGS) $(OBJS) $(LIBS_FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) $(MLX_LINK_FLAGS) $(LIBS_FLAGS) -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
 	@echo "\033[0;37m"
 
@@ -80,7 +97,11 @@ $(NAME): $(OBJS) $(SRC_USR_LIBS)
 #
 $(shell echo $(OBJS_DIR))/%.o: %.c $(INCLUDES)#		$(wildcard $(<D)/*.h)------this recompiles only for headers in the same folder!
 	@mkdir -p '$(@D)'
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $(MLX_SRC_FLAGS) $< -o $@
+
+$(MLX_TARGET):
+	@make -C mlx
+	@mv mlx/libmlx.dylib .
 
 clean:
 	@printf "removing Object files...\n"
@@ -112,6 +133,9 @@ re: fclean all
 #touch /dev/null; \
 
 .DESTROY_LIBS:
-	@for LIB in $(USR_LIBS); do \
-		make -C $$LIB fclean; \
+	@for LIB in $(USR_LIBS) $(SYS_LIBS); do \
+		make -s -C $$LIB fclean; \
+	done; \
+	for TARGET in $(SYS_TARGETS); do \
+		rm -rf $$TARGET; \
 	done
