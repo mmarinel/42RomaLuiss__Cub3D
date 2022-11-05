@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:10:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 12:23:16 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 13:02:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,39 @@ t_bool	ft_fill_color(int red, int green, int blue, t_color *color)
 	}
 }
 
+
+void	ft_adjust_brightness(t_color *color, double percentage)
+{
+	t_color	adjusted;
+	t_color	darkest_shade;
+	t_color	brightest_shade;
+	const double	max_factor = ft_get_max_brightness_factor(color);
+
+	darkest_shade = *color;
+	brightest_shade = *color;
+	ft_apply_brightness(&darkest_shade, max_factor);
+	ft_apply_brightness(&brightest_shade, max_factor);
+	adjusted = ft_color_gradient_get_shade(brightest_shade, darkest_shade, percentage);
+	*color = adjusted;
+}
+
+double	ft_get_max_brightness_factor(t_color *color)
+{
+	double	max_factor;
+	double	step = 0.01;
+
+	max_factor = 1 + step;
+	while (
+		color->red * max_factor > (double) COLOR_MAX
+		|| color->green * max_factor > (double) COLOR_MAX
+		|| color->blue * max_factor > (double) COLOR_MAX
+	)
+	{
+		max_factor += step;
+	}
+	return (max_factor);
+}
+
 /**
  * @brief this function applies brightness to the given color.
  * 
@@ -63,11 +96,11 @@ t_bool	ft_fill_color(int red, int green, int blue, t_color *color)
  * or 1/X if you want to make it darker.
  * @return t_bool 
  */
-void	ft_apply_brightness(t_color *color, int factor)
+void	ft_apply_brightness(t_color *color, double factor)
 {
-	const short	new_red = color->red * factor;
-	const short	new_green = color->green * factor;
-	const short	new_blue = color->blue * factor;
+	const short	new_red = (int) color->red * factor;
+	const short	new_green = (int) color->green * factor;
+	const short	new_blue = (int) color->blue * factor;
 
 	color->red = ft_rgb_normalize(new_red);
 	color->green = ft_rgb_normalize(new_green);
