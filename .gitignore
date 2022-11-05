@@ -54,3 +54,5 @@ dkms.conf
 # VsCode generated shit
 *.json
 
+# Executeble name
+cub3D

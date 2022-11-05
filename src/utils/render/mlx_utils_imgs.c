@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_utils_module.h                                :+:      :+:    :+:   */
+/*   mlx_utils_imgs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 11:51:32 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/05 11:56:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_UTILS_MODULE_H
-# define GAME_UTILS_MODULE_H
+#include "render.h"
 
-# include "../../types.h"
-# include "game_utils.h"
+void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
+{
+	char	*byte_ptr;
 
-//*		coordinates
-t_2Dpoint	ft_get_new_2Dpt(int x, int y);
+	byte_ptr = img_data->addr + px_offset;
+	*(unsigned int *)byte_ptr = ft_get_mlx_color(color);
+}
 
-//*		game memory management
-void	ft_game_init( t_game *game_ref );
-
-#endif
+size_t	ft_get_pixel_offset(const t_data img_data, t_2Dpoint pt)
+{
+	return (pt.y * img_data.line_length + pt.x * (img_data.bits_per_pixel / 8));
+}

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
+#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/11/04 17:18:29 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ INCLUDES=\
 ./src/utils/libft/libft_module.h\
 ./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/map/map_utils_module.h\
+./src/utils/render/render_module.h\
 ./src/utils/utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
@@ -29,6 +30,9 @@ INCLUDES=\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/map/map_utils.h\
 ./src/utils/map/map_utils_module.h\
+./src/utils/render/render.h\
+./src/utils/render/render_module.h\
+./src/utils/render/render_types.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -36,6 +40,7 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
+./src/utils/game/coordinates.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_utils.c\
@@ -43,6 +48,9 @@ SRC_NOPREFIX=\
 ./src/utils/map/map_chars_conditions.c\
 ./src/utils/map/map_logic_conditions.c\
 ./src/utils/map/map_memory.c\
+./src/utils/render/mlx_utils_imgs.c\
+./src/utils/render/render_conditions.c\
+./src/utils/render/rgb.c\
 
 USR_LIBS=\
 src/utils/libft\

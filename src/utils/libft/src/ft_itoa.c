@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 18:01:41 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 09:44:01 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 12:33:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_itoa(int n)
 		ft_memcpy(result, "-2147483648", MIN_INT_SIZE + 1);
 		return (result);
 	}
-	if (-1 == ft_itoa_rec(ft_abs(n), n < 0, n < 0, &result))
+	if (-1 == ft_itoa_rec(ft_int_abs(n), n < 0, n < 0, &result))
 		return (NULL);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 12:17:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 12:33:00 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 t_bool				ft_isdigit_string( const char *string );
-t_bool				ft_iscolor(
-						long long red,
-						long long green,
-						long long blue
-						);
 int					ft_isprint(int c);
 t_bool				ft_str_isempty( const char *str );
 t_bool				is_file_type( const char *path_name,
@@ -133,6 +128,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 //* math
-unsigned long long	ft_abs(long long nbr);
+unsigned long long	ft_int_abs(long long nbr);
+long long			ft_int_max(long long a, long long b);
 
 #endif

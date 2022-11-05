@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:37:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 11:39:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef enum e_bool
 	e_false = 0
 }	t_bool;
 # endif
+
+typedef struct s_2Dpoint
+{
+	int	x;
+	int	y;
+}	t_2Dpoint;
 
 # ifndef T_COLOR
 #  define T_COLOR

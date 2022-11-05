@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_utils_module.h                                :+:      :+:    :+:   */
+/*   coordinates.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 11:51:32 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/05 11:50:00 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/05 11:51:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_UTILS_MODULE_H
-# define GAME_UTILS_MODULE_H
+#include "game_utils.h"
 
-# include "../../types.h"
-# include "game_utils.h"
+t_2Dpoint	ft_get_new_2Dpt(int x, int y)
+{
+	t_2Dpoint	pt;
 
-//*		coordinates
-t_2Dpoint	ft_get_new_2Dpt(int x, int y);
-
-//*		game memory management
-void	ft_game_init( t_game *game_ref );
-
-#endif
+	pt.x = x;
+	pt.y = y;
+	return (pt);
+}

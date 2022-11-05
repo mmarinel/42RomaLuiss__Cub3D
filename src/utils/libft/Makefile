@@ -26,7 +26,6 @@ SRC_NOPREFIX=\
 ./src/ft_isalnum.c\
 ./src/ft_isalpha.c\
 ./src/ft_isascii.c\
-./src/ft_iscolor.c\
 ./src/ft_isdigit.c\
 ./src/ft_isdigit_string.c\
 ./src/ft_isprint.c\
@@ -81,6 +80,7 @@ SRC_NOPREFIX=\
 ./src/ft_tolower.c\
 ./src/ft_toupper.c\
 ./src/ft_write.c\
+./src/int_max.c\
 ./src/is_file_type.c\
 ./src/simple_printf/ft_printf.c\
 ./src/simple_printf/printf_cases.c\

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_utils_module.h                                :+:      :+:    :+:   */
+/*   render_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 11:51:32 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/05 11:15:00 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/05 12:13:26 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_UTILS_MODULE_H
-# define GAME_UTILS_MODULE_H
+#ifndef RENDER_TYPES_H
+# define RENDER_TYPES_H
 
 # include "../../types.h"
-# include "game_utils.h"
+# include "render_types.h"
 
-//*		coordinates
-t_2Dpoint	ft_get_new_2Dpt(int x, int y);
+# define COLOR_MIN 0
+# define COLOR_MAX 255
 
-//*		game memory management
-void	ft_game_init( t_game *game_ref );
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 #endif

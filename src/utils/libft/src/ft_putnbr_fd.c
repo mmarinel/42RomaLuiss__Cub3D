@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:21:55 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/10/28 09:44:29 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 12:33:22 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(8, fd);
 	}
 	else
-		ft_putnbr_fd_rec(ft_abs(n), fd);
+		ft_putnbr_fd_rec(ft_int_abs(n), fd);
 }
 
 static void	ft_putnbr_fd_rec(unsigned int n, int fd)

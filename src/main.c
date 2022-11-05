@@ -6,19 +6,16 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 16:48:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 11:57:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// # include "utils/libft/libft_module.h"
 
 # include "colors.h"
 # include "types.h"
 # include "utils/utils_module.h"
 # include "map_validation/map_validation_module.h"
-// # include "utils/gnl/get_next_line_module.h"
 
-
+# include <math.h>
 # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -60,9 +57,19 @@ int main(int argc, char const *argv[])
 
 	void	*mlx;
 	void	*window;
+	t_data	img;
 
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	printf("\n\nline_length: %d; bits_per_pixel: %d\n", img.line_length, img.bits_per_pixel);
+	t_color	line_color;
+	ft_fill_color((int)50 * 1.2, (int)168 * 1.2, (int)82 * 1.2, &line_color);
+	for (int i = 0; i < 1920; i++)
+		ft_put_px_to_image(&img, ft_get_pixel_offset(img, ft_get_new_2Dpt(i, 1080 / 2)), line_color);
+	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 	mlx_loop(mlx);
 	ft_printf(YELLOW "\n\n.......leaks program output......\n\n" RESET);
 	return 0;
