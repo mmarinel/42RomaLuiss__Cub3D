@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/05 11:39:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:50:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_2Dpoint
 {
 	int	x;
 	int	y;
-}	t_2Dpoint;
+}	t_2d_point;
 
 # ifndef T_COLOR
 #  define T_COLOR

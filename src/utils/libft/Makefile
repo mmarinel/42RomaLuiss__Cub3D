@@ -18,11 +18,11 @@ INCLUDES=\
 ./src/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
-./src/ft_abs.c\
 ./src/ft_atoi.c\
 ./src/ft_bzero.c\
 ./src/ft_calloc.c\
 ./src/ft_free.c\
+./src/ft_int_abs.c\
 ./src/ft_isalnum.c\
 ./src/ft_isalpha.c\
 ./src/ft_isascii.c\

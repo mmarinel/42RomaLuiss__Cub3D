@@ -48,6 +48,7 @@ SRC_NOPREFIX=\
 ./src/utils/map/map_chars_conditions.c\
 ./src/utils/map/map_logic_conditions.c\
 ./src/utils/map/map_memory.c\
+./src/utils/render/brightness.c\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/render_conditions.c\
 ./src/utils/render/rgb.c\

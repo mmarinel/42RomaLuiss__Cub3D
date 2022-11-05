@@ -6,15 +6,15 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:50:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 11:51:11 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:51:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
 
-t_2Dpoint	ft_get_new_2Dpt(int x, int y)
+t_2d_point	ft_get_new_2dpt(int x, int y)
 {
-	t_2Dpoint	pt;
+	t_2d_point	pt;
 
 	pt.x = x;
 	pt.y = y;

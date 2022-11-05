@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 11:57:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:51:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,13 @@ int main(int argc, char const *argv[])
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	printf("\n\nline_length: %d; bits_per_pixel: %d\n", img.line_length, img.bits_per_pixel);
 	t_color	line_color;
-	ft_fill_color((int)50 * 1.2, (int)168 * 1.2, (int)82 * 1.2, &line_color);
-	for (int i = 0; i < 1920; i++)
-		ft_put_px_to_image(&img, ft_get_pixel_offset(img, ft_get_new_2Dpt(i, 1080 / 2)), line_color);
+	t_color	cur_px_color;
+	ft_fill_color(40, 11, 3, &line_color);
+	// ft_fill_color(151, 50, 168, &line_color);
+	for (int i = 0; i < 1920; i++) {
+		cur_px_color = ft_get_shade(line_color, (double) i / 1920);
+		ft_put_px_to_image(&img, ft_get_pixel_offset(img, ft_get_new_2dpt(i, 1080 / 2)), cur_px_color);
+	}
 	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 	mlx_loop(mlx);
 	ft_printf(YELLOW "\n\n.......leaks program output......\n\n" RESET);
