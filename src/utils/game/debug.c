@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinates.c                                      :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 11:50:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 13:00:56 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/06 18:22:22 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/06 19:12:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
 
-t_2d_point	ft_get_new_2dpt(double x, double y)
+void	ft_print_2d_point(const char* pt_name, t_2d_point pt)
 {
-	t_2d_point	pt;
-
-	pt.x = x;
-	pt.y = y;
-	return (pt);
+	printf(YELLOW "pt %s (x, y) = (%.2lf, %.2lf)\n" RESET, pt_name, pt.x, pt.y);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/06 12:59:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/06 17:31:33 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_2Dpoint
 	double	y;
 }	t_2d_point;
 
+typedef struct s_2Dmatrix
+{
+	t_2d_point	col_1;
+	t_2d_point	col_2;
+}	t_2d_matrix;
+
 # ifndef T_COLOR
 #  define T_COLOR
 
@@ -55,21 +61,6 @@ typedef enum e_tile
 	e_EMPTY
 }	t_tile;
 
-typedef enum e_side
-{
-	e_HORIZONTAL,
-	e_VERTICAL
-}	t_side;
-
-typedef struct s_raycast_return
-{
-	t_2d_point	hit_pt;
-	t_side		side;
-	double		theta;
-	double		euclidean_dist;
-	double		perp_dist;
-}	t_raycast_return;
-
 typedef struct s_map_holder
 {
 	t_tile	**map;
@@ -88,6 +79,7 @@ typedef struct s_game
 	t_map_holder	map_handle;
 	t_2d_point		player_dir;
 	t_2d_point		player_pos;
+	t_2d_point		camera_plane;
 }	t_game;
 /**
  * fields:

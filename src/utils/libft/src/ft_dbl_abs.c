@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_module.h                                   :+:      :+:    :+:   */
+/*   ft_dbl_abs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 18:38:47 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/06 18:40:06 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/06 18:42:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_MODULE_H
-# define RAYCAST_MODULE_H
+#include "libft.h"
 
-# include "ray_cast_types.h"
-
-t_raycast_return	raycast(t_game *game, double ray_angle);
-void				ft_print_ray_result(t_raycast_return raycast_info);
-
-#endif
+double	ft_dbl_abs(double nbr)
+{
+	if (nbr > 0)
+		return (nbr);
+	else
+		return (-nbr);
+}

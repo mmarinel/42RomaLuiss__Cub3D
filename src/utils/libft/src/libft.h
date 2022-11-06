@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 12:33:00 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:42:44 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void				ft_putnbr_fd(int n, int fd);
 
 //* math
 unsigned long long	ft_int_abs(long long nbr);
+double				ft_dbl_abs(double nbr);
 long long			ft_int_max(long long a, long long b);
 
 #endif

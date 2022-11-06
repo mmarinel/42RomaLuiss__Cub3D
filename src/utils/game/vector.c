@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_module.h                                   :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 18:38:47 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/06 17:50:45 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/06 17:50:57 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_MODULE_H
-# define RAYCAST_MODULE_H
+#include "game_utils.h"
 
-# include "ray_cast_types.h"
+t_2d_point	ft_get_new_2dpt(double x, double y)
+{
+	t_2d_point	pt;
 
-t_raycast_return	raycast(t_game *game, double ray_angle);
-void				ft_print_ray_result(t_raycast_return raycast_info);
+	pt.x = x;
+	pt.y = y;
+	return (pt);
+}
 
-#endif
+t_2d_matrix	ft_get_new_2dmtrx(t_2d_point col_1, t_2d_point col_2)
+{
+	t_2d_matrix	matrix;
+
+	matrix.col_1 = col_1;
+	matrix.col_2 = col_2;
+	return (matrix);
+}

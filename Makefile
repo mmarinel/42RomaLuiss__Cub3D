@@ -14,6 +14,7 @@ INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
 ./src/map_validation/map_validation_module.h\
+./src/raycast/raycast_module.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
@@ -23,6 +24,9 @@ INCLUDES=\
 ./src/utils/utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
+./src/raycast/ray_cast_types.h\
+./src/raycast/raycast.h\
+./src/raycast/raycast_module.h\
 ./src/utils/utils_module.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
@@ -40,8 +44,12 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
-./src/utils/game/coordinates.c\
+./src/raycast/raycast.c\
+./src/utils/game/debug.c\
 ./src/utils/game/game_memory.c\
+./src/utils/game/geometry.c\
+./src/utils/game/math.c\
+./src/utils/game/vector.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_utils.c\
 ./src/utils/map/atttrs_chars_conditions.c\
@@ -96,7 +104,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(SRC_USR_LIBS) $(SYS_TARGETS)
 	@$(MAKE) .DO_LIBS
 	@echo "linking compiled objects and libraries..."
-	$(CC) $(OBJS) $(CFLAGS) $(MLX_LINK_FLAGS) $(LIBS_FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) $(MLX_LINK_FLAGS) $(LIBS_FLAGS) -lm -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
 	@echo "\033[0;37m"
 
