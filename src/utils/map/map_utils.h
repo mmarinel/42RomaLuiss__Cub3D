@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 11:18:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:46:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define MAP_UTILS_H
 
 # include "../../types.h"
+# include "../../colors.h"
 # include "../libft/libft_module.h"
+
+# include <stdio.h>
 
 //*		memory
 void	ft_free_map( t_tile ***map_ref, size_t rows );
@@ -36,5 +39,8 @@ t_bool	is_attrs_player_dir_char( const char *id );
 t_bool	is_attrs_color_field_char( const char *id );
 t_bool	is_floor_color_id( const char *id );
 t_bool	is_ceiling_color_id( const char *id );
+
+//*		t_tile map utils
+void	ft_trim_map(t_map_holder *map_handle);
 
 #endif

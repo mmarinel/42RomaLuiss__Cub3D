@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:16:43 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:41:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:07:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ static void	map_size( const char *map_string,
 	*rows = cursor;
 }
 
+/**
+ * @brief this function completes the map by adding the missing columns
+ * (as EMPTY values) to each row.
+ * 
+ * @param normalized_map_string 
+ * @param map_handle 
+ * @return char** 
+ */
 static char	**complete_map( const char *normalized_map_string,
 				t_map_holder *map_handle )
 {
@@ -97,6 +105,13 @@ static char	**complete_map( const char *normalized_map_string,
 	return (splitted);
 }
 
+/**
+ * @brief this function adds the missing columns to a specific row.
+ * 
+ * @param split_row 
+ * @param missing 
+ * @return char* 
+ */
 static char	*complete_map_row( char *split_row, size_t missing )
 {
 	return (

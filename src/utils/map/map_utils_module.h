@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 11:18:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:57:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,11 @@ t_bool	is_attrs_player_dir_char( const char *id );
 t_bool	is_attrs_color_field_char( const char *id );
 t_bool	is_floor_color_id( const char *id );
 t_bool	is_ceiling_color_id( const char *id );
+
+//*		t_tile map utils
+void	ft_trim_map(t_map_holder *map_handle);
+
+//*		debug
+void	ft_tile_map_print(t_tile **map, size_t rows, size_t columns);
 
 #endif

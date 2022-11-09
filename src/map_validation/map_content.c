@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:00:33 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:47:07 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static t_bool	is_map_char_pos_valid(
 					char **map,
 					size_t row_index, size_t col_index
 					);
+static void		ft_fill_tile_row(
+					t_map_holder *map_handle,
+					char **char_map,
+					size_t row_index,
+					t_bool *err_flag
+				);
 //* end of static declarations
 
 t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
@@ -49,8 +55,6 @@ static void	parse_map( t_map_holder *map_handle, char **map,
 	if (NULL == map_handle->map)
 		*err_flag = e_true;
 	cursor = 0;
-	while (ft_str_isempty(map[cursor]))
-		cursor += 1;
 	while (map[cursor] && e_false == *err_flag)
 	{
 		parse_row(map_handle, map, cursor, err_flag);
@@ -64,30 +68,21 @@ static void	parse_row( t_map_holder *map_handle,
 				char **map, size_t row_index,
 				t_bool *err_flag )
 {
-	size_t			cursor;
-	static t_bool	empty_line_found = e_false;
+	static t_bool	empty_line_found_after_non_empty_one = e_false;
+	static t_bool	non_empty_line_found = e_false;
 
 	if (ft_str_isempty(map[row_index]))
-		empty_line_found = e_true;
+	{
+		if (non_empty_line_found)
+			empty_line_found_after_non_empty_one = e_true;
+	}
 	else
 	{
-		if (empty_line_found)
+		if (empty_line_found_after_non_empty_one)
 			*err_flag = e_true;
-		cursor = 0;
-		while (map[row_index][cursor] && e_false == *err_flag)
-		{
-			if (e_false == is_valid_map_char(map[row_index][cursor])
-				|| e_false == is_map_char_pos_valid(
-								map_handle, map,
-								row_index, cursor
-							)
-			)
-				*err_flag = e_true;
-			else
-				map_handle->map[row_index][cursor] = map[row_index][cursor];
-			cursor += 1;
-		}
+		non_empty_line_found = e_true;
 	}
+	ft_fill_tile_row(map_handle, map, row_index, err_flag);
 }
 
 static t_bool	is_map_char_pos_valid(
@@ -97,7 +92,8 @@ static t_bool	is_map_char_pos_valid(
 )
 {
 	if (is_floor_map_char(map[row_index][col_index])
-		|| is_player_map_char(map[row_index][col_index]))
+		|| is_player_map_char(map[row_index][col_index])
+	)
 		if (
 			(row_index == 0
 				|| is_empty_map_char(map[row_index - 1][col_index])
@@ -114,4 +110,31 @@ static t_bool	is_map_char_pos_valid(
 		)
 			return (e_false);
 	return (e_true);
+}
+
+static void	ft_fill_tile_row(
+					t_map_holder *map_handle,
+					char **char_map,
+					size_t row_index,
+					t_bool *err_flag
+				)
+{
+	size_t	col;
+
+	col = 0;
+	while (char_map[row_index][col] && e_false == *err_flag)
+	{
+		if (e_false == is_valid_map_char(char_map[row_index][col])
+			|| e_false == is_map_char_pos_valid(
+							map_handle, char_map,
+							row_index, col
+						)
+		)
+			*err_flag = e_true;
+		else {
+			map_handle->map[row_index][col] = char_map[row_index][col];
+			printf("char: %c \n", char_map[row_index][col]);
+		}
+		col += 1;
+	}
 }

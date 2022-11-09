@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/11/09 19:29:45 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ SRC_NOPREFIX=\
 ./src/utils/map/map_chars_conditions.c\
 ./src/utils/map/map_logic_conditions.c\
 ./src/utils/map/map_memory.c\
+./src/utils/map/t_tile_debug.c\
+./src/utils/map/t_tile_map_trim.c\
 ./src/utils/render/brightness.c\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/render_conditions.c\

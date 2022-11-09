@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:07:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:58:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ t_bool	is_valid_map( const char *path, t_map_holder *map_handle )
 		ft_free_map(&map_handle->map, map_handle->rows);
 		return (e_false);
 	}
-	return (e_true);
+	else
+	{
+		ft_trim_map(map_handle);
+		return (e_true);
+	}
 }
 
 static t_bool	is_file_type_valid(const char *path)
