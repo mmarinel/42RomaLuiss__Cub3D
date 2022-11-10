@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/09 21:46:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 08:26:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ t_bool	is_floor_color_id( const char *id );
 t_bool	is_ceiling_color_id( const char *id );
 
 //*		t_tile map utils
-void	ft_trim_map(t_map_holder *map_handle);
+void	ft_trim_map(t_map_holder *map_handle, t_bool *err_flag);
 
 #endif

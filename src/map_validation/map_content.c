@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/09 19:47:07 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 08:26:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
 	if (0 == map_holder->columns)
 		error_found = e_true;
 	else
+	{
 		parse_map(map_holder, map, &error_found);
+		ft_trim_map(map_holder, &error_found);
+	}
 	ft_splitclear(&map);
 	return (error_found == e_false);
 }
@@ -131,10 +134,8 @@ static void	ft_fill_tile_row(
 						)
 		)
 			*err_flag = e_true;
-		else {
+		else
 			map_handle->map[row_index][col] = char_map[row_index][col];
-			printf("char: %c \n", char_map[row_index][col]);
-		}
 		col += 1;
 	}
 }

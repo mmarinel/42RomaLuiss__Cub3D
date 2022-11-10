@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/09 19:00:20 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 08:14:23 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 			we_texture: %s\n\
 			ea_texture: %s\n\
 			f_color.red: %d, f_color.green: %d, f_color.blue: %d f_color.alpha: %lf\n\
-			c_color.red: %d, c_color.green: %d, c_color.blue: %d f_color.alpha: %lf\n\
+			c_color.red: %d, c_color.green: %d, c_color.blue: %d f_color.alpha: %lf\n\n\
 			",
 			game.map_handle.no_texture, game.map_handle.so_texture, game.map_handle.we_texture, game.map_handle.ea_texture,
 			game.map_handle.f_color.red, game.map_handle.f_color.green, game.map_handle.f_color.blue, game.map_handle.f_color.alpha,
