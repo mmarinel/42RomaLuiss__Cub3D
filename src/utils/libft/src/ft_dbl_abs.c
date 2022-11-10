@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:40:06 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 18:42:20 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:30:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	ft_dbl_abs(double nbr)
 {
-	if (nbr > 0)
+	if (nbr >= 0)
 		return (nbr);
 	else
 		return (-nbr);

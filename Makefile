@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
+#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/11/09 19:29:45 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INCLUDES=\
 ./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/map/map_utils_module.h\
 ./src/utils/render/render_module.h\
+./src/utils/types/types_module.h\
 ./src/utils/utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
@@ -37,6 +38,8 @@ INCLUDES=\
 ./src/utils/render/render.h\
 ./src/utils/render/render_module.h\
 ./src/utils/render/render_types.h\
+./src/utils/types/t_types.h\
+./src/utils/types/types_module.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -62,6 +65,7 @@ SRC_NOPREFIX=\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/render_conditions.c\
 ./src/utils/render/rgb.c\
+./src/utils/types/t_dbl.c\
 
 USR_LIBS=\
 src/utils/libft\

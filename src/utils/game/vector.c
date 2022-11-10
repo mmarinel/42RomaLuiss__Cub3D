@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:45 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 17:50:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:00:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_2d_point	ft_get_new_2dpt(double x, double y)
 {
 	t_2d_point	pt;
 
-	pt.x = x;
-	pt.y = y;
+	pt.x.val = x;
+	pt.y.val = y;
 	return (pt);
 }
 

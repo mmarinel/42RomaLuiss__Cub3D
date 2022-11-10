@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 10:37:10 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:29:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_dbl	t_dbl_new(double val)
 	dbl_new.val = val;
 	dbl_new.inf = e_false;
 	dbl_new.neg_inf = e_false;
+	return (dbl_new);
 }
 
 t_dbl	t_dbl_sum(t_dbl a, t_dbl b)
@@ -41,6 +42,7 @@ t_dbl	t_dbl_sum(t_dbl a, t_dbl b)
 		if (a.neg_inf || b.neg_inf)
 			sum.neg_inf = e_true;
 	}
+	return (sum);
 }
 
 t_dbl	t_dbl_diff(t_dbl a, t_dbl b)
@@ -52,6 +54,7 @@ t_dbl	t_dbl_diff(t_dbl a, t_dbl b)
 		diff.inf = e_true;
 	if (a.neg_inf || b.neg_inf)
 		diff.neg_inf = e_true;
+	return (diff);
 }
 
 t_dbl	t_dbl_mult(t_dbl a, t_dbl b)
@@ -76,13 +79,15 @@ t_dbl	t_dbl_mult(t_dbl a, t_dbl b)
 		if (a.neg_inf || b.neg_inf)
 			mult.neg_inf = e_true;
 	}
+	return (mult);
 }
 
 t_dbl	t_dbl_div(t_dbl a, t_dbl b)
 {
 	t_dbl	quotient;
 
-	if (0 == b.val)
+	printf("tbl_div:\ta: %lf, b: %lf\n", a.val, b.val);
+	if (0.0f == b.val)
 	{
 			quotient.inf = e_true;
 			quotient.neg_inf =  e_false;
@@ -109,6 +114,7 @@ t_dbl	t_dbl_div(t_dbl a, t_dbl b)
 		if (a.neg_inf || b.neg_inf)
 			quotient.neg_inf = e_true;
 	}
+	return (quotient);
 }
 
 double	t_dbl_cmp(t_dbl a, t_dbl b)
@@ -118,4 +124,14 @@ double	t_dbl_cmp(t_dbl a, t_dbl b)
 	if (b.inf || a.neg_inf)
 		return (-1);
 	return (a.val - b.val);
+}
+
+void	ft_print_t_dbl(t_dbl var)
+{
+	if (var.inf)
+		printf("<inf> ");
+	else if (var.neg_inf)
+		printf("<neg_inf> ");
+	else
+		printf("%lf ", var.val);
 }

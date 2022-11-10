@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 10:47:19 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:11:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ typedef struct s_raycast_return
 typedef struct s_raycast_data
 {
 	t_2d_point	ray_dir;
-	t_dbl			delta_x;
-	t_dbl			delta_y;
+	t_dbl		delta_x;
+	t_dbl		delta_y;
 	int			step_x;
 	int			step_y;
-	int					cur_sq_x;
-	int					cur_sq_y;
-	t_dbl				dist_nhp_through_x;
-	t_dbl				dist_nhp_through_y;
-	t_side				side;
+	int			cur_sq_x;
+	int			cur_sq_y;
+	t_dbl		dist_nhp_through_x;
+	t_dbl		dist_nhp_through_y;
+	t_side		side;
 }	t_raycast_data;
 
 #endif

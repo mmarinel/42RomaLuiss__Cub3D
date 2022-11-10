@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:39 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 10:37:32 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:18:08 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ t_dbl	t_dbl_div(t_dbl a, t_dbl b);
 
 //*		comparisons
 double	t_dbl_cmp(t_dbl a, t_dbl b);
+
+//*		debug
+void	ft_print_t_dbl(t_dbl var);
 
 #endif
