@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/06 20:15:53 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/10 10:46:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,57 +22,65 @@ void	ft_set_hp_dist(t_raycast_return *raycast_info,
 			double ray_angle
 		);
 
+static t_raycast_data	ft_ray_data_init(t_game *game, double ray_angle);
+static t_dbl			ft_init_delta(t_raycast_data raycast_data, t_bool axis);
+static void				ft_walk_through_nhp(t_raycast_data *raycast_data);
+//*		enf of static declarations
+
+static t_raycast_data ft_ray_data_init(t_game *game, double ray_angle)
+{
+	t_raycast_data	rc_data = (t_raycast_data) {
+		ft_rotate(game->player_dir, ray_angle),
+		t_dbl_div(t_dbl_new(1), t_dbl_new(ft_dbl_abs(rc_data.ray_dir.x.val))),
+		t_dbl_div(t_dbl_new(1), t_dbl_new(ft_dbl_abs(rc_data.ray_dir.y.val))),
+		ft_ray_step_size(rc_data.ray_dir.x.val),
+		ft_ray_step_size(rc_data.ray_dir.y.val),
+		(int) game->player_pos.x.val,
+		(int) game->player_pos.y.val,
+		ft_initial_delta(game->player_pos.x.val, game->player_dir.x.val),
+		ft_initial_delta(game->player_pos.x.val, game->player_dir.x.val),
+		e_SIDE_NONE
+		};
+}
+
+static void				ft_walk_through_nhp(t_raycast_data *raycast_data)
+{
+	if (t_dbl_cmp(
+		raycast_data->dist_nhp_through_x,
+		raycast_data->dist_nhp_through_y
+		) < 0)
+	{
+		raycast_data->cur_sq_x = raycast_data->cur_sq_x + raycast_data->step_x;
+		raycast_data->dist_nhp_through_x.val += raycast_data->delta_x.val;
+		raycast_data->side = e_VERTICAL;
+	}
+	else
+	{
+		raycast_data->cur_sq_y = raycast_data->cur_sq_y + raycast_data->step_y;
+		raycast_data->dist_nhp_through_y.val += raycast_data->delta_y.val;
+		raycast_data->side = e_HORIZONTAL;
+	}
+}
+
 t_raycast_return	raycast(t_game *game, double ray_angle)
 {
 	t_raycast_return	ret;
+	t_raycast_data		raycast_data;
 	t_bool				hit;
-	t_2d_point			ray_dir;
-	double				dist_nhp_through_x;
-	double				dist_nhp_through_y;
-	const double		delta_x = game->player_dir.x != 0 ? 1 / ft_dbl_abs(game->player_dir.x) : __DBL_MAX__;
-	const double		delta_y = game->player_dir.y != 0 ? 1 / ft_dbl_abs(game->player_dir.y) : __DBL_MAX__;
-	int					cur_square_x;
-	int					cur_square_y;
-	int					step_x;//TODO const
-	int					step_y;//TODO const
-	t_side				side;
-
-	ray_dir = ft_rotate(game->player_dir, ray_angle);
-	dist_nhp_through_x = ft_initial_delta(game->player_pos.x, game->player_dir.x);
-	dist_nhp_through_y = ft_initial_delta(game->player_pos.y, game->player_dir.y);
-	printf(YELLOW "\ndist_nhp_through_x: %lf; dist_nhp_through_y: %lf\n\n\n" RESET, dist_nhp_through_x, dist_nhp_through_y);
-	printf(YELLOW "delta_x: %lf; delta_y: %lf\n\n\n" RESET, delta_x, delta_y);
-	// exit(0);
-	cur_square_x = (int) game->player_pos.x;
-	cur_square_y = (int) game->player_pos.y;
-	step_x = ft_ray_step_size(game->player_dir.x);
-	step_y = ft_ray_step_size(game->player_dir.y);
+	int					cur_sq_x;
+	int					cur_sq_y;
 	
+	raycast_data = ft_ray_data_init(game, ray_angle);
 	hit = e_false;
 	while (e_false == hit)
 	{
-		if (dist_nhp_through_x < dist_nhp_through_y)
-		{
-			cur_square_x = cur_square_x + step_x;
-			dist_nhp_through_x += delta_x;
-			side = e_VERTICAL;
-			printf(RED "HERE\n" RESET);
-			exit(0);
-		}
-		else
-		{
-			cur_square_y = cur_square_y + step_y;
-			dist_nhp_through_y += delta_y;
-			side = e_HORIZONTAL;
-		}
-		printf(BOLDGREEN "dist_nhp_through_x: %lf; dist_nhp_through_y: %lf\n, cur_square_x: %d; cur_square_y: %d\n\n" RESET,
-			dist_nhp_through_x, dist_nhp_through_y, cur_square_x, cur_square_y);
-		if (e_WALL == *( *(game->map_handle.map + cur_square_y) + cur_square_x) )
+		ft_walk_through_nhp(&raycast_data);
+		cur_sq_x = raycast_data.cur_sq_x;
+		cur_sq_y = raycast_data.cur_sq_y;
+		if (e_WALL == game->map_handle.map[cur_sq_y][cur_sq_x])
 			hit = e_true;
-		else
-			printf(BOLDGREEN "map[cur_square_y][cur_square_x]: %d\n" RESET, game->map_handle.map[cur_square_y][cur_square_x]);
 	}
-	ft_set_hp_dist(&ret, dist_nhp_through_x, dist_nhp_through_y, ray_angle);
+	ft_set_hp_dist(&ret, raycast_data.dist_nhp_through_x.val, raycast_data.dist_nhp_through_y.val, ray_angle);
 	ft_set_hp(&ret, game);
 	return (ret);
 }

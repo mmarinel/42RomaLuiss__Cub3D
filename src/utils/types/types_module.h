@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_module.h                                     :+:      :+:    :+:   */
+/*   types_module.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:05:11 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 09:59:25 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/10 09:28:39 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/10 10:37:32 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_MODULE_H
-# define UTILS_MODULE_H
+#ifndef T_TYPES_H
+# define T_TYPES_H
 
-# include "libft/libft_module.h"
-# include "gnl/get_next_line_module.h"
-# include "types/types_module.h"
+# include "../../types.h"
 
-# include "map/map_utils_module.h"
-# include "game/game_utils_module.h"
-# include "render/render_module.h"
+//*		constructor
+t_dbl	t_dbl_new(double val);
+
+//*		arithmetic
+t_dbl	t_dbl_sum(t_dbl a, t_dbl b);
+t_dbl	t_dbl_diff(t_dbl a, t_dbl b);
+t_dbl	t_dbl_mult(t_dbl a, t_dbl b);
+t_dbl	t_dbl_div(t_dbl a, t_dbl b);
+
+//*		comparisons
+double	t_dbl_cmp(t_dbl a, t_dbl b);
 
 #endif
