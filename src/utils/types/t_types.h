@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:39 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:22:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:51:00 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define T_TYPES_H
 
 # include "../../types.h"
+# include "../../colors.h"
 
 # include <stdio.h>
 

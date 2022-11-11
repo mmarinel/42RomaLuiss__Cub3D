@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 17:40:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:57:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int32_t	fix_round(double val);
 static void		fix_set_methods(t_fixed *fixed);
-static void		fix_set_val(t_fixed *fixed, t_fixed_val val,
-					t_bool inf, short sign);
 //*		end of static declarations
 
 t_fixed	t_fixed_new(double val)
@@ -31,7 +29,7 @@ t_fixed	t_fixed_new(double val)
 	return (fixed_new);
 }
 
-double	t_fix_to_double( t_fixed this )
+double	t_fixed_to_double( t_fixed this )
 {
 	return (
 		(double)this.fixed_val.row_bits
@@ -39,28 +37,54 @@ double	t_fix_to_double( t_fixed this )
 	);
 }
 
-int		t_fix_to_int( t_fixed this )
+int		t_fixed_to_int( t_fixed this )
 {
-	return ((int)t_fix_to_double(this));
+	return ((int)t_fixed_to_double(this));
 }
 
-t_fixed	t_fix_sum(t_fixed a, t_fixed b)
+t_fixed	t_fixed_sum(t_fixed this, t_fixed val)
 {
 	t_fixed sum;
+	int		frac_bits_diff;
+	short	shift_direction;
 
-	sum.fixed_val.row_bits = a.fixed_val.row_bits + b.fixed_val.row_bits;
+	frac_bits_diff = this.fixed_val.frac_bits - val.fixed_val.frac_bits;
+	shift_direction = (frac_bits_diff > 0);
+	{
+		if (shift_direction > 0)
+			sum.fixed_val.row_bits = this.fixed_val.row_bits + (val.fixed_val.row_bits << frac_bits_diff);
+		else if (shift_direction < 0)
+			sum.fixed_val.row_bits = this.fixed_val.row_bits + (val.fixed_val.row_bits >> frac_bits_diff);
+		else
+			sum.fixed_val.row_bits = this.fixed_val.row_bits + val.fixed_val.row_bits;
+	}
+	sum.fixed_val.frac_bits = this.fixed_val.frac_bits;
 	fix_set_methods(&sum);
+	return (sum);
 }
 
-t_fixed	t_fix_diff(t_fixed a, t_fixed b)
+t_fixed	t_fixed_diff(t_fixed this, t_fixed val)
 {
 	t_fixed diff;
+	int		frac_bits_diff;
+	short	shift_direction;
 
-	diff.fixed_val.row_bits = a.fixed_val.row_bits - b.fixed_val.row_bits;
+	frac_bits_diff = this.fixed_val.frac_bits - val.fixed_val.frac_bits;
+	shift_direction = (frac_bits_diff > 0);
+	{
+		if (shift_direction > 0)
+			diff.fixed_val.row_bits = this.fixed_val.row_bits - (val.fixed_val.row_bits << frac_bits_diff);
+		else if (shift_direction < 0)
+			diff.fixed_val.row_bits = this.fixed_val.row_bits - (val.fixed_val.row_bits >> frac_bits_diff);
+		else
+			diff.fixed_val.row_bits = this.fixed_val.row_bits - val.fixed_val.row_bits;
+	}
+	diff.fixed_val.frac_bits = this.fixed_val.frac_bits;
 	fix_set_methods(&diff);
+	return (diff);
 }
 
-t_fixed	t_fix_mult(t_fixed this, t_fixed val)
+t_fixed	t_fixed_mult(t_fixed this, t_fixed val)
 {
 	t_fixed	mult;
 
@@ -68,29 +92,37 @@ t_fixed	t_fix_mult(t_fixed this, t_fixed val)
 		(
 			(int64_t)this.fixed_val.row_bits * (int64_t)val.fixed_val.row_bits
 		)
-		>> this.fixed_val.frac_bits;
+		>> val.fixed_val.frac_bits;
+	mult.fixed_val.frac_bits = this.fixed_val.frac_bits;
 	fix_set_methods(&mult);
 	return (mult);
 }
 
-t_fixed	t_fix_div(t_fixed this, t_fixed val)
+t_fixed	t_fixed_div(t_fixed this, t_fixed val)
 {
 	t_fixed	quotient;
 
 	if (0 == val.fixed_val.row_bits)
 	{
-		val.fixed_val.row_bits = 0;
-		val.fixed_val.inf = e_true;
-		val.fixed_val.inf = e_false;
+		quotient.fixed_val.row_bits = 0;
+		quotient.fixed_val.frac_bits =  this.fixed_val.frac_bits;
+		quotient.fixed_val.inf = (this.fixed_val.row_bits >= 0);
+		quotient.fixed_val.neg_inf = (this.fixed_val.row_bits < 0);
 	}
-	quotient.fixed_val.row_bits
-		= ((int64_t)this.fixed_val.row_bits << this.fixed_val.frac_bits)
-		/ (int64_t)val.fixed_val.row_bits;
+	else
+	{
+		quotient.fixed_val.row_bits
+			= ((int64_t)this.fixed_val.row_bits << val.fixed_val.frac_bits)
+			/ (int64_t)val.fixed_val.row_bits;
+		quotient.fixed_val.frac_bits = this.fixed_val.frac_bits;
+		quotient.fixed_val.inf = e_false;
+		quotient.fixed_val.neg_inf = e_false;
+	}
 	fix_set_methods(&quotient);
 	return (quotient);
 }
 
-double	t_fix_cmp(t_fixed this, t_fixed val)
+double	t_fixed_cmp(t_fixed this, t_fixed val)
 {
 	if (this.fixed_val.inf || val.fixed_val.neg_inf)
 		return (1);
@@ -106,14 +138,18 @@ double	t_fix_cmp(t_fixed this, t_fixed val)
 	}
 }
 
-void	ft_print_t_fixed(t_fixed var)
+void	t_fixed_print(t_fixed this)
 {
-	if (var.fixed_val.inf)
-		printf("<inf> ");
-	else if (var.fixed_val.neg_inf)
-		printf("<neg_inf> ");
+	printf(YELLOW);
+	printf("frac_bits: %d\n", this.fixed_val.frac_bits);
+	printf("row_bits: %d\n", this.fixed_val.row_bits);
+	if (this.fixed_val.inf)
+		printf("calculated val: <inf>\n");
+	else if (this.fixed_val.neg_inf)
+		printf("calculated val: <neg_inf>\n");
 	else
-		printf("%lf ", t_fix_to_double(var));
+		printf("calculated val: %lf\n", t_fixed_to_double(this));
+	printf(RESET);
 }
 
 static int32_t	fix_round(double val)
@@ -130,38 +166,19 @@ static int32_t	fix_round(double val)
 static void		fix_set_methods(t_fixed *fixed_new)
 {
 	fixed_new->to_double.val = fixed_new->fixed_val;
-	fixed_new->to_double.call = t_fix_to_double;
+	fixed_new->to_double.call = t_fixed_to_double;
 	fixed_new->to_int.val = fixed_new->fixed_val;
-	fixed_new->to_int.call = t_fix_to_int;
+	fixed_new->to_int.call = t_fixed_to_int;
 	fixed_new->sum.val = fixed_new->fixed_val;
-	fixed_new->sum.call = t_fix_sum;
+	fixed_new->sum.call = t_fixed_sum;
 	fixed_new->diff.val = fixed_new->fixed_val;
-	fixed_new->diff.call = t_fix_diff;
+	fixed_new->diff.call = t_fixed_diff;
 	fixed_new->mult.val = fixed_new->fixed_val;
-	fixed_new->mult.call = t_fix_mult;
+	fixed_new->mult.call = t_fixed_mult;
 	fixed_new->div.val = fixed_new->fixed_val;
-	fixed_new->div.call = t_fix_div;
+	fixed_new->div.call = t_fixed_div;
 	fixed_new->cmp.val = fixed_new->fixed_val;
-	fixed_new->cmp.call = t_fix_cmp;
+	fixed_new->cmp.call = t_fixed_cmp;
 	fixed_new->print.val = fixed_new->fixed_val;
-	fixed_new->print.call = ft_print_t_fixed;
-}
-
-static void		fix_set_val(t_fixed *fixed, t_fixed_val val,
-					t_bool inf, short sign)
-{
-	if (e_false == inf)
-	{
-		fixed->fixed_val.row_bits = 0;
-		fixed->fixed_val.frac_bits = val.frac_bits;
-		fixed->fixed_val.inf = (sign > 0);
-		fixed->fixed_val.neg_inf = (sign < 0);
-	}
-	else
-	{
-		fixed->fixed_val.row_bits = val.row_bits;
-		fixed->fixed_val.frac_bits = val.frac_bits;
-		fixed->fixed_val.inf = e_false;
-		fixed->fixed_val.neg_inf = e_false;
-	}
+	fixed_new->print.call = t_fixed_print;
 }
