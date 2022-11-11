@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 11:59:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:47:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector)
 {
 	t_2d_point	product;
 
-	product.x.val = ft_dot_product(
+	product.x = ft_dot_product(
 		ft_get_new_2dpt(matrix.col_1.x.val, matrix.col_1.x.val),
 		vector
 	);

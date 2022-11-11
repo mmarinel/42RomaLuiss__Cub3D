@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 11:11:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:25:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ typedef struct s_raycast_return
 	t_2d_point	hit_point;//*	exact coordinate where we hit the square corresponding a wall
 	t_2d_point	square;
 	t_side		side;
-	t_dbl		angle_of_incidence;//*	maybe we won't need this
-	t_dbl		euclidean_dist;
-	t_dbl		perp_dist;
+	t_fixed		angle_of_incidence;//*	maybe we won't need this
+	t_fixed		euclidean_dist;
+	t_fixed		perp_dist;
 }	t_raycast_return;
 
 typedef struct s_raycast_data
 {
 	t_2d_point	ray_dir;
-	t_dbl		delta_x;
-	t_dbl		delta_y;
+	t_fixed		delta_x;
+	t_fixed		delta_y;
 	int			step_x;
 	int			step_y;
 	int			cur_sq_x;
 	int			cur_sq_y;
-	t_dbl		dist_nhp_through_x;
-	t_dbl		dist_nhp_through_y;
+	t_fixed		dist_nhp_through_x;
+	t_fixed		dist_nhp_through_y;
 	t_side		side;
 }	t_raycast_data;
 

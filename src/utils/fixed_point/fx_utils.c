@@ -6,24 +6,24 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:57:04 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/11 12:15:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:43:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fixed_point.h"
 
 //*		debug
-void	_t_fixed_print(t_fixed this)
+void	t_fixed_print(t_fixed this)
 {
 	printf(YELLOW);
-	printf("frac_bits: %d\n", this.fixed_val.frac_bits);
-	printf("row_bits: %d\n", this.fixed_val.row_bits);
-	if (this.fixed_val.inf)
+	printf("frac_bits: %d\n", this.frac_bits);
+	printf("row_bits: %d\n", this.row_bits);
+	if (this.inf)
 		printf("calculated val: <inf>\n");
-	else if (this.fixed_val.neg_inf)
+	else if (this.neg_inf)
 		printf("calculated val: <neg_inf>\n");
 	else
-		printf("calculated val: %lf\n",_t_fixed_to_double(this));
+		printf("calculated val: %lf\n",t_fixed_to_double(this));
 	printf(RESET);
 }
 
@@ -38,22 +38,11 @@ int32_t	fix_round(double val)
 		return ((int)val + 1);
 }
 
-void	fix_set_methods(t_fixed *fixed_new)
+t_fixed	t_fixed_abs(t_fixed this)
 {
-	fixed_new->to_double.val = fixed_new->fixed_val;
-	fixed_new->to_double.call =_t_fixed_to_double;
-	fixed_new->to_int.val = fixed_new->fixed_val;
-	fixed_new->to_int.call =_t_fixed_to_int;
-	fixed_new->sum.val = fixed_new->fixed_val;
-	fixed_new->sum.call =_t_fixed_sum;
-	fixed_new->diff.val = fixed_new->fixed_val;
-	fixed_new->diff.call =_t_fixed_diff;
-	fixed_new->mult.val = fixed_new->fixed_val;
-	fixed_new->mult.call =_t_fixed_mult;
-	fixed_new->div.val = fixed_new->fixed_val;
-	fixed_new->div.call =_t_fixed_div;
-	fixed_new->cmp.val = fixed_new->fixed_val;
-	fixed_new->cmp.call =_t_fixed_cmp;
-	fixed_new->print.val = fixed_new->fixed_val;
-	fixed_new->print.call =_t_fixed_print;
+	t_fixed	abs;
+
+	abs = this;
+	abs.row_bits *= (-1 * (abs.row_bits < 0) + 1 * (abs.row_bits >= 0));
+	return (abs);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/11 12:03:38 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:10:17 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,26 @@ typedef enum e_bool
 }	t_bool;
 # endif
 
-typedef struct s_dbl
+typedef enum e_fixed_frac_bits
 {
-	double	val;
-	t_bool	inf;
-	t_bool	neg_inf;
-}	t_dbl;
+	e_8_BITS_FIXED = 8,
+	e_16_BITS_FIXED = 16,
+	e_32_BITS_FIXED = 32,
+	e_63_BITS_FIXED = 63,
+}	t_fixed_frac_bits;
+
+typedef struct s_fixed
+{
+	int32_t				row_bits;
+	t_fixed_frac_bits	frac_bits;
+	t_bool				inf;
+	t_bool				neg_inf;
+}	t_fixed;
 
 typedef struct s_2Dpoint
 {
-	t_dbl	x;
-	t_dbl	y;
+	t_fixed	x;
+	t_fixed	y;
 }	t_2d_point;
 
 typedef struct s_2Dmatrix
@@ -88,10 +97,5 @@ typedef struct s_game
 	t_2d_point		player_pos;
 	t_2d_point		camera_plane;
 }	t_game;
-/**
- * fields:
- * 			1) t_vector		player_dir;
- * 
- */
 
 #endif

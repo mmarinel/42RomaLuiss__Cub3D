@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/11 11:28:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:22:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <unistd.h>
 # include <stddef.h>
 
-# define EPSILON 1.0e-7
-# define t_dbl_equals(x,y) (ft_dbl_abs(x) - ft_dbl_abs(y) < EPSILON)//! NON A NORMAA !!!
+// # define EPSILON 1.0e-7
+// # define t_dbl_equals(x,y) (ft_dbl_abs(x) - ft_dbl_abs(y) < EPSILON)//! NON A NORMAA !!!
 
 typedef struct s_list
 {

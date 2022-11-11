@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:05:11 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 09:59:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:22:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "gnl/get_next_line_module.h"
 # include "types/types_module.h"
 
+# include "fixed_point/fixed_point_module.h"
 # include "map/map_utils_module.h"
 # include "game/game_utils_module.h"
 # include "render/render_module.h"

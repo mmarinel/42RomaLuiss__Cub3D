@@ -32,7 +32,6 @@ INCLUDES=\
 ./src/utils/utils_module.h\
 ./src/utils/fixed_point/fixed_point.h\
 ./src/utils/fixed_point/fixed_point_module.h\
-./src/utils/fixed_point/fixed_point_types.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line.h\
