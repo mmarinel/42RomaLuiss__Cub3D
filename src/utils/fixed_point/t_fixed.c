@@ -6,15 +6,11 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/11 11:57:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:14:06 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fixed_point.h"
-
-static int32_t	fix_round(double val);
-static void		fix_set_methods(t_fixed *fixed);
-//*		end of static declarations
 
 t_fixed	t_fixed_new(double val)
 {

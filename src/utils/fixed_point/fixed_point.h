@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:49:33 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/11 12:11:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:13:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "fixed_point_types.h"
 # include "../../types.h"
 # include "../../colors.h"
+
+# include <stdio.h>
 
 //*		constructor
 t_fixed	t_fixed_new(double val);
