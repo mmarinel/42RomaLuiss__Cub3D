@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/10 17:24:42 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:03:38 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,85 +32,6 @@ typedef struct s_dbl
 	t_bool	inf;
 	t_bool	neg_inf;
 }	t_dbl;
-
-typedef struct s_fixed		t_fixed;
-typedef struct s_fixed_val	t_fixed_val;
-
-typedef enum e_fixed_frac_bits
-{
-	e_FRAC_BITS = 8,
-}	t_fixed_frac_bits;
-
-//*		conversions
-typedef struct s_fixed_to_dbl_closure
-{
-	t_fixed_val	val;
-	double(*call)(struct s_fixed this);
-}	t_fixed_to_dbl;
-
-typedef struct s_fixed_to_int_closure
-{
-	t_fixed_val	val;
-	int(*call)(struct s_fixed this);
-}	t_fixed_to_int;
-
-//*		arithmetic
-typedef struct s_fixed_sum_closure
-{
-	t_fixed_val	val;
-	t_fixed(*call)(struct s_fixed this, struct s_fixed val);
-}	t_fixed_sum;
-
-typedef struct s_fixed_diff_closure
-{
-	t_fixed_val	val;
-	t_fixed(*call)(struct s_fixed this, struct s_fixed val);
-}	t_fixed_diff;
-
-typedef struct s_fixed_mult_closure
-{
-	t_fixed_val	val;
-	t_fixed(*call)(struct s_fixed this, struct s_fixed val);
-}	t_fixed_mult;
-
-typedef struct s_fixed_div_closure
-{
-	t_fixed_val	val;
-	t_fixed(*call)(struct s_fixed this, struct s_fixed val);
-}	t_fixed_div;
-
-typedef struct s_fixed_cmp_closure
-{
-	t_fixed_val	val;
-	double(*call)(struct s_fixed this, struct s_fixed val);
-}	t_fixed_cmp;
-
-typedef struct s_fixed_print_closure
-{
-	t_fixed_val	val;
-	void(*call)(struct s_fixed this);
-}	t_fixed_print;
-
-struct s_fixed
-{
-	t_fixed_val		fixed_val;
-	t_fixed_to_dbl	to_double;
-	t_fixed_to_int	to_int;
-	t_fixed_sum		sum;
-	t_fixed_diff	diff;
-	t_fixed_mult	mult;
-	t_fixed_div		div;
-	t_fixed_cmp		cmp;
-	t_fixed_print	print;
-};
-
-struct s_fixed_val
-{
-	int32_t				row_bits;
-	t_fixed_frac_bits	frac_bits;
-	t_bool				inf;
-	t_bool				neg_inf;
-};
 
 typedef struct s_2Dpoint
 {

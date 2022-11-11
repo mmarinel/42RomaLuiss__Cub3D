@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:35:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 10:47:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ int main(int argc, char const *argv[])
 	game.player_pos = ft_get_new_2dpt(4.12, 2.41);
 	printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
 	// exit(0);
-	game.player_dir = ft_get_new_2dpt(0, 1);
-	game.camera_plane = ft_get_new_2dpt(1, 0);
+	game.player_dir = ft_get_new_2dpt(1, 0);
+	game.camera_plane = ft_get_new_2dpt(0, 1);
 	// ft_print_ray_result(raycast(&game, 0.78539816339));
-	ft_print_ray_result(raycast(&game, 1.57079632679));
+	ft_print_ray_result(raycast(&game, M_PI / 2));
+	// ft_print_ray_result(raycast(&game, M_PI * 2));
 	
 	ft_free_map(&game.map_handle.map, game.map_handle.rows);
 	free(game.map_handle.no_texture);

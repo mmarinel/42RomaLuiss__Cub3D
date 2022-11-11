@@ -15,6 +15,7 @@ INCLUDES=\
 ./src/types.h\
 ./src/map_validation/map_validation_module.h\
 ./src/raycast/raycast_module.h\
+./src/utils/fixed_point/fixed_point_module.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
@@ -29,6 +30,9 @@ INCLUDES=\
 ./src/raycast/raycast.h\
 ./src/raycast/raycast_module.h\
 ./src/utils/utils_module.h\
+./src/utils/fixed_point/fixed_point.h\
+./src/utils/fixed_point/fixed_point_module.h\
+./src/utils/fixed_point/fixed_point_types.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line.h\
@@ -48,6 +52,11 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
 ./src/raycast/raycast.c\
+./src/utils/fixed_point/fx_arithm.c\
+./src/utils/fixed_point/fx_conditions.c\
+./src/utils/fixed_point/fx_conversions.c\
+./src/utils/fixed_point/fx_utils.c\
+./src/utils/fixed_point/t_fixed.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/game/geometry.c\

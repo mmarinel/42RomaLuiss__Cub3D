@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:42:53 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:30:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-void	ft_print_ray_data(t_raycast_data rc_data);
+void	ft_print_raycast_data(t_raycast_data rc_data);
 void		ft_print_ray_result(t_raycast_return raycast_info);
 t_2d_point	ft_rotate(t_2d_point vector, double ray_angle);
 t_dbl	ft_initial_delta(t_dbl p_ax_pos, t_dbl p_dir_ax_pos);
@@ -38,8 +38,8 @@ static t_raycast_data ft_ray_data_init(t_game *game, double ray_angle)
 		ft_ray_step_size(ray_dir.y),
 		(int) game->player_pos.x.val,
 		(int) game->player_pos.y.val,
-		ft_initial_delta(game->player_pos.x, game->player_dir.x),
-		ft_initial_delta(game->player_pos.x, game->player_dir.x),
+		ft_initial_delta(game->player_pos.x, ray_dir.x),
+		ft_initial_delta(game->player_pos.y, ray_dir.y),
 		e_SIDE_NONE
 		};
 
@@ -49,7 +49,7 @@ static t_raycast_data ft_ray_data_init(t_game *game, double ray_angle)
 static void				ft_walk_through_nhp(t_raycast_data *raycast_data)
 {
 	printf("iter\n");
-	ft_print_ray_data(*raycast_data);
+	ft_print_raycast_data(*raycast_data);
 	if (t_dbl_cmp(
 		raycast_data->dist_nhp_through_x,
 		raycast_data->dist_nhp_through_y
@@ -65,7 +65,7 @@ static void				ft_walk_through_nhp(t_raycast_data *raycast_data)
 		raycast_data->dist_nhp_through_y.val += raycast_data->delta_y.val;
 		raycast_data->side = e_HORIZONTAL;
 	}
-	ft_print_ray_data(*raycast_data);
+	ft_print_raycast_data(*raycast_data);
 }
 
 t_raycast_return	raycast(t_game *game, double ray_angle)
@@ -77,7 +77,7 @@ t_raycast_return	raycast(t_game *game, double ray_angle)
 	int					cur_sq_y;
 	
 	raycast_data = ft_ray_data_init(game, ray_angle);
-	ft_print_ray_data(raycast_data);
+	ft_print_raycast_data(raycast_data);
 	exit(0);
 	hit = e_false;
 	while (e_false == hit)
@@ -136,14 +136,14 @@ t_dbl	ft_initial_delta(t_dbl p_ax_pos, t_dbl p_dir_ax_pos)
 	if (p_dir_ax_pos.val >= 0)
 	{//*						can be inf !!!
 		p_ax_pos = t_dbl_div(
-			t_dbl_new(ft_int_abs(sq_ax_pos + 1 - p_ax_pos.val)),
+			t_dbl_new(ft_dbl_abs(sq_ax_pos + 1 - p_ax_pos.val)),
 			t_dbl_new(ft_dbl_abs(p_dir_ax_pos.val))
 		);
 	}
 	else
 	{//*					CANNOT be inf !!!
 		p_ax_pos = t_dbl_div(
-			t_dbl_new(ft_int_abs(p_ax_pos.val - sq_ax_pos)),
+			t_dbl_new(ft_dbl_abs(p_ax_pos.val - sq_ax_pos)),
 			t_dbl_new(ft_dbl_abs(p_dir_ax_pos.val))
 		);
 	}
@@ -152,12 +152,12 @@ t_dbl	ft_initial_delta(t_dbl p_ax_pos, t_dbl p_dir_ax_pos)
 
 int	ft_ray_step_size(t_dbl p_dir_ax_pos)
 {
-	if (p_dir_ax_pos.val > 0.00000000001f)
-		return (1);
-	else if (p_dir_ax_pos.val < 0.0f)
-		return (-1);
-	else
+	if (t_dbl_equals(p_dir_ax_pos.val, 0))
 		return (0);
+	if (p_dir_ax_pos.val > 0.0f)
+		return (1);
+	else
+		return (-1);
 }
 
 void	ft_print_ray_result(t_raycast_return raycast_info)
@@ -173,7 +173,7 @@ void	ft_print_ray_result(t_raycast_return raycast_info)
 	printf(YELLOW"Perp distance is: %lf\n"RESET, raycast_info.perp_dist.val);
 }
 
-void	ft_print_ray_data(t_raycast_data rc_data)
+void	ft_print_raycast_data(t_raycast_data rc_data)
 {
 	printf(YELLOW"---RAY-CAST-" BOLDGREEN"DATA"RESET "---PRINT---\n"RESET);
 	ft_print_2d_point("ray_dir", rc_data.ray_dir); printf("\n");

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:28:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:29:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:15:32 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ t_dbl	t_dbl_div(t_dbl a, t_dbl b)
 	t_dbl	quotient;
 
 	printf("tbl_div:\ta: %lf, b: %lf\n", a.val, b.val);
-	if (0.0f == b.val)
+	if (t_dbl_equals(b.val, 0))
 	{
+		printf(RED "division by zero!\n" RESET);
 			quotient.inf = e_true;
 			quotient.neg_inf =  e_false;
 			quotient.val = 0;
@@ -108,6 +109,7 @@ t_dbl	t_dbl_div(t_dbl a, t_dbl b)
 	}
 	else
 	{
+		printf(CYAN "division by non-zero %.24lf!\n" RESET, b.val);
 		quotient.val = a.val / b.val;
 		if (a.inf || b.inf)
 			quotient.inf = e_true;
