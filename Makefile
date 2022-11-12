@@ -45,6 +45,9 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
 ./src/raycast/raycast.c\
+./src/raycast/rc_debug.c\
+./src/raycast/rc_initialization.c\
+./src/raycast/rc_set.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/game/geometry.c\
