@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_types.h                                          :+:      :+:    :+:   */
+/*   ft_flt_abs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 09:28:39 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:22:51 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/12 11:12:23 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/12 11:12:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_TYPES_H
-# define T_TYPES_H
+#include "libft.h"
 
-# include "../../types.h"
-
-# include <stdio.h>
-
-#endif
+float	ft_flt_abs(float val)
+{
+	if (val >= 0)
+		return (val);
+	else
+		return ((-1) * val);
+}

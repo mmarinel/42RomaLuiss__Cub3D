@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/10 10:28:54 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:46:08 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,10 @@ typedef enum e_bool
 }	t_bool;
 # endif
 
-typedef struct s_dbl
-{
-	double	val;
-	t_bool	inf;
-	t_bool	neg_inf;
-}	t_dbl;
-
 typedef struct s_2Dpoint
 {
-	t_dbl	x;
-	t_dbl	y;
+	float	x;
+	float	y;
 }	t_2d_point;
 
 typedef struct s_2Dmatrix

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:05:11 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 09:59:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:51:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft_module.h"
 # include "gnl/get_next_line_module.h"
-# include "types/types_module.h"
 
 # include "map/map_utils_module.h"
 # include "game/game_utils_module.h"

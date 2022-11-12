@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:01:08 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:53:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
 size_t	ft_get_pixel_offset(const t_data img_data, t_2d_point pt)
 {
 	return (
-		pt.y.val * img_data.line_length + pt.x.val * (img_data.bits_per_pixel / 8)
+		pt.y * img_data.line_length + pt.x * (img_data.bits_per_pixel / 8)
 	);
 }
