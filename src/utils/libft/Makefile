@@ -22,6 +22,7 @@ SRC_NOPREFIX=\
 ./src/ft_bzero.c\
 ./src/ft_calloc.c\
 ./src/ft_dbl_abs.c\
+./src/ft_flt_abs.c\
 ./src/ft_free.c\
 ./src/ft_int_abs.c\
 ./src/ft_isalnum.c\

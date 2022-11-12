@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 11:59:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 10:28:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector)
 	return (product);
 }
 
-double	ft_dot_product(t_2d_point v, t_2d_point w)
+float	ft_dot_product(t_2d_point v, t_2d_point w)
 {
 	return (v.x.val * w.x.val + v.y.val * w.y.val);
 }

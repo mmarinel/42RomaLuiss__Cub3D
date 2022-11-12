@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   geometry.c                                         :+:      :+:    :+:   */
+/*   t_fl_module.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 11:50:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 10:27:47 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/10 09:28:39 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/12 10:44:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_utils.h"
+#ifndef T_TYPES_H
+# define T_TYPES_H
 
-t_2d_point	ft_rotate(t_2d_point vector, float ray_angle)
-{
-	const t_2d_matrix	rotation_matrix = ft_get_new_2dmtrx(
-			ft_get_new_2dpt(cos(ray_angle), sin(ray_angle)),
-			ft_get_new_2dpt(-sin(ray_angle), cos(ray_angle))
-		);
-	return (ft_matrix_multiplication(rotation_matrix, vector));
-}
+# include "../../types.h"
+
+//*		"constructor"
+t_fl	t_fl_new(float val);
+
+//*		arithmetic
+void	t_fl_sum(t_fl a, t_fl b);
+void	t_fl_diff(t_fl a, t_fl b);
+void	t_fl_mult(t_fl a, t_fl b);
+void	t_fl_div(t_fl a, t_fl b);
+
+//*		comparisons
+float	t_fl_cmp(t_fl a, t_fl b);
+
+//*		math
+t_fl	t_fl_abs(t_fl fl);
+
+//*		debug
+void	ft_print_t_fl(t_fl var);
+
+#endif

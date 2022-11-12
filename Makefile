@@ -21,7 +21,7 @@ INCLUDES=\
 ./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/map/map_utils_module.h\
 ./src/utils/render/render_module.h\
-./src/utils/types/types_module.h\
+./src/utils/t_fl/t_fl_module.h\
 ./src/utils/utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
@@ -38,8 +38,8 @@ INCLUDES=\
 ./src/utils/render/render.h\
 ./src/utils/render/render_module.h\
 ./src/utils/render/render_types.h\
-./src/utils/types/t_types.h\
-./src/utils/types/types_module.h\
+./src/utils/t_fl/t_fl.h\
+./src/utils/t_fl/t_fl_module.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -65,7 +65,9 @@ SRC_NOPREFIX=\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/render_conditions.c\
 ./src/utils/render/rgb.c\
-./src/utils/types/t_dbl.c\
+./src/utils/t_fl/t_fl.c\
+./src/utils/t_fl/t_fl_arithm.c\
+./src/utils/t_fl/t_fl_conditions.c\
 
 USR_LIBS=\
 src/utils/libft\

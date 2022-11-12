@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 12:35:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 10:27:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main(int argc, char const *argv[])
 	// ft_fill_color(40, 11, 3, &line_color);
 	// // ft_fill_color(151, 50, 168, &line_color);
 	// for (int i = 0; i < 1920; i++) {
-	// 	cur_px_color = ft_get_shade(line_color, (double) i / 1920);
+	// 	cur_px_color = ft_get_shade(line_color, (float) i / 1920);
 	// 	ft_put_px_to_image(&img, ft_get_pixel_offset(img, ft_get_new_2dpt(i, 1080 / 2)), cur_px_color);
 	// }
 	// mlx_put_image_to_window(mlx, window, img.img, 0, 0);
