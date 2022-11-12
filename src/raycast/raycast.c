@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 11:52:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 13:05:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ float	ft_initial_delta(float p_ax_pos, float p_dir_ax_pos)
 	int	sq_ax_pos;
 
 	sq_ax_pos = (int) p_ax_pos;
-	if (p_dir_ax_pos >= 0)
+	if (p_dir_ax_pos > 0)
 	{//*						can be inf !!!
-		p_ax_pos = (sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos);
+		p_ax_pos = flt_round(((float) sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos), 6);
+	}
+	else if (p_dir_ax_pos < 0)
+	{//*					CANNOT be inf !!!
+		p_ax_pos = flt_round(((float) p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos), 6);
 	}
 	else
-	{//*					CANNOT be inf !!!
-		p_ax_pos = (p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos);
-	}
+		p_ax_pos = INFINITY;
 	return (p_ax_pos);
 }
 
@@ -64,8 +66,8 @@ static t_raycast_data ft_ray_data_init(t_game *game, float ray_angle)
 		ft_ray_step_size(ray_dir.y),
 		(int) game->player_pos.x,
 		(int) game->player_pos.y,
-		ft_initial_delta(game->player_pos.x, game->player_dir.x),
-		ft_initial_delta(game->player_pos.x, game->player_dir.x),
+		ft_initial_delta(game->player_pos.x, ray_dir.x),
+		ft_initial_delta(game->player_pos.y, ray_dir.y),
 		e_SIDE_NONE
 		};
 

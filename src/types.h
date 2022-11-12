@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/12 11:46:08 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/12 12:06:38 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_2Dpoint
 
 typedef struct s_2Dmatrix
 {
-	t_2d_point	col_1;
-	t_2d_point	col_2;
+	t_2d_point	row_1;
+	t_2d_point	row_2;
 }	t_2d_matrix;
 
 # ifndef T_COLOR
