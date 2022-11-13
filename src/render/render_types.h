@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   render_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/13 11:43:06 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/13 11:37:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef RENDER_TYPES_H
+# define RENDER_TYPES_H
 
-# include "render_types.h"
+# include "../types.h"
 # include "../raycast/raycast_module.h"
 
-# include <math.h>
-# include <mlx.h>
-
-// # define FOV_HALF (M_PI / 6)
+typedef struct s_render_data
+{
+	const t_raycast_return	rc_ret;
+	const size_t			wll_px_width;
+	const size_t			wll_px_height;
+	const size_t			wll_out_bounds_pxs;
+	const float				wll_cam_angle;
+}	t_render_data;
 
 #endif
