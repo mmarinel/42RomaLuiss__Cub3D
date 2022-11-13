@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/12 12:06:38 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/13 10:37:59 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,26 @@ typedef struct s_map_holder
 	t_color	c_color;
 }	t_map_holder;
 
+typedef struct s_screen_holder
+{
+	size_t	width;
+	size_t	wheight;
+}	t_screen_holder;
+
+typedef struct s_camera_plane
+{
+	t_2d_point	versor;
+	float		angle_from_x_axis;
+	float		angle_from_y_axis;
+}	t_camera_plane;
+
 typedef struct s_game
 {
-	t_map_holder	map_handle;
-	t_2d_point		player_dir;
-	t_2d_point		player_pos;
-	t_2d_point		camera_plane;
+	t_map_holder			map_handle;
+	t_screen_holder			screen_handle;
+	t_2d_point				player_dir;
+	t_2d_point				player_pos;
+	t_camera_plane			camera_plane;
 }	t_game;
 /**
  * fields:

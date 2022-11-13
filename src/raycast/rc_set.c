@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 18:28:15 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/13 10:00:09 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_set_hp_dist(t_raycast_return *rc_ret,
 	else
 		rc_ret->euclidean_dist = flt_round(dist_nhp_through_y, 6);
 	rc_ret->perp_dist = flt_round(rc_ret->euclidean_dist * sin(ray_angle), 6);
+	rc_ret->side = rc_data.side;
 }
 
 void	ft_set_hp(t_raycast_return *raycast_info, t_raycast_data rc_data,
