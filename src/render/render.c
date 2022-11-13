@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/13 16:20:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:04:33 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static t_wall_camera_incidence	wall_camera_incidence(
 									t_camera_plane cp, t_side side
 								);
 static size_t					render_region(t_game *g,
-									float cur_ray_angle);
+									float cur_ray_angle,
+									size_t *cur_screen_px
+								);
 //*		end of static declarations
 
 void	render(t_game *g)
@@ -27,11 +29,13 @@ void	render(t_game *g)
 	const float	angle_step_size = fov_half / g->screen_handle.width;
 	float		cur_ray_angle;
 	float		hit_wall_px_width;
+	size_t		cur_screen_px;
 
+	cur_screen_px = 0;
 	cur_ray_angle = M_PI / 2 - fov_half;
 	while (cur_ray_angle < M_PI / 2 + fov_half)
 	{
-		hit_wall_px_width = render_region(g, cur_ray_angle);
+		hit_wall_px_width = render_region(g, cur_ray_angle, &cur_screen_px);
 		cur_ray_angle += hit_wall_px_width * angle_step_size;
 	}
 }
@@ -43,7 +47,10 @@ void	render(t_game *g)
  * @param cur_ray_angle angle the ray forms with the camera plane
  * @return size_t 
  */
-static size_t	render_region(t_game *g, float cur_ray_angle)
+static size_t	render_region(t_game *g,
+					float cur_ray_angle,
+					size_t *cur_screen_px
+				)
 {
 	const t_render_data	r_data = render_fetch_data(g, cur_ray_angle);
 	size_t				i;
@@ -56,6 +63,7 @@ static size_t	render_region(t_game *g, float cur_ray_angle)
 			
 		}
 		i += 1;
+		*cur_screen_px += 1;
 	}
 	
 	return (r_data.wll_px_width);
