@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/13 10:37:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:49:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef enum e_bool
 	e_false = 0
 }	t_bool;
 # endif
+
+typedef enum e_quadrant
+{
+	e_FIRST_QUADRANT,
+	e_SECOND_QUADRANT,
+	e_THIRD_QUADRANT,
+	e_FOURTH_QUADRANT
+}	t_quadrant;
 
 typedef struct s_2Dpoint
 {
