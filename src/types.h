@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/13 14:49:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:18:40 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_map_holder
 typedef struct s_screen_holder
 {
 	size_t	width;
-	size_t	wheight;
+	size_t	height;
 }	t_screen_holder;
 
 typedef struct s_camera_plane

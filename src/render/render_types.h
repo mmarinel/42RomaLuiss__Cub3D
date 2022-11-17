@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/13 16:20:13 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/17 09:19:09 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@
 # include "../types.h"
 # include "../raycast/raycast_module.h"
 
+typedef enum e_reentrancy
+{
+	e_INGOING,
+	e_OUTGOING,
+	e_REENTRANCY_NONE
+}	t_reentrancy;
+
 typedef struct s_wall_camera_incidence
 {
-	float		angle;
-	t_side		side;
-	t_quadrant	raydir_quadrant;
+	float			angle;
+	t_side			side;
+	t_quadrant		player_dir_quadrant;
+	t_reentrancy	reentrancy;
 }	t_wall_camera_incidence;
-
 
 typedef struct s_render_data
 {
