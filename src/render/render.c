@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/17 11:31:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:17:42 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@ static size_t					render_region(t_game *g,
 								);
 static size_t	hit_wall_width(t_game *g, float perp_dist,
 					t_wall_camera_incidence wc_incidence);
-// static size_t	hit_wall_height(t_game *g, t_raycast_return rc_ret,
-// 					t_wall_camera_incidence wc_incidence);
+static size_t	hit_wall_height(t_game *g, float perp_dist,
+					t_wall_camera_incidence wc_incidence);
 //*		end of static declarations
 
 /*
 	local vars:
-		fov_half:			half of the FOV (field of view -
+		fov_half:			half of the FOV (field of view --
 							[https://en.wikipedia.org/wiki/Field_of_view])
+
 		angle_step_size:	the angle between a px column and the next one
+
 		cur_ray_angle:		angle the current ray forms with
 							the player direction versor
+
 		hit_wall_px_width:	the width [in px] of the wall the ray hits
+		
 		cur_screen_col:		the px column we need to draw the next wall from
 */
+//
 /**
  * @brief this function renders the next frame
  * 
@@ -49,7 +54,7 @@ void	render(t_game *g)
 	const float			angle_step_size = fov_half / g->screen_handle.width;
 	static size_t		cur_screen_col = 0;
 	float				cur_ray_angle;
-	float				hit_wall_px_width;
+	float				hit_wall_px_width;//TODO	sfrutta la variazione della variabile [cur_screen_col] prima e dopo la chiamata a render_region !!!!!!!!!
 
 	// cur_screen_col = 0;
 	cur_ray_angle = M_PI / 2 - fov_half;
@@ -75,18 +80,44 @@ static size_t	render_region(t_game *g,
 	const t_render_data	r_data = render_fetch_data(g, cur_ray_angle);
 	size_t				i;
 
+	draw_cube_left_side(g, r_data, cur_ray_angle, cur_screen_col);
 	i = 0;
 	while (i < r_data.wll_px_width)
 	{
 		if (i >= r_data.wll_out_bounds_pxs)
 		{
-			
+			ft_mlx_put_stripe(col_floor_part(i, g, r_data),
+				g->map_handle.f_color
+			);
+			ft_mlx_put_stripe(col_wall_part(i, g, r_data),
+				wall_get_texture(r_data.rc_ret.side)
+			);
+			ft_mlx_put_stripe(col_ceil_part(i, g, r_data),
+				g->map_handle.c_color
+			);
+			*cur_screen_col = (*cur_screen_col + 1) % g->screen_handle.width;
 		}
 		i += 1;
-		*cur_screen_col = (*cur_screen_col + 1) % g->screen_handle.width;
 	}
-	
+	draw_cube_right_side(g, r_data,  cur_ray_angle, cur_screen_col);
 	return (r_data.wll_px_width);
+}
+
+static void	draw_cube_left_side(t_game *g, t_render_data r_data,
+				float cur_ray_angle, size_t *cur_screen_col)
+{
+}
+
+static void	draw_cube_right_side(t_game *g, t_render_data r_data,
+				float cur_ray_angle, size_t *cur_screen_col)
+{
+}
+
+static size_t	coordinate_to_px(float coordinate)
+{
+	const float origin;
+
+	return ((size_t) roundf(coordinate - origin));
 }
 
 /**
@@ -148,8 +179,7 @@ t_reentrancy	reentrancy(t_wall_camera_incidence wc_incidence)
 		return (e_REENTRANCY_NONE);
 }
 
-static size_t	col_floor_part(t_game *g, t_raycast_return rc_ret,
-						t_wall_camera_incidence wc_incidence)
+static size_t	col_floor_part(size_t cur_px, t_game *g, t_render_data r_data)
 {
 	const float	scaling_factor = 1 / (pow(rc_ret.perp_dist, 2) + 1);
 	float		hit_wall_height = scaling_factor * g->screen_handle.height;
@@ -159,14 +189,12 @@ static size_t	col_floor_part(t_game *g, t_raycast_return rc_ret,
 	// size_t	floor_end_for_dist = g->screen_handle.height - ()
 }
 
-static size_t	col_wall_part(t_game *g, t_raycast_return rc_ret,
-						t_wall_camera_incidence wc_incidence)
+static size_t	col_wall_part(size_t cur_px, t_game *g, t_render_data r_data)
 {
 	
 }
 
-static size_t	col_ceil_part(t_game *g, t_raycast_return rc_ret,
-						t_wall_camera_incidence wc_incidence)
+static size_t	col_ceil_part(size_t cur_px, t_game *g, t_render_data r_data)
 {
 	
 }
