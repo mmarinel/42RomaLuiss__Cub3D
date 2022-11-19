@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:10:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 18:56:16 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:17:12 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ size_t	ft_get_mlx_color(t_color color)
 {
 	return (
 		color.blue
-		+ pow(2, 8) * color.green
-		+ pow(2, 16) * color.red
+		| color.green << 8
+		| color.red << 8
+		| 1 << 24
 	);
 }
 

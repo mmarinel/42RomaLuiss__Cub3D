@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:40:48 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:28:42 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		parse_wall_texture( t_map_holder *map_handle,
 static void		parse_rgb_field( t_map_holder *map_handle,
 					const char *id, char *rgb_string,
 					t_bool *err_flag );
-static void		parse_rgb_item( short *item_ref, const char *channel,
+static void		parse_rgb_item( int *item_ref, const char *channel,
 					t_bool *err_flag );
 //* end of static declarations
 
@@ -113,7 +113,7 @@ static void	parse_rgb_field( t_map_holder *map_handle,
 	ft_splitclear(&splitted);
 }
 
-static void	parse_rgb_item( short *item_ref, const char *channel,
+static void	parse_rgb_item( int *item_ref, const char *channel,
 				t_bool *err_flag )
 {
 	if (ft_isdigit_string(channel))

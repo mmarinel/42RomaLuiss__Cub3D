@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/11/19 20:42:01 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 LIBS_FLAGS=-L./src/utils/libft -lft
 
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 MLX_FLAGS = TODO
 
 RMF = /bin/rm -rf

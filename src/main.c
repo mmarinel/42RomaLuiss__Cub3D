@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 19:16:26 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:35:50 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,26 @@ int main(int argc, char const *argv[])
 	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	t_2d_point	vFirst = (t_2d_point){51, 51};
 	t_2d_point	vLast = (t_2d_point){500, 400};
 
 	t_px_row	row;
 
+	int	*bytes;
+	bytes = (int *) malloc(sizeof(int) * 3);
+	bytes[0] = (int) 255;
+	bytes[1] = (int) 255;
+	bytes[2] = (int) 255;
+
 	row.img_offset = 0;
-	row.texture = malloc(sizeof(char) * 3);
-	((char *)row.texture)[0] = (char) 255;
-	((char *)row.texture)[1] = (char) 255;
-	((char *)row.texture)[2] = (char) 255;
+	row.texture = bytes;
+	// printf("%d %d %d\n",
+	// 	((unsigned char *)row.texture)[0],
+	// 	((unsigned char *)row.texture)[1],
+	// 	((unsigned char *)row.texture)[2]
+	// );
+	// exit(0);
 	row.len = 3;
 
 	bresenham_algo(vFirst, vLast, &img, row);

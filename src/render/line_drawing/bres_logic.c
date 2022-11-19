@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 19:18:28 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:30:39 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,21 @@ int	decision_var_initial(
 t_px_row	put_next_px(t_data *img_data, t_2d_point cur_point,
 		t_px_row *row)
 {
-	t_color	color = (t_color){ *( (char *)row->texture + row->img_offset * sizeof(char) ), 0, 0, 0.0f};
-	t_color	fake = (t_color){0, 0, 255, 0.0f};
+	t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
+	// t_color	fake = (t_color){0, 0, 255, 0.0f};
 
-	(void) color;
-	(void) fake;
-	(void) img_data;
-	(void) cur_point;
-	(void) row;
+	printf("%d %d %d\n",
+		color.red,
+		color.green,
+		color.blue
+	);
+	printf("mlx_color: %zu\n", ft_get_mlx_color(color));
+	// exit(0);
+	// (void) color;
+	// (void) fake;
+	// (void) img_data;
+	// (void) cur_point;
+	// (void) row;
 	ft_put_px_to_image(
 		img_data,
 		ft_get_pixel_offset(*img_data, cur_point),

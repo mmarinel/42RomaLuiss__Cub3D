@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/19 15:42:13 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:27:59 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ typedef struct s_2Dmatrix
 
 typedef struct s_color
 {
-	short	red;
-	short	green;
-	short	blue;
+	int	red;
+	int	green;
+	int	blue;
 	double	alpha;
 }	t_color;
 # endif
