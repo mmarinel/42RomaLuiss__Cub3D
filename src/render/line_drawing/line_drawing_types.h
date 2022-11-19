@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:45:28 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 15:54:19 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:25:55 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,12 @@ typedef enum e_bres_line_type
 	e_BRES_LOW = 0,
 	e_BRES_HIGH = 1,
 }	t_bres_line_type;
+
+typedef struct s_px_row
+{
+	void	*texture;
+	size_t	img_offset;
+	size_t	len;
+}	t_px_row;
 
 #endif

@@ -15,6 +15,8 @@ INCLUDES=\
 ./src/types.h\
 ./src/map_validation/map_validation_module.h\
 ./src/raycast/raycast_module.h\
+./src/render/line_drawing/line_drawing_module.h\
+./src/render/render_module.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
@@ -24,9 +26,15 @@ INCLUDES=\
 ./src/utils/utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
-./src/raycast/ray_cast_types.h\
 ./src/raycast/raycast.h\
 ./src/raycast/raycast_module.h\
+./src/raycast/raycast_types.h\
+./src/render/render.h\
+./src/render/render_module.h\
+./src/render/render_types.h\
+./src/render/line_drawing/line_drawing.h\
+./src/render/line_drawing/line_drawing_module.h\
+./src/render/line_drawing/line_drawing_types.h\
 ./src/utils/utils_module.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
@@ -48,6 +56,10 @@ SRC_NOPREFIX=\
 ./src/raycast/rc_debug.c\
 ./src/raycast/rc_initialization.c\
 ./src/raycast/rc_set.c\
+./src/render/render.c\
+./src/render/line_drawing/bres_backup.c\
+./src/render/line_drawing/bres_logic.c\
+./src/render/line_drawing/bresenham.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/game/geometry.c\

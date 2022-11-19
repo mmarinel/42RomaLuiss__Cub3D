@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 17:57:09 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 18:42:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "utils/utils_module.h"
 # include "map_validation/map_validation_module.h"
 # include "raycast/raycast_module.h"
+# include "render/line_drawing/line_drawing_module.h"
 
 # include <math.h>
 # include <mlx.h>
@@ -52,14 +53,41 @@ int main(int argc, char const *argv[])
 	else
 		printf( RED "map not ok\n" RESET );
 	
-	game.player_pos = ft_get_new_2dpt(4.12, 2.41);
-	printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
-	// exit(0);
-	game.player_dir = ft_get_new_2dpt(0, 1);
-	game.camera_plane = ft_get_new_2dpt(1, 0);
-	// ft_print_ray_result(raycast(&game, 0.78539816339));
-	ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));//*	π/2 + γ where γ = angolo che formiamo rispetto al versore della direzione del player
+	// game.player_pos = ft_get_new_2dpt(4.12, 2.41);
+	// printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
+	// // exit(0);
+	// game.player_dir = ft_get_new_2dpt(0, 1);
+	// game.camera_plane = ft_get_new_2dpt(1, 0);
+	// // ft_print_ray_result(raycast(&game, 0.78539816339));
+	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));//*	π/2 + γ where γ = angolo che formiamo rispetto al versore della direzione del player
 	
+	//*********************************		BRESENHAM TESTING		**************************************************
+	void	*mlx;
+	void	*window;
+	t_data	img;
+
+	mlx = mlx_init();
+	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+
+	t_2d_point	vFirst = (t_2d_point){0, 0};
+	t_2d_point	vLast = (t_2d_point){1019, 0};
+
+	t_px_row	row;
+
+	row.img_offset = 0;
+	row.texture = (char *) malloc(sizeof(char) * 3);
+	((char *)row.texture)[0] = (char) 255;
+	((char *)row.texture)[1] = (char) 255;
+	((char *)row.texture)[2] = (char) 255;
+	row.len = 3;
+
+	bresenham_algo(vFirst, vLast, &img, row);
+	free(row.texture);
+//**************************************************************************************************************************************
+
+
+
 	ft_free_map(&game.map_handle.map, game.map_handle.rows);
 	free(game.map_handle.no_texture);
 	free(game.map_handle.so_texture);
