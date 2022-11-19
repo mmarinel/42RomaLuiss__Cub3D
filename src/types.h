@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/17 08:18:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:42:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ typedef enum e_quadrant
 	e_THIRD_QUADRANT,
 	e_FOURTH_QUADRANT
 }	t_quadrant;
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_2Dpoint
 {

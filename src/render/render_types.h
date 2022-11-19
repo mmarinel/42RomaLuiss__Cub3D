@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/17 09:19:09 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:39:27 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_TYPES_H
 
 # include "../types.h"
-# include "../raycast/raycast_module.h"
+# include "../raycast/raycast_types.h"
 
 typedef enum e_reentrancy
 {

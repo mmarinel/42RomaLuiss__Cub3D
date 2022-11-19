@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 12:50:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:44:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ t_2d_point	ft_rotate(t_2d_point vector, float ray_angle);
 //*		vecotr utils
 t_2d_point	ft_get_new_2dpt(float x, float y);
 t_2d_matrix	ft_get_new_2dmtrx(t_2d_point col_1, t_2d_point col_2);
+t_bool		t_2d_point_equals(t_2d_point p1, t_2d_point p2);
 
 //*		math utils
 float		ft_dot_product(t_2d_point v, t_2d_point w);
 t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector);
-float	flt_round(float nbr, size_t dec_places);
+float		flt_round(float nbr, size_t dec_places);
 
 //*		utils
 void	ft_print_2d_point(const char* pt_name, t_2d_point pt);

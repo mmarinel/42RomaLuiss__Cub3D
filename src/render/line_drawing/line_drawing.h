@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   line_drawing.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 17:50:45 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 15:44:05 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/19 15:33:54 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/19 15:51:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_utils.h"
+#ifndef LINE_DRAWING_H
+# define LINE_DRAWING_H
 
-t_2d_point	ft_get_new_2dpt(float x, float y)
-{
-	t_2d_point	pt;
+# include "line_drawing_types.h"
+# include "../render.h"
 
-	pt.x = x;
-	pt.y = y;
-	return (pt);
-}
-
-t_2d_matrix	ft_get_new_2dmtrx(t_2d_point row_1, t_2d_point row_2)
-{
-	t_2d_matrix	matrix;
-
-	matrix.row_1 = row_1;
-	matrix.row_2 = row_2;
-	return (matrix);
-}
-
-t_bool	t_2d_point_equals(t_2d_point p1, t_2d_point p2)
-{
-	return (p1.x == p2.x && p1.y == p2.y);
-}
+#endif
