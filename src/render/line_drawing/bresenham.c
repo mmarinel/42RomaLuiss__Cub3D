@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:35:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 18:44:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:01:46 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	bresenham_algo(t_2d_point vfirst, t_2d_point vlast,
 	d_k = decision_var_initial(delta_x, delta_y, bres_type);
 	cur_point = vfirst;
 	printf(GREEN "ciaoooooooooooo" RESET);
-	exit(0);
 	put_next_px(img_data, cur_point, &row);
+	exit(0);
 	printf(GREEN "ciaoooooooooooo" RESET);
 	while (e_false == bres_eol(cur_point, vlast, bres_type))
 	{

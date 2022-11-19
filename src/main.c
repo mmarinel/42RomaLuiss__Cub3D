@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 18:42:52 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:16:26 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,22 @@ int main(int argc, char const *argv[])
 	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 
-	t_2d_point	vFirst = (t_2d_point){0, 0};
-	t_2d_point	vLast = (t_2d_point){1019, 0};
+	t_2d_point	vFirst = (t_2d_point){51, 51};
+	t_2d_point	vLast = (t_2d_point){500, 400};
 
 	t_px_row	row;
 
 	row.img_offset = 0;
-	row.texture = (char *) malloc(sizeof(char) * 3);
+	row.texture = malloc(sizeof(char) * 3);
 	((char *)row.texture)[0] = (char) 255;
 	((char *)row.texture)[1] = (char) 255;
 	((char *)row.texture)[2] = (char) 255;
 	row.len = 3;
 
 	bresenham_algo(vFirst, vLast, &img, row);
+	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 	free(row.texture);
+	mlx_loop(mlx);
 //**************************************************************************************************************************************
 
 
