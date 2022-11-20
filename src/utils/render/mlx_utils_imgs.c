@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:47:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:52:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
 {
 	char	*byte_ptr;
 
-	byte_ptr = img_data->addr + px_offset;
-	if (NULL == byte_ptr)
+	if (px_offset < mlx_holder_max_offset())
 	{
-		// printf("Maremmaaaaaaa");
-		// exit(0);
+		byte_ptr = img_data->addr + px_offset;
+		*(unsigned int *)byte_ptr = ft_get_mlx_color(color);
 	}
-	*(unsigned int *)byte_ptr = ft_get_mlx_color(color);
 }
 
 size_t	ft_get_pixel_offset(const t_data img_data, t_int_2d_point pt)

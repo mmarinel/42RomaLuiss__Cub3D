@@ -76,6 +76,7 @@ SRC_NOPREFIX=\
 ./src/utils/map/t_tile_debug.c\
 ./src/utils/map/t_tile_map_trim.c\
 ./src/utils/render/brightness.c\
+./src/utils/render/mlx_holder.c\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/render_conditions.c\
 ./src/utils/render/rgb.c\

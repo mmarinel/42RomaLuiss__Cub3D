@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 15:55:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:03:07 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,21 @@ int main(int argc, char const *argv[])
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));//*	π/2 + γ where γ = angolo che formiamo rispetto al versore della direzione del player
 	
 	//*********************************		BRESENHAM TESTING		**************************************************
-	void	*mlx;
-	void	*window;
-	t_data	img;
+	game.screen_handle.mlx = mlx_init();
+	game.screen_handle.window = mlx_new_window(game.screen_handle.mlx, 1920, 1080, "Grezzo 2-Parte 2");
+	game.screen_handle.frame_data.img = mlx_new_image(game.screen_handle.mlx, 1920, 1080);
 
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, 1920, 1080, "Grezzo 2-Parte 2");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	game.screen_handle.frame_data.addr = mlx_get_data_addr(
+		game.screen_handle.frame_data.img,
+		&game.screen_handle.frame_data.bits_per_pixel,
+		&game.screen_handle.frame_data.line_length,
+		&game.screen_handle.frame_data.endian
+	);
+	game.screen_handle.width = 1920;
+	game.screen_handle.height = 1080;
+	mlx_holder_set(&game.screen_handle);
 
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
 	t_int_2d_point	vFirst = (t_int_2d_point){1919, 0};
 	t_int_2d_point	vLast = (t_int_2d_point){0, 1080};
 
@@ -92,10 +98,10 @@ int main(int argc, char const *argv[])
 	// exit(0);
 	row.len = 3;
 
-	bresenham_plot(vFirst, vLast, &img, row);
-	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
+	bresenham_plot(vFirst, vLast, &game.screen_handle.frame_data, row);
+	mlx_put_image_to_window(game.screen_handle.mlx, game.screen_handle.window, game.screen_handle.frame_data.img, 0, 0);
 	free(row.texture);
-	mlx_loop(mlx);
+	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 
 

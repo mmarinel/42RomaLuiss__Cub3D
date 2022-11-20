@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:47:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:50:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,9 @@ void	ft_apply_brightness(t_color *color, double factor);
 
 //*		conditions
 t_bool	ft_iscolor(long long red, long long green, long long blue);
+
+//*		mlx_holder
+void	mlx_holder_set(const t_screen_holder *screen_holder);
+size_t	mlx_holder_max_offset( void );
 
 #endif
