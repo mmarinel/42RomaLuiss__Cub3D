@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:53:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:55:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int main(int argc, char const *argv[])
 	img.img = mlx_new_image(mlx, 1920, 1080);
 
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	t_int_2d_point	vFirst = (t_int_2d_point){0, 1000};
-	t_int_2d_point	vLast = (t_int_2d_point){1600, 0};
+	t_int_2d_point	vFirst = (t_int_2d_point){1919, 0};
+	t_int_2d_point	vLast = (t_int_2d_point){0, 1080};
 
 	t_px_row	row;
 

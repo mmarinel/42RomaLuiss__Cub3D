@@ -59,6 +59,7 @@ SRC_NOPREFIX=\
 ./src/render/render.c\
 ./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
+./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bres_logic.c\
 ./src/render/line_drawing/bresenham.c\
 ./src/utils/game/debug.c\

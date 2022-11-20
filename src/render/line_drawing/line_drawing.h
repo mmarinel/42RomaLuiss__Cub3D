@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:33:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:43:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:49:16 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ int					bres_decision_var_initial(
 						const size_t delta_y,
 						t_bres_line_type bres_type
 					);
-t_int_2d_point			bres_next_point(int d_k,
+t_int_2d_point		bres_next_point(int d_k,
 						t_int_2d_point cur_point, t_bres_line_type bres_type);
+int					get_angular_coefficient_sign(int delta_x, int delta_y,
+						const size_t norm_delta_x, const size_t norm_delta_y);
+void				bres_order_pts(t_int_2d_point v_1, t_int_2d_point v_2,
+						t_int_2d_point *vfirst, t_int_2d_point *vlast);
 
 #endif

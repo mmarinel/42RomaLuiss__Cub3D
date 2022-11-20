@@ -6,11 +6,26 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:35:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:52:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:50:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_drawing.h"
+
+
+static void	bresenham_algo(t_int_2d_point vfirst, t_int_2d_point vlast,
+			t_data *img_data, t_px_row row);
+//*		end of static declarations
+
+void	bresenham_plot(t_int_2d_point v_1, t_int_2d_point v_2,
+			t_data *img_data, t_px_row row)
+{
+	t_int_2d_point		vfirst;
+	t_int_2d_point		vlast;
+
+	bres_order_pts(v_1, v_2, &vfirst, &vlast);
+	bresenham_algo(vfirst, vlast, img_data, row);
+}
 
 /**
  * @brief this function implements the bresenham line drawing algorithm
@@ -20,7 +35,7 @@
  * @param vlast 
  * @param img_data 
  */
-void	bresenham_plot(t_int_2d_point vfirst, t_int_2d_point vlast,
+static void	bresenham_algo(t_int_2d_point vfirst, t_int_2d_point vlast,
 			t_data *img_data, t_px_row row)
 {
 	const size_t			norm_delta_x = abs(vlast.x - vfirst.x);

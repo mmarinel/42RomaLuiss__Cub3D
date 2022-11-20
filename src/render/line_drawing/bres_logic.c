@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:43:32 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:46:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ static int	bres_get_increment_factor(t_bres_line_type bres_type);
 t_bres_line_type	bres_get_type(t_int_2d_point vfirst, t_int_2d_point vlast,
 						const size_t norm_delta_x, const size_t norm_delta_y)
 {
-	int	delta_x = vlast.x - vfirst.x;
-	int	delta_y = vlast.y - vfirst.y;
-	const int	sign = ( (delta_x/norm_delta_x) * (delta_y/norm_delta_y) );
+	const int	delta_x = vlast.x - vfirst.x;
+	const int	delta_y = vlast.y - vfirst.y;
+	int			sign;
 
+	sign = get_angular_coefficient_sign(delta_x, delta_y,
+				norm_delta_x, norm_delta_y);
 	if (norm_delta_y <= norm_delta_x)
 	{
 		if (1 == sign)
@@ -44,6 +46,9 @@ t_px_row	bres_put_next_px(t_data *img_data, t_int_2d_point cur_point,
 	t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
 	// t_color	fake = (t_color){0, 0, 255, 0.0f};
 
+	//!		FARLO MEGLIO !!!!!!!!!!!!!
+	if (cur_point.x >= 1920 || cur_point.y >= 1080)
+		return (*row);
 	printf("%d %d %d\n",
 		color.red,
 		color.green,
