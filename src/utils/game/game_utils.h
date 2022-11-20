@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 15:44:28 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 18:01:55 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include "../../types.h"
 # include "../../colors.h"
 # include "../libft/libft_module.h"
+# include "../render/render_module.h"
 
+# include <mlx.h>
 # include <math.h>
 # include <stdio.h>
 //*		for 'NULL' keyword

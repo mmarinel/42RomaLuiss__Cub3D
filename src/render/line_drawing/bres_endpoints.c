@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:42:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 15:48:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:04:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	bres_order_pts(t_int_2d_point v_1, t_int_2d_point v_2,
 	}
 	else if (v_1.x == v_2.x)
 	{
-		if (v_1.y < v_2.y)
+		if (v_1.y > v_2.y)//*		been modified to fit vertical lines
 		{
 			*vfirst = v_1;
 			*vlast = v_2;

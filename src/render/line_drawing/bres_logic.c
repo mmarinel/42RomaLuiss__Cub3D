@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 15:46:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 18:48:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,12 @@ t_px_row	bres_put_next_px(t_data *img_data, t_int_2d_point cur_point,
 	t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
 	// t_color	fake = (t_color){0, 0, 255, 0.0f};
 
-	//!		FARLO MEGLIO !!!!!!!!!!!!!
-	if (cur_point.x >= 1920 || cur_point.y >= 1080)
-		return (*row);
-	printf("%d %d %d\n",
-		color.red,
-		color.green,
-		color.blue
-	);
-	printf("mlx_color: %zu\n", ft_get_mlx_color(color));
+	// printf("%d %d %d\n",
+	// 	color.red,
+	// 	color.green,
+	// 	color.blue
+	// );
+	// printf("mlx_color: %zu\n", ft_get_mlx_color(color));
 	// exit(0);
 	// (void) color;
 	// (void) fake;
@@ -97,11 +94,11 @@ t_int_2d_point		bres_next_point(int d_k,
 	{
 		if (d_k < 0)
 		{
-			cur_point.x += bres_get_increment_factor(bres_type);
-			cur_point.y += 1;
+			cur_point.x += 1;
+			cur_point.y += bres_get_increment_factor(bres_type);
 		}
 		else
-			cur_point.y += 1;
+			cur_point.y += bres_get_increment_factor(bres_type);
 	}
 	return (cur_point);
 }

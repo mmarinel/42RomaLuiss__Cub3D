@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 12:45:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:59:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ float		flt_round(float nbr, size_t dec_places);
 t_2d_point	ft_get_new_2dpt(float x, float y);
 
 //*		game memory management
-void		ft_game_init( t_game *game_ref );
+void	ft_game_init( t_game *game_ref, size_t width, size_t height );
 
 #endif
