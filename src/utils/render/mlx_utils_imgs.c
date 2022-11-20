@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 23:32:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:47:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-# include <stdio.h>
+
 void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
 {
 	char	*byte_ptr;
@@ -19,13 +19,13 @@ void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
 	byte_ptr = img_data->addr + px_offset;
 	if (NULL == byte_ptr)
 	{
-		printf("Maremmaaaaaaa");
-		exit(0);
+		// printf("Maremmaaaaaaa");
+		// exit(0);
 	}
 	*(unsigned int *)byte_ptr = ft_get_mlx_color(color);
 }
 
-size_t	ft_get_pixel_offset(const t_data img_data, t_2d_point pt)
+size_t	ft_get_pixel_offset(const t_data img_data, t_int_2d_point pt)
 {
 	return (
 		pt.y * img_data.line_length + pt.x * (img_data.bits_per_pixel / 8)

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/19 23:27:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:33:35 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }	t_data;
+
+typedef struct s_int_2Dpoint
+{
+	int	x;
+	int	y;
+}	t_int_2d_point;
 
 typedef struct s_2Dpoint
 {

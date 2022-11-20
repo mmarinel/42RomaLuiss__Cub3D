@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
+#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/11/19 20:42:01 by mmarinel         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC_NOPREFIX=\
 ./src/raycast/rc_set.c\
 ./src/render/render.c\
 ./src/render/line_drawing/bres_backup.c\
+./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_logic.c\
 ./src/render/line_drawing/bresenham.c\
 ./src/utils/game/debug.c\

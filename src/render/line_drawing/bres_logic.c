@@ -6,25 +6,39 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 23:30:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:43:32 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_drawing.h"
 
-int	decision_var_initial(
-		const size_t delta_x,
-		const size_t delta_y,
-		t_bres_line_type bres_type
-	)
+static int	bres_get_increment_factor(t_bres_line_type bres_type);
+//*		end of static declarations
+
+t_bres_line_type	bres_get_type(t_int_2d_point vfirst, t_int_2d_point vlast,
+						const size_t norm_delta_x, const size_t norm_delta_y)
 {
-	if (e_BRES_LOW == bres_type)
-		return (2 * delta_y - delta_x);
+	int	delta_x = vlast.x - vfirst.x;
+	int	delta_y = vlast.y - vfirst.y;
+	const int	sign = ( (delta_x/norm_delta_x) * (delta_y/norm_delta_y) );
+
+	if (norm_delta_y <= norm_delta_x)
+	{
+		if (1 == sign)
+			return (e_BRES_LOW_POS);
+		else
+			return (e_BRES_LOW_NEG);
+	}
 	else
-		return (delta_y - 2 * delta_x);
+	{
+		if (1 == sign)
+			return (e_BRES_HIGH_POS);
+		else
+			return (e_BRES_HIGH_NEG);
+	}
 }
 
-t_px_row	put_next_px(t_data *img_data, t_2d_point cur_point,
+t_px_row	bres_put_next_px(t_data *img_data, t_int_2d_point cur_point,
 		t_px_row *row)
 {
 	t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
@@ -52,62 +66,46 @@ t_px_row	put_next_px(t_data *img_data, t_2d_point cur_point,
 	return (*row);
 }
 
-t_bool	bres_eol(t_2d_point cur_point, t_2d_point vlast,
+t_bool	bres_eol(t_int_2d_point cur_point, t_int_2d_point vlast,
 			t_bres_line_type bres_type)
 {
-	if (e_BRES_LOW ==  bres_type)
+	if (e_BRES_LOW_POS ==  bres_type || e_BRES_LOW_NEG == bres_type)
 		return (cur_point.x == vlast.x);
 	else
 		return (cur_point.y == vlast.y);
 }
 
-int	update_decision_var(t_bres_line_type bres_type, int d_k,
-				const size_t delta_x, const size_t delta_y)
+t_int_2d_point		bres_next_point(int d_k,
+					t_int_2d_point cur_point, t_bres_line_type bres_type)
 {
-	if (e_BRES_LOW == bres_type)
-	{
-		if (d_k >= 0)
-			d_k += (2 * (delta_y  - delta_x));
-		else
-			d_k += (2 * delta_y);
-		return (d_k);
-	}
-	else
-	{
-		if (d_k >= 0)
-			d_k -= (2 * delta_x);
-		else
-			d_k -= (2 * (delta_x  - delta_y));
-		return (d_k);
-	}
-}
-
-t_2d_point		bres_next_point(int d_k,
-					t_2d_point cur_point, t_bres_line_type bres_type)
-{
-	if (e_BRES_LOW == bres_type)
+	if (e_BRES_LOW_POS == bres_type || e_BRES_LOW_NEG == bres_type)
 	{
 		if (d_k >= 0)
 		{
-			cur_point.y += 1;
+			cur_point.y += bres_get_increment_factor(bres_type);
 			cur_point.x += 1;
 		}
 		else
-		{
 			cur_point.x += 1;
-		}
 	}
 	else
 	{
 		if (d_k < 0)
 		{
-			cur_point.x += 1;
+			cur_point.x += bres_get_increment_factor(bres_type);
 			cur_point.y += 1;
 		}
 		else
-		{
 			cur_point.y += 1;
-		}
 	}
 	return (cur_point);
+}
+
+static int	bres_get_increment_factor(t_bres_line_type bres_type)
+{
+	if (e_BRES_LOW_NEG == bres_type
+		|| e_BRES_HIGH_NEG == bres_type)
+		return (-1);
+	else
+		return (+1);
 }

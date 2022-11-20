@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 23:35:50 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:53:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int main(int argc, char const *argv[])
 	img.img = mlx_new_image(mlx, 1920, 1080);
 
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	t_2d_point	vFirst = (t_2d_point){51, 51};
-	t_2d_point	vLast = (t_2d_point){500, 400};
+	t_int_2d_point	vFirst = (t_int_2d_point){0, 1000};
+	t_int_2d_point	vLast = (t_int_2d_point){1600, 0};
 
 	t_px_row	row;
 
@@ -92,7 +92,7 @@ int main(int argc, char const *argv[])
 	// exit(0);
 	row.len = 3;
 
-	bresenham_algo(vFirst, vLast, &img, row);
+	bresenham_plot(vFirst, vLast, &img, row);
 	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 	free(row.texture);
 	mlx_loop(mlx);

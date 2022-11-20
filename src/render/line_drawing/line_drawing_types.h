@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:45:28 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 17:25:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:51:33 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
  */
 typedef enum e_bres_line_type
 {
-	e_BRES_LOW = 0,
-	e_BRES_HIGH = 1,
+	e_BRES_LOW_POS,
+	e_BRES_LOW_NEG,
+	e_BRES_HIGH_POS,
+	e_BRES_HIGH_NEG,
 }	t_bres_line_type;
 
 typedef struct s_px_row
