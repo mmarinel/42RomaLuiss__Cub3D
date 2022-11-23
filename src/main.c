@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 19:14:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:10:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int main(int argc, char const *argv[])
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));//*	π/2 + γ where γ = angolo che formiamo rispetto al versore della direzione del player
 	
 	//*********************************		BRESENHAM TESTING		**************************************************
-	t_int_2d_point	vFirst = (t_int_2d_point){0, 0};
-	t_int_2d_point	vLast = (t_int_2d_point){1919, 0};
+	t_int_2d_point	vFirst = (t_int_2d_point){1919, 0};
+	t_int_2d_point	vLast = (t_int_2d_point){0, 1079};
 
 	t_px_row	row;
 

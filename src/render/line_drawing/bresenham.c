@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:35:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 18:26:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/23 10:43:27 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,19 @@ static void	bresenham_algo(t_int_2d_point vfirst, t_int_2d_point vlast,
 	const size_t			norm_delta_x = abs(vlast.x - vfirst.x);
 	const size_t			norm_delta_y = abs(vlast.y - vfirst.y);
 	int						d_k;//*		the decision variable
-	t_int_2d_point				cur_point;
+	t_int_2d_point			cur_point;
 	t_bres_line_type		bres_type;
-		int	count = 0;
+
 	bres_type = bres_get_type(vfirst, vlast, norm_delta_x, norm_delta_y);
 	d_k = bres_decision_var_initial(norm_delta_x, norm_delta_y, bres_type);
 	cur_point = vfirst;
 	bres_put_next_px(img_data, cur_point, &row);
-	while (e_false == bres_eol(cur_point, vlast, bres_type))// && count < 500)
+	while (e_false == bres_eol(cur_point, vlast, bres_type))
 	{
 		d_k = bres_update_decision_var(
 			bres_type, d_k, norm_delta_x, norm_delta_y
 		);
 		cur_point = bres_next_point(d_k, cur_point, bres_type);
 		bres_put_next_px(img_data, cur_point, &row);
-		count ++;
 	}
 }
