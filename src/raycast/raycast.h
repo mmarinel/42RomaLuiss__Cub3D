@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 18:38:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:34:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,24 @@
 # include <stdio.h>
 
 //*		initialization
-t_raycast_data	ft_ray_data_init(t_game *game, float ray_angle);
+t_raycast_data	ft_ray_data_init(t_game *game, t_2d_point ray_dir);
 float			ft_initial_delta(float p_ax_pos, float p_dir_ax_pos);
 int				ft_ray_step_size(float p_dir_ax_pos);
 
 //*		set
-void			ft_set_hp_dist(t_raycast_return *rc_ret,
-					t_raycast_data rc_data,
-					float ray_angle
+void			ft_set_hp_dist(
+					t_raycast_return *rc_ret,
+					const t_raycast_data *rc_data,
+					t_game *g
 				);
-void			ft_set_hp(t_raycast_return *raycast_info, t_raycast_data rc_data,
-					t_game *game);
+void			ft_set_hp(
+					t_raycast_return *rc_ret,
+					const t_raycast_data *rc_data,
+					t_game *game
+				);
 
 //*		debug
-void	ft_print_raycast_result(t_raycast_return raycast_info);
+void	ft_print_raycast_result(t_raycast_return rc_return);
 void	ft_print_raycast_data(t_raycast_data rc_data);
 
 #endif

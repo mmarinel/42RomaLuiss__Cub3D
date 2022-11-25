@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 18:35:26 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:35:19 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void				ft_walk_through_nhp(t_raycast_data *raycast_data);
  * @param ray_angle the angle the ray forms with the camera plane
  * @return t_raycast_return 
  */
-t_raycast_return	raycast(t_game *game, float ray_angle)
+t_raycast_return	raycast(t_game *game, t_2d_point ray_dir)
 {
 	t_raycast_return	ret;
 	t_raycast_data		raycast_data;
@@ -30,7 +30,7 @@ t_raycast_return	raycast(t_game *game, float ray_angle)
 	int					cur_sq_x;
 	int					cur_sq_y;
 
-	raycast_data = ft_ray_data_init(game, ray_angle - M_PI / 2);
+	raycast_data = ft_ray_data_init(game, ray_dir);
 	ft_print_raycast_data(raycast_data);
 	hit = e_false;
 	while (e_false == hit)
@@ -41,8 +41,8 @@ t_raycast_return	raycast(t_game *game, float ray_angle)
 		if (e_WALL == game->map_handle.map[cur_sq_y][cur_sq_x])
 			hit = e_true;
 	}
-	ft_set_hp_dist(&ret, raycast_data, ray_angle);
-	ft_set_hp(&ret, raycast_data, game);
+	ft_set_hp_dist(&ret, &raycast_data, game);
+	ft_set_hp(&ret, &raycast_data, game);
 	return (ret);
 }
 

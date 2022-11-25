@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/20 16:33:44 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 11:46:22 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <limits.h>
+
+# define FLT_PRECISION 6
 
 # ifndef T_BOOL
 #  define T_BOOL

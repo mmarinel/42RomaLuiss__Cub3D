@@ -1,17 +1,19 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   render.c                                           :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-// /*   Updated: 2022/11/17 12:17:42 by mmarinel         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/25 11:41:25 by mmarinel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "render.h"
+#include "render.h"
 
+static void			render_column(t_raycast_return rc_return);
+static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // static t_render_data			render_fetch_data(t_game *g,
 // 									float cur_ray_angle);
 // static t_wall_camera_incidence	wall_camera_incidence(
@@ -25,7 +27,37 @@
 // 					t_wall_camera_incidence wc_incidence);
 // static size_t	hit_wall_height(t_game *g, float perp_dist,
 // 					t_wall_camera_incidence wc_incidence);
-// //*		end of static declarations
+//*		end of static declarations
+
+void	render_next_frame(t_game *g)
+{
+	size_t				col;
+	t_raycast_return	rc_return;
+
+	draw_background(g);
+	// draw_sun(g);
+	col = 0;
+	while (col < g->screen_handle.width)
+	{
+		raycast(g, ray_dir_for_col(col, g));
+		render_column(rc_return);
+		col++;
+	}
+}
+
+static void	render_column(t_raycast_return rc_return)
+{
+}
+
+static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
+{
+	const int	dilatation_factor = 2 * (col / g->screen_handle.width) - 1;
+	t_2d_point	ray;
+
+	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
+	ray.y = g->player_dir.y + dilatation_factor * g->camera_plane.y;
+	return (ray);
+}
 
 // /*
 // 	local vars:

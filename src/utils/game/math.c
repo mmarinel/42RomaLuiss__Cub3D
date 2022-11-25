@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 16:21:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:16:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	ft_dot_product(t_2d_point vec_1, t_2d_point vec_2)
 	float	res;
 
 	res = vec_1.x * vec_2.x + vec_1.y * vec_2.y;
-	return (flt_round(res, 6));
+	return (flt_round(res, FLT_PRECISION));
 }
 
 float	flt_round(float nbr, size_t dec_places)
@@ -42,4 +42,9 @@ float	flt_round(float nbr, size_t dec_places)
 
 	int_repr = nbr * shift;
 	return ((float)int_repr / shift);
+}
+
+float	ft_vec_norm(t_2d_point vector)
+{
+	return (sqrtf(ft_dot_product(vector, vector)));
 }
