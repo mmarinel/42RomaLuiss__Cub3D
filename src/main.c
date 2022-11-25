@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 15:07:22 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:49:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "colors.h"
 # include "types.h"
 # include "utils/utils_module.h"
+# include "init/game_init_module.h"
 # include "map_validation/map_validation_module.h"
 # include "raycast/raycast_module.h"
 # include "render/line_drawing/line_drawing_module.h"

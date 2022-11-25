@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 12:34:54 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:53:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_set_hp_dist(
 	rc_ret->side = rc_data->side;
 }
 
+//*		PERHAPS USELESS !!!!!!!!!!!
 void	ft_set_hp(
 			t_raycast_return *rc_ret,
 			const t_raycast_data *rc_data,

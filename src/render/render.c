@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 11:41:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:55:07 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	render_next_frame(t_game *g)
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
-		raycast(g, ray_dir_for_col(col, g));
+		rc_return = raycast(g, ray_dir_for_col(col, g));
 		render_column(rc_return);
 		col++;
 	}

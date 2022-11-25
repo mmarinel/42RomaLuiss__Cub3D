@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 15:57:33 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:48:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ t_bool	ft_game_init(
 {
 	t_bool	ok;
 
-	ok = e_true;
-	if (NULL == game_ref)
+	if (game_ref)
+	{
+		ok = e_true;
+		game_set_map(game_ref);
+		if (e_false == is_valid_map(path, &game_ref->map_handle))
+			ok = e_false;
+		game_set_vectors(game_ref);
+		game_set_mlx(game_ref, width, height);
+	}
+	else
 		ok = e_false;
-	game_set_map(game_ref);
-	if (e_false == is_valid_map(path, &game_ref->map_handle))
-		ok = e_false;
-	game_set_vectors(game_ref);
-	game_set_mlx(game_ref, width, height);
 	return (ok);
 }
 
