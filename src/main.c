@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/23 11:10:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:07:22 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int main(int argc, char const *argv[])
 
 	t_game	game;
 
-	ft_game_init(&game, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (is_valid_map(argv[1], &game.map_handle))
+	if (ft_game_init(argv[1], &game, SCREEN_WIDTH, SCREEN_HEIGHT))
 	{
 		printf( GREEN "map is ok\n" RESET );
 		printf(

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/25 11:46:22 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:29:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,17 @@ typedef enum e_tile
 
 typedef struct s_map_holder
 {
-	t_tile	**map;
-	size_t	rows;
-	size_t	columns;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
-	t_color	f_color;
-	t_color	c_color;
+	t_2d_point	player_initial_pos;
+	t_tile		player_initial_dir;
+	t_tile		**map;
+	size_t		rows;
+	size_t		columns;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	t_color		f_color;
+	t_color		c_color;
 }	t_map_holder;
 
 typedef struct s_screen_holder

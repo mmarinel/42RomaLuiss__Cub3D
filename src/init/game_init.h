@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_memory.c                                      :+:      :+:    :+:   */
+/*   game_init.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 14:29:02 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/25 15:50:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_utils.h"
+#ifndef GAME_INIT_H
+# define GAME_INIT_H
+
+# include "../types.h"
+# include "../utils/utils_module.h"
+
+# include <stddef.h>
+# include <math.h>
+# include <unistd.h>
+
+//*		66º
+# define FOV ( (11 / 30) * M_PI )
+
+# endif

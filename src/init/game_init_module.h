@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_memory.c                                      :+:      :+:    :+:   */
+/*   game_init_module.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 14:29:02 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/25 14:27:00 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/25 15:01:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_utils.h"
+#ifndef GAME_INIT_MODULE_H
+# define GAME_INIT_MODULE_H
+
+# include "../types.h"
+
+# include <unistd.h>
+
+t_bool	ft_game_init(
+			const char *path,
+			t_game *game_ref,
+			size_t width, size_t height
+		);
+
+# endif

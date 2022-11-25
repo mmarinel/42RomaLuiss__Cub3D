@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/10 08:26:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:29:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,16 @@ static void	ft_fill_tile_row(
 		)
 			*err_flag = e_true;
 		else
+		{
+			if (is_player_map_char(char_map[row_index][col]))
+			{
+				map_handle->player_initial_dir
+					= map_handle->map[row_index][col];
+				map_handle->player_initial_pos
+					= ft_get_new_2dpt(col, row_index);
+			}
 			map_handle->map[row_index][col] = char_map[row_index][col];
+		}
 		col += 1;
 	}
 }
