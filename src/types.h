@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/25 16:58:53 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:12:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ typedef struct s_screen_holder
 	void	*mlx;
 	void	*window;
 	t_data	frame_data;
+	t_data	*textures_data;
+	int		textures_size;
 	size_t	width;
 	size_t	height;
 }	t_screen_holder;
