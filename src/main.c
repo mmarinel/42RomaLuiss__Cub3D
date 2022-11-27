@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 16:16:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 20:17:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 800
-# define SCREEN_HEIGHT 800
+# define SCREEN_WIDTH 900
+# define SCREEN_HEIGHT 900
 
 # include "colors.h"
 # include "types.h"
@@ -27,6 +27,58 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <time.h>
+
+int	key_hook(int key_code, t_game *game)
+{
+	static int	status = 0;
+	(void)game;
+	printf(YELLOW"key pressed: %d\n"RESET, key_code);
+
+	if (126 == key_code)
+	{
+		t_data	texture_data;
+		int		texture_width;
+		int		texture_height;
+		int		color;
+
+		if (status)//rand() % 2 == 0)
+		{
+			color = 255 << 8;
+			texture_data.img = mlx_xpm_file_to_image(game->screen_handle.mlx, "img/200bosprite.xpm", &texture_width, &texture_height);
+			texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
+		}
+		else
+		{
+			color = 255;
+			texture_data.img = mlx_xpm_file_to_image(game->screen_handle.mlx, "img/200doggo.xpm", &texture_width, &texture_height);
+			texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
+		}
+		
+		status = !status;
+		t_2d_point	mapped;
+		const float	scaling_factor = (float)64 / SCREEN_WIDTH;
+		for (int i = 0; i < SCREEN_HEIGHT; i++)
+		for (int j = 0; j < SCREEN_WIDTH; j++)
+		{
+			mapped.x = (float)j * scaling_factor;
+			mapped.y = (float)i * scaling_factor;
+			// printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
+			ft_put_mlxpx_to_image(
+				&game->screen_handle.frame_data,
+				ft_get_pixel_offset(game->screen_handle.frame_data, (t_int_2d_point){j, i}),
+				bicubic_interpolation(&texture_data, texture_width, mapped)
+			);
+		}
+		mlx_clear_window(game->screen_handle.mlx, game->screen_handle.window);
+		mlx_put_image_to_window(
+			game->screen_handle.mlx, game->screen_handle.window,
+			game->screen_handle.frame_data.img,
+			0, 0);
+	}
+
+	return (0);
+}
 
 int main(int argc, char const *argv[])
 {
@@ -35,6 +87,7 @@ int main(int argc, char const *argv[])
 
 	t_game	game;
 
+	srand(time(NULL));
 	if (ft_game_init(argv[1], &game, SCREEN_WIDTH, SCREEN_HEIGHT))
 	{
 		printf( GREEN "map is ok\n" RESET );
@@ -110,7 +163,7 @@ int main(int argc, char const *argv[])
 	int		texture_width;
 	int		texture_height;
 
-	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/64bosprite.xpm", &texture_width, &texture_height);
+	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &texture_width, &texture_height);
 	texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
 
 
@@ -134,6 +187,7 @@ int main(int argc, char const *argv[])
 		game.screen_handle.mlx, game.screen_handle.window,
 		game.screen_handle.frame_data.img,
 		0, 0);
+	mlx_key_hook(game.screen_handle.window, key_hook, &game);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 

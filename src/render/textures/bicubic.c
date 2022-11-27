@@ -6,12 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:58:07 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 16:17:22 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 20:16:35 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "textures.h"
 
+static int	linear(int p0, int p1, float place);
 static int				bicubic(const t_data *texture_data, t_2d_point mapped);
 static t_px_row			next_row(
 									int row,
@@ -27,6 +28,7 @@ int	bicubic_interpolation(
 		t_2d_point mapped
 	)
 {
+	// (void)texture_size;
 	bcb_clipper(e_BCB_CLIPPER_INITIALIZE, texture_size);
 	return (bicubic(texture_data, mapped));
 }
@@ -50,16 +52,85 @@ static int	bicubic(const t_data *texture_data, t_2d_point mapped)
 		mapped, texture_data
 	);
 
+	(void)next_row;
+	(void)linear;
+	(void)row_0;
+	(void)row_1;
+	(void)row_2;
+	(void)row_3;
+	//*								NEAREST NEIGHBOUR
 	return (
-		cubic_interpolation(
-			(t_px_row){
-				(t_px){cubic_interpolation(row_0, mapped.x - floor(mapped.x))},
-				(t_px){cubic_interpolation(row_1, mapped.x - floor(mapped.x))},
-				(t_px){cubic_interpolation(row_2, mapped.x - floor(mapped.x))},
-				(t_px){cubic_interpolation(row_3, mapped.x - floor(mapped.x))},
-			},
-			mapped.y - floor(mapped.y)
-		)
+		get_texture_px( (t_int_2d_point){bcb_clip(roundf(mapped.x)), bcb_clip(roundf(mapped.y))}, texture_data).rgb
+	);
+	//*								BILINEAR
+	// return (
+	// 	linear(
+	// 		linear(
+	// 			get_texture_px(
+	// 				ft_get_new_int_2dpt(
+	// 					floor(mapped.x), floor(mapped.y)
+	// 				),
+	// 				texture_data
+	// 			).rgb,
+	// 			get_texture_px(
+	// 				ft_get_new_int_2dpt(
+	// 					bcb_clip(ceil(mapped.x)), floor(mapped.y)
+	// 				),
+	// 				texture_data
+	// 			).rgb,
+	// 			mapped.x - floor(mapped.x)
+	// 		),
+	// 		linear(
+	// 			get_texture_px(
+	// 				ft_get_new_int_2dpt(
+	// 					floor(mapped.x), bcb_clip(ceil(mapped.y))
+	// 				),
+	// 				texture_data
+	// 			).rgb,
+	// 			get_texture_px(
+	// 				ft_get_new_int_2dpt(
+	// 					bcb_clip(ceil(mapped.x)), bcb_clip(ceil(mapped.y))
+	// 				),
+	// 				texture_data
+	// 			).rgb,
+	// 			mapped.x - floor(mapped.x)
+	// 		),
+	// 		mapped.y - floor(mapped.y)
+	// 	)
+	// );
+	//*			BICUBIC
+	// return (
+	// 	cubic_interpolation(
+	// 		(t_px_row){
+	// 			(t_px){cubic_interpolation(row_0, mapped.x - floor(mapped.x))},
+	// 			(t_px){cubic_interpolation(row_1, mapped.x - floor(mapped.x))},
+	// 			(t_px){cubic_interpolation(row_2, mapped.x - floor(mapped.x))},
+	// 			(t_px){cubic_interpolation(row_3, mapped.x - floor(mapped.x))},
+	// 		},
+	// 		mapped.y - floor(mapped.y)
+	// 	)
+	// );
+}
+
+// static int	linear(const t_data *texture_data, float mapped_x, int row)
+// {
+// 	return (
+// 		(float)get_texture_px(
+// 			(t_int_2d_point){floor(mapped_x), row},
+// 			texture_data
+// 		).rgb * ((float)1 - ft_flt_abs(mapped_x - floor(mapped_x)))
+// 		+ (float)get_texture_px(
+// 			(t_int_2d_point){ceil(mapped_x), row},
+// 			texture_data
+// 		).rgb * ((float)1 - ft_flt_abs(mapped_x - ceil(mapped_x)))
+// 	);
+// }
+
+static int	linear(int p0, int p1, float place)
+{
+	return (
+		(float)p0 * ((float)1 - ft_flt_abs(place - floor(place)))
+		+ (float)p1 * ((float)1 - ft_flt_abs(place - ceil(place)))
 	);
 }
 
