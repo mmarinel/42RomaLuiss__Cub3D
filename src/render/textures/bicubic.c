@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:58:07 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 13:10:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:17:22 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ static t_px_row	next_row(
 				bcb_clip(row)
 			);
 	const t_int_2d_point p_row_of1_idx
-			= ft_get_new_int_2dpt(floor(mapped.x), row);
+			= ft_get_new_int_2dpt(bcb_clip(floor(mapped.x)), row);
 	const t_int_2d_point p_row_of2_idx
-			= ft_get_new_int_2dpt(ceil(mapped.x), row);
+			= ft_get_new_int_2dpt(bcb_clip(ceil(mapped.x)), row);
 	const t_int_2d_point p_row_of3_idx
 			= ft_get_new_int_2dpt(
 				bcb_clip(ceil(mapped.x + 1)),

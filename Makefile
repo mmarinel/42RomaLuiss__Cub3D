@@ -70,9 +70,9 @@ SRC_NOPREFIX=\
 ./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bres_logic.c\
 ./src/render/line_drawing/bresenham.c\
+./src/render/textures/bcb_clip.c\
 ./src/render/textures/bicubic.c\
 ./src/render/textures/cubic_interpolation.c\
-./src/render/textures/interp_init.c\
 ./src/render/textures/texture_manip.c\
 ./src/render/textures/texture_types_ops.c\
 ./src/utils/game/debug.c\

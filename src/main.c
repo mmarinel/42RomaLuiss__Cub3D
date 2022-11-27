@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 14:26:29 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:16:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 900
-# define SCREEN_HEIGHT 900
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 800
 
 # include "colors.h"
 # include "types.h"
@@ -110,7 +110,7 @@ int main(int argc, char const *argv[])
 	int		texture_width;
 	int		texture_height;
 
-	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/bosprite.xpm", &texture_width, &texture_height);
+	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/64bosprite.xpm", &texture_width, &texture_height);
 	texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
 
 
@@ -123,7 +123,7 @@ int main(int argc, char const *argv[])
 	{
 		mapped.x = (float)j * scaling_factor;
 		mapped.y = (float)i * scaling_factor;
-		printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
+		// printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
 		ft_put_mlxpx_to_image(
 			&game.screen_handle.frame_data,
 			ft_get_pixel_offset(game.screen_handle.frame_data, (t_int_2d_point){j, i}),
@@ -132,7 +132,8 @@ int main(int argc, char const *argv[])
 	}
 	mlx_put_image_to_window(
 		game.screen_handle.mlx, game.screen_handle.window,
-		game.screen_handle.frame_data.img, 0, 0);
+		game.screen_handle.frame_data.img,
+		0, 0);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 
