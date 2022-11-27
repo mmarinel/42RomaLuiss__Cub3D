@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 16:49:52 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:26:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
+# define SCREEN_WIDTH 900
+# define SCREEN_HEIGHT 900
 
 # include "colors.h"
 # include "types.h"
@@ -19,7 +19,7 @@
 # include "init/game_init_module.h"
 # include "map_validation/map_validation_module.h"
 # include "raycast/raycast_module.h"
-# include "render/line_drawing/line_drawing_module.h"
+# include "render/render_module.h"
 
 # include <math.h>
 # include <mlx.h>
@@ -64,38 +64,90 @@ int main(int argc, char const *argv[])
 	// // ft_print_ray_result(raycast(&game, 0.78539816339));
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));//*	π/2 + γ where γ = angolo che formiamo rispetto al versore della direzione del player
 	
+
+
+
+
+	
+
+
+	
 	//*********************************		BRESENHAM TESTING		**************************************************
-	t_int_2d_point	vFirst = (t_int_2d_point){1919, 0};
-	t_int_2d_point	vLast = (t_int_2d_point){0, 1079};
+	// t_int_2d_point	vFirst = (t_int_2d_point){1919, 0};
+	// t_int_2d_point	vLast = (t_int_2d_point){0, 1079};
 
-	t_px_row	row;
+	// t_px_row	row;
 
-	int	*bytes;
-	bytes = (int *) malloc(sizeof(int) * 3);
-	bytes[0] = (int) 255;
-	bytes[1] = (int) 255;
-	bytes[2] = (int) 255;
+	// int	*bytes;
+	// bytes = (int *) malloc(sizeof(int) * 3);
+	// bytes[0] = (int) 255;
+	// bytes[1] = (int) 255;
+	// bytes[2] = (int) 255;
 
-	row.img_offset = 0;
-	row.texture = bytes;
-	// printf("%d %d %d\n",
-	// 	((unsigned char *)row.texture)[0],
-	// 	((unsigned char *)row.texture)[1],
-	// 	((unsigned char *)row.texture)[2]
+	// row.img_offset = 0;
+	// row.texture = bytes;
+	// // printf("%d %d %d\n",
+	// // 	((unsigned char *)row.texture)[0],
+	// // 	((unsigned char *)row.texture)[1],
+	// // 	((unsigned char *)row.texture)[2]
+	// // );
+	// // exit(0);
+	// row.len = 3;
+
+	// bresenham_plot(vFirst, vLast, &game.screen_handle.frame_data, row);
+	// mlx_put_image_to_window(
+	// 	game.screen_handle.mlx,
+	// 	game.screen_handle.window,
+	// 	game.screen_handle.frame_data.img,
+	// 	0, 0
 	// );
-	// exit(0);
-	row.len = 3;
+	// free(row.texture);
+	// mlx_loop(game.screen_handle.mlx);
+//**************************************************************************************************************************************
 
-	bresenham_plot(vFirst, vLast, &game.screen_handle.frame_data, row);
+	//*********************************		BICUBIC TESTING		**************************************************
+	t_data	texture_data;
+	int		texture_width;
+	int		texture_height;
+
+	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/bosprite.xpm", &texture_width, &texture_height);
+	texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
+
+
+	// printf(BOLDGREEN "texture width: %d, texture height: %d\n" RESET, texture_width, texture_height);
+	// exit(0);
+	t_2d_point	mapped;
+	const float	scaling_factor = (float)texture_width / SCREEN_WIDTH;
+	for (int i = 0; i < SCREEN_HEIGHT; i++)
+	for (int j = 0; j < SCREEN_WIDTH; j++)
+	{
+		mapped.x = (float)j * scaling_factor;
+		mapped.y = (float)i * scaling_factor;
+		printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
+		ft_put_mlxpx_to_image(
+			&game.screen_handle.frame_data,
+			ft_get_pixel_offset(game.screen_handle.frame_data, (t_int_2d_point){j, i}),
+			bicubic_interpolation(&texture_data, texture_width, mapped)
+		);
+	}
 	mlx_put_image_to_window(
-		game.screen_handle.mlx,
-		game.screen_handle.window,
-		game.screen_handle.frame_data.img,
-		0, 0
-	);
-	free(row.texture);
+		game.screen_handle.mlx, game.screen_handle.window,
+		game.screen_handle.frame_data.img, 0, 0);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

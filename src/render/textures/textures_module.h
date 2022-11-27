@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:47:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/26 14:57:54 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:53:10 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
  * @param position 
  * @return int 
  */
-int	bicubic_interpolation(const t_data *img_data, t_2d_point position);
+int	bicubic_interpolation(
+		const t_data *texture_data,
+		const int texture_size,
+		t_2d_point mapped
+	);
 
 #endif

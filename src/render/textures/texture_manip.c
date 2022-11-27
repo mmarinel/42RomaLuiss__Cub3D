@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_types.h                                    :+:      :+:    :+:   */
+/*   texture_manip.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 16:33:02 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 12:21:00 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/11/27 12:05:06 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/11/27 14:28:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_TYPES_H
-# define TEXTURE_TYPES_H
+#include "textures.h"
 
-# include "../../types.h"
-
-typedef enum e_clip_opcode
+t_px	get_texture_px(t_int_2d_point coordinate, const t_data *texture_data)
 {
-	e_BCB_CLIPPER_INITIALIZE,
-	e_BCB_CLIPPER_GET,
-}	t_clip_opcode;
+	const size_t	offset = ft_get_pixel_offset(*texture_data, coordinate);
+	const char		*byte_ptr = texture_data->addr + offset;
+	t_px	px;
 
-typedef struct s_px
-{
-	int				rgb;
-}	t_px;
-
-typedef struct s_px_row 
-{
-	t_px	c0;
-	t_px	c1;
-	t_px	c2;
-	t_px	c3;
-}	t_px_row;
-
-#endif
+	if (offset >= (size_t) 512 * texture_data->line_length || offset < 0)
+		px.rgb = 255 + (255 << 8) + (255 << 16);
+	else
+		px.rgb = *(unsigned int *)byte_ptr;
+	return (px);
+}

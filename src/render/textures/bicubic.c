@@ -6,123 +6,98 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:58:07 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/26 16:46:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 13:10:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "textures.h"
 
-static int				row_interpolation(
-							int row_index,
-							int col[4],
-							int x,
-							const t_data *img_data
-						);
-static int				get_texture_px(int x, int y, const t_data *img_data);
-static int				bc_clip(int coordinate, int max_size);
+static int				bicubic(const t_data *texture_data, t_2d_point mapped);
 static t_px_row			next_row(
-									int row_index,
-									t_2d_point position,
-									const int texture_size
+									int row,
+									t_2d_point mapped,
+									const t_data *texture_data
 								);
+// static t_px_row			new_px_row()
 //*		end of static declaration
 
 int	bicubic_interpolation(
-		const t_data *img_data,
+		const t_data *texture_data,
 		const int texture_size,
-		t_2d_point position
+		t_2d_point mapped
 	)
 {
-	const t_px_row	row_0[4] = next_row(0, position, texture_size);
-	const t_px_row	row_1[4] = next_row(1, position, texture_size);
-	const t_px_row	row_2[4] = next_row(2, position, texture_size);
-	const t_px_row	row_3[4] = next_row(3, position, texture_size);
+	bcb_clipper(e_BCB_CLIPPER_INITIALIZE, texture_size);
+	return (bicubic(texture_data, mapped));
+}
 
-	bicubic(
-		bicubic(row_0, position.x),
-		bicubic(row_1, position.x),
-		bicubic(row_2, position.x),
-		bicubic(row_3, position.x),
-		position.y
+static int	bicubic(const t_data *texture_data, t_2d_point mapped)
+{
+	const t_px_row	row_0 = next_row(
+		bcb_clip(floor(mapped.y - 1)),
+		mapped, texture_data
+	);
+	const t_px_row	row_1 = next_row(
+		bcb_clip(floor(mapped.y)),
+		mapped, texture_data
+	);
+	const t_px_row	row_2 = next_row(
+		bcb_clip(ceil(mapped.y)),
+		mapped, texture_data
+	);
+	const t_px_row	row_3 = next_row(
+		bcb_clip(ceil(mapped.y + 1)),
+		mapped, texture_data
+	);
+
+	return (
+		cubic_interpolation(
+			(t_px_row){
+				(t_px){cubic_interpolation(row_0, mapped.x - floor(mapped.x))},
+				(t_px){cubic_interpolation(row_1, mapped.x - floor(mapped.x))},
+				(t_px){cubic_interpolation(row_2, mapped.x - floor(mapped.x))},
+				(t_px){cubic_interpolation(row_3, mapped.x - floor(mapped.x))},
+			},
+			mapped.y - floor(mapped.y)
+		)
 	);
 }
-
-static int	row_interpolation(
-	int row_index,
-	int col[4],
-	int x,
-	const t_data *img_data
-)
-{
-	int		px[4] = {
-		get_texture_px(col[0], row_index, img_data),
-		get_texture_px(col[1], row_index, img_data),
-		get_texture_px(col[2], row_index, img_data),
-		get_texture_px(col[3], row_index, img_data),
-	};
-	char	*byte_ptr;
-
-	byte_ptr = img_data->addr + ft_get_pixel_offset(*img_data, ft_get_new_int_2dpt(col[0], row_index));
-	int	pixel = *(unsigned int *)byte_ptr;
-}
-
-static int	get_texture_px(int x, int y, const t_data *img_data)
-{
-}
-
-static int	bc_clip(int coordinate, int max_size)
-{
-	if (coordinate < 0)
-		return (0);
-	if (coordinate > max_size)
-		return (max_size - 1);
-}
-
 
 /**
  * @brief this function returns the next pixel row.
  * 
- * @param row_index 
- * @param position 
+ * @param row 
+ * @param mapped 
  * @param texture_size 
  * @return t_px_row 
  */
 static t_px_row	next_row(
-							int row_index,
-							t_2d_point position,
-							const int texture_size
+							int row,
+							t_2d_point mapped,
+							const t_data *texture_data
 						)
 {
-	const t_int_2d_point c0
+	const t_int_2d_point p_row_of0_idx
 			= ft_get_new_int_2dpt(
-				bc_clip(position.x - 1, texture_size),
-				bc_clip(row_index, texture_size)
+				bcb_clip(floor(mapped.x - 1)),
+				bcb_clip(row)
 			);
-	const t_int_2d_point c1
+	const t_int_2d_point p_row_of1_idx
+			= ft_get_new_int_2dpt(floor(mapped.x), row);
+	const t_int_2d_point p_row_of2_idx
+			= ft_get_new_int_2dpt(ceil(mapped.x), row);
+	const t_int_2d_point p_row_of3_idx
 			= ft_get_new_int_2dpt(
-				bc_clip(position.x, texture_size),
-				bc_clip(row_index, texture_size)
+				bcb_clip(ceil(mapped.x + 1)),
+				bcb_clip(row)
 			);
-	const t_int_2d_point c2
-			= ft_get_new_int_2dpt(
-				bc_clip(position.x + 1, texture_size),
-				bc_clip(row_index, texture_size)
-			);
-	const t_int_2d_point c3
-			= ft_get_new_int_2dpt(
-				bc_clip(position.x + 2, texture_size),
-				bc_clip(row_index, texture_size)
-			);
-	return ((t_px_row){c0, c1, c2, c3});
+
+	return (
+		(t_px_row){
+			get_texture_px(p_row_of0_idx, texture_data),
+			get_texture_px(p_row_of1_idx, texture_data),
+			get_texture_px(p_row_of2_idx, texture_data),
+			get_texture_px(p_row_of3_idx, texture_data)
+		}
+	);
 }
-
-
-
-
-
-
-
-
-
-
-

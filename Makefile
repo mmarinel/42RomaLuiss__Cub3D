@@ -13,10 +13,12 @@
 INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
+./src/init/game_init_module.h\
 ./src/map_validation/map_validation_module.h\
 ./src/raycast/raycast_module.h\
 ./src/render/line_drawing/line_drawing_module.h\
 ./src/render/render_module.h\
+./src/render/textures/textures_module.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
@@ -24,6 +26,8 @@ INCLUDES=\
 ./src/utils/map/map_utils_module.h\
 ./src/utils/render/render_module.h\
 ./src/utils/utils_module.h\
+./src/init/game_init.h\
+./src/init/game_init_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
 ./src/raycast/raycast.h\
@@ -35,6 +39,9 @@ INCLUDES=\
 ./src/render/line_drawing/line_drawing.h\
 ./src/render/line_drawing/line_drawing_module.h\
 ./src/render/line_drawing/line_drawing_types.h\
+./src/render/textures/texture_types.h\
+./src/render/textures/textures.h\
+./src/render/textures/textures_module.h\
 ./src/utils/utils_module.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
@@ -48,6 +55,7 @@ INCLUDES=\
 
 SRC_NOPREFIX=\
 ./src/main.c\
+./src/init/game_initialization.c\
 ./src/map_validation/map_attributes.c\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
@@ -62,6 +70,11 @@ SRC_NOPREFIX=\
 ./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bres_logic.c\
 ./src/render/line_drawing/bresenham.c\
+./src/render/textures/bicubic.c\
+./src/render/textures/cubic_interpolation.c\
+./src/render/textures/interp_init.c\
+./src/render/textures/texture_manip.c\
+./src/render/textures/texture_types_ops.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/game/geometry.c\

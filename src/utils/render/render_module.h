@@ -6,17 +6,18 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 16:57:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:56:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#ifndef UTILS_RENDER_MODULE_H
+# define UTILS_RENDER_MODULE_H
 
 # include "render_types.h"
 
 //*		mlx_utils
 void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color);
+void	ft_put_mlxpx_to_image(t_data *img_data, size_t px_offset, int color);
 size_t	ft_get_pixel_offset(const t_data img_data, t_int_2d_point pt);
 
 //*		color
