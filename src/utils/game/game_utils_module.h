@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 14:57:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:26:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ t_2d_point		ft_get_new_2dpt(float x, float y);
 
 //*		game memory management
 // void			ft_game_init( t_game *game_ref, size_t width, size_t height );
+
+//*		debug
+void			t_2d_point_print(const t_2d_point *pt, const char *msg);
 
 #endif

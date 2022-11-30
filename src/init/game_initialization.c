@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:58:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:43:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ t_bool	ft_game_init(
 			ok = e_false;
 		else
 		{
-			game_ref->player_dir = get_initial_dir(game_ref->map_handle.player_initial_dir);
-			game_ref->player_pos = game_ref->map_handle.player_initial_pos;
-			game_ref->screen_handle.textures_size = TEXTURES_SIZE;// load_textures();
+			// game_ref->player_dir = get_initial_dir(game_ref->map_handle.player_initial_dir);
+			// game_ref->camera_plane = ft_rotate(game_ref->player_dir, M_PI / 2);
+			// game_ref->player_pos = game_ref->map_handle.player_initial_pos;
 			game_set_vectors(game_ref);
+			game_ref->screen_handle.textures_size = TEXTURES_SIZE;// load_textures();
+			t_2d_point_print(&game_ref->player_dir, "player_dir");
+			t_2d_point_print(&game_ref->camera_plane, "cmaera_plane");
+			t_2d_point_print(&game_ref->player_pos, "player_pos");
+			// exit(0);
 		}
 	}
 	else
@@ -124,15 +129,35 @@ static void	game_set_mlx( t_game *game_ref, size_t width, size_t height )
 
 static void	game_set_vectors( t_game *game_ref )
 {
-	if (game_ref->map_handle.player_initial_pos.x >= 0
-		&& game_ref->map_handle.player_initial_pos.y >= 0)
+	const t_tile	player_init_dir = game_ref->map_handle.player_initial_dir;
+	t_tile **const	map = game_ref->map_handle.map;
+	size_t			row;
+	size_t			col;
+
+	initial_dir_vectors(
+		game_ref->map_handle.player_initial_dir,
+		&game_ref->player_dir, &game_ref->camera_plane
+	);
+	game_ref->camera_plane = ft_rotate(game_ref->player_dir, M_PI / 2);
+	row = 0;
+	while (row < game_ref->map_handle.rows)
 	{
-		game_ref->player_pos = game_ref->map_handle.player_initial_pos;
-		initial_dir_vectors(
-			game_ref->map_handle.player_initial_dir,
-			&game_ref->player_dir, &game_ref->camera_plane
-		);
+		col = 0;
+		while (col < game_ref->map_handle.columns)
+		{
+			printf("%c ", map[row][col]);
+			if (player_init_dir == map[row][col])
+			{
+				game_ref->player_pos.y = row;
+				game_ref->player_pos.x = col;
+				break ;
+			}
+			col += 1;
+		}
+		printf("\n");
+		row += 1;
 	}
+	printf("\n");
 }
 
 static void	initial_dir_vectors(
@@ -140,28 +165,18 @@ static void	initial_dir_vectors(
 				t_2d_point *player_dir, t_2d_point *camera_plane
 			)
 {
-	const float	scale_factor = tan(FOV / 2);
+	// const float	scale_factor = tan(FOV / 2);
+	(void)camera_plane;
+	(void)get_initial_dir;
 
 	if (e_PLAYER_N == inital_dir)
-	{
-		*player_dir = ft_get_new_2dpt(0, -1);
-		*camera_plane = ft_get_new_2dpt(-1 * scale_factor, 0 * scale_factor);
-	}
+		*player_dir = ft_get_new_2dpt(0, +1);
 	else if (e_PLAYER_S == inital_dir)
-	{
-		*player_dir = ft_get_new_2dpt(0, 1);
-		*camera_plane = ft_get_new_2dpt(1 * scale_factor, 0 * scale_factor);
-	}
-	else if (e_PLAYER_E == inital_dir)
-	{
-		*player_dir = ft_get_new_2dpt(1, 0);
-		*camera_plane = ft_get_new_2dpt(0 * scale_factor, -1 * scale_factor);
-	}
+		*player_dir = ft_get_new_2dpt(0, -1);
 	else if (e_PLAYER_W == inital_dir)
-	{
+		*player_dir = ft_get_new_2dpt(+1, 0);
+	else if (e_PLAYER_E == inital_dir)
 		*player_dir = ft_get_new_2dpt(-1, 0);
-		*camera_plane = ft_get_new_2dpt(0 * scale_factor, 1 * scale_factor);
-	}
 	else
 		return;
 }

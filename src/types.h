@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/26 15:12:41 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:34:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef enum e_tile
 	e_PLAYER_W = 'W',
 	e_FLOOR = '0',
 	e_WALL = '1',
-	e_EMPTY
+	e_EMPTY = '?',
 }	t_tile;
 
 typedef struct s_map_holder

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:43:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:57:44 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_set_hp(
 			= flt_round(
 				game->player_pos.x
 				+ (rc_data->ray_dir.x * rc_ret->euclidean_dist),
-				4
+				FLT_PRECISION
 			);
 	}
 	{
@@ -67,7 +67,7 @@ void	ft_set_hp(
 			= flt_round(
 				game->player_pos.y
 				+ (rc_data->ray_dir.y * rc_ret->euclidean_dist),
-				4
+				FLT_PRECISION
 			);
 	}
 	rc_ret->square.x = rc_data->cur_sq_x;

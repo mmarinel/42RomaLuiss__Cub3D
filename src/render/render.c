@@ -6,14 +6,18 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:56:53 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:01:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
 static void			draw_background(t_game *g);
-static void			render_column(t_game *g, t_raycast_return rc_return);
+static void			render_column(
+						size_t column,
+						t_game *g,
+						t_raycast_return rc_return
+					);
 static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // static t_render_data			render_fetch_data(t_game *g,
 // 									float cur_ray_angle);
@@ -46,18 +50,32 @@ void	render_next_frame(t_game *g)
 	while (col < g->screen_handle.width)
 	{
 		rc_return = raycast(g, ray_dir_for_col(col, g));
-		render_column(g, rc_return);
+		render_column(col, g, rc_return);
 		col++;
 	}
 }
 
-static void	render_column(t_game *g, t_raycast_return rc_return)
+static void	render_column(
+	size_t column,
+	t_game *g,
+	t_raycast_return rc_return
+)
 {
 	const size_t	wall_size = floor(
-		g->screen_handle.textures_size
-		* ((float)1 / pow(rc_return.perp_dist, 2))
+		g->screen_handle.height
+		* ((float)1 / (2 * pow(rc_return.perp_dist, 1)))
 	);
-	(void)rc_return;
+	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
+	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
+	static	int	status = 0;
+	const t_color			test1 = (t_color){61, 44, 43, 1};
+	const t_color			test2 = (t_color){79, 74, 74, 1};
+
+	if (status)
+		bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test1);
+	else
+		bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test2);
+	status = !status;
 	printf("wll: %zu ", wall_size);
 }
 

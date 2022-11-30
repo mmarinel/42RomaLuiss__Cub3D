@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 11:58:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:00:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 900
-# define SCREEN_HEIGHT 900
+# define SCREEN_WIDTH 1240
+# define SCREEN_HEIGHT 760
 
 # include "colors.h"
 # include "types.h"
@@ -158,11 +158,11 @@ int main(int argc, char const *argv[])
 	// mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 
-	game.player_pos = ft_get_new_2dpt(4.12, 2.41);
-	printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
+	//*						game.player_pos = ft_get_new_2dpt(4.12, 2.41);
+	//*						printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
 	// exit(0);
-	game.player_dir = ft_get_new_2dpt(0, 1);
-	game.camera_plane = ft_get_new_2dpt(1, 0);
+	//*						game.player_dir = ft_get_new_2dpt(0, 1);
+	//*						game.camera_plane = ft_get_new_2dpt(1, 0);
 	// ft_print_ray_result(raycast(&game, 0.78539816339));
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));
 	render_next_frame(&game);

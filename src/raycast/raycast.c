@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:27:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:29:06 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray_dir)
 	int					cur_sq_y;
 
 	raycast_data = ft_ray_data_init(game, ray_dir);
-	// ft_print_raycast_data(raycast_data);
+	ft_print_raycast_data(raycast_data);
 	hit = e_false;
 	while (e_false == hit)
 	{
@@ -56,7 +56,7 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray_dir)
 static void	ft_walk_through_nhp(t_raycast_data *rc_data)
 {
 	printf(GREEN "iter\n" RESET);
-	// ft_print_raycast_data(*rc_data);
+	ft_print_raycast_data(*rc_data);
 	if (rc_data->dist_nhp_through_x < rc_data->dist_nhp_through_y)
 	{
 		rc_data->cur_sq_x = rc_data->cur_sq_x + rc_data->step_x;
@@ -69,5 +69,5 @@ static void	ft_walk_through_nhp(t_raycast_data *rc_data)
 		rc_data->dist_nhp_through_y += rc_data->delta_y;
 		rc_data->side = e_HORIZONTAL;
 	}
-	// ft_print_raycast_data(*rc_data);
+	ft_print_raycast_data(*rc_data);
 }
