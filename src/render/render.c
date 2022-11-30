@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 17:01:13 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:05:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static void	render_column(
 	t_raycast_return rc_return
 )
 {
-	const size_t	wall_size = floor(
-		g->screen_handle.height
-		* ((float)1 / (2 * pow(rc_return.perp_dist, 1)))
-	);
+	const size_t			wall_size = floor(
+				g->screen_handle.height
+				* ((float)1 / (2 * pow(rc_return.perp_dist, 1)))
+			);
 	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
 	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
 	static	int	status = 0;
@@ -126,7 +126,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 	//*		makign ray a magnitude 1 vector (versor)
 	magnitude = ft_vec_norm(ray);
 	ray.x = ray.x / magnitude;
-	ray.x = ray.y / magnitude;
+	ray.y = ray.y / magnitude;
 	return (ray);
 }
 //*																				
