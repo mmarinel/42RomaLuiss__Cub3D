@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 20:17:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:58:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,36 +158,45 @@ int main(int argc, char const *argv[])
 	// mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 
-	//*********************************		BICUBIC TESTING		**************************************************
-	t_data	texture_data;
-	int		texture_width;
-	int		texture_height;
-
-	texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &texture_width, &texture_height);
-	texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
-
-
-	// printf(BOLDGREEN "texture width: %d, texture height: %d\n" RESET, texture_width, texture_height);
+	game.player_pos = ft_get_new_2dpt(4.12, 2.41);
+	printf(CYAN"player? %c\n"RESET, game.map_handle.map[2][4]);
 	// exit(0);
-	t_2d_point	mapped;
-	const float	scaling_factor = (float)texture_width / SCREEN_WIDTH;
-	for (int i = 0; i < SCREEN_HEIGHT; i++)
-	for (int j = 0; j < SCREEN_WIDTH; j++)
-	{
-		mapped.x = (float)j * scaling_factor;
-		mapped.y = (float)i * scaling_factor;
-		// printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
-		ft_put_mlxpx_to_image(
-			&game.screen_handle.frame_data,
-			ft_get_pixel_offset(game.screen_handle.frame_data, (t_int_2d_point){j, i}),
-			bicubic_interpolation(&texture_data, texture_width, mapped)
-		);
-	}
+	game.player_dir = ft_get_new_2dpt(0, 1);
+	game.camera_plane = ft_get_new_2dpt(1, 0);
+	// ft_print_ray_result(raycast(&game, 0.78539816339));
+	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));
+	render_next_frame(&game);
+	//*********************************		BICUBIC TESTING		**************************************************
+	(void)key_hook;
+	// t_data	texture_data;
+	// int		texture_width;
+	// int		texture_height;
+
+	// texture_data.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &texture_width, &texture_height);
+	// texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
+
+
+	// // printf(BOLDGREEN "texture width: %d, texture height: %d\n" RESET, texture_width, texture_height);
+	// // exit(0);
+	// t_2d_point	mapped;
+	// const float	scaling_factor = (float)texture_width / SCREEN_WIDTH;
+	// for (int i = 0; i < SCREEN_HEIGHT; i++)
+	// for (int j = 0; j < SCREEN_WIDTH; j++)
+	// {
+	// 	mapped.x = (float)j * scaling_factor;
+	// 	mapped.y = (float)i * scaling_factor;
+	// 	// printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
+	// 	ft_put_mlxpx_to_image(
+	// 		&game.screen_handle.frame_data,
+	// 		ft_get_pixel_offset(game.screen_handle.frame_data, (t_int_2d_point){j, i}),
+	// 		bicubic_interpolation(&texture_data, texture_width, mapped)
+	// 	);
+	// }
 	mlx_put_image_to_window(
 		game.screen_handle.mlx, game.screen_handle.window,
 		game.screen_handle.frame_data.img,
 		0, 0);
-	mlx_key_hook(game.screen_handle.window, key_hook, &game);
+	// mlx_key_hook(game.screen_handle.window, key_hook, &game);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 

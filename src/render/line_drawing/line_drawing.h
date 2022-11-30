@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:33:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 15:49:16 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 10:33:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ t_bres_line_type	bres_get_type(t_int_2d_point vfirst, t_int_2d_point vlast,
 						const size_t norm_delta_x, const size_t norm_delta_y);
 int					bres_update_decision_var(t_bres_line_type bres_type, int d_k,
 						const size_t delta_x, const size_t delta_y);
-t_px_row			bres_put_next_px(t_data *img_data, t_int_2d_point cur_point,
-						t_px_row *row);
+void				bres_put_next_px(
+						t_data *img_data, t_int_2d_point cur_point,
+						t_color color
+					);
 t_bool				bres_eol(t_int_2d_point cur_point, t_int_2d_point vlast,
 						t_bres_line_type bres_type);
 int					bres_decision_var_initial(

@@ -6,14 +6,15 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 12:19:14 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:56:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-//*							DECOMMENTARE					static void			render_column(t_raycast_return rc_return);
-//*																static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
+static void			draw_background(t_game *g);
+static void			render_column(t_game *g, t_raycast_return rc_return);
+static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // static t_render_data			render_fetch_data(t_game *g,
 // 									float cur_ray_angle);
 // static t_wall_camera_incidence	wall_camera_incidence(
@@ -32,35 +33,84 @@
 //*																			
 //*									DECOMMENTARE 						
 //*																			
-// void	render_next_frame(t_game *g)
-// {
-// 	size_t				col;
-// 	t_raycast_return	rc_return;
+void	render_next_frame(t_game *g)
+{
+	size_t				col;
+	t_raycast_return	rc_return;
 
-// 	draw_background(g);
-// 	// draw_sun(g);
-// 	col = 0;
-// 	while (col < g->screen_handle.width)
-// 	{
-// 		rc_return = raycast(g, ray_dir_for_col(col, g));
-// 		render_column(rc_return);
-// 		col++;
-// 	}
-// }
+	(void)render_column;
+	(void)ray_dir_for_col;
+	draw_background(g);
+	// draw_sun(g);
+	col = 0;
+	while (col < g->screen_handle.width)
+	{
+		rc_return = raycast(g, ray_dir_for_col(col, g));
+		render_column(g, rc_return);
+		col++;
+	}
+}
 
-// static void	render_column(t_raycast_return rc_return)
-// {
-// }
+static void	render_column(t_game *g, t_raycast_return rc_return)
+{
+	const size_t	wall_size = floor(
+		g->screen_handle.textures_size
+		* ((float)1 / pow(rc_return.perp_dist, 2))
+	);
+	(void)rc_return;
+	printf("wll: %zu ", wall_size);
+}
 
-// static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
-// {
-// 	const int	dilatation_factor = 2 * (col / g->screen_handle.width) - 1;
-// 	t_2d_point	ray;
+static void	print_color(t_color color, const char *msg)
+{
+	printf(YELLOW "%s: (R=%d G=%d B=%d)\n" RESET, msg, color.red, color.green, color.blue);
+}
 
-// 	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
-// 	ray.y = g->player_dir.y + dilatation_factor * g->camera_plane.y;
-// 	return (ray);
-// }
+static void			draw_background(t_game *g)
+{
+	const size_t	horizon = floor((float)g->screen_handle.height / 2);
+	t_int_2d_point	start;
+	t_int_2d_point	end;
+	t_color			color;
+
+	{
+		print_color(g->map_handle.c_color, "ceiling");
+		print_color(g->map_handle.f_color, "floor");
+		printf("horizon is at:  %zu\n", horizon);
+	}
+	start = (t_int_2d_point){0, 0};
+	end = (t_int_2d_point){g->screen_handle.width - 1, 0};
+	color = g->map_handle.c_color;
+	while (start.y < (int)g->screen_handle.height)
+	{
+		if (start.y == (int)horizon)
+		{
+			color = g->map_handle.f_color;
+			printf(GREEN "HERE\n" RESET);
+		}
+		bresenham_plot(start, end,
+			&g->screen_handle.frame_data, color);
+		start.y += 1;
+		end.y += 1;
+	}
+}
+
+static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
+{
+	const float	dilatation_factor
+		= 2 * ((float)col / g->screen_handle.width) - 1;
+	t_2d_point	ray;
+	float		magnitude;
+
+	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
+	ray.y = g->player_dir.y + dilatation_factor * g->camera_plane.y;
+
+	//*		makign ray a magnitude 1 vector (versor)
+	magnitude = ft_vec_norm(ray);
+	ray.x = ray.x / magnitude;
+	ray.x = ray.y / magnitude;
+	return (ray);
+}
 //*																				
 //*										NON DECOMMENTARE						
 //*																				

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 12:52:40 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:45:10 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_raycast_data	ft_ray_data_init(t_game *game, t_2d_point ray_dir)
 {
 	t_raycast_data	rc_data = (t_raycast_data) {
 		ray_dir,
-		1 / ft_flt_abs(ray_dir.x),
-		1 / ft_flt_abs(ray_dir.y),
+		(float)1 / ft_flt_abs(ray_dir.x),
+		(float)1 / ft_flt_abs(ray_dir.y),
 		ft_ray_step_size(ray_dir.x),
 		ft_ray_step_size(ray_dir.y),
 		(int) (game->player_pos.x),//(ray_dir.x + game->player_pos.x),//*	Explanation--see notes Matteo Notability

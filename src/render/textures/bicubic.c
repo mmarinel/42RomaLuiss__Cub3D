@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:58:07 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 20:16:35 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 09:49:12 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,38 @@ int	bicubic_interpolation(
 
 static int	bicubic(const t_data *texture_data, t_2d_point mapped)
 {
-	const t_px_row	row_0 = next_row(
-		bcb_clip(floor(mapped.y - 1)),
-		mapped, texture_data
-	);
-	const t_px_row	row_1 = next_row(
-		bcb_clip(floor(mapped.y)),
-		mapped, texture_data
-	);
-	const t_px_row	row_2 = next_row(
-		bcb_clip(ceil(mapped.y)),
-		mapped, texture_data
-	);
-	const t_px_row	row_3 = next_row(
-		bcb_clip(ceil(mapped.y + 1)),
-		mapped, texture_data
-	);
+	// const t_px_row	row_0 = next_row(
+	// 	bcb_clip(floor(mapped.y - 1)),
+	// 	mapped, texture_data
+	// );
+	// const t_px_row	row_1 = next_row(
+	// 	bcb_clip(floor(mapped.y)),
+	// 	mapped, texture_data
+	// );
+	// const t_px_row	row_2 = next_row(
+	// 	bcb_clip(ceil(mapped.y)),
+	// 	mapped, texture_data
+	// );
+	// const t_px_row	row_3 = next_row(
+	// 	bcb_clip(ceil(mapped.y + 1)),
+	// 	mapped, texture_data
+	// );
 
 	(void)next_row;
 	(void)linear;
-	(void)row_0;
-	(void)row_1;
-	(void)row_2;
-	(void)row_3;
+	// (void)row_0;
+	// (void)row_1;
+	// (void)row_2;
+	// (void)row_3;
 	//*								NEAREST NEIGHBOUR
 	return (
-		get_texture_px( (t_int_2d_point){bcb_clip(roundf(mapped.x)), bcb_clip(roundf(mapped.y))}, texture_data).rgb
+		get_texture_px(
+			ft_get_new_int_2dpt(
+				bcb_clip(roundf(mapped.x)),
+				bcb_clip(roundf(mapped.y))
+			),
+			texture_data
+		).rgb
 	);
 	//*								BILINEAR
 	// return (
@@ -98,7 +104,7 @@ static int	bicubic(const t_data *texture_data, t_2d_point mapped)
 	// 		mapped.y - floor(mapped.y)
 	// 	)
 	// );
-	//*			BICUBIC
+	//*			BICUBIC		e' sbagliata perché cubic NON torna un float. Cosi' come é ora degrada a nearest neighbour
 	// return (
 	// 	cubic_interpolation(
 	// 		(t_px_row){

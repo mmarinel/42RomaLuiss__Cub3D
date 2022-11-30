@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/19 23:28:42 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:04:27 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ static void	parse_rgb_field( t_map_holder *map_handle,
 	t_color	*color_field;
 
 	if (is_floor_color_id(id))
-		color_field = &map_handle->c_color;
-	else
 		color_field = &map_handle->f_color;
+	else
+		color_field = &map_handle->c_color;
 	splitted = ft_split(rgb_string, ',');
 	if (ft_splitlen(splitted) != 3)
 		*err_flag = e_true;
@@ -117,7 +117,10 @@ static void	parse_rgb_item( int *item_ref, const char *channel,
 				t_bool *err_flag )
 {
 	if (ft_isdigit_string(channel))
+	{
 		*item_ref = ft_atoi(channel);
+		// printf(YELLOW"rgb component is %d\n"RESET, *item_ref);
+	}
 	else
 	{
 		*item_ref = -1;
