@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 12:20:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:12:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ float	ft_vec_norm(t_2d_point vector)
 	return (sqrtf(ft_dot_product(vector, vector)));
 }
 
+t_2d_point	ft_vec_normalize(t_2d_point vec)
+{
+	return (ft_change_magnitude(vec, 1.0f));
+}
+
+t_2d_point	ft_vec_opposite(t_2d_point vector)
+{
+	t_2d_point	opposite;
+
+	opposite.x = (-1) * vector.x;
+	opposite.y = (-1) * vector.y;
+	return (opposite);
+}
+
 t_2d_point	ft_vec_sum(t_2d_point v1, t_2d_point v2)
 {
 	t_2d_point	sum;
@@ -64,11 +78,21 @@ t_2d_point	ft_vec_diff(t_2d_point v1, t_2d_point v2)
 	return (ft_vec_sum(v1, ft_vec_opposite(v2)));
 }
 
-t_2d_point	ft_vec_opposite(t_2d_point vector)
+t_2d_point	ft_vec_prod(t_2d_point vec, float lambda)
 {
-	t_2d_point	opposite;
+	t_2d_point	prod;
 
-	opposite.x = (-1) * vector.x;
-	opposite.y = (-1) * vector.y;
-	return (opposite);
+	prod.x = vec.x * lambda;
+	prod.y = vec.y * lambda;
+	return (prod);
+}
+
+t_2d_point	ft_change_magnitude(t_2d_point vec, float new_magnitude)
+{
+	const float	lambda = flt_round(
+		new_magnitude / ft_vec_norm(vec),
+		FLT_PRECISION
+	);
+
+	return (ft_vec_prod(vec, lambda));
 }

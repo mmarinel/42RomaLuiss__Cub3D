@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 12:53:06 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:39:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ t_bool	is_floor(t_game *g, t_2d_point pt)
 
 	normalized.x = floor(pt.x);
 	normalized.y = floor(pt.y);
-	return (e_FLOOR == g->map_handle.map[normalized.y][normalized.x]);
+	return (e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_W == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_E == g->map_handle.map[normalized.y][normalized.x]
+		);
 }
 
 int	key_hook(int key_code, t_game *game)

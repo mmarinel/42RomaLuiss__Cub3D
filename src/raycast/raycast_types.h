@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_cast_types.h                                   :+:      :+:    :+:   */
+/*   raycast_types.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 11:13:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:18:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_raycast_return
 
 typedef struct s_raycast_data
 {
+	t_2d_point	ray;
 	t_2d_point	ray_dir;
 	float		delta_x;
 	float		delta_y;

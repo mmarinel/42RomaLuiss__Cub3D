@@ -6,15 +6,18 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 11:45:10 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:19:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-t_raycast_data	ft_ray_data_init(t_game *game, t_2d_point ray_dir)
+t_raycast_data	ft_ray_data_init(
+	t_game *game, t_2d_point ray, t_2d_point ray_dir
+	)
 {
 	t_raycast_data	rc_data = (t_raycast_data) {
+		ray,
 		ray_dir,
 		(float)1 / ft_flt_abs(ray_dir.x),
 		(float)1 / ft_flt_abs(ray_dir.y),

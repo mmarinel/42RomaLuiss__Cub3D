@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:58:54 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:36:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # define TEXTURES_SIZE 64
 
 //*		66º
-# define FOV ( (11 / 30) * M_PI )
+# define FOV ( (11.0f / 30.0f) * M_PI )
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 12:57:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:41:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 static void	game_set_map( t_game *game_ref );
 static void	game_set_mlx( t_game *game_ref, size_t width, size_t height );
-static void	game_set_vectors( t_game *game_ref );
+static void	game_set_inital_vectors( t_game *game_ref );
 static void	initial_dir_vectors(
 				t_tile inital_dir,
 				t_2d_point *player_dir, t_2d_point *camera_plane
 			);
 //*		end of static declarations
 
-static t_2d_point	get_initial_dir(t_tile dir)
-{
-	t_2d_point	pt;
+// static t_2d_point	get_initial_dir(t_tile dir)
+// {
+// 	t_2d_point	pt;
 
-	if (e_PLAYER_N == dir)
-	{
-		pt.x = 0;
-		pt.y = 1;
-	}
-	if (e_PLAYER_S == dir)
-	{
-		pt.x = 0;
-		pt.y = -1;
-	}
-	if (e_PLAYER_W == dir)
-	{
-		pt.x = 1;
-		pt.y = 0;
-	}
-	if (e_PLAYER_E == dir)
-	{
-		pt.x = -1;
-		pt.y = 0;
-	}
-	return (pt);
-}
+// 	if (e_PLAYER_N == dir)
+// 	{
+// 		pt.x = 0;
+// 		pt.y = 1;
+// 	}
+// 	if (e_PLAYER_S == dir)
+// 	{
+// 		pt.x = 0;
+// 		pt.y = -1;
+// 	}
+// 	if (e_PLAYER_W == dir)
+// 	{
+// 		pt.x = 1;
+// 		pt.y = 0;
+// 	}
+// 	if (e_PLAYER_E == dir)
+// 	{
+// 		pt.x = -1;
+// 		pt.y = 0;
+// 	}
+// 	return (pt);
+// }
 
 t_bool	ft_game_init(
 			const char *path,
@@ -67,7 +67,7 @@ t_bool	ft_game_init(
 			// game_ref->player_dir = get_initial_dir(game_ref->map_handle.player_initial_dir);
 			// game_ref->camera_plane = ft_rotate(game_ref->player_dir, M_PI / 2);
 			// game_ref->player_pos = game_ref->map_handle.player_initial_pos;
-			game_set_vectors(game_ref);
+			game_set_inital_vectors(game_ref);
 			game_ref->screen_handle.textures_size = TEXTURES_SIZE;// load_textures();
 			t_2d_point_print(&game_ref->player_dir, "player_dir");
 			t_2d_point_print(&game_ref->camera_plane, "cmaera_plane");
@@ -127,7 +127,7 @@ static void	game_set_mlx( t_game *game_ref, size_t width, size_t height )
 	mlx_holder_set(&game_ref->screen_handle);
 }
 
-static void	game_set_vectors( t_game *game_ref )
+static void	game_set_inital_vectors( t_game *game_ref )
 {
 	const t_tile	player_init_dir = game_ref->map_handle.player_initial_dir;
 	t_tile **const	map = game_ref->map_handle.map;
@@ -138,7 +138,6 @@ static void	game_set_vectors( t_game *game_ref )
 		game_ref->map_handle.player_initial_dir,
 		&game_ref->player_dir, &game_ref->camera_plane
 	);
-	game_ref->camera_plane = ft_rotate(game_ref->player_dir, M_PI / 2);
 	row = 0;
 	while (row < game_ref->map_handle.rows)
 	{
@@ -165,9 +164,7 @@ static void	initial_dir_vectors(
 				t_2d_point *player_dir, t_2d_point *camera_plane
 			)
 {
-	// const float	scale_factor = tan(FOV / 2);
-	(void)camera_plane;
-	(void)get_initial_dir;
+	const float	scaling_factor = tan(FOV / 2);
 
 	if (e_PLAYER_N == inital_dir)
 		*player_dir = ft_get_new_2dpt(0, +1);
@@ -179,4 +176,10 @@ static void	initial_dir_vectors(
 		*player_dir = ft_get_new_2dpt(-1, 0);
 	else
 		return;
+	*camera_plane = ft_rotate(*player_dir, M_PI / 2);
+	// ft_print_2d_point("CAMERA PLANE", *camera_plane);
+	*camera_plane = ft_change_magnitude(*camera_plane, scaling_factor);
+	// printf(BOLDCYAN RESET)
+	// ft_print_2d_point("CAMERA PLANE", *camera_plane);
+	// printf(BOLDCYAN "tan: %lf" RESET, scaling_factor);
 }
