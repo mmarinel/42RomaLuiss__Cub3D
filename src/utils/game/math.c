@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 12:16:53 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:20:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,28 @@ float	flt_round(float nbr, size_t dec_places)
 float	ft_vec_norm(t_2d_point vector)
 {
 	return (sqrtf(ft_dot_product(vector, vector)));
+}
+
+t_2d_point	ft_vec_sum(t_2d_point v1, t_2d_point v2)
+{
+	t_2d_point	sum;
+
+	sum.x = v1.x + v2.x;
+	sum.y = v1.y + v2.y;
+
+	return (sum);
+}
+
+t_2d_point	ft_vec_diff(t_2d_point v1, t_2d_point v2)
+{
+	return (ft_vec_sum(v1, ft_vec_opposite(v2)));
+}
+
+t_2d_point	ft_vec_opposite(t_2d_point vector)
+{
+	t_2d_point	opposite;
+
+	opposite.x = (-1) * vector.x;
+	opposite.y = (-1) * vector.y;
+	return (opposite);
 }

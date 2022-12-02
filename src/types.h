@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/30 16:34:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:06:35 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef enum e_bool
 	e_false = 0
 }	t_bool;
 # endif
+
+typedef enum e_key
+{
+	e_UP_KEY = 126,
+	e_DOWN_KEY = 125,
+	e_RIGHT_KEY = 124,
+	e_LEFT_KEY = 123,
+}	t_key;
 
 typedef enum e_quadrant
 {

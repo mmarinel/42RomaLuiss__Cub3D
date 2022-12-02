@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 18:05:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:51:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,24 @@ void	render_next_frame(t_game *g)
 	size_t				col;
 	t_raycast_return	rc_return;
 
+	printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
 	(void)render_column;
 	(void)ray_dir_for_col;
-	draw_background(g);
 	// draw_sun(g);
+	mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
+	g->screen_handle.frame_data.img
+		= mlx_new_image(
+			g->screen_handle.mlx,
+			g->screen_handle.width, g->screen_handle.height
+		);
+	g->screen_handle.frame_data.addr = mlx_get_data_addr(
+		g->screen_handle.frame_data.img,
+		&g->screen_handle.frame_data.bits_per_pixel,
+		&g->screen_handle.frame_data.line_length,
+		&g->screen_handle.frame_data.endian
+	);
+	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
+	draw_background(g);
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
@@ -53,6 +67,10 @@ void	render_next_frame(t_game *g)
 		render_column(col, g, rc_return);
 		col++;
 	}
+	mlx_put_image_to_window(
+		g->screen_handle.mlx, g->screen_handle.window,
+		g->screen_handle.frame_data.img,
+		0, 0);
 }
 
 static void	render_column(
@@ -63,7 +81,7 @@ static void	render_column(
 {
 	const size_t			wall_size = floor(
 				g->screen_handle.height
-				* ((float)1 / (2 * pow(rc_return.perp_dist, 1)))
+				* ((float)1 / (1 * pow(rc_return.perp_dist, 2)))
 			);
 	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
 	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
@@ -76,7 +94,7 @@ static void	render_column(
 	else
 		bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test2);
 	status = !status;
-	printf("wll: %zu ", wall_size);
+	// printf("wll: %zu ", wall_size);
 }
 
 static void	print_color(t_color color, const char *msg)

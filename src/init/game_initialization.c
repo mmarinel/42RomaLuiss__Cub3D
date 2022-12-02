@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 16:43:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:57:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,8 @@ static void	game_set_vectors( t_game *game_ref )
 			printf("%c ", map[row][col]);
 			if (player_init_dir == map[row][col])
 			{
-				game_ref->player_pos.y = row;
-				game_ref->player_pos.x = col;
+				game_ref->player_pos.y = row + 0.5f;
+				game_ref->player_pos.x = col + 0.5f;
 				break ;
 			}
 			col += 1;

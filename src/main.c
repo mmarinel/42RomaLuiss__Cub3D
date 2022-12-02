@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 17:00:15 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:53:06 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,54 +29,51 @@
 # include <fcntl.h>
 # include <time.h>
 
+t_bool	is_floor(t_game *g, t_2d_point pt)
+{
+	t_int_2d_point	normalized;
+
+	normalized.x = floor(pt.x);
+	normalized.y = floor(pt.y);
+	return (e_FLOOR == g->map_handle.map[normalized.y][normalized.x]);
+}
+
 int	key_hook(int key_code, t_game *game)
 {
-	static int	status = 0;
-	(void)game;
 	printf(YELLOW"key pressed: %d\n"RESET, key_code);
 
-	if (126 == key_code)
+	if (e_UP_KEY == key_code)
 	{
-		t_data	texture_data;
-		int		texture_width;
-		int		texture_height;
-		int		color;
+		t_2d_point	new_pos;
 
-		if (status)//rand() % 2 == 0)
+		new_pos = ft_vec_sum(game->player_pos, game->player_dir);
+		if (is_floor(game, new_pos))
 		{
-			color = 255 << 8;
-			texture_data.img = mlx_xpm_file_to_image(game->screen_handle.mlx, "img/200bosprite.xpm", &texture_width, &texture_height);
-			texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
+			printf(YELLOW "moving upwards...\n" RESET);
+			game->player_pos = new_pos;
+			render_next_frame(game);
 		}
-		else
-		{
-			color = 255;
-			texture_data.img = mlx_xpm_file_to_image(game->screen_handle.mlx, "img/200doggo.xpm", &texture_width, &texture_height);
-			texture_data.addr = mlx_get_data_addr(texture_data.img, &texture_data.bits_per_pixel, &texture_data.line_length, &texture_data.endian);
-		}
-		
-		status = !status;
-		t_2d_point	mapped;
-		const float	scaling_factor = (float)64 / SCREEN_WIDTH;
-		for (int i = 0; i < SCREEN_HEIGHT; i++)
-		for (int j = 0; j < SCREEN_WIDTH; j++)
-		{
-			mapped.x = (float)j * scaling_factor;
-			mapped.y = (float)i * scaling_factor;
-			// printf(YELLOW "putting image at pos x: %lf, y: %lf\n" BOLDGREEN "texture_size is: %d, scaling factor is: %lf\n" RESET, mapped.x, mapped.y, texture_width, scaling_factor);
-			ft_put_mlxpx_to_image(
-				&game->screen_handle.frame_data,
-				ft_get_pixel_offset(game->screen_handle.frame_data, (t_int_2d_point){j, i}),
-				bicubic_interpolation(&texture_data, texture_width, mapped)
-			);
-		}
-		mlx_clear_window(game->screen_handle.mlx, game->screen_handle.window);
-		mlx_put_image_to_window(
-			game->screen_handle.mlx, game->screen_handle.window,
-			game->screen_handle.frame_data.img,
-			0, 0);
 	}
-
+	if (e_DOWN_KEY == key_code)
+	{
+		t_2d_point	new_pos;
+		
+		new_pos = ft_vec_sum(game->player_pos, ft_vec_opposite(game->player_dir));
+		if (is_floor(game, new_pos))
+		{
+			printf(YELLOW "moving downwards...\n" RESET);
+			game->player_pos = new_pos;
+			render_next_frame(game);
+		}
+	}
+	if (e_RIGHT_KEY == key_code)
+	{
+		//TODO
+	}
+	if (e_LEFT_KEY == key_code)
+	{
+		//TODO
+	}
 	return (0);
 }
 
@@ -196,7 +193,7 @@ int main(int argc, char const *argv[])
 		game.screen_handle.mlx, game.screen_handle.window,
 		game.screen_handle.frame_data.img,
 		0, 0);
-	// mlx_key_hook(game.screen_handle.window, key_hook, &game);
+	mlx_key_hook(game.screen_handle.window, key_hook, &game);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 

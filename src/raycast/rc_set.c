@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 18:12:57 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:45:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static float	perp_calc(
 	const float	pdir_modulus = ft_vec_norm(g->player_dir);
 	// const float	rdir_modulus = ft_vec_norm(rc_data->ray_dir);
 	const float	euclid = rc_ret->euclidean_dist;
-// (void)rc_data;
+(void)rc_data;
 	return (
 		flt_round(
 			pdir_modulus * euclid,//*	pdir_modulus * (((euclid - rdir_modulus) / rdir_modulus) + 1),
