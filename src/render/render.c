@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 12:51:28 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:55:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	render_column(
 {
 	const size_t			wall_size = floor(
 				g->screen_handle.height
-				* ((float)1 / (1 * pow(rc_return.perp_dist, 2)))
+				* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
 			);
 	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
 	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
@@ -133,18 +133,18 @@ static void			draw_background(t_game *g)
 
 static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 {
+	t_2d_point	ray;
 	const float	dilatation_factor
 		= 2 * ((float)col / g->screen_handle.width) - 1;
-	t_2d_point	ray;
-	float		magnitude;
+	// float		magnitude;
 
 	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
 	ray.y = g->player_dir.y + dilatation_factor * g->camera_plane.y;
 
 	//*		makign ray a magnitude 1 vector (versor)
-	magnitude = ft_vec_norm(ray);
-	ray.x = ray.x / magnitude;
-	ray.y = ray.y / magnitude;
+	// magnitude = ft_vec_norm(ray);
+	// ray.x = ray.x / magnitude;
+	// ray.y = ray.y / magnitude;
 	return (ray);
 }
 //*																				

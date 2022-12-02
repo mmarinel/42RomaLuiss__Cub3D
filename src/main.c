@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 14:39:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:58:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,15 @@ int	key_hook(int key_code, t_game *game)
 	}
 	if (e_RIGHT_KEY == key_code)
 	{
-		//TODO
+		game->player_dir =  ft_rotate(game->player_dir, M_PI / 10.0f);
+		game->camera_plane = ft_rotate(game->camera_plane, M_PI / 10.0f);
+		render_next_frame(game);
 	}
 	if (e_LEFT_KEY == key_code)
 	{
-		//TODO
+		game->player_dir =  ft_rotate(game->player_dir, (-1) * M_PI / 10.0f);
+		game->camera_plane = ft_rotate(game->camera_plane, (-1) * M_PI / 10.0f);
+		render_next_frame(game);
 	}
 	return (0);
 }
