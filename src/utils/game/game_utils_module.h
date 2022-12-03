@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 16:12:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:09:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_2d_point	ft_vec_diff(t_2d_point v1, t_2d_point v2);
 t_2d_point	ft_vec_prod(t_2d_point vec, float lambda);
 float		ft_vec_norm(t_2d_point vector);
 float		ft_dot_product(t_2d_point v, t_2d_point w);
+t_bool		t_int_2d_point_equals(t_int_2d_point p1, t_int_2d_point p2);
+t_bool		t_2d_point_equals(t_2d_point p1, t_2d_point p2);
 
 //*		matrix operators
 t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector);
@@ -52,5 +54,6 @@ t_2d_point		ft_get_new_2dpt(float x, float y);
 
 //*		debug
 void			t_2d_point_print(const t_2d_point *pt, const char *msg);
+void			ft_print_int_2d_point(const char* pt_name, t_int_2d_point pt);
 
 #endif

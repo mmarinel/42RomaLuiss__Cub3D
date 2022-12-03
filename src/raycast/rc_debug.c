@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:26:47 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 18:30:17 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:08:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_print_raycast_result(t_raycast_return raycast_info)
 {
 	printf(YELLOW"---RAY-CAST-" CYAN"RET"RESET "---PRINT---\n"RESET);
 	ft_print_2d_point("hit_point", raycast_info.hit_point);
-	ft_print_2d_point("square", raycast_info.square);
+	ft_print_int_2d_point("square", raycast_info.square);
 	if (raycast_info.side == e_HORIZONTAL)
 		printf(YELLOW "side is HORIZONTAL\n" RESET);
 	else

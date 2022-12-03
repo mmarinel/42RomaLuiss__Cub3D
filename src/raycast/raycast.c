@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 16:35:52 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 19:54:03 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,23 @@ static void	ft_walk_through_nhp(t_raycast_data *rc_data)
 		rc_data->cur_sq_x = rc_data->cur_sq_x + rc_data->step_x;
 		rc_data->dist_nhp_through_x += rc_data->delta_x;
 		rc_data->side = e_VERTICAL;
+	}
+	else if (rc_data->dist_nhp_through_x == rc_data->dist_nhp_through_y)
+	{
+		if (e_VERTICAL == rc_data->side)
+		{
+			printf(BOLDCYAN "45 VERTICAL\n" RESET);
+			rc_data->cur_sq_y = rc_data->cur_sq_y + rc_data->step_y;
+			rc_data->dist_nhp_through_y += rc_data->delta_y;
+			rc_data->side = e_HORIZONTAL;
+		}
+		if (e_HORIZONTAL == rc_data->side)
+		{
+			printf(BOLDCYAN "45 HORIZONTAL\n" RESET);
+			rc_data->cur_sq_x = rc_data->cur_sq_x + rc_data->step_x;
+			rc_data->dist_nhp_through_x += rc_data->delta_x;
+			rc_data->side = e_VERTICAL;
+		}
 	}
 	else
 	{

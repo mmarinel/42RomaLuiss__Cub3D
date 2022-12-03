@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:45 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 15:28:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:06:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_2d_matrix	ft_get_new_2dmtrx(t_2d_point row_1, t_2d_point row_2)
 }
 
 t_bool	t_2d_point_equals(t_2d_point p1, t_2d_point p2)
+{
+	return (p1.x == p2.x && p1.y == p2.y);
+}
+
+t_bool	t_int_2d_point_equals(t_int_2d_point p1, t_int_2d_point p2)
 {
 	return (p1.x == p2.x && p1.y == p2.y);
 }

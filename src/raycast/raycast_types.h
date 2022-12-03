@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 16:18:43 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:07:25 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ typedef enum e_side
 
 typedef struct s_raycast_return
 {
-	t_2d_point	hit_point;//*	exact coordinate where we hit the square corresponding a wall
-	t_2d_point	square;
-	t_side		side;
-	float		angle_of_incidence;//*	maybe we won't need this
-	float		euclidean_dist;
-	float		perp_dist;
+	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall
+	t_int_2d_point	square;
+	t_side			side;
+	float			angle_of_incidence;//*	maybe we won't need this
+	float			euclidean_dist;
+	float			perp_dist;
 }	t_raycast_return;
 
 typedef struct s_raycast_data

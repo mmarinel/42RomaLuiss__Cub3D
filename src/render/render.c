@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 18:55:47 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:34:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,27 @@ static void	render_column(
 	t_raycast_return rc_return
 )
 {
+	static int	idx = 0;
+	static t_int_2d_point	square = (t_int_2d_point){-1, -1};
 	const size_t			wall_size = floor(
 				g->screen_handle.height
 				* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
 			);
 	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
 	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
-	static	int	status = 0;
-	const t_color			test1 = (t_color){61, 44, 43, 1};
-	const t_color			test2 = (t_color){79, 74, 74, 1};
+	// static	int	status = 0;
+	const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){143, 3, 12, 1}};
 
-	if (status)
-		bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test1);
-	else
-		bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test2);
-	status = !status;
+	if (e_false == t_int_2d_point_equals(rc_return.square, square)) {
+		square = rc_return.square;
+		idx = (idx + 1) % 2;
+		ft_print_int_2d_point("new_square", square);
+	}
+	// else {
+	// 	color = test1;
+	// }
+	bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test[idx]);
+	// status = !status;
 	// printf("wll: %zu ", wall_size);
 }
 
@@ -122,7 +128,7 @@ static void			draw_background(t_game *g)
 		if (start.y == (int)horizon)
 		{
 			color = g->map_handle.f_color;
-			printf(GREEN "HERE\n" RESET);
+			// printf(GREEN "HERE\n" RESET);
 		}
 		bresenham_plot(start, end,
 			&g->screen_handle.frame_data, color);
@@ -135,7 +141,10 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 {
 	t_2d_point	ray;
 	const float	dilatation_factor
-		= 2 * ((float)col / g->screen_handle.width) - 1;
+		= flt_round(
+			((2.0f * col) / (g->screen_handle.width - 1)) - 1,
+			FLT_PRECISION
+		);
 	// float		magnitude;
 
 	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
