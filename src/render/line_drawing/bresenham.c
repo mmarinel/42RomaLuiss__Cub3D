@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:35:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 10:32:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:30:48 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ static void	bresenham_algo(t_int_2d_point vfirst, t_int_2d_point vlast,
 			t_data *img_data, t_color color);
 //*		end of static declarations
 
-void	bresenham_plot(t_int_2d_point v_1, t_int_2d_point v_2,
-			t_data *img_data, t_color color)
+//**			VECCHIO
+// void	bresenham_plot(t_int_2d_point v_1, t_int_2d_point v_2,
+// 			t_data *img_data, t_color color)
+//**			VECCHIO
+void	bresenham_plot(const t_int_2d_point endpoint[2],
+			t_data *canvas_data, next_pixel_f next_pixel, void *arg)
 {
 	t_int_2d_point		vfirst;
 	t_int_2d_point		vlast;
 
-	bres_order_pts(v_1, v_2, &vfirst, &vlast);
-	bresenham_algo(vfirst, vlast, img_data, color);
+	bres_order_pts(endpoint[0], endpoint[1], &vfirst, &vlast);
+	bresenham_algo(vfirst, vlast, canvas_data, color);
 }
 
 /**

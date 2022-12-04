@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/04 16:31:08 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:22:14 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	size_t	width;
-	size_t	height;
+	int		width;
+	int		height;
 }	t_data;
 
 typedef struct s_int_2Dpoint
@@ -125,10 +125,18 @@ typedef struct s_screen_holder
 	size_t	height;
 }	t_screen_holder;
 
+typedef struct s_wall_texture {
+	t_data	north;
+	t_data	south;
+	t_data	west;
+	t_data	east;
+}	t_wall_texture;
+
 typedef struct s_game
 {
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
+	t_wall_texture	wall_texture;
 	t_2d_point		player_dir;
 	t_2d_point		player_pos;
 	t_2d_point		camera_plane;

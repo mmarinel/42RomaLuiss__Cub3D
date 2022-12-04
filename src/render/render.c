@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 17:52:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:25:59 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // 					t_wall_camera_incidence wc_incidence);
 //*		end of static declarations
 
+int	ln_clipper(t_clip_opcode opcode, size_t size);
+size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game);
+int	linear_interpolation(void *arg);
 //*																			
 //*									DECOMMENTARE 						
 //*																			
@@ -46,7 +49,7 @@ void	render_next_frame(t_game *g)
 	(void)render_column;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
-	bcb_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
+	ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
 	mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
 	g->screen_handle.frame_data.img
 		= mlx_new_image(
@@ -80,28 +83,121 @@ static void	render_column(
 	t_raycast_return rc_return
 )
 {
-	static int	idx = 0;
-	static t_int_2d_point	square = (t_int_2d_point){-1, -1};
+	// static int	idx = 0;
+	// static t_int_2d_point	square = (t_int_2d_point){-1, -1};
+	// const size_t			wall_size = floor(
+	// 			g->screen_handle.height
+	// 			* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
+	// 		);
 	const size_t			wall_size = floor(
-				g->screen_handle.height
-				* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
-			);
-	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
-	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
+		g->screen_handle.height * ((float)1 / rc_return.perp_dist)
+	);
+	const float				gap = (g->screen_handle.height - wall_size) / 2;
+	const t_int_2d_point	endpoint[2] = {
+		(t_int_2d_point){column, gap},
+		(t_int_2d_point){column, gap + (wall_size - 1)}
+	};
+	const t_column_info	col_info = (t_column_info){
+		(void *)0,//TODO
+					//*		frame_px
+		gap,
+					//*		gap
+		&rc_return,
+					//*		raycast_return
+		&g->wall_texture.north,//TODO
+					//*		texture
+		&g->\
+		screen_handle.frame_data,
+					//*		frame_data
+		get_texture_column(&rc_return, g),
+					//*		texture_column
+		(float)g->\
+		screen_handle.textures_size / g->screen_handle.frame_data.width,
+					//*		scaling_factor
+	};
 	// static	int	status = 0;
-	const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){46, 3, 17, 1}};
+	// const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){46, 3, 17, 1}};
 
-	if (e_false == t_int_2d_point_equals(rc_return.square, square)) {
-		square = rc_return.square;
-		idx = (idx + 1) % 2;
-		// ft_print_int_2d_point("new_square", square);
-	}
+	//***************************
+	// if (e_false == t_int_2d_point_equals(rc_return.square, square)) {
+	// 	square = rc_return.square;
+	// 	idx = (idx + 1) % 2;
+	// 	// ft_print_int_2d_point("new_square", square);
+	// }
+	//***************************
 	// else {
 	// 	color = test1;
 	// }
-	bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test[idx]);
+	bresenham_plot(endpoint, &g->screen_handle.frame_data, linear_interpolation, &col_info);
+	// bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test[idx]);
 	// status = !status;
 	// printf("wll: %zu ", wall_size);
+}
+
+int	get_texture_px(t_int_2d_point coordinate, const t_data *texture_data)
+{
+	const size_t	offset = ft_get_pixel_offset(*texture_data, coordinate);
+	const char		*byte_ptr = texture_data->addr + offset;
+	int	px;
+
+	// if (offset >= (size_t) 64 * texture_data->line_length || offset < 0)
+	// {
+	// 	px.rgb = 255 + (255 << 8) + (255 << 16);
+	// 	printf(RED "out\n" RESET);
+	// }
+	// else
+	// {
+	// 	printf("\n");
+		px = *(unsigned int *)byte_ptr;
+	// }
+	return (px);
+}
+
+int	linear_interpolation(void *arg)
+{
+	t_column_info	*col_info;
+	size_t			resized_row;
+	t_2d_point		mapped;
+
+	col_info = (t_column_info *)arg;
+	resized_row = col_info->frame_px->y - col_info->gap;
+	mapped.x = col_info->texture_column;
+	mapped.y = col_info->scaling_factor * resized_row;
+	return (
+		(mapped.y - ln_clip(floor(mapped.y))) * get_texture_px(
+			(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
+			col_info->texture
+		)
+		+ (ln_clip(ceil(mapped.y)) - mapped.y) * get_texture_px(
+			(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
+			col_info->texture
+		)
+	);
+}
+
+size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
+{
+	float			dist;
+	size_t			col;
+	const size_t	texture_size = game->wall_texture.north.width;
+
+	if (e_VERTICAL == rc_ret->side)
+		dist = floor(rc_ret->hit_point.y) - rc_ret->hit_point.y;
+	if (e_HORIZONTAL == rc_ret->side)
+		dist = floor(rc_ret->hit_point.x) - rc_ret->hit_point.x;
+	else
+		return (-1);
+	col = 0;
+	while (col < texture_size)
+	{
+		if (
+			(float)col / texture_size <= dist
+			&& dist <= (float)(col + 1) / texture_size
+		)
+			break ;
+		col += 1;
+	}
+	return (col);
 }
 
 // static void	print_color(t_color color, const char *msg)
@@ -109,21 +205,31 @@ static void	render_column(
 // 	// printf(YELLOW "%s: (R=%d G=%d B=%d)\n" RESET, msg, color.red, color.green, color.blue);
 // }
 
+static int	background_next_pixel(void *arg)
+{
+	int	color;
+
+	color = *(int *)arg;
+	return (color);
+}
+
 static void			draw_background(t_game *g)
 {
 	const size_t	horizon = floor((float)g->screen_handle.height / 2);
 	t_int_2d_point	start;
 	t_int_2d_point	end;
-	t_color			color;
+	t_int_2d_point	endpoints[2];
+	int				color;
 
 	{
 		// print_color(g->map_handle.c_color, "ceiling");
 		// print_color(g->map_handle.f_color, "floor");
 		// printf("horizon is at:  %zu\n", horizon);
 	}
+	// const
 	start = (t_int_2d_point){0, 0};
 	end = (t_int_2d_point){g->screen_handle.width - 1, 0};
-	color = g->map_handle.c_color;
+	color = ft_get_mlx_color(g->map_handle.c_color);
 	while (start.y < (int)g->screen_handle.height)
 	{
 		if (start.y == (int)horizon)
@@ -131,8 +237,10 @@ static void			draw_background(t_game *g)
 			color = g->map_handle.f_color;
 			// printf(GREEN "HERE\n" RESET);
 		}
-		bresenham_plot(start, end,
-			&g->screen_handle.frame_data, color);
+		endpoints[0] = start;
+		endpoints[1] = end;
+		bresenham_plot(endpoints,
+			&g->screen_handle.frame_data, background_next_pixel, &color);
 		start.y += 1;
 		end.y += 1;
 	}
@@ -184,49 +292,6 @@ size_t	ln_clip(size_t coordinate)
 		return (max_size - 1);
 	else
 		return (coordinate);
-}
-
-int	linear(void *arg)
-{
-	t_column_info	*col_info;
-	size_t			frame_px;
-	t_2d_point		mapped;
-
-	col_info = (t_column_info *)arg;
-	frame_px = col_info->frame_px.y - col_info->gap;
-	mapped.x = col_info->texture_column;
-	mapped.y = frame_px * col_info->scaling_factor;
-	return (
-		(
-			(mapped.y - ln_clip(floor(mapped.y))) * ft_get_pixel_offset(*col_info->frame, (t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))})
-			+ (ln_clip(ceil(mapped.y)) - mapped.y) * ft_get_pixel_offset(*col_info->frame, (t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))})
-		)
-	);
-}
-
-size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
-{
-	float			dist;
-	size_t			col;
-	const size_t	texture_size = game->screen_handle.textures_size;
-
-	if (e_VERTICAL == rc_ret->side)
-		dist = floor(rc_ret->hit_point.y) - rc_ret->hit_point.y;
-	if (e_HORIZONTAL == rc_ret->side)
-		dist = floor(rc_ret->hit_point.x) - rc_ret->hit_point.x;
-	else
-		return (-1);
-	col = 0;
-	while (col < texture_size)
-	{
-		if (
-			(float)col / texture_size <= dist
-			&& dist <= (float)(col + 1) / texture_size
-		)
-			break ;
-		col += 1;
-	}
-	return (col);
 }
 
 //*																				
