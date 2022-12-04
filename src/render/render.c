@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 12:49:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:52:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	render_next_frame(t_game *g)
 	(void)render_column;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
+	bcb_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
 	mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
 	g->screen_handle.frame_data.img
 		= mlx_new_image(
@@ -156,6 +157,78 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 	// ray.y = ray.y / magnitude;
 	return (ray);
 }
+
+int	ln_clipper(t_clip_opcode opcode, size_t size)
+{
+	static size_t	texture_size = 0;
+
+	if (e_LN_CLIPPER_INITIALIZE == opcode)
+	{
+		texture_size = size;
+		// printf(BOLDGREEN "texture_size: %zu\n" RESET, texture_size);
+	}
+	else if (e_LN_CLIPPER_GET == opcode)
+	{
+		return (texture_size);
+	}
+	return (texture_size);
+}
+
+size_t	ln_clip(size_t coordinate)
+{
+	const size_t	max_size = bcb_clipper(e_LN_CLIPPER_GET, -1);
+
+	if (coordinate < 0)
+		return (0);
+	else if (coordinate > (int)max_size - 1)
+		return (max_size - 1);
+	else
+		return (coordinate);
+}
+
+int	linear(void *arg)
+{
+	t_column_info	*col_info;
+	size_t			frame_px;
+	t_2d_point		mapped;
+
+	col_info = (t_column_info *)arg;
+	frame_px = col_info->frame_px.y - col_info->gap;
+	mapped.x = col_info->texture_column;
+	mapped.y = frame_px * col_info->scaling_factor;
+	return (
+		(
+			(mapped.y - ln_clip(floor(mapped.y))) * ft_get_pixel_offset(*col_info->frame, (t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))})
+			+ (ln_clip(ceil(mapped.y)) - mapped.y) * ft_get_pixel_offset(*col_info->frame, (t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))})
+		)
+	);
+}
+
+size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
+{
+	float			dist;
+	size_t			col;
+	const size_t	texture_size = game->screen_handle.textures_size;
+
+	if (e_VERTICAL == rc_ret->side)
+		dist = floor(rc_ret->hit_point.y) - rc_ret->hit_point.y;
+	if (e_HORIZONTAL == rc_ret->side)
+		dist = floor(rc_ret->hit_point.x) - rc_ret->hit_point.x;
+	else
+		return (-1);
+	col = 0;
+	while (col < texture_size)
+	{
+		if (
+			(float)col / texture_size <= dist
+			&& dist <= (float)(col + 1) / texture_size
+		)
+			break ;
+		col += 1;
+	}
+	return (col);
+}
+
 //*																				
 //*										NON DECOMMENTARE						
 //*																				

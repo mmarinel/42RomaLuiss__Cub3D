@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:32:55 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 10:32:34 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:59:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include "line_drawing_types.h"
 # include "../render.h"
 
-void	bresenham_plot(t_int_2d_point v_1, t_int_2d_point v_2,
-			t_data *img_data, t_color color);
+typedef int(*next_pixel_f)(void *);
+
+void	bresenham_plot(t_int_2d_point endpoint[2],
+			t_data *img_data, next_pixel_f next_pixel, void *arg);
 
 #endif

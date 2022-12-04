@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/19 18:21:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:49:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef enum e_reentrancy
 	e_OUTGOING,
 	e_REENTRANCY_NONE
 }	t_reentrancy;
+
+typedef enum e_clip_opcode
+{
+	e_LN_CLIPPER_INITIALIZE,
+	e_LN_CLIPPER_GET,
+}	t_clip_opcode;
 
 typedef struct s_wall_camera_incidence
 {
@@ -39,5 +45,16 @@ typedef struct s_render_data
 	const size_t					wll_out_bounds_pxs;
 	const t_wall_camera_incidence	wall_camera_incidence;
 }	t_render_data;
+
+typedef struct s_column_info
+{
+	const t_2d_point		frame_px;
+	const size_t			gap;
+	const t_raycast_return	*rc_ret;
+	const t_data			*texture;
+	t_data					*frame;
+	const size_t			texture_column;
+	const float				scaling_factor;
+}	t_column_info;
 
 #endif

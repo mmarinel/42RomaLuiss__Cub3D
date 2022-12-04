@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 15:41:15 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:32:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ static void	game_set_mlx( t_game *game_ref, size_t width, size_t height )
 	);
 	game_ref->screen_handle.width = width;
 	game_ref->screen_handle.height = height;
+	game_ref->screen_handle.frame_data.width = width;
+	game_ref->screen_handle.frame_data.height = height;
 	mlx_holder_set(&game_ref->screen_handle);
 }
 
