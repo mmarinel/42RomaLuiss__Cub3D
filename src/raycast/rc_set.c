@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/03 20:40:55 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 10:30:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static float	perp_calc(
 	const float	ray_modulus = ft_vec_norm(rc_data->ray);
 	const float	euclid = euclidean_dist;
 
-	printf(BOLDCYAN"ray_modulus: %lf\n"RESET, ray_modulus);
-	ft_print_2d_point("ray", rc_data->ray);
+	// printf(BOLDCYAN"ray_modulus: %lf\n"RESET, ray_modulus);
+	// ft_print_2d_point("ray", rc_data->ray);
 	return (
 		flt_round(
 			((euclid - ray_modulus) / ray_modulus) + 1,

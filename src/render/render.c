@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/03 20:34:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 12:49:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	render_next_frame(t_game *g)
 	size_t				col;
 	t_raycast_return	rc_return;
 
-	printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
+	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
 	(void)render_column;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
@@ -88,12 +88,12 @@ static void	render_column(
 	const t_int_2d_point	start_up = (t_int_2d_point){column, (g->screen_handle.height - wall_size) / 2};
 	const t_int_2d_point	end_down = (t_int_2d_point){column, start_up.y + (wall_size - 1)};
 	// static	int	status = 0;
-	const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){143, 3, 12, 1}};
+	const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){46, 3, 17, 1}};
 
 	if (e_false == t_int_2d_point_equals(rc_return.square, square)) {
 		square = rc_return.square;
 		idx = (idx + 1) % 2;
-		ft_print_int_2d_point("new_square", square);
+		// ft_print_int_2d_point("new_square", square);
 	}
 	// else {
 	// 	color = test1;
@@ -103,10 +103,10 @@ static void	render_column(
 	// printf("wll: %zu ", wall_size);
 }
 
-static void	print_color(t_color color, const char *msg)
-{
-	printf(YELLOW "%s: (R=%d G=%d B=%d)\n" RESET, msg, color.red, color.green, color.blue);
-}
+// static void	print_color(t_color color, const char *msg)
+// {
+// 	// printf(YELLOW "%s: (R=%d G=%d B=%d)\n" RESET, msg, color.red, color.green, color.blue);
+// }
 
 static void			draw_background(t_game *g)
 {
@@ -116,9 +116,9 @@ static void			draw_background(t_game *g)
 	t_color			color;
 
 	{
-		print_color(g->map_handle.c_color, "ceiling");
-		print_color(g->map_handle.f_color, "floor");
-		printf("horizon is at:  %zu\n", horizon);
+		// print_color(g->map_handle.c_color, "ceiling");
+		// print_color(g->map_handle.f_color, "floor");
+		// printf("horizon is at:  %zu\n", horizon);
 	}
 	start = (t_int_2d_point){0, 0};
 	end = (t_int_2d_point){g->screen_handle.width - 1, 0};

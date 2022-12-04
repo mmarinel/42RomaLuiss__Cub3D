@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 19:58:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/04 11:58:44 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "raycast/raycast_module.h"
 # include "render/render_module.h"
 
+// # include <Xplugin.h>
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
@@ -51,10 +52,11 @@ int	key_hook(int key_code, t_game *game)
 	{
 		t_2d_point	new_pos;
 
-		new_pos = ft_vec_sum(game->player_pos, game->player_dir);
+		new_pos = ft_vec_sum(game->player_pos,
+		ft_vec_prod(game->player_dir, 1));
 		if (is_floor(game, new_pos))
 		{
-			printf(YELLOW "moving upwards...\n" RESET);
+			// printf(YELLOW "moving upwards...\n" RESET);
 			game->player_pos = new_pos;
 			render_next_frame(game);
 		}
@@ -63,10 +65,11 @@ int	key_hook(int key_code, t_game *game)
 	{
 		t_2d_point	new_pos;
 		
-		new_pos = ft_vec_sum(game->player_pos, ft_vec_opposite(game->player_dir));
+		new_pos = ft_vec_sum(game->player_pos,
+			ft_vec_prod(ft_vec_opposite(game->player_dir), 1));
 		if (is_floor(game, new_pos))
 		{
-			printf(YELLOW "moving downwards...\n" RESET);
+			// printf(YELLOW "moving downwards...\n" RESET);
 			game->player_pos = new_pos;
 			render_next_frame(game);
 		}
@@ -202,7 +205,9 @@ int main(int argc, char const *argv[])
 		game.screen_handle.mlx, game.screen_handle.window,
 		game.screen_handle.frame_data.img,
 		0, 0);
-	mlx_key_hook(game.screen_handle.window, key_hook, &game);
+	// mlx_key_hook(game.screen_handle.window, key_hook, &game);
+	// mlx_do_key_autorepeaton(&game.screen_handle.mlx);
+	mlx_hook(game.screen_handle.window, 2, 1L<<0, key_hook, &game);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 
