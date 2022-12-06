@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 12:45:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:56:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	key_hook(int key_code, t_game *game)
 		t_2d_point	new_pos;
 
 		new_pos = ft_vec_sum(game->player_pos,
-		ft_vec_prod(game->player_dir, 1));
+		ft_vec_prod(game->player_dir, 0.4f));
 		if (is_floor(game, new_pos))
 		{
 			// printf(YELLOW "moving upwards...\n" RESET);
@@ -66,7 +66,7 @@ int	key_hook(int key_code, t_game *game)
 		t_2d_point	new_pos;
 		
 		new_pos = ft_vec_sum(game->player_pos,
-			ft_vec_prod(ft_vec_opposite(game->player_dir), 1));
+			ft_vec_prod(ft_vec_opposite(game->player_dir), 0.4f));
 		if (is_floor(game, new_pos))
 		{
 			// printf(YELLOW "moving downwards...\n" RESET);
@@ -76,14 +76,14 @@ int	key_hook(int key_code, t_game *game)
 	}
 	if (e_RIGHT_KEY == key_code)
 	{
-		game->player_dir =  ft_rotate(game->player_dir, M_PI / 10.0f);
-		game->camera_plane = ft_rotate(game->camera_plane, M_PI / 10.0f);
+		game->player_dir = ft_rotate(game->player_dir, M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
+		game->camera_plane = ft_rotate(game->camera_plane, M_PI / 05.0f);
 		render_next_frame(game);
 	}
 	if (e_LEFT_KEY == key_code)
 	{
-		game->player_dir =  ft_rotate(game->player_dir, (-1) * M_PI / 10.0f);
-		game->camera_plane = ft_rotate(game->camera_plane, (-1) * M_PI / 10.0f);
+		game->player_dir =  ft_rotate(game->player_dir, 2 * M_PI - M_PI / 05.0f);
+		game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI - M_PI / 05.0f);
 		render_next_frame(game);
 	}
 	return (0);
@@ -174,6 +174,20 @@ int main(int argc, char const *argv[])
 	//*						game.camera_plane = ft_get_new_2dpt(1, 0);
 	// ft_print_ray_result(raycast(&game, 0.78539816339));
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));
+	game.wall_texture.north.img = mlx_xpm_file_to_image(
+		game.screen_handle.mlx,
+		"img/64doggo.xpm",
+		&game.wall_texture.north.width, &game.wall_texture.north.height
+	);
+	game.wall_texture.north.addr = mlx_get_data_addr(
+		game.wall_texture.north.img,
+		&game.wall_texture.north.bits_per_pixel,
+		&game.wall_texture.north.line_length, &game.wall_texture.north.endian
+	);
+	// mlx_put_image_to_window(game.screen_handle.mlx, game.screen_handle.window, game.wall_texture.north.img, 0, 0);
+	// mlx_loop(game.screen_handle.mlx);
+	// printf(YELLOW "texture width: %d; texture height: %d\n" RESET, game.wall_texture.north.width, game.wall_texture.north.height);
+	// exit(0);
 	render_next_frame(&game);
 	//*********************************		BICUBIC TESTING		**************************************************
 	(void)key_hook;
@@ -184,9 +198,6 @@ int main(int argc, char const *argv[])
 	// game.wall_texture.south;
 	// game.wall_texture.west;
 	// game.wall_texture.east;
-	// game.wall_texture.north.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &game.wall_texture.north.width, &game.wall_texture.north.height);
-	// game.wall_texture.north.img = mlx_get_data_addr(game.wall_texture.north.img, &game.wall_texture.north.bits_per_pixel, &game.wall_texture.north.line_length, &game.wall_texture.north.endian);
-
 
 	// // printf(BOLDGREEN "texture width: %d, texture height: %d\n" RESET, texture_width, texture_height);
 	// // exit(0);

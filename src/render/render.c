@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 13:22:26 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:59:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ void	render_next_frame(t_game *g)
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->screen_handle.frame_data.img,
 		0, 0);
+	//* Printing wall texture on top for testing purposes (ignora...)
+	// mlx_put_image_to_window(
+	// 	g->screen_handle.mlx, g->screen_handle.window,
+	// 	g->wall_texture.north.img,
+	// 	0, 0);
 }
 
 static void	render_column(
@@ -91,46 +96,51 @@ static void	render_column(
 	// 			g->screen_handle.height
 	// 			* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
 	// 		);
-	static int count = 0;
+	// static int count = 0;
 
-	const size_t			wall_size = floor(
-		g->screen_handle.height * ((float)1 / rc_return.perp_dist)
+	const size_t			wall_size = roundf(
+		g->screen_handle.height / rc_return.perp_dist
 	);
-	const float				gap = (g->screen_handle.height - wall_size) / 2;
+	float				gap;
+	
+	if (g->screen_handle.height <= wall_size)
+		gap = 0.000000f;
+	else
+		gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
 		
 		t_int_2d_point	endpoint[2] = {
 			(t_int_2d_point){column, gap},
 			(t_int_2d_point){column, gap + (wall_size - 1)}
 		};
 	
-	if (count < 20) {
-		ft_print_int_2d_point("first endpoint", endpoint[0]);
-		ft_print_int_2d_point("second endpoint", endpoint[1]);
-		printf(BOLDCYAN "perp_dist: %lf\n"RESET, rc_return.perp_dist );
-		printf(BOLDCYAN "height: %zu\n"RESET, g->screen_handle.height );
-		printf(BOLDCYAN "wall_size: %zu\n"RESET, wall_size );
-		printf(BOLDCYAN "gap: %lf\n"RESET, gap );
-		count += 1;
-	}
+	// if (count < 20) {
+	// 	ft_print_int_2d_point("first endpoint", endpoint[0]);
+	// 	ft_print_int_2d_point("second endpoint", endpoint[1]);
+	// 	printf(BOLDCYAN "perp_dist: %lf\n"RESET, rc_return.perp_dist );
+	// 	printf(BOLDCYAN "height: %zu\n"RESET, g->screen_handle.height );
+	// 	printf(BOLDCYAN "wall_size: %zu\n"RESET, wall_size );
+	// 	printf(BOLDCYAN "gap: %lf\n"RESET, gap );
+	// 	count += 1;
+	// }
 	//TODO DECOMMENTARE
-	// const t_column_info	col_info = (t_column_info){
-	// 	// (void *)0,//TODO
-	// 	// 			//*		frame_px
-	// 	gap,
-	// 				//*		gap
-	// 	&rc_return,
-	// 				//*		raycast_return
-	// 	&g->wall_texture.north,//TODO
-	// 				//*		texture
-	// 	&g->\
-	// 	screen_handle.frame_data,
-	// 				//*		frame_data
-	// 	get_texture_column(&rc_return, g),
-	// 				//*		texture_column
-	// 	(float)g->\
-	// 	screen_handle.textures_size / g->screen_handle.frame_data.width,
-	// 				//*		scaling_factor
-	// };
+	const t_column_info	col_info = (t_column_info){
+		// (void *)0,//TODO
+		// 			//*		frame_px
+		gap,
+					//*		gap
+		&rc_return,
+					//*		raycast_return
+		&g->wall_texture.north,//TODO
+					//*		texture
+		&g->\
+		screen_handle.frame_data,
+					//*		frame_data
+		get_texture_column(&rc_return, g),
+					//*		texture_column
+		(float)g->\
+		screen_handle.textures_size / g->screen_handle.frame_data.width,
+					//*		scaling_factor
+	};
 	//TODO DECOMMENTARE
 	// static	int	status = 0;
 	// const t_color	test[2] = {(t_color){25, 64, 10, 1}, (t_color){46, 3, 17, 1}};
@@ -145,20 +155,24 @@ static void	render_column(
 	// else {
 	// 	color = test1;
 	// }
-	// bresenham_plot(
-	// 	endpoint,
-	// 	&g->screen_handle.frame_data,
-	// 	linear_interpolation, &(t_nxt_px_f_arg){&col_info, NULL}
-	// );
-	const int colore = ft_get_mlx_color((t_color){156, 72, 39, 1});
-	t_nxt_px_f_arg	pippo;
-	pippo.arg = &colore;
-	pippo.cur_px = NULL;
+	//**
 	bresenham_plot(
 		endpoint,
 		&g->screen_handle.frame_data,
-		background_next_pixel, &pippo
+		linear_interpolation, &(t_nxt_px_f_arg){&col_info, NULL}
 	);
+	//**
+	//****
+	// const int colore = ft_get_mlx_color((t_color){156, 72, 39, 1});
+	// t_nxt_px_f_arg	pippo;
+	// pippo.arg = &colore;
+	// pippo.cur_px = NULL;
+	// bresenham_plot(
+	// 	endpoint,
+	// 	&g->screen_handle.frame_data,
+	// 	background_next_pixel, &pippo
+	// );(void) col_info;
+	//****
 	// bresenham_plot(start_up, end_down, &g->screen_handle.frame_data, test[idx]);
 	// status = !status;
 	// printf("wll: %zu ", wall_size);
@@ -193,16 +207,32 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 	resized_row = nxt_px_f_arg->cur_px->y - col_info->gap;
 	mapped.x = col_info->texture_column;
 	mapped.y = col_info->scaling_factor * resized_row;
-	return (
-		(mapped.y - ln_clip(floor(mapped.y))) * get_texture_px(
+	// ft_print_2d_point("mapped", mapped);
+	if (mapped.y - floor(mapped.y) < ceil(mapped.y) - mapped.y)
+	{
+		// printf(BOLDCYAN "QUI!\n" RESET);
+		return get_texture_px(
 			(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
 			col_info->texture
-		)
-		+ (ln_clip(ceil(mapped.y)) - mapped.y) * get_texture_px(
+		);
+	}
+	else {
+		// printf(BOLDCYAN "QUAA!\n" RESET);
+		return get_texture_px(
 			(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
 			col_info->texture
-		)
-	);
+		);
+	}
+	// return (
+	// 	(mapped.y - ln_clip(floor(mapped.y))) * get_texture_px(
+	// 		(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
+	// 		col_info->texture
+	// 	)
+	// 	+ (ln_clip(ceil(mapped.y)) - mapped.y) * get_texture_px(
+	// 		(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
+	// 		col_info->texture
+	// 	)
+	// );
 }
 
 size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
@@ -212,9 +242,9 @@ size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
 	const size_t	texture_size = game->wall_texture.north.width;
 
 	if (e_VERTICAL == rc_ret->side)
-		dist = floor(rc_ret->hit_point.y) - rc_ret->hit_point.y;
-	if (e_HORIZONTAL == rc_ret->side)
-		dist = floor(rc_ret->hit_point.x) - rc_ret->hit_point.x;
+		dist = rc_ret->hit_point.y - floor(rc_ret->hit_point.y);
+	else if (e_HORIZONTAL == rc_ret->side)
+		dist = rc_ret->hit_point.x - floor(rc_ret->hit_point.x);
 	else
 		return (-1);
 	col = 0;
@@ -282,7 +312,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 	t_2d_point	ray;
 	const float	dilatation_factor
 		= flt_round(
-			((2.0f * col) / (g->screen_handle.width - 1)) - 1,
+			((2.0f * col) / (g->screen_handle.width - 1.0f)) - 1.0f,
 			FLT_PRECISION
 		);
 	// float		magnitude;
