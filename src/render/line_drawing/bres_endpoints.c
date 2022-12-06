@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:42:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/23 16:04:29 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:24:09 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,55 @@ int	get_angular_coefficient_sign(int delta_x, int delta_y,
 		return ((delta_x/norm_delta_x) * (delta_y/norm_delta_y));
 }
 
-//*		Mapping horizontal lines as negative lines has no effect;
-//*		Mapping vertical lines as negative has the effect to order points the reverse way.
-void	bres_order_pts(t_int_2d_point v_1, t_int_2d_point v_2,
-			t_int_2d_point *vfirst, t_int_2d_point *vlast)
+//*		Mapping horizontal lines as negative ones lines has no effect;
+//*		Mapping vertical lines as negative ones has the effect to order points the reverse way.
+void	bres_order_pts(t_int_2d_point endpoint[2])
 {
-	if (v_1.x < v_2.x)
+	t_int_2d_point	backup;
+
+	if (endpoint[0].x > endpoint[1].x)
 	{
-		*vfirst = v_1;
-		*vlast = v_2;
+		backup = endpoint[0];
+		endpoint[0] = endpoint[1];
+		endpoint[1] = backup;
 	}
-	else if (v_1.x > v_2.x)
+	else if (endpoint[0].x == endpoint[1].x)
 	{
-		*vfirst = v_2;
-		*vlast = v_1;
-	}
-	else
-	{
-		if (v_1.y > v_2.y)
+		if (endpoint[0].y <= endpoint[1].y)
 		{
-			*vfirst = v_1;
-			*vlast = v_2;
-		}
-		else
-		{
-			*vfirst = v_2;
-			*vlast = v_1;
+			backup = endpoint[0];
+			endpoint[0] = endpoint[1];
+			endpoint[1] = backup;
 		}
 	}
 }
+
+// //*		Mapping horizontal lines as negative lines has no effect;
+// //*		Mapping vertical lines as negative has the effect to order points the reverse way.
+// void	bres_order_pts(t_int_2d_point v_1, t_int_2d_point v_2,
+// 			t_int_2d_point *vfirst, t_int_2d_point *vlast)
+// {
+// 	if (v_1.x < v_2.x)
+// 	{
+// 		*vfirst = v_1;
+// 		*vlast = v_2;
+// 	}
+// 	else if (v_1.x > v_2.x)
+// 	{
+// 		*vfirst = v_2;
+// 		*vlast = v_1;
+// 	}
+// 	else
+// 	{
+// 		if (v_1.y > v_2.y)
+// 		{
+// 			*vfirst = v_1;
+// 			*vlast = v_2;
+// 		}
+// 		else
+// 		{
+// 			*vfirst = v_2;
+// 			*vlast = v_1;
+// 		}
+// 	}
+// }

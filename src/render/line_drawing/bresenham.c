@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:35:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 19:30:48 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:26:08 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	bresenham_plot(const t_int_2d_point endpoint[2],
 	t_int_2d_point		vfirst;
 	t_int_2d_point		vlast;
 
-	bres_order_pts(endpoint[0], endpoint[1], &vfirst, &vlast);
+	bres_order_pts(endpoint);
 	bresenham_algo(vfirst, vlast, canvas_data, color);
 }
 
@@ -38,8 +38,8 @@ void	bresenham_plot(const t_int_2d_point endpoint[2],
  * @param vlast 
  * @param img_data 
  */
-static void	bresenham_algo(t_int_2d_point vfirst, t_int_2d_point vlast,
-			t_data *img_data, t_color color)
+static void	bresenham_algo(const t_int_2d_point endpoint[2],
+			t_data *canvas_data, next_pixel_f next_pixel, void *arg)
 {
 	const size_t			norm_delta_x = abs(vlast.x - vfirst.x);
 	const size_t			norm_delta_y = abs(vlast.y - vfirst.y);
