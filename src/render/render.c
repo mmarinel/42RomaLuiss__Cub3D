@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 18:56:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:46:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,27 @@ void	render_next_frame(t_game *g)
 		0, 0);
 }
 
+static t_int_2d_point	frame_clipped_point(size_t screen_height, size_t screen_width, int x, int y)
+{
+	t_int_2d_point	pt;
+
+	if (x < 0)
+		pt.x = 0;
+	else if (x >= (int)screen_width)
+		pt.x = screen_width - 1;
+	else
+		pt.x = x;
+	
+	if (y < 0)
+		pt.y = 0;
+	else if (y >= (int)screen_height)
+		pt.y = screen_height - 1;
+	else
+		pt.y = y;
+
+	return (pt);
+}
+
 static void	render_column(
 	size_t column,
 	t_game *g,
@@ -109,8 +130,10 @@ static void	render_column(
 		gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
 		
 		t_int_2d_point	endpoint[2] = {
-			(t_int_2d_point){column, gap},
-			(t_int_2d_point){column, gap + (wall_size - 1)}
+			frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
+			frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap + (wall_size - 1))
+			// (t_int_2d_point){column, gap},
+			// (t_int_2d_point){column, gap + (wall_size - 1)}
 		};
 	
 	// if (count < 20) {
