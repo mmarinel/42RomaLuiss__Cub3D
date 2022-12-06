@@ -6,31 +6,48 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/03 19:57:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:44:48 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-t_raycast_data	ft_ray_data_init(
-	t_game *game, t_2d_point ray, t_2d_point ray_dir
+// t_raycast_data	ft_ray_data_init(
+// 	t_game *game, t_2d_point ray, t_2d_point ray_dir
+// 	)
+// {
+// 	t_raycast_data	rc_data = (t_raycast_data) {
+// 		ray,
+// 		ray_dir,
+// 		(float)1 / ft_flt_abs(ray_dir.x),
+// 		(float)1 / ft_flt_abs(ray_dir.y),
+// 		ft_ray_step_size(ray_dir.x),
+// 		ft_ray_step_size(ray_dir.y),
+// 		(int) (game->player_pos.x),//(ray_dir.x + game->player_pos.x),//*	Explanation--see notes Matteo Notability
+// 		(int) (game->player_pos.y),//(ray_dir.y + game->player_pos.y),
+// 		ft_initial_delta(game->player_pos.x, ray_dir.x),
+// 		ft_initial_delta(game->player_pos.y, ray_dir.y),
+// 		e_SIDE_NONE
+// 		};
+
+// 	return (rc_data);
+// }
+
+void	ft_ray_data_init(t_raycast_data *rc_data,
+			t_2d_point ray, t_game *game
 	)
 {
-	t_raycast_data	rc_data = (t_raycast_data) {
-		ray,
-		ray_dir,
-		(float)1 / ft_flt_abs(ray_dir.x),
-		(float)1 / ft_flt_abs(ray_dir.y),
-		ft_ray_step_size(ray_dir.x),
-		ft_ray_step_size(ray_dir.y),
-		(int) (game->player_pos.x),//(ray_dir.x + game->player_pos.x),//*	Explanation--see notes Matteo Notability
-		(int) (game->player_pos.y),//(ray_dir.y + game->player_pos.y),
-		ft_initial_delta(game->player_pos.x, ray_dir.x),
-		ft_initial_delta(game->player_pos.y, ray_dir.y),
-		e_SIDE_NONE
-		};
-
-	return (rc_data);
+	rc_data->ray = ray;
+	rc_data->ray_dir = ft_vec_normalize(ray);
+	rc_data->delta_x = (float)1 / ft_flt_abs(rc_data->ray_dir.x);
+	rc_data->delta_y = (float)1 / ft_flt_abs(rc_data->ray_dir.y);
+	rc_data->step_x = ft_ray_step_size(rc_data->ray_dir.x);
+	rc_data->step_y = ft_ray_step_size(rc_data->ray_dir.y);
+	rc_data->cur_sq_x = (int) (game->player_pos.x);
+	rc_data->cur_sq_y = (int) (game->player_pos.y);
+	rc_data->dist_nhp_through_x = ft_initial_delta(game->player_pos.x, rc_data->ray_dir.x);
+	rc_data->dist_nhp_through_y = ft_initial_delta(game->player_pos.y, rc_data->ray_dir.y);
+	rc_data->side = e_SIDE_NONE;
 }
 
 float	ft_initial_delta(float p_ax_pos, float p_dir_ax_pos)

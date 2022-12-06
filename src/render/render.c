@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 16:59:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:56:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	render_next_frame(t_game *g)
 		g->screen_handle.frame_data.img,
 		0, 0);
 	//* Printing wall texture on top for testing purposes (ignora...)
-	// mlx_put_image_to_window(
-	// 	g->screen_handle.mlx, g->screen_handle.window,
-	// 	g->wall_texture.north.img,
-	// 	0, 0);
+	mlx_put_image_to_window(
+		g->screen_handle.mlx, g->screen_handle.window,
+		g->wall_texture.north.img,
+		0, 0);
 }
 
 static void	render_column(
@@ -125,7 +125,9 @@ static void	render_column(
 	//TODO DECOMMENTARE
 	const t_column_info	col_info = (t_column_info){
 		// (void *)0,//TODO
-		// 			//*		frame_px
+		// 			//		frame_px
+		wall_size,
+					//*		wall_size
 		gap,
 					//*		gap
 		&rc_return,
@@ -138,7 +140,7 @@ static void	render_column(
 		get_texture_column(&rc_return, g),
 					//*		texture_column
 		(float)g->\
-		screen_handle.textures_size / g->screen_handle.frame_data.width,
+		screen_handle.textures_size / wall_size,
 					//*		scaling_factor
 	};
 	//TODO DECOMMENTARE
@@ -197,6 +199,16 @@ int	get_texture_px(t_int_2d_point coordinate, const t_data *texture_data)
 	return (px);
 }
 
+// static int	rgb_clip(int val)
+// {
+// 	if (val < 0)
+// 		return (0);
+// 	else if (val > 255 + (255 << 8) + (255 << 16))
+// 		return (255 + (255 << 8) + (255 << 16));
+// 	else
+// 		return (val);
+// }
+
 int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 {
 	t_column_info	*col_info;
@@ -208,6 +220,8 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 	mapped.x = col_info->texture_column;
 	mapped.y = col_info->scaling_factor * resized_row;
 	// ft_print_2d_point("mapped", mapped);
+	if (resized_row == col_info->wall_size - 1)
+		return (0);
 	if (mapped.y - floor(mapped.y) < ceil(mapped.y) - mapped.y)
 	{
 		// printf(BOLDCYAN "QUI!\n" RESET);
@@ -223,17 +237,21 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 			col_info->texture
 		);
 	}
-	// return (
-	// 	(mapped.y - ln_clip(floor(mapped.y))) * get_texture_px(
-	// 		(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
-	// 		col_info->texture
-	// 	)
-	// 	+ (ln_clip(ceil(mapped.y)) - mapped.y) * get_texture_px(
-	// 		(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
-	// 		col_info->texture
-	// 	)
-	// );
 }
+	// return rgb_clip(floor(
+	// 	(
+	// 		(1.0f - (mapped.y - ln_clip(floor(mapped.y)))) * get_texture_px(
+	// 			(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
+	// 			col_info->texture
+	// 			)
+	// 	)
+	// 	+ (
+	// 		(1.0f - (ln_clip(ceil(mapped.y)) - mapped.y)) * get_texture_px(
+	// 			(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
+	// 			col_info->texture
+	// 		)
+	// 	)
+	// ));
 
 size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
 {

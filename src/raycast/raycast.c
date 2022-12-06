@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 10:30:01 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:47:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 {
 	t_raycast_return	ret;
 	t_raycast_data		raycast_data;
-	const t_2d_point	ray_dir = ft_vec_normalize(ray);
 	t_bool				hit;
-	t_int_2d_point		cur_sq;
 
-	raycast_data = ft_ray_data_init(game, ray, ray_dir);
+	ft_ray_data_init(&raycast_data, ray, game);
 	// ft_print_raycast_data(raycast_data);
 	hit = e_false;
 	while (e_false == hit)
 	{
 		ft_walk_through_nhp(&raycast_data);
-		cur_sq.x = raycast_data.cur_sq_x;
-		cur_sq.y = raycast_data.cur_sq_y;
-		if (e_WALL == game->map_handle.map[cur_sq.y][cur_sq.x])
+		if (e_WALL == game->\
+				map_handle.map[raycast_data.cur_sq_y][raycast_data.cur_sq_x]
+			)
 			hit = e_true;
 	}
 	ft_set_hp_dist(&ret, &raycast_data);

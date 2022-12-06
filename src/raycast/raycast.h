@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/02 16:33:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:45:11 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@
 # include <stdio.h>
 
 //*		initialization
-t_raycast_data	ft_ray_data_init(
-					t_game *game, t_2d_point ray, t_2d_point ray_dir
+void			ft_ray_data_init(t_raycast_data *rc_data,
+					t_2d_point ray, t_game *game
 				);
+// t_raycast_data	ft_ray_data_init(
+// 					t_game *game, t_2d_point ray, t_2d_point ray_dir
+// 				);
 float			ft_initial_delta(float p_ax_pos, float p_dir_ax_pos);
 int				ft_ray_step_size(float p_dir_ax_pos);
 

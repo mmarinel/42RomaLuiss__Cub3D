@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 12:40:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:55:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_render_data
 typedef struct s_column_info
 {
 	// const t_2d_point		*frame_px;
+	const size_t			wall_size;
 	const size_t			gap;
 	const t_raycast_return	*rc_ret;
 	const t_data			*texture;

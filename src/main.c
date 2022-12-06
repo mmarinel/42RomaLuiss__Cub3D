@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 16:56:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:35:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "render/render_module.h"
 
 // # include <Xplugin.h>
+# include <sys/time.h>
+# include <time.h>
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
@@ -29,6 +31,21 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <time.h>
+
+int	get_current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000
+			+ (u_int64_t)time.tv_usec / 1000));
+}
+
+int	get_ms_from_timestamp(struct timeval timestamp)
+{
+	return ((timestamp.tv_sec * 1000
+			+ (u_int64_t)timestamp.tv_usec / 1000));
+}
 
 t_bool	is_floor(t_game *g, t_2d_point pt)
 {
@@ -46,8 +63,20 @@ t_bool	is_floor(t_game *g, t_2d_point pt)
 
 int	key_hook(int key_code, t_game *game)
 {
-	printf(YELLOW"key pressed: %d\n"RESET, key_code);
+	static struct timeval	timestamp = (struct timeval){0,0};
+	struct timeval			current;
 
+	printf(YELLOW"key pressed: %d\n"RESET, key_code);
+	if (!timestamp.tv_sec && !timestamp.tv_usec)
+		gettimeofday(&timestamp, NULL);
+
+	if (e_UP_KEY == key_code || e_DOWN_KEY == key_code)
+	{
+		gettimeofday(&current, NULL);
+		if (get_ms_from_timestamp(current) - get_ms_from_timestamp(timestamp) < 0.5f)
+			return (1);
+		timestamp = current;
+	}
 	if (e_UP_KEY == key_code)
 	{
 		t_2d_point	new_pos;
@@ -176,7 +205,7 @@ int main(int argc, char const *argv[])
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));
 	game.wall_texture.north.img = mlx_xpm_file_to_image(
 		game.screen_handle.mlx,
-		"img/64doggo.xpm",
+		"img/lavaf1.xpm",
 		&game.wall_texture.north.width, &game.wall_texture.north.height
 	);
 	game.wall_texture.north.addr = mlx_get_data_addr(
