@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bres_endpoints.c                                   :+:      :+:    :+:   */
+/*   bres_endpointss.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:42:52 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 11:24:09 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:39:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ int	get_angular_coefficient_sign(int delta_x, int delta_y,
 
 //*		Mapping horizontal lines as negative ones lines has no effect;
 //*		Mapping vertical lines as negative ones has the effect to order points the reverse way.
-void	bres_order_pts(t_int_2d_point endpoint[2])
+void	bres_order_pts(t_int_2d_point endpoints[2])
 {
 	t_int_2d_point	backup;
 
-	if (endpoint[0].x > endpoint[1].x)
+	if (endpoints[0].x > endpoints[1].x)
 	{
-		backup = endpoint[0];
-		endpoint[0] = endpoint[1];
-		endpoint[1] = backup;
+		backup = endpoints[0];
+		endpoints[0] = endpoints[1];
+		endpoints[1] = backup;
 	}
-	else if (endpoint[0].x == endpoint[1].x)
+	else if (endpoints[0].x == endpoints[1].x)
 	{
-		if (endpoint[0].y <= endpoint[1].y)
+		if (endpoints[0].y <= endpoints[1].y)
 		{
-			backup = endpoint[0];
-			endpoint[0] = endpoint[1];
-			endpoint[1] = backup;
+			backup = endpoints[0];
+			endpoints[0] = endpoints[1];
+			endpoints[1] = backup;
 		}
 	}
 }

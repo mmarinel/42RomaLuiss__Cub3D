@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 10:33:50 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:17:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,15 @@ t_bres_line_type	bres_get_type(t_int_2d_point vfirst, t_int_2d_point vlast,
 }
 
 void	bres_put_next_px(
-			t_data *img_data, t_int_2d_point cur_point,
-			t_color color
+			t_data *canvas_data,
+			t_next_pixel_f next_pixel_f, t_nxt_px_f_arg *arg
 		)
 {
+	ft_put_mlxpx_to_image(
+		canvas_data,
+		ft_get_pixel_offset(*canvas_data, *arg->cur_px),
+		(*next_pixel_f)(arg)
+	);
 	// t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
 	// t_color	fake = (t_color){0, 0, 255, 0.0f};
 
@@ -60,11 +65,13 @@ void	bres_put_next_px(
 	// (void) img_data;
 	// (void) cur_point;
 	// (void) row;
-	ft_put_px_to_image(
-		img_data,
-		ft_get_pixel_offset(*img_data, cur_point),
-		color
-	);
+	//**
+	// ft_put_px_to_image(
+	// 	img_data,
+	// 	ft_get_pixel_offset(*img_data, cur_point),
+	// 	color
+	// );
+	//*
 	//!		FOR TESTING PURPOSES
 	// row->img_offset = (row->img_offset + 1) % row->len;
 	// return (*row);

@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:15:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 16:40:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:44:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_TYPES_H
-# define RENDER_TYPES_H
+#ifndef RENDER_UTILS_TYPES_H
+# define RENDER_UTILS_TYPES_H
 
 # include "../../types.h"
 # include "render_types.h"

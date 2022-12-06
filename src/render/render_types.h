@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 18:42:19 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:40:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_render_data
 
 typedef struct s_column_info
 {
-	const t_2d_point		*frame_px;
+	// const t_2d_point		*frame_px;
 	const size_t			gap;
 	const t_raycast_return	*rc_ret;
 	const t_data			*texture;
@@ -56,5 +56,13 @@ typedef struct s_column_info
 	const size_t			texture_column;
 	const float				scaling_factor;
 }	t_column_info;
+
+typedef struct s_nxt_px_f_arg
+{
+	const void		*arg;
+	t_int_2d_point	*cur_px;
+}	t_nxt_px_f_arg;
+
+typedef int(*t_next_pixel_f)(t_nxt_px_f_arg *);
 
 #endif

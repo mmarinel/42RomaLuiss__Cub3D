@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 19:24:34 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:45:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,8 +184,8 @@ int main(int argc, char const *argv[])
 	// game.wall_texture.south;
 	// game.wall_texture.west;
 	// game.wall_texture.east;
-	game.wall_texture.north.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &game.wall_texture.north.width, &game.wall_texture.north.height);
-	game.wall_texture.north.img = mlx_get_data_addr(game.wall_texture.north.img, &game.wall_texture.north.bits_per_pixel, &game.wall_texture.north.line_length, &game.wall_texture.north.endian);
+	// game.wall_texture.north.img = mlx_xpm_file_to_image(game.screen_handle.mlx, "img/200bosprite.xpm", &game.wall_texture.north.width, &game.wall_texture.north.height);
+	// game.wall_texture.north.img = mlx_get_data_addr(game.wall_texture.north.img, &game.wall_texture.north.bits_per_pixel, &game.wall_texture.north.line_length, &game.wall_texture.north.endian);
 
 
 	// // printf(BOLDGREEN "texture width: %d, texture height: %d\n" RESET, texture_width, texture_height);
