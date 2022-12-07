@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 21:54:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:51:46 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	key_hook(int key_code, t_game *game)
 		t_2d_point	new_pos;
 
 		new_pos = ft_vec_sum(game->player_pos,
-		ft_vec_prod(game->player_dir, 0.4f));
+		ft_vec_prod(game->player_dir, 1.0f));
 		if (is_floor(game, new_pos))
 		{
 			// printf(YELLOW "moving upwards...\n" RESET);
@@ -95,7 +95,7 @@ int	key_hook(int key_code, t_game *game)
 		t_2d_point	new_pos;
 		
 		new_pos = ft_vec_sum(game->player_pos,
-			ft_vec_prod(ft_vec_opposite(game->player_dir), 0.4f));
+			ft_vec_prod(ft_vec_opposite(game->player_dir), 1.0f));
 		if (is_floor(game, new_pos))
 		{
 			// printf(YELLOW "moving downwards...\n" RESET);
@@ -105,14 +105,14 @@ int	key_hook(int key_code, t_game *game)
 	}
 	if (e_RIGHT_KEY == key_code)
 	{
-		game->player_dir = ft_rotate(game->player_dir, M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
-		game->camera_plane = ft_rotate(game->camera_plane, M_PI / 05.0f);
+		game->player_dir = ft_rotate(game->player_dir, 0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
+		game->camera_plane = ft_rotate(game->camera_plane, 0.174533f);// M_PI / 05.0f);
 		render_next_frame(game);
 	}
 	if (e_LEFT_KEY == key_code)
 	{
-		game->player_dir =  ft_rotate(game->player_dir, 2 * M_PI - M_PI / 05.0f);
-		game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI - M_PI / 05.0f);
+		game->player_dir =  ft_rotate(game->player_dir, 2 * M_PI - 0.174533f);// M_PI / 05.0f);
+		game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI - 0.174533f);// M_PI / 05.0f);
 		render_next_frame(game);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 19:44:48 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:33:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,19 @@ float	ft_initial_delta(float p_ax_pos, float p_dir_ax_pos)
 	sq_ax_pos = (int) p_ax_pos;
 	if (p_dir_ax_pos > 0)
 	{//*						can be inf !!!
-		p_ax_pos
-			= flt_round(
-				((float) sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos),
-				FLT_PRECISION
-			);
+		p_ax_pos =
+			// = flt_round(
+				((float) sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos);//,
+				// FLT_PRECISION
+			// );
 	}
 	else if (p_dir_ax_pos < 0)
 	{//*					CANNOT be inf !!!
-		p_ax_pos
-			= flt_round(
-				((float) p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos),
-				FLT_PRECISION
-			);
+		p_ax_pos =
+			// = flt_round(
+				((float) p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos);//,
+				// FLT_PRECISION
+			// );
 	}
 	else
 		p_ax_pos = INFINITY;

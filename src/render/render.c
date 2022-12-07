@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 21:46:20 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:57:59 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	render_next_frame(t_game *g)
 {
 	size_t				col;
 	t_raycast_return	rc_return;
-
+// static	t_int_2d_point	cur = (t_int_2d_point){-1,-1}; printf(YELLOW"RENDER NEXT FRAMEn\n"RESET);
 	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
+	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	(void)render_column;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
@@ -70,6 +71,11 @@ void	render_next_frame(t_game *g)
 	while (col < g->screen_handle.width)
 	{
 		rc_return = raycast(g, ray_dir_for_col(col, g));
+		// if (e_false == t_int_2d_point_equals(cur, rc_return.square))
+		// {
+		// 	ft_print_int_2d_point("wall", rc_return.square);
+		// 	cur = rc_return.square;
+		// }
 		render_column(col, g, rc_return);
 		col++;
 	}
@@ -118,23 +124,28 @@ static void	render_column(
 	// 			* ((float)1 / (1 * pow(rc_return.perp_dist, 1)))
 	// 		);
 	// static int count = 0;
-
-	const size_t			wall_size = roundf(
+	// printf("screen height: %zu\n", g->screen_handle.height);
+	size_t			wall_size = roundf(
 		g->screen_handle.height / rc_return.perp_dist
 	);
 	float				gap;
 	
+	if (0 == wall_size)
+		return ;
+	// if (g->screen_handle.height <= wall_size)
+	// 	gap = 0.000000f;
+	// else
+	// 	gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
 	if (g->screen_handle.height <= wall_size)
-		gap = 0.000000f;
-	else
-		gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
-		
-		t_int_2d_point	endpoint[2] = {
-			frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
-			frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap + (wall_size - 1))
-			// (t_int_2d_point){column, gap},
-			// (t_int_2d_point){column, gap + (wall_size - 1)}
-		};
+		wall_size = g->screen_handle.height;
+	gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
+	(void)frame_clipped_point;
+	t_int_2d_point	endpoint[2] = {
+		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
+		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, g->screen_handle.height <= wall_size ? g->screen_handle.height : gap + (wall_size - 1))
+		(t_int_2d_point){column, gap},
+		(t_int_2d_point){column, gap + (wall_size - 1)}
+	};
 	
 	// if (count < 20) {
 	// 	ft_print_int_2d_point("first endpoint", endpoint[0]);
@@ -180,7 +191,7 @@ static void	render_column(
 	// else {
 	// 	color = test1;
 	// }
-	//**
+	// //**
 	bresenham_plot(
 		endpoint,
 		&g->screen_handle.frame_data,
@@ -188,10 +199,17 @@ static void	render_column(
 	);
 	//**
 	//****
-	// const int colore = ft_get_mlx_color((t_color){156, 72, 39, 1});
+	// const int colore = ft_get_mlx_color((t_color){0, 0, 255, 1});
 	// t_nxt_px_f_arg	pippo;
 	// pippo.arg = &colore;
 	// pippo.cur_px = NULL;
+	// t_int_2d_point	pt = endpoint[0];
+	// while (e_false == t_int_2d_point_equals(pt, endpoint[1]))
+	// {
+	// 	ft_put_mlxpx_to_image(&g->screen_handle.frame_data, ft_get_pixel_offset(g->screen_handle.frame_data, pt), 255);
+	// 	pt.y += 1;
+	// }(void)col_info;
+	
 	// bresenham_plot(
 	// 	endpoint,
 	// 	&g->screen_handle.frame_data,

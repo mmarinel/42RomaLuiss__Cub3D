@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 12:17:49 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:58:39 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	bres_put_next_px(
 t_bool	bres_eol(t_int_2d_point cur_point, t_int_2d_point vlast,
 			t_bres_line_type bres_type)
 {
+	// if (cur_point.y < 0 || cur_point.y >= 760 || cur_point.x < 0)
+	// 	return (e_true);
 	if (e_BRES_LOW_POS ==  bres_type || e_BRES_LOW_NEG == bres_type)
 		return (cur_point.x == vlast.x);
 	else
