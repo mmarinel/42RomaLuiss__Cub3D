@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/30 11:04:27 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:05:00 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool	is_map_attributes_ok( int map_fd, t_map_holder *map_handle )
 		&& e_false == error_found
 	)
 	{
-		next_line = get_next_line(map_fd);
+		next_line = get_next_line_nonl(map_fd);
 		if (NULL == next_line)
 			error_found = e_true;
 		else

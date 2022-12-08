@@ -6,11 +6,11 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/07 19:51:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:17:23 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 1240
+# define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 760
 
 # include "colors.h"
@@ -203,16 +203,18 @@ int main(int argc, char const *argv[])
 	//*						game.camera_plane = ft_get_new_2dpt(1, 0);
 	// ft_print_ray_result(raycast(&game, 0.78539816339));
 	// ft_print_raycast_result(raycast(&game, (M_PI / 2) + M_PI / 4));
-	game.wall_texture.north.img = mlx_xpm_file_to_image(
-		game.screen_handle.mlx,
-		"img/lavaf1.xpm",
-		&game.wall_texture.north.width, &game.wall_texture.north.height
-	);
-	game.wall_texture.north.addr = mlx_get_data_addr(
-		game.wall_texture.north.img,
-		&game.wall_texture.north.bits_per_pixel,
-		&game.wall_texture.north.line_length, &game.wall_texture.north.endian
-	);
+	//**********
+	// game.wall_texture.north.img = mlx_xpm_file_to_image(
+	// 	game.screen_handle.mlx,
+	// 	"img/200doggo.xpm",
+	// 	&game.wall_texture.north.width, &game.wall_texture.north.height
+	// );
+	// game.wall_texture.north.addr = mlx_get_data_addr(
+	// 	game.wall_texture.north.img,
+	// 	&game.wall_texture.north.bits_per_pixel,
+	// 	&game.wall_texture.north.line_length, &game.wall_texture.north.endian
+	// );
+	//**********
 	// mlx_put_image_to_window(game.screen_handle.mlx, game.screen_handle.window, game.wall_texture.north.img, 0, 0);
 	// mlx_loop(game.screen_handle.mlx);
 	// printf(YELLOW "texture width: %d; texture height: %d\n" RESET, game.wall_texture.north.width, game.wall_texture.north.height);
@@ -244,10 +246,10 @@ int main(int argc, char const *argv[])
 	// 		bicubic_interpolation(&texture_data, texture_width, mapped)
 	// 	);
 	// }
-	mlx_put_image_to_window(
-		game.screen_handle.mlx, game.screen_handle.window,
-		game.screen_handle.frame_data.img,
-		0, 0);
+	// mlx_put_image_to_window(
+	// 	game.screen_handle.mlx, game.screen_handle.window,
+	// 	game.screen_handle.frame_data.img,
+	// 	0, 0);
 	// mlx_key_hook(game.screen_handle.window, key_hook, &game);
 	// mlx_do_key_autorepeaton(&game.screen_handle.mlx);
 	mlx_hook(game.screen_handle.window, 2, 1L<<0, key_hook, &game);

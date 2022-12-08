@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init_module.h                                 :+:      :+:    :+:   */
+/*   get_next_line_nonl.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 14:27:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 18:36:09 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/12/08 20:00:08 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/12/08 20:00:16 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_INIT_MODULE_H
-# define GAME_INIT_MODULE_H
+#include "get_next_line.h"
 
-# include "../types.h"
+char	*get_next_line_nonl(int fd)
+{
+	char	*ret;
+	char	*line;
 
-# include <unistd.h>
-
-t_bool	ft_game_init(
-			const char *map_path,
-			t_game *game_ref,
-			size_t width, size_t height
-		);
-
-# endif
+	ret = NULL;
+	line = get_next_line(fd);
+	if (line)
+	{
+		gnl_strlcpy(&ret, line, gnl_strlen(line) - 1);
+		free(line);
+	}
+	return (ret);
+}

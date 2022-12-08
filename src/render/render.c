@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/07 19:57:59 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:47:05 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
 //*		end of static declarations
 
-int	ln_clipper(t_clip_opcode opcode, size_t size);
-size_t	ln_clip(size_t coordinate);
+// int	ln_clipper(t_clip_opcode opcode, size_t size);
+// size_t	ln_clip(size_t coordinate);
 size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game);
 int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg);
 //*																			
@@ -48,11 +48,11 @@ void	render_next_frame(t_game *g)
 	t_raycast_return	rc_return;
 // static	t_int_2d_point	cur = (t_int_2d_point){-1,-1}; printf(YELLOW"RENDER NEXT FRAMEn\n"RESET);
 	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
-	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
+	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	(void)render_column;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
-	ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
+	// ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
 	mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
 	g->screen_handle.frame_data.img
 		= mlx_new_image(
@@ -67,6 +67,12 @@ void	render_next_frame(t_game *g)
 	);
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	draw_background(g);
+
+	// clock_t	before;
+	// clock_t	after;
+	// clock_t	check;
+
+	// before = clock();
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
@@ -79,6 +85,8 @@ void	render_next_frame(t_game *g)
 		render_column(col, g, rc_return);
 		col++;
 	}
+	// check = clock();
+	// printf(BOLDCYAN "elapsed check: %f |\t" RESET, (double)(check - before) / CLOCKS_PER_SEC);
 	mlx_put_image_to_window(
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->screen_handle.frame_data.img,
@@ -88,28 +96,30 @@ void	render_next_frame(t_game *g)
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->wall_texture.north.img,
 		0, 0);
+	// after = clock();
+	// printf(BOLDCYAN "elapsed: %f\n" RESET, (double)(after - check) / CLOCKS_PER_SEC);
 }
 
-static t_int_2d_point	frame_clipped_point(size_t screen_height, size_t screen_width, int x, int y)
-{
-	t_int_2d_point	pt;
+// static t_int_2d_point	frame_clipped_point(size_t screen_height, size_t screen_width, int x, int y)
+// {
+// 	t_int_2d_point	pt;
 
-	if (x < 0)
-		pt.x = 0;
-	else if (x >= (int)screen_width)
-		pt.x = screen_width - 1;
-	else
-		pt.x = x;
+// 	if (x < 0)
+// 		pt.x = 0;
+// 	else if (x >= (int)screen_width)
+// 		pt.x = screen_width - 1;
+// 	else
+// 		pt.x = x;
 	
-	if (y < 0)
-		pt.y = 0;
-	else if (y >= (int)screen_height)
-		pt.y = screen_height - 1;
-	else
-		pt.y = y;
+// 	if (y < 0)
+// 		pt.y = 0;
+// 	else if (y >= (int)screen_height)
+// 		pt.y = screen_height - 1;
+// 	else
+// 		pt.y = y;
 
-	return (pt);
-}
+// 	return (pt);
+// }
 
 static void	render_column(
 	size_t column,
@@ -139,14 +149,17 @@ static void	render_column(
 	if (g->screen_handle.height <= wall_size)
 		wall_size = g->screen_handle.height;
 	gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
-	(void)frame_clipped_point;
+	// (void)frame_clipped_point;
 	t_int_2d_point	endpoint[2] = {
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, g->screen_handle.height <= wall_size ? g->screen_handle.height : gap + (wall_size - 1))
 		(t_int_2d_point){column, gap},
 		(t_int_2d_point){column, gap + (wall_size - 1)}
 	};
-	
+	// printf("********************************\n");
+	// ft_print_int_2d_point("endpoint[0]", endpoint[0]);
+	// ft_print_int_2d_point("endpoint[1]", endpoint[1]);
+	// printf("********************************\n");
 	// if (count < 20) {
 	// 	ft_print_int_2d_point("first endpoint", endpoint[0]);
 	// 	ft_print_int_2d_point("second endpoint", endpoint[1]);
@@ -173,8 +186,7 @@ static void	render_column(
 					//*		frame_data
 		get_texture_column(&rc_return, g),
 					//*		texture_column
-		(float)g->\
-		screen_handle.textures_size / wall_size,
+		(float)get_textures_size() / wall_size,
 					//*		scaling_factor
 	};
 	//TODO DECOMMENTARE
@@ -191,6 +203,7 @@ static void	render_column(
 	// else {
 	// 	color = test1;
 	// }
+	
 	// //**
 	bresenham_plot(
 		endpoint,
@@ -263,18 +276,18 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 	// ft_print_2d_point("mapped", mapped);
 	if (resized_row == col_info->wall_size - 1)
 		return (0);
-	if (mapped.y - floor(mapped.y) < ceil(mapped.y) - mapped.y)
+	if (mapped.y - floor(mapped.y) < 0.5f)//ceil(mapped.y) - mapped.y)
 	{
 		// printf(BOLDCYAN "QUI!\n" RESET);
 		return get_texture_px(
-			(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
+			(t_int_2d_point){mapped.x, texture_pt_clip(floor(mapped.y))},//, col_info->rc_ret->side
 			col_info->texture
 		);
 	}
 	else {
 		// printf(BOLDCYAN "QUAA!\n" RESET);
 		return get_texture_px(
-			(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
+			(t_int_2d_point){mapped.x, texture_pt_clip(ceil(mapped.y))},
 			col_info->texture
 		);
 	}
@@ -384,34 +397,6 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 	// ray.x = ray.x / magnitude;
 	// ray.y = ray.y / magnitude;
 	return (ray);
-}
-
-int	ln_clipper(t_clip_opcode opcode, size_t size)
-{
-	static size_t	texture_size = 0;
-
-	if (e_LN_CLIPPER_INITIALIZE == opcode)
-	{
-		texture_size = size;
-		// printf(BOLDGREEN "texture_size: %zu\n" RESET, texture_size);
-	}
-	else if (e_LN_CLIPPER_GET == opcode)
-	{
-		return (texture_size);
-	}
-	return (texture_size);
-}
-
-size_t	ln_clip(size_t coordinate)
-{
-	const size_t	max_size = ln_clipper(e_LN_CLIPPER_GET, -1);
-
-	if (coordinate < 0)
-		return (0);
-	else if (coordinate > max_size - 1)
-		return (max_size - 1);
-	else
-		return (coordinate);
 }
 
 //*																				

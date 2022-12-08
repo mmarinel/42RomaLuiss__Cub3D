@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 12:56:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:44:15 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,10 @@ t_bool	ft_iscolor(long long red, long long green, long long blue);
 //*		mlx holder
 void	mlx_holder_set(const t_screen_holder *screen_holder);
 size_t	mlx_holder_max_offset( void );
+
+//*		textures
+size_t	texture_pt_clip(size_t coordinate);
+int		texture_pt_clipper(t_clip_opcode opcode, size_t size);
+size_t	get_textures_size();
 
 #endif

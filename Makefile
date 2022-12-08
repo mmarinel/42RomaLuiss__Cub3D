@@ -81,6 +81,7 @@ SRC_NOPREFIX=\
 ./src/utils/game/math.c\
 ./src/utils/game/vector.c\
 ./src/utils/gnl/get_next_line.c\
+./src/utils/gnl/get_next_line_nonl.c\
 ./src/utils/gnl/get_next_line_utils.c\
 ./src/utils/map/atttrs_chars_conditions.c\
 ./src/utils/map/map_chars_conditions.c\

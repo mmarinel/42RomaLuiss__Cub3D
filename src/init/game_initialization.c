@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 16:32:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:10:50 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	initial_dir_vectors(
 				t_tile inital_dir,
 				t_2d_point *player_dir, t_2d_point *camera_plane
 			);
+void	load_textures(t_game *game_ref, t_bool *err_flag);
 //*		end of static declarations
 
 // static t_2d_point	get_initial_dir(t_tile dir)
@@ -49,36 +50,95 @@ static void	initial_dir_vectors(
 // }
 
 t_bool	ft_game_init(
-			const char *path,
+			const char *map_path,
 			t_game *game_ref,
 			size_t width, size_t height
 		)
 {
-	t_bool	ok;
+	t_bool	error;
 
 	if (game_ref)
 	{
-		ok = e_true;
+		error = e_false;
 		game_set_map(game_ref);
-		if (e_false == is_valid_map(path, &game_ref->map_handle))
-			ok = e_false;
+		if (e_false == is_valid_map(map_path, &game_ref->map_handle))
+			error = e_true;
 		else
 		{
-			// game_ref->player_dir = get_initial_dir(game_ref->map_handle.player_initial_dir);
-			// game_ref->camera_plane = ft_rotate(game_ref->player_dir, M_PI / 2);
-			// game_ref->player_pos = game_ref->map_handle.player_initial_pos;
 			game_set_inital_vectors(game_ref);
-			game_ref->screen_handle.textures_size = TEXTURES_SIZE;// load_textures();
 			t_2d_point_print(&game_ref->player_dir, "player_dir");
 			t_2d_point_print(&game_ref->camera_plane, "cmaera_plane");
 			t_2d_point_print(&game_ref->player_pos, "player_pos");
-			// exit(0);
 		}
 	}
 	else
-		ok = e_false;
+		error = e_true;
 	game_set_mlx(game_ref, width, height);
-	return (ok);
+	load_textures(game_ref, &error);
+	return (error == e_false);
+}
+
+size_t	open_texture(const char *path, t_data *texture_data,
+			t_game *game_ref, t_bool *err_flag)
+{
+	texture_data->img = mlx_xpm_file_to_image(
+		game_ref->screen_handle.mlx,
+		(char *)path,
+		&texture_data->width, &texture_data->height
+	);
+	if (texture_data->img)
+		texture_data->addr = mlx_get_data_addr(
+			texture_data->img,
+			&texture_data->bits_per_pixel,
+			&texture_data->line_length, &texture_data->endian
+		);
+	if (NULL == texture_data->img
+		|| NULL == texture_data->addr
+		|| texture_data->width != texture_data->height
+	)
+		*err_flag = e_true;
+
+	if (!texture_data->img || !texture_data->addr)
+		printf(RED "NULL\n" RESET);
+	else
+		printf(GREEN "OK\n" RESET);
+	printf(YELLOW "texture path:%sT\n" RESET, path);
+	return (texture_data->width);
+}
+
+/**
+ * @brief this function opens the textures of the game.
+ * All textures are 200 px wide squares.
+ * Everything but walls can have a padding with transparent px (e.g. enemies)
+ * 
+ * @param game_ref 
+ */
+void	load_textures(t_game *game_ref, t_bool *err_flag)
+{
+	size_t	north_texture_size;
+	size_t	south_texture_size;
+	size_t	west_texture_size;
+	size_t	east_texture_size;
+
+	north_texture_size = open_texture(game_ref->map_handle.no_texture,
+		&game_ref->wall_texture.north, game_ref, err_flag
+	);
+	south_texture_size = open_texture(game_ref->map_handle.so_texture,
+		&game_ref->wall_texture.south, game_ref, err_flag
+	);
+	west_texture_size = open_texture(game_ref->map_handle.we_texture,
+		&game_ref->wall_texture.west, game_ref, err_flag
+	);
+	east_texture_size = open_texture(game_ref->map_handle.ea_texture,
+		&game_ref->wall_texture.east, game_ref, err_flag
+	);
+	if (north_texture_size != south_texture_size
+		|| north_texture_size != west_texture_size
+		|| north_texture_size != east_texture_size
+	)
+		*err_flag = e_true;
+	else
+		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
 }
 
 static void	game_set_map( t_game *game_ref )

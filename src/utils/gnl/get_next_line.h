@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:14:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 11:10:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:00:29 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef enum e_bool
 
 //* utils
 
+char	*get_next_line(int fd);
 void	gnl_strcpy(char *dst, char *src);
 void	gnl_strlcpy(char **dst, char *src, int dst_len);
 char	*gnl_strjoin(char const *pre, char const *post,

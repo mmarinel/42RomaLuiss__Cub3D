@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 18:55:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:15:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ typedef enum e_reentrancy
 	e_OUTGOING,
 	e_REENTRANCY_NONE
 }	t_reentrancy;
-
-typedef enum e_clip_opcode
-{
-	e_LN_CLIPPER_INITIALIZE,
-	e_LN_CLIPPER_GET,
-}	t_clip_opcode;
 
 typedef struct s_wall_camera_incidence
 {
