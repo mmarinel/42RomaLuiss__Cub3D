@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/08 18:40:23 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 11:08:01 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,81 @@
 # include <limits.h>
 
 # define FLT_PRECISION 6
+
+//*		X11		Events & events Masks
+
+//		events
+//* 	Event names.  Used in "type" field in XEvent structures.  Not to be
+//* 	confused with event masks below.  They start from 2 because 0 and 1
+//* 	are reserved in the protocol for errors and replies.
+//
+#define KeyPress			2
+#define KeyRelease			3
+#define ButtonPress			4
+#define ButtonRelease		5
+#define MotionNotify		6
+#define EnterNotify			7
+#define LeaveNotify			8
+#define FocusIn				9
+#define FocusOut			10
+#define KeymapNotify		11
+#define Expose				12
+#define GraphicsExpose		13
+#define NoExpose			14
+#define VisibilityNotify	15
+#define CreateNotify		16
+#define DestroyNotify		17
+#define UnmapNotify			18
+#define MapNotify			19
+#define MapRequest			20
+#define ReparentNotify		21
+#define ConfigureNotify		22
+#define ConfigureRequest	23
+#define GravityNotify		24
+#define ResizeRequest		25
+#define CirculateNotify		26
+#define CirculateRequest	27
+#define PropertyNotify		28
+#define SelectionClear		29
+#define SelectionRequest	30
+#define SelectionNotify		31
+#define ColormapNotify		32
+#define ClientMessage		33
+#define MappingNotify		34
+#define GenericEvent		35
+#define LASTEvent			36	/* must be bigger than any event # */
+
+//		masks
+//*		Input Event Masks. Used as event-mask window attribute and as arguments
+//*		to Grab requests.  Not to be confused with event names.
+//
+#define NoEventMask					0L
+#define KeyPressMask				(1L<<0)
+#define KeyReleaseMask				(1L<<1)
+#define ButtonPressMask				(1L<<2)
+#define ButtonReleaseMask			(1L<<3)
+#define EnterWindowMask				(1L<<4)
+#define LeaveWindowMask				(1L<<5)
+#define PointerMotionMask			(1L<<6)
+#define PointerMotionHintMask		(1L<<7)
+#define Button1MotionMask			(1L<<8)
+#define Button2MotionMask			(1L<<9)
+#define Button3MotionMask			(1L<<10)
+#define Button4MotionMask			(1L<<11)
+#define Button5MotionMask			(1L<<12)
+#define ButtonMotionMask			(1L<<13)
+#define KeymapStateMask				(1L<<14)
+#define ExposureMask				(1L<<15)
+#define VisibilityChangeMask		(1L<<16)
+#define StructureNotifyMask			(1L<<17)
+#define ResizeRedirectMask			(1L<<18)
+#define SubstructureNotifyMask		(1L<<19)
+#define SubstructureRedirectMask	(1L<<20)
+#define FocusChangeMask				(1L<<21)
+#define PropertyChangeMask			(1L<<22)
+#define ColormapChangeMask			(1L<<23)
+#define OwnerGrabButtonMask			(1L<<24)
+
 
 # ifndef T_BOOL
 #  define T_BOOL
@@ -132,9 +207,27 @@ typedef struct s_wall_texture {
 	t_data	east;
 }	t_wall_texture;
 
+typedef struct s_key_state
+{
+	t_key	key;
+	int		state;
+}	t_key_state;
+
+# define BOUND_KEYS 8
+
+# define W_INDEX 0
+# define A_INDEX 1
+# define S_INDEX 2
+# define D_INDEX 3
+# define UP_INDEX 4
+# define DOWN_INDEX 5
+# define RIGHT_INDEX 6
+# define LEFT_INDEX 7
+
 typedef struct s_game
 {
 	t_map_holder	map_handle;
+	t_key_state		keys[BOUND_KEYS];
 	t_screen_holder	screen_handle;
 	t_wall_texture	wall_texture;
 	t_2d_point		player_dir;

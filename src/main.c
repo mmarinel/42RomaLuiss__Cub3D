@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 18:17:23 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 12:45:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,60 +61,196 @@ t_bool	is_floor(t_game *g, t_2d_point pt)
 		);
 }
 
-int	key_hook(int key_code, t_game *game)
+
+t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
 {
-	// static struct timeval	timestamp = (struct timeval){0,0};
-	// struct timeval			current;
+	if (pt.x >= game->map_handle.columns)
+		pt.x = game->map_handle.columns - 1;
+	if (pt.y >= game->map_handle.rows)
+		pt.y = game->map_handle.rows - 1;
+	return (pt);
+}
 
-	//* printf(YELLOW"key pressed: %d\n"RESET, key_code);
-	// if (!timestamp.tv_sec && !timestamp.tv_usec)
-	// 	gettimeofday(&timestamp, NULL);
+t_2d_point	new_player_pos(t_2d_point current,
+				int key_pressed, float step_size, t_game *game)
+{
+	t_2d_point	pos;
 
-	// if (e_UP_KEY == key_code || e_DOWN_KEY == key_code)
-	// {
-	// 	gettimeofday(&current, NULL);
-	// 	if (get_ms_from_timestamp(&current) - get_ms_from_timestamp(&timestamp) < 0.5f)
-	// 		return (1);
-	// 	timestamp = current;
-	// }
+	pos = current;
+	if (e_UP_KEY == key_pressed)
+	{
+		pos = map_pos_clip(
+			ft_vec_sum(
+				game->player_pos,
+				ft_vec_prod(game->player_dir, step_size)
+			),
+			game
+		);
+	}
+	if (e_DOWN_KEY == key_pressed)
+	{
+		pos = map_pos_clip(
+				ft_vec_sum(
+					game->player_pos,
+					ft_vec_prod(
+						ft_vec_opposite(game->player_dir),
+						step_size
+					)
+				),
+				game
+			);
+	}
+	return (pos);
+}
+
+int	loop_hook(t_game *game)
+{
+	static struct timeval	*timestamp = NULL;
+	struct timeval			current;
+	static float			rot_angle = 0.174533f;
+	static float			step_size = 0.5f;
+
+	if (NULL == timestamp)
+	{
+		timestamp = (struct timeval *) malloc(sizeof(struct timeval));
+		gettimeofday(timestamp, NULL);
+	}
+	gettimeofday(&current, NULL);
+	if (get_ms_from_timestamp(&current) - get_ms_from_timestamp(timestamp) < 0)
+		return (0);
+	*timestamp = current;
+	if (KeyPress == game->keys[UP_INDEX].state
+		|| KeyRelease == game->keys[UP_INDEX].state)
+	{
+		if (KeyPress == game->keys[UP_INDEX].state
+			|| KeyPress == game->keys[W_INDEX].state)
+		{
+				t_2d_point	new_pos;
+	
+			while (e_true)
+			{
+				new_pos = new_player_pos(game->player_pos, e_UP_KEY, step_size, game);
+				if (is_floor(game, new_pos))
+					break ;
+				step_size -= 0.5f;
+			}
+			// if (is_floor(game, new_pos))
+			// {
+				// printf(YELLOW "moving upwards...\n" RESET);
+				game->player_pos = new_pos;
+				render_next_frame(game);
+				if (step_size < 3)
+					step_size += 0.5f;
+			// }
+		}
+		else if (KeyRelease == game->keys[UP_INDEX].state)
+		{
+			step_size = 0.5f;
+			game->keys[UP_INDEX].state = -1;
+		}
+	}
+	if (KeyPress == game->keys[DOWN_INDEX].state
+		|| KeyRelease == game->keys[DOWN_INDEX].state)
+	{
+		if (KeyPress == game->keys[DOWN_INDEX].state
+			|| KeyPress == game->keys[S_INDEX].state)
+		{
+			t_2d_point	new_pos;
+			
+			while (e_true)
+			{
+				new_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step_size, game);
+				if (is_floor(game, new_pos))
+					break ;
+				step_size -= 0.5f;
+			}
+			// if (is_floor(game, new_pos))
+			// {
+				// printf(YELLOW "moving downwards...\n" RESET);
+				game->player_pos = new_pos;
+				render_next_frame(game);
+				if (step_size < 3)
+					step_size += 0.5f;
+			// }
+		}
+		else if (KeyRelease == game->keys[UP_INDEX].state)
+		{
+			step_size = 0.5f;
+			game->keys[DOWN_INDEX].state = -1;
+		}
+	}
+	if (KeyPress == game->keys[RIGHT_INDEX].state
+		|| KeyRelease == game->keys[RIGHT_INDEX].state)
+	{
+		if (KeyPress == game->keys[RIGHT_INDEX].state)
+		{
+			game->player_dir = ft_rotate(game->player_dir, rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
+			game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
+			render_next_frame(game);
+			if (rot_angle < 0.314159f)
+				rot_angle += 0.05f;
+		}
+		else if (KeyRelease == game->keys[RIGHT_INDEX].state)
+		{
+			rot_angle = 0.174533f;
+			game->keys[RIGHT_INDEX].state = -1;
+		}
+
+	}
+	if (KeyPress == game->keys[LEFT_INDEX].state
+		|| KeyRelease == game->keys[LEFT_INDEX].state)
+	{
+		if (KeyPress == game->keys[LEFT_INDEX].state)
+		{
+			game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);//0.174533f);// M_PI / 05.0f);
+			game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
+			render_next_frame(game);
+			if (rot_angle < 0.314159f)
+				rot_angle += 0.05f;
+		}
+		else if (KeyRelease == game->keys[LEFT_INDEX].state)
+		{
+			rot_angle = 0.174533f;
+			game->keys[LEFT_INDEX].state = -1;
+		}
+	}
+	return (0);
+}
+
+static int	get_key_index(int key_code)
+{
 	if (e_UP_KEY == key_code)
-	{
-		t_2d_point	new_pos;
-
-		new_pos = ft_vec_sum(game->player_pos,
-		ft_vec_prod(game->player_dir, 1.0f));
-		if (is_floor(game, new_pos))
-		{
-			// printf(YELLOW "moving upwards...\n" RESET);
-			game->player_pos = new_pos;
-			render_next_frame(game);
-		}
-	}
+		return (UP_INDEX);
 	if (e_DOWN_KEY == key_code)
-	{
-		t_2d_point	new_pos;
-		
-		new_pos = ft_vec_sum(game->player_pos,
-			ft_vec_prod(ft_vec_opposite(game->player_dir), 1.0f));
-		if (is_floor(game, new_pos))
-		{
-			// printf(YELLOW "moving downwards...\n" RESET);
-			game->player_pos = new_pos;
-			render_next_frame(game);
-		}
-	}
+		return (DOWN_INDEX);
 	if (e_RIGHT_KEY == key_code)
-	{
-		game->player_dir = ft_rotate(game->player_dir, 0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
-		game->camera_plane = ft_rotate(game->camera_plane, 0.174533f);// M_PI / 05.0f);
-		render_next_frame(game);
-	}
+		return (RIGHT_INDEX);
 	if (e_LEFT_KEY == key_code)
-	{
-		game->player_dir =  ft_rotate(game->player_dir, 2 * M_PI - 0.174533f);// M_PI / 05.0f);
-		game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI - 0.174533f);// M_PI / 05.0f);
-		render_next_frame(game);
-	}
+		return (LEFT_INDEX);
+	// if (e_W_KEY == key_code)
+	// 	return (UP_INDEX);
+	// if (e_UP_KEY == key_code)
+	// 	return (UP_INDEX);
+	// if (e_UP_KEY == key_code)
+	// 	return (UP_INDEX);
+	// if (e_UP_KEY == key_code)
+	// 	return (UP_INDEX);
+	return (0);
+}
+
+int	key_press_hook(int key_code, t_game *game)
+{
+	const size_t	key_index = get_key_index(key_code);
+
+	game->keys[key_index].state = KeyPress;
+	return (0);
+}
+
+int	key_release_hook(int key_code, t_game *game)
+{
+	const size_t	key_index = get_key_index(key_code);
+
+	game->keys[key_index].state = KeyRelease;
 	return (0);
 }
 
@@ -219,9 +355,8 @@ int main(int argc, char const *argv[])
 	// mlx_loop(game.screen_handle.mlx);
 	// printf(YELLOW "texture width: %d; texture height: %d\n" RESET, game.wall_texture.north.width, game.wall_texture.north.height);
 	// exit(0);
-	render_next_frame(&game);
 	//*********************************		BICUBIC TESTING		**************************************************
-	(void)key_hook;
+	//** (void)key_hook;
 
 	// int		texture_width;
 	// int		texture_height;
@@ -252,7 +387,11 @@ int main(int argc, char const *argv[])
 	// 	0, 0);
 	// mlx_key_hook(game.screen_handle.window, key_hook, &game);
 	// mlx_do_key_autorepeaton(&game.screen_handle.mlx);
-	mlx_hook(game.screen_handle.window, 2, 1L<<0, key_hook, &game);
+	mlx_hook(game.screen_handle.window, KeyPress, KeyPressMask, key_press_hook, &game);
+	mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
+	mlx_do_sync(game.screen_handle.mlx);
+	render_next_frame(&game);
+	mlx_loop_hook(game.screen_handle.mlx, loop_hook, &game);
 	mlx_loop(game.screen_handle.mlx);
 //**************************************************************************************************************************************
 

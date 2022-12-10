@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 18:47:05 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 10:42:42 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,20 @@ void	render_next_frame(t_game *g)
 	(void)ray_dir_for_col;
 	// draw_sun(g);
 	// ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
-	mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
-	g->screen_handle.frame_data.img
-		= mlx_new_image(
-			g->screen_handle.mlx,
-			g->screen_handle.width, g->screen_handle.height
-		);
-	g->screen_handle.frame_data.addr = mlx_get_data_addr(
-		g->screen_handle.frame_data.img,
-		&g->screen_handle.frame_data.bits_per_pixel,
-		&g->screen_handle.frame_data.line_length,
-		&g->screen_handle.frame_data.endian
-	);
+	//**		DESTROY IMAGE && NEW_IMAGE
+	// mlx_destroy_image(g->screen_handle.mlx, g->screen_handle.frame_data.img);
+	// g->screen_handle.frame_data.img
+	// 	= mlx_new_image(
+	// 		g->screen_handle.mlx,
+	// 		g->screen_handle.width, g->screen_handle.height
+	// 	);
+	// g->screen_handle.frame_data.addr = mlx_get_data_addr(
+	// 	g->screen_handle.frame_data.img,
+	// 	&g->screen_handle.frame_data.bits_per_pixel,
+	// 	&g->screen_handle.frame_data.line_length,
+	// 	&g->screen_handle.frame_data.endian
+	// );
+	//**		DESTROY IMAGE && NEW_IMAGE
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	draw_background(g);
 
