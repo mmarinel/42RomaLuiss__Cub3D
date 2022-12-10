@@ -6,12 +6,12 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 16:16:47 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:01:08 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 760
+# define SCREEN_HEIGHT 720
 
 # include "colors.h"
 # include "types.h"
@@ -153,14 +153,14 @@ int	loop_hook(t_game *game)
 			float		step;
 	
 			new_pos = game->player_pos;
-			step = 0.5f;
+			step = 0.25f;
 			while (step < step_size)
 			{
 				next_pos = new_player_pos(game->player_pos, e_UP_KEY, step, game);
 				if (e_false == is_free_pos(game, next_pos))
 					break ;
 				new_pos = next_pos;
-				step += 0.5f;
+				step += 0.25f;
 			}
 			// if (is_floor(game, new_pos))
 			// {
@@ -188,14 +188,14 @@ int	loop_hook(t_game *game)
 			float		step;
 			
 			new_pos = game->player_pos;
-			step = 0.5f;
+			step = 0.25f;
 			while (step < step_size)
 			{
-				next_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step + 0.5f, game);
+				next_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step, game);
 				if (e_false == is_free_pos(game, next_pos))
 					break ;
 				new_pos = next_pos;
-				step += 0.5f;
+				step += 0.25f;
 			}
 			// if (is_floor(game, new_pos))
 			// {
@@ -223,14 +223,13 @@ int	loop_hook(t_game *game)
 			game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
 			render_next_frame(game);
 			if (rot_angle < 0.314159f)
-				rot_angle += 0.05f;
+				rot_angle += 0.025f;
 		}
 		else if (KeyRelease == game->keys[RIGHT_INDEX].state)
 		{
 			rot_angle = 0.174533f;
 			game->keys[RIGHT_INDEX].state = -1;
 		}
-
 	}
 	if (KeyPress == game->keys[LEFT_INDEX].state
 		|| KeyRelease == game->keys[LEFT_INDEX].state)
@@ -241,7 +240,7 @@ int	loop_hook(t_game *game)
 			game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
 			render_next_frame(game);
 			if (rot_angle < 0.314159f)
-				rot_angle += 0.05f;
+				rot_angle += 0.025f;
 		}
 		else if (KeyRelease == game->keys[LEFT_INDEX].state)
 		{
@@ -424,7 +423,7 @@ int main(int argc, char const *argv[])
 	// mlx_do_key_autorepeaton(&game.screen_handle.mlx);
 	mlx_hook(game.screen_handle.window, KeyPress, KeyPressMask, key_press_hook, &game);
 	mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
-	mlx_do_sync(game.screen_handle.mlx);
+	// mlx_do_sync(game.screen_handle.mlx);
 	render_next_frame(&game);
 	mlx_loop_hook(game.screen_handle.mlx, loop_hook, &game);
 	mlx_loop(game.screen_handle.mlx);

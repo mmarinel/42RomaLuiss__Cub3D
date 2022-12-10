@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 20:10:50 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:12:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	initial_dir_vectors(
 				t_2d_point *player_dir, t_2d_point *camera_plane
 			);
 void	load_textures(t_game *game_ref, t_bool *err_flag);
+void	game_set_key_state(t_game *game_ref);
 //*		end of static declarations
 
 // static t_2d_point	get_initial_dir(t_tile dir)
@@ -74,6 +75,7 @@ t_bool	ft_game_init(
 	else
 		error = e_true;
 	game_set_mlx(game_ref, width, height);
+	game_set_key_state(game_ref);
 	load_textures(game_ref, &error);
 	return (error == e_false);
 }
@@ -104,6 +106,47 @@ size_t	open_texture(const char *path, t_data *texture_data,
 		printf(GREEN "OK\n" RESET);
 	printf(YELLOW "texture path:%sT\n" RESET, path);
 	return (texture_data->width);
+}
+
+size_t	open_bg_texture(const char *path, t_data *texture_data,
+			t_game *game_ref, t_bool *err_flag)
+{
+	texture_data->img = mlx_xpm_file_to_image(
+		game_ref->screen_handle.mlx,
+		(char *)path,
+		&texture_data->width, &texture_data->height
+	);
+	if (texture_data->img)
+		texture_data->addr = mlx_get_data_addr(
+			texture_data->img,
+			&texture_data->bits_per_pixel,
+			&texture_data->line_length, &texture_data->endian
+		);
+	if (NULL == texture_data->img
+		|| NULL == texture_data->addr
+	)
+		*err_flag = e_true;
+
+	if (!texture_data->img || !texture_data->addr)
+		printf(RED "NULL\n" RESET);
+	else
+		printf(GREEN "OK\n" RESET);
+	printf(YELLOW "texture path:%sT\n" RESET, path);
+	return (texture_data->width);
+}
+
+static void load_background_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/Background/scene-1.xpm",
+		 &game_ref->background.scene_1,
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Background/scene-2.xpm",
+		&game_ref->background.scene_2,
+		game_ref, err_flag
+	);
 }
 
 /**
@@ -139,6 +182,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 		*err_flag = e_true;
 	else
 		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
+	load_background_textures(game_ref, err_flag);
 }
 
 static void	game_set_map( t_game *game_ref )
@@ -187,6 +231,36 @@ static void	game_set_mlx( t_game *game_ref, size_t width, size_t height )
 	game_ref->screen_handle.frame_data.width = width;
 	game_ref->screen_handle.frame_data.height = height;
 	mlx_holder_set(&game_ref->screen_handle);
+}
+
+void	game_set_key_state(t_game *game_ref)
+{
+	// const t_key_state keys[BOUND_KEYS] = {
+	// 	(t_key_state){e_UP_KEY, -1},
+	// 	(t_key_state){e_DOWN_KEY, -1},
+	// 	(t_key_state){e_RIGHT_KEY, -1},
+	// 	(t_key_state){e_LEFT_KEY, -1},
+	// 	(t_key_state){e_W_KEY, -1},
+	// 	(t_key_state){e_A_KEY, -1},
+	// 	(t_key_state){e_S_KEY, -1},
+	// 	(t_key_state){e_D_KEY, -1},
+	// 	(t_key_state){e_E_KEY, -1},
+	// 	(t_key_state){e_Q_KEY, -1},
+	// 	(t_key_state){e_SPACE_KEY, -1},
+	// 	(t_key_state){e_TAB_KEY, -1},
+	// 	(t_key_state){e_CTRL_KEY, -1},
+	// 	(t_key_state){e_CMD_KEY, -1},
+	// }
+
+	size_t	cur_key;
+
+	cur_key = 0;
+	while (cur_key < BOUND_KEYS)
+	{
+		game_ref->keys[cur_key].state = -1;
+		cur_key += 1;
+	}
+	// return (keys);
 }
 
 static void	game_set_inital_vectors( t_game *game_ref )

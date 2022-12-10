@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/10 11:08:01 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:05:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,16 @@ typedef enum e_key
 	e_DOWN_KEY = 125,
 	e_RIGHT_KEY = 124,
 	e_LEFT_KEY = 123,
+	e_W_KEY = -1,
+	e_A_KEY = -1,
+	e_S_KEY = -1,
+	e_D_KEY = -1,
+	e_E_KEY = -1,
+	e_Q_KEY = -1,
+	e_SPACE_KEY = -1,
+	e_TAB_KEY = -1,
+	e_CTRL_KEY = -1,
+	e_CMD_KEY = -1,
 }	t_key;
 
 typedef enum e_quadrant
@@ -207,13 +217,19 @@ typedef struct s_wall_texture {
 	t_data	east;
 }	t_wall_texture;
 
+typedef struct s_background_texture
+{
+	t_data	scene_1;
+	t_data	scene_2;
+}	t_background_texture;
+
 typedef struct s_key_state
 {
 	t_key	key;
 	int		state;
 }	t_key_state;
 
-# define BOUND_KEYS 8
+# define BOUND_KEYS 14
 
 # define W_INDEX 0
 # define A_INDEX 1
@@ -226,13 +242,15 @@ typedef struct s_key_state
 
 typedef struct s_game
 {
-	t_map_holder	map_handle;
-	t_key_state		keys[BOUND_KEYS];
-	t_screen_holder	screen_handle;
-	t_wall_texture	wall_texture;
-	t_2d_point		player_dir;
-	t_2d_point		player_pos;
-	t_2d_point		camera_plane;
+	t_map_holder			map_handle;
+	t_key_state				keys[BOUND_KEYS];
+	t_screen_holder			screen_handle;
+	t_wall_texture			wall_texture;
+	t_background_texture	background;
+	// t_enemy			enemy
+	t_2d_point				player_dir;
+	t_2d_point				player_pos;
+	t_2d_point				camera_plane;
 }	t_game;
 /**
  * fields:

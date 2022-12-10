@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 16:50:37 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:57:30 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 //*		mlx_utils
 void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color);
-size_t	ft_get_pixel_offset(const t_data img_data, t_int_2d_point pt);
+size_t	ft_get_pixel_offset(const t_data *img_data, t_int_2d_point pt);
 
 //*		color
 size_t	ft_get_mlx_color(t_color color);

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/27 12:56:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:51:38 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_put_mlxpx_to_image(t_data *img_data, size_t px_offset, int color)
 	}
 }
 
-size_t	ft_get_pixel_offset(const t_data img_data, t_int_2d_point pt)
+size_t	ft_get_pixel_offset(const t_data *img_data, t_int_2d_point pt)
 {
 	return (
-		pt.y * img_data.line_length + pt.x * (img_data.bits_per_pixel / 8)
+		pt.y * img_data->line_length + pt.x * (img_data->bits_per_pixel / 8)
 	);
 }

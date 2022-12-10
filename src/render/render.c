@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 10:42:42 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:30:31 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // 					t_wall_camera_incidence wc_incidence);
 // static size_t	hit_wall_height(t_game *g, float perp_dist,
 // 					t_wall_camera_incidence wc_incidence);
+static void	draw_background_bonus(t_game *g, const t_data *texture_data);
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
 //*		end of static declarations
 
@@ -46,10 +47,13 @@ void	render_next_frame(t_game *g)
 {
 	size_t				col;
 	t_raycast_return	rc_return;
+	static size_t		frames = 0;
+	t_data				*background_image;
 // static	t_int_2d_point	cur = (t_int_2d_point){-1,-1}; printf(YELLOW"RENDER NEXT FRAMEn\n"RESET);
 	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
 	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	(void)render_column;
+	(void)draw_background;
 	(void)ray_dir_for_col;
 	// draw_sun(g);
 	// ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
@@ -68,7 +72,15 @@ void	render_next_frame(t_game *g)
 	// );
 	//**		DESTROY IMAGE && NEW_IMAGE
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	draw_background(g);
+	//* MANDATORY draw_background(g);
+
+	if (frames < 30)
+		background_image = &g->background.scene_1;
+	else
+		background_image = &g->background.scene_2;
+	frames = frames + (frames + 1) % 30;
+	draw_background_bonus(g, background_image);
+	// draw_sky(g);
 
 	// clock_t	before;
 	// clock_t	after;
@@ -94,10 +106,10 @@ void	render_next_frame(t_game *g)
 		g->screen_handle.frame_data.img,
 		0, 0);
 	//* Printing wall texture on top for testing purposes (ignora...)
-	mlx_put_image_to_window(
-		g->screen_handle.mlx, g->screen_handle.window,
-		g->wall_texture.north.img,
-		0, 0);
+	//* mlx_put_image_to_window(
+	//* 	g->screen_handle.mlx, g->screen_handle.window,
+	//* 	g->wall_texture.north.img,
+	//* 	0, 0);
 	// after = clock();
 	// printf(BOLDCYAN "elapsed: %f\n" RESET, (double)(after - check) / CLOCKS_PER_SEC);
 }
@@ -138,7 +150,7 @@ static void	render_column(
 	// static int count = 0;
 	// printf("screen height: %zu\n", g->screen_handle.height);
 	size_t			wall_size = roundf(
-		g->screen_handle.height / rc_return.perp_dist
+		1.5f * g->screen_handle.height / rc_return.perp_dist
 	);
 	float				gap;
 	
@@ -238,7 +250,7 @@ static void	render_column(
 
 int	get_texture_px(t_int_2d_point coordinate, const t_data *texture_data)
 {
-	const size_t	offset = ft_get_pixel_offset(*texture_data, coordinate);
+	const size_t	offset = ft_get_pixel_offset(texture_data, coordinate);
 	const char		*byte_ptr = texture_data->addr + offset;
 	int	px;
 
@@ -347,13 +359,34 @@ static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg)
 	return (mlx_color);
 }
 
+static void	draw_background_bonus(t_game *g, const t_data *texture_data)
+{
+	t_int_2d_point	screen_px;
+
+	screen_px.x = 0;
+	while (screen_px.x < (int)g->screen_handle.frame_data.width)
+	{
+		screen_px.y = 0;
+		while (screen_px.y < (int)g->screen_handle.frame_data.height)
+		{
+			ft_put_mlxpx_to_image(
+				&g->screen_handle.frame_data,
+				ft_get_pixel_offset(&g->screen_handle.frame_data, screen_px),
+				get_texture_px(screen_px, texture_data)
+			);
+			screen_px.y++;
+		}
+		screen_px.x++;
+	}
+}
+
 static void			draw_background(t_game *g)
 {
 	const size_t	horizon = floor((float)g->screen_handle.height / 2);
 	t_int_2d_point	vertices[2];
 	t_nxt_px_f_arg	nxt_px_f_arg;
-	const int				c_color = ft_get_mlx_color(g->map_handle.c_color);
-	const int				f_color = ft_get_mlx_color(g->map_handle.f_color);
+	const int		c_color = ft_get_mlx_color(g->map_handle.c_color);
+	const int		f_color = ft_get_mlx_color(g->map_handle.f_color);
 
 	{
 		// print_color(g->map_handle.c_color, "ceiling");

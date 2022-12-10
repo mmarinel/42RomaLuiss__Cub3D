@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/07 19:58:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:57:00 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	bres_put_next_px(
 {
 	ft_put_mlxpx_to_image(
 		canvas_data,
-		ft_get_pixel_offset(*canvas_data, *arg->cur_px),
+		ft_get_pixel_offset(canvas_data, *arg->cur_px),
 		(*next_pixel_f)(arg)
 	);
 	// t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
