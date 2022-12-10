@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 12:45:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:16:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_ms_from_timestamp(const struct timeval *timestamp)
 			+ (u_int64_t)timestamp->tv_usec / 1000));
 }
 
-t_bool	is_floor(t_game *g, t_2d_point pt)
+t_bool	is_free_pos(t_game *g, t_2d_point pt)
 {
 	t_int_2d_point	normalized;
 
@@ -61,6 +61,27 @@ t_bool	is_floor(t_game *g, t_2d_point pt)
 		);
 }
 
+t_bool	collision_check(t_2d_point position, float collision_radius,
+			t_2d_point player_direction, t_game *game)
+{
+	t_2d_point	direction;
+	t_2d_point	initial_direction;
+	float		rot_angle;
+	t_2d_point	next_pos;
+	const float	angle_step = 0.174533f;//*		10º
+
+	rot_angle = 0.0f;
+	initial_direction = ft_change_magnitude(player_direction, collision_radius);
+	while (rot_angle <= M_PI)//*		SEMI-CIRCLE
+	{
+		direction = ft_rotate(initial_direction, rot_angle);
+		next_pos = ft_vec_sum(position, direction);
+		if (e_false == is_free_pos(game, next_pos))
+			return (e_false);
+		rot_angle += angle_step;
+	}
+	return (e_true);
+}
 
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
 {
@@ -105,47 +126,54 @@ t_2d_point	new_player_pos(t_2d_point current,
 
 int	loop_hook(t_game *game)
 {
-	static struct timeval	*timestamp = NULL;
-	struct timeval			current;
+	// static struct timeval	*timestamp = NULL;
+	// struct timeval			current;
 	static float			rot_angle = 0.174533f;
-	static float			step_size = 0.5f;
+	static float			step_size = 1.0f;
 
-	if (NULL == timestamp)
-	{
-		timestamp = (struct timeval *) malloc(sizeof(struct timeval));
-		gettimeofday(timestamp, NULL);
-	}
-	gettimeofday(&current, NULL);
-	if (get_ms_from_timestamp(&current) - get_ms_from_timestamp(timestamp) < 0)
-		return (0);
-	*timestamp = current;
+	// if (NULL == timestamp)
+	// {
+	// 	timestamp = (struct timeval *) malloc(sizeof(struct timeval));
+	// 	gettimeofday(timestamp, NULL);
+	// }
+	// gettimeofday(&current, NULL);
+	// if (get_ms_from_timestamp(&current) - get_ms_from_timestamp(timestamp) < 0)
+	// 	return (0);
+	// *timestamp = current;
+
+	
 	if (KeyPress == game->keys[UP_INDEX].state
 		|| KeyRelease == game->keys[UP_INDEX].state)
 	{
 		if (KeyPress == game->keys[UP_INDEX].state
 			|| KeyPress == game->keys[W_INDEX].state)
 		{
-				t_2d_point	new_pos;
+			t_2d_point	new_pos;
+			t_2d_point	next_pos;
+			float		step;
 	
-			while (e_true)
+			new_pos = game->player_pos;
+			step = 0.5f;
+			while (step < step_size)
 			{
-				new_pos = new_player_pos(game->player_pos, e_UP_KEY, step_size, game);
-				if (is_floor(game, new_pos))
+				next_pos = new_player_pos(game->player_pos, e_UP_KEY, step, game);
+				if (e_false == is_free_pos(game, next_pos))
 					break ;
-				step_size -= 0.5f;
+				new_pos = next_pos;
+				step += 0.5f;
 			}
 			// if (is_floor(game, new_pos))
 			// {
 				// printf(YELLOW "moving upwards...\n" RESET);
 				game->player_pos = new_pos;
 				render_next_frame(game);
-				if (step_size < 3)
+				if (step_size < 3.5f)
 					step_size += 0.5f;
 			// }
 		}
 		else if (KeyRelease == game->keys[UP_INDEX].state)
 		{
-			step_size = 0.5f;
+			step_size = 1.0f;
 			game->keys[UP_INDEX].state = -1;
 		}
 	}
@@ -156,29 +184,36 @@ int	loop_hook(t_game *game)
 			|| KeyPress == game->keys[S_INDEX].state)
 		{
 			t_2d_point	new_pos;
+			t_2d_point	next_pos;
+			float		step;
 			
-			while (e_true)
+			new_pos = game->player_pos;
+			step = 0.5f;
+			while (step < step_size)
 			{
-				new_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step_size, game);
-				if (is_floor(game, new_pos))
+				next_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step + 0.5f, game);
+				if (e_false == is_free_pos(game, next_pos))
 					break ;
-				step_size -= 0.5f;
+				new_pos = next_pos;
+				step += 0.5f;
 			}
 			// if (is_floor(game, new_pos))
 			// {
 				// printf(YELLOW "moving downwards...\n" RESET);
 				game->player_pos = new_pos;
 				render_next_frame(game);
-				if (step_size < 3)
+				if (step_size < 3.5f)
 					step_size += 0.5f;
 			// }
 		}
 		else if (KeyRelease == game->keys[UP_INDEX].state)
 		{
-			step_size = 0.5f;
+			step_size = 1.0f;
 			game->keys[DOWN_INDEX].state = -1;
 		}
 	}
+
+	
 	if (KeyPress == game->keys[RIGHT_INDEX].state
 		|| KeyRelease == game->keys[RIGHT_INDEX].state)
 	{
