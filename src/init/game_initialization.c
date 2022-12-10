@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 20:12:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:24:20 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,15 +138,10 @@ size_t	open_bg_texture(const char *path, t_data *texture_data,
 static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
-		"./img/Background/scene-1.xpm",
-		 &game_ref->background.scene_1,
+		"./img/Background/background.xpm",
+		 &game_ref->background,
 		game_ref, err_flag
-	);
-	open_bg_texture(
-		"./img/Background/scene-2.xpm",
-		&game_ref->background.scene_2,
-		game_ref, err_flag
-	);
+	);;
 }
 
 /**

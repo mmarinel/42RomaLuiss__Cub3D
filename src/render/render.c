@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 20:30:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:47:48 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // 					t_wall_camera_incidence wc_incidence);
 // static size_t	hit_wall_height(t_game *g, float perp_dist,
 // 					t_wall_camera_incidence wc_incidence);
-static void	draw_background_bonus(t_game *g, const t_data *texture_data);
+static void	draw_background_bonus(t_game *g);
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
 //*		end of static declarations
 
@@ -47,8 +47,6 @@ void	render_next_frame(t_game *g)
 {
 	size_t				col;
 	t_raycast_return	rc_return;
-	static size_t		frames = 0;
-	t_data				*background_image;
 // static	t_int_2d_point	cur = (t_int_2d_point){-1,-1}; printf(YELLOW"RENDER NEXT FRAMEn\n"RESET);
 	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
 	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
@@ -74,12 +72,7 @@ void	render_next_frame(t_game *g)
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	//* MANDATORY draw_background(g);
 
-	if (frames < 30)
-		background_image = &g->background.scene_1;
-	else
-		background_image = &g->background.scene_2;
-	frames = frames + (frames + 1) % 30;
-	draw_background_bonus(g, background_image);
+	draw_background_bonus(g);
 	// draw_sky(g);
 
 	// clock_t	before;
@@ -133,6 +126,11 @@ void	render_next_frame(t_game *g)
 // 		pt.y = y;
 
 // 	return (pt);
+// }
+
+// static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
+// {
+// 	if ( rc_ret->side)
 // }
 
 static void	render_column(
@@ -193,7 +191,7 @@ static void	render_column(
 					//*		gap
 		&rc_return,
 					//*		raycast_return
-		&g->wall_texture.north,//TODO
+		get_wall_texture(g, rc_return),//TODO
 					//*		texture
 		&g->\
 		screen_handle.frame_data,
@@ -359,7 +357,7 @@ static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg)
 	return (mlx_color);
 }
 
-static void	draw_background_bonus(t_game *g, const t_data *texture_data)
+static void	draw_background_bonus(t_game *g)
 {
 	t_int_2d_point	screen_px;
 
@@ -372,7 +370,7 @@ static void	draw_background_bonus(t_game *g, const t_data *texture_data)
 			ft_put_mlxpx_to_image(
 				&g->screen_handle.frame_data,
 				ft_get_pixel_offset(&g->screen_handle.frame_data, screen_px),
-				get_texture_px(screen_px, texture_data)
+				get_texture_px(screen_px, &g->background)
 			);
 			screen_px.y++;
 		}
