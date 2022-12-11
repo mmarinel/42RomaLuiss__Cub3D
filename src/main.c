@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 20:01:08 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 19:40:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,24 @@ t_2d_point	new_player_pos(t_2d_point current,
 	return (pos);
 }
 
+int	leave_window(t_game *game)
+{
+	game->in_game = e_false;
+	return (0);
+}
+
+int	enter_window(t_game *game)
+{
+	game->in_game = e_true;
+	return (0);
+}
+
 int	loop_hook(t_game *game)
 {
 	// static struct timeval	*timestamp = NULL;
 	// struct timeval			current;
 	static float			rot_angle = 0.174533f;
-	static float			step_size = 1.0f;
+	//** static float			step_size = 1.0f;
 
 	// if (NULL == timestamp)
 	// {
@@ -141,89 +153,102 @@ int	loop_hook(t_game *game)
 	// 	return (0);
 	// *timestamp = current;
 
-	
+	if (e_false == game->in_game)
+		return (0);
 	if (KeyPress == game->keys[UP_INDEX].state
-		|| KeyRelease == game->keys[UP_INDEX].state)
+		// || KeyRelease == game->keys[UP_INDEX].state)
+	)
 	{
-		if (KeyPress == game->keys[UP_INDEX].state
-			|| KeyPress == game->keys[W_INDEX].state)
-		{
+		//** if (KeyPress == game->keys[UP_INDEX].state
+		//** 	|| KeyPress == game->keys[W_INDEX].state)
+		//** {
 			t_2d_point	new_pos;
-			t_2d_point	next_pos;
-			float		step;
+			//** t_2d_point	next_pos;
+		//** 	float		step;
 	
-			new_pos = game->player_pos;
-			step = 0.25f;
-			while (step < step_size)
+		//** 	new_pos = game->player_pos;
+		//** 	step = 0.25f;
+		//** 	while (step < step_size)
+		//** 	{
+				//** next_pos = new_player_pos(game->player_pos, e_UP_KEY, 0.5f, game);
+				//** if (e_false == is_free_pos(game, next_pos))
+				//** 	return (0);//break ;
+				//** new_pos = next_pos;
+				new_pos = new_player_pos(game->player_pos, e_UP_KEY, 0.5f, game);
+			//** 	step += 0.25f;
+			//** }
+			if (is_free_pos(game, new_pos))
 			{
-				next_pos = new_player_pos(game->player_pos, e_UP_KEY, step, game);
-				if (e_false == is_free_pos(game, next_pos))
-					break ;
-				new_pos = next_pos;
-				step += 0.25f;
-			}
-			// if (is_floor(game, new_pos))
-			// {
 				// printf(YELLOW "moving upwards...\n" RESET);
 				game->player_pos = new_pos;
 				render_next_frame(game);
-				if (step_size < 3.5f)
-					step_size += 0.5f;
-			// }
-		}
-		else if (KeyRelease == game->keys[UP_INDEX].state)
-		{
-			step_size = 1.0f;
-			game->keys[UP_INDEX].state = -1;
-		}
+				//** if (step_size < 3.5f)
+				//** 	step_size += 0.5f;
+			}
+		//** }
+		//** else if (KeyRelease == game->keys[UP_INDEX].state)
+		//** {
+		//** 	step_size = 1.0f;
+		//** 	game->keys[UP_INDEX].state = -1;
+		//** }
 	}
 	if (KeyPress == game->keys[DOWN_INDEX].state
-		|| KeyRelease == game->keys[DOWN_INDEX].state)
-	{
-		if (KeyPress == game->keys[DOWN_INDEX].state
-			|| KeyPress == game->keys[S_INDEX].state)
-		{
+		//** || KeyRelease == game->keys[DOWN_INDEX].state)
+	){
+		//** if (KeyPress == game->keys[DOWN_INDEX].state
+		//** 	|| KeyPress == game->keys[S_INDEX].state)
+		//** {
 			t_2d_point	new_pos;
 			t_2d_point	next_pos;
-			float		step;
+			//** float		step;
 			
-			new_pos = game->player_pos;
-			step = 0.25f;
-			while (step < step_size)
-			{
-				next_pos = new_player_pos(game->player_pos, e_DOWN_KEY, step, game);
+			//** new_pos = game->player_pos;
+			//** step = 0.25f;
+			//** while (step < step_size)
+			//** {
+				next_pos = new_player_pos(game->player_pos, e_DOWN_KEY, 0.5f, game);
 				if (e_false == is_free_pos(game, next_pos))
-					break ;
+					return (0);//break ;
 				new_pos = next_pos;
-				step += 0.25f;
-			}
-			// if (is_floor(game, new_pos))
-			// {
-				// printf(YELLOW "moving downwards...\n" RESET);
+				//** step += 0.25f;
+			//** }
+			if (is_free_pos(game, new_pos))
+			{
+				//*** printf(YELLOW "moving downwards...\n" RESET);
 				game->player_pos = new_pos;
 				render_next_frame(game);
-				if (step_size < 3.5f)
-					step_size += 0.5f;
-			// }
-		}
-		else if (KeyRelease == game->keys[UP_INDEX].state)
-		{
-			step_size = 1.0f;
-			game->keys[DOWN_INDEX].state = -1;
-		}
+				//** if (step_size < 3.5f)
+				//** 	step_size += 0.5f;
+			}
+		// }
+		// else if (KeyRelease == game->keys[UP_INDEX].state)
+		// {
+		// 	step_size = 1.0f;
+		// 	game->keys[DOWN_INDEX].state = -1;
+		// }
 	}
 
+	// t_2d_point	new_dir;
 	
 	if (KeyPress == game->keys[RIGHT_INDEX].state
 		|| KeyRelease == game->keys[RIGHT_INDEX].state)
 	{
 		if (KeyPress == game->keys[RIGHT_INDEX].state)
 		{
-			game->player_dir = ft_rotate(game->player_dir, rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
-			game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
-			render_next_frame(game);
-			if (rot_angle < 0.314159f)
-				rot_angle += 0.025f;
+			// new_dir = ft_rotate(game->player_dir, rot_angle);
+			// if (
+			// 	e_true == is_free_pos(
+			// 		game,
+			// 		ft_vec_sum(game->player_pos, ft_vec_prod(new_dir, 0.5f))
+			// 	)
+			// )
+			{
+				game->player_dir = ft_rotate(game->player_dir, rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
+				game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
+				render_next_frame(game);
+				if (rot_angle < 0.314159f)
+					rot_angle += 0.025f;
+			}
 		}
 		else if (KeyRelease == game->keys[RIGHT_INDEX].state)
 		{
@@ -236,11 +261,20 @@ int	loop_hook(t_game *game)
 	{
 		if (KeyPress == game->keys[LEFT_INDEX].state)
 		{
-			game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);//0.174533f);// M_PI / 05.0f);
-			game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
-			render_next_frame(game);
-			if (rot_angle < 0.314159f)
-				rot_angle += 0.025f;
+			// new_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);
+			// if (
+			// 	e_true == is_free_pos(
+			// 		game,
+			// 		ft_vec_sum(game->player_pos, ft_vec_prod(new_dir, 0.5f))
+			// 	)
+			// )
+			{
+				game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);//0.174533f);// M_PI / 05.0f);
+				game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
+				render_next_frame(game);
+				if (rot_angle < 0.314159f)
+					rot_angle += 0.025f;
+			}
 		}
 		else if (KeyRelease == game->keys[LEFT_INDEX].state)
 		{
@@ -276,6 +310,8 @@ int	key_press_hook(int key_code, t_game *game)
 {
 	const size_t	key_index = get_key_index(key_code);
 
+	if (e_false == game->in_game)
+		return (0);
 	game->keys[key_index].state = KeyPress;
 	return (0);
 }
@@ -284,6 +320,8 @@ int	key_release_hook(int key_code, t_game *game)
 {
 	const size_t	key_index = get_key_index(key_code);
 
+	if (e_false == game->in_game)
+		return (0);
 	game->keys[key_index].state = KeyRelease;
 	return (0);
 }
@@ -423,6 +461,8 @@ int main(int argc, char const *argv[])
 	// mlx_do_key_autorepeaton(&game.screen_handle.mlx);
 	mlx_hook(game.screen_handle.window, KeyPress, KeyPressMask, key_press_hook, &game);
 	mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
+	mlx_hook(game.screen_handle.window, FocusOut, GenericEvent, leave_window, &game);
+	mlx_hook(game.screen_handle.window, FocusIn, GenericEvent, enter_window, &game);
 	// mlx_do_sync(game.screen_handle.mlx);
 	render_next_frame(&game);
 	mlx_loop_hook(game.screen_handle.mlx, loop_hook, &game);

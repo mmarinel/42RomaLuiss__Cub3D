@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/11 13:15:10 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 18:57:12 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // static size_t	hit_wall_height(t_game *g, float perp_dist,
 // 					t_wall_camera_incidence wc_incidence);
 static void	draw_background_bonus(t_game *g);
+static void	draw_sun(t_game *g);
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
 //*		end of static declarations
 
@@ -73,7 +74,7 @@ void	render_next_frame(t_game *g)
 	//* MANDATORY draw_background(g);
 
 	draw_background_bonus(g);
-	// draw_sky(g);
+	draw_sun(g);
 
 	// clock_t	before;
 	// clock_t	after;
@@ -163,7 +164,7 @@ static void	render_column(
 	// static int count = 0;
 	// printf("screen height: %zu\n", g->screen_handle.height);
 	size_t			wall_size = roundf(
-		1.5f * g->screen_handle.height / rc_return->perp_dist
+		g->screen_handle.height / rc_return->perp_dist
 	);
 	float				gap;
 	
@@ -173,15 +174,15 @@ static void	render_column(
 	// 	gap = 0.000000f;
 	// else
 	// 	gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
-	if (g->screen_handle.height <= wall_size)
-		wall_size = g->screen_handle.height;
+	//*** if (g->screen_handle.height <= wall_size)
+	//*** 	wall_size = g->screen_handle.height;
 	gap = ((float)g->screen_handle.height - wall_size) / 2.000000f;
 	// (void)frame_clipped_point;
 	t_int_2d_point	endpoint[2] = {
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, g->screen_handle.height <= wall_size ? g->screen_handle.height : gap + (wall_size - 1))
-		(t_int_2d_point){column, gap},
-		(t_int_2d_point){column, gap + (wall_size - 1)}
+		(t_int_2d_point){column, gap <= 0 ? 0 : gap},
+		(t_int_2d_point){column, gap <= 0 ? wall_size - 1 : gap + (wall_size - 1)}
 	};
 	// printf("********************************\n");
 	// ft_print_int_2d_point("endpoint[0]", endpoint[0]);
@@ -393,6 +394,32 @@ static void	draw_background_bonus(t_game *g)
 	}
 }
 
+static void	draw_sun(t_game *g)
+{
+	t_int_2d_point	screen_px;
+	int				mlx_px;
+
+	screen_px.x = 0;
+	while (screen_px.x < (int)g->screen_handle.frame_data.width)
+	{
+		screen_px.y = 0;
+		while (screen_px.y < (float)g->screen_handle.frame_data.height / 2)
+		{
+			mlx_px = get_texture_px(screen_px, &g->sun[0]);
+			// if (screen_px.x == 0 && screen_px.y == 0)
+			// 	printf(YELLOW"cur_px: %d\n" RESET, mlx_px);
+			if (mlx_px > 0)
+				ft_put_mlxpx_to_image(
+					&g->screen_handle.frame_data,
+					ft_get_pixel_offset(&g->screen_handle.frame_data, screen_px),
+					mlx_px
+				);
+			screen_px.y++;
+		}
+		screen_px.x++;
+	}
+}
+
 static void			draw_background(t_game *g)
 {
 	const size_t	horizon = floor((float)g->screen_handle.height / 2);
@@ -404,7 +431,7 @@ static void			draw_background(t_game *g)
 	{
 		// print_color(g->map_handle.c_color, "ceiling");
 		// print_color(g->map_handle.f_color, "floor");
-		// printf("horizon is at:  %zu\n", horizon);
+		// printf("horizon is at:  %zu\n", horizon); 
 	}
 	// const
 	vertices[0] = (t_int_2d_point){0, 0};

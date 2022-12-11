@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/10 22:23:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:53:52 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,13 +234,17 @@ typedef struct s_key_state
 # define RIGHT_INDEX 6
 # define LEFT_INDEX 7
 
+# define SUN_FRAMES 19
+
 typedef struct s_game
 {
+	t_bool					in_game;
 	t_map_holder			map_handle;
 	t_key_state				keys[BOUND_KEYS];
 	t_screen_holder			screen_handle;
 	t_wall_texture			wall_texture;
 	t_data					background;
+	t_data					sun[SUN_FRAMES];
 	// t_enemy			enemy
 	t_2d_point				player_dir;
 	t_2d_point				player_pos;

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 22:24:20 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:56:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_bool	ft_game_init(
 	game_set_mlx(game_ref, width, height);
 	game_set_key_state(game_ref);
 	load_textures(game_ref, &error);
+	game_ref->in_game = e_true;
 	return (error == e_false);
 }
 
@@ -144,6 +145,15 @@ static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 	);;
 }
 
+static void load_sun_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/Sun/frame-1.xpm",
+		 &game_ref->sun[0],
+		game_ref, err_flag
+	);;
+}
+
 /**
  * @brief this function opens the textures of the game.
  * All textures are 200 px wide squares.
@@ -178,6 +188,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 	else
 		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
 	load_background_textures(game_ref, err_flag);
+	load_sun_textures(game_ref, err_flag);
 }
 
 static void	game_set_map( t_game *game_ref )
