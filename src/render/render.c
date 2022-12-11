@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 22:47:48 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 13:15:10 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			draw_background(t_game *g);
 static void			render_column(
 						size_t column,
 						t_game *g,
-						t_raycast_return rc_return
+						const t_raycast_return *rc_return
 					);
 static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 // static t_render_data			render_fetch_data(t_game *g,
@@ -89,7 +89,7 @@ void	render_next_frame(t_game *g)
 		// 	ft_print_int_2d_point("wall", rc_return.square);
 		// 	cur = rc_return.square;
 		// }
-		render_column(col, g, rc_return);
+		render_column(col, g, &rc_return);
 		col++;
 	}
 	// check = clock();
@@ -128,15 +128,30 @@ void	render_next_frame(t_game *g)
 // 	return (pt);
 // }
 
-// static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
-// {
-// 	if ( rc_ret->side)
-// }
+static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
+{
+	if (e_VERTICAL == rc_ret->side)
+	{
+		if (e_RAY_EAST == rc_ret->view_side_direction)
+			return (&game->wall_texture.east);
+		else
+			return (&game->wall_texture.west);
+	}
+	else if (e_HORIZONTAL == rc_ret->side)
+	{
+		if (e_RAY_NORTH == rc_ret->view_forw_direction)
+			return (&game->wall_texture.north);
+		else
+			return (&game->wall_texture.south);
+	}
+	else
+		return (NULL);
+}
 
 static void	render_column(
 	size_t column,
 	t_game *g,
-	t_raycast_return rc_return
+	const t_raycast_return *rc_return
 )
 {
 	// static int	idx = 0;
@@ -148,7 +163,7 @@ static void	render_column(
 	// static int count = 0;
 	// printf("screen height: %zu\n", g->screen_handle.height);
 	size_t			wall_size = roundf(
-		1.5f * g->screen_handle.height / rc_return.perp_dist
+		1.5f * g->screen_handle.height / rc_return->perp_dist
 	);
 	float				gap;
 	
@@ -189,14 +204,14 @@ static void	render_column(
 					//*		wall_size
 		gap,
 					//*		gap
-		&rc_return,
+		rc_return,
 					//*		raycast_return
 		get_wall_texture(g, rc_return),//TODO
 					//*		texture
 		&g->\
 		screen_handle.frame_data,
 					//*		frame_data
-		get_texture_column(&rc_return, g),
+		get_texture_column(rc_return, g),
 					//*		texture_column
 		(float)get_textures_size() / wall_size,
 					//*		scaling_factor

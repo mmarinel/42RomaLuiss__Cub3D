@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/03 18:07:25 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 12:53:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define RAYCAST_TYPES_H
 
 # include "../types.h"
+
+typedef enum e_ray_dir
+{
+	e_RAY_NORTH = 1,
+	e_RAY_SOUTH = 0,
+	e_RAY_EAST = 0,
+	e_RAY_WEST = 1,
+}	t_ray_dir;
 
 typedef enum e_side
 {
@@ -27,7 +35,9 @@ typedef struct s_raycast_return
 	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall
 	t_int_2d_point	square;
 	t_side			side;
-	float			angle_of_incidence;//*	maybe we won't need this
+	t_2d_point		ray;
+	t_ray_dir		view_forw_direction;
+	t_ray_dir		view_side_direction;
 	float			euclidean_dist;
 	float			perp_dist;
 }	t_raycast_return;

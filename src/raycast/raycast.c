@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 19:47:15 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/11 12:53:49 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 	ft_set_hp_dist(&ret, &raycast_data);
 	ft_set_hp(&ret, &raycast_data, game);
 	ret.side = raycast_data.side;
+	ret.view_side_direction = (raycast_data.ray_dir.x >= 0);
+	ret.view_forw_direction = (raycast_data.ray_dir.y >= 0);
+	ret.ray = ray;
 	return (ret);
 }
 
