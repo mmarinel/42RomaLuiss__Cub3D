@@ -6,18 +6,18 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 13:08:26 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:42:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-static void	ft_walk_through_nhp(t_raycast_data *rc_data);
-t_enemy		*spot_enemy(
-				const t_raycast_data *rc_data,
-				const t_int_2d_point *pos,
-				t_game *game
-			);
+static void		ft_walk_through_nhp(t_raycast_data *rc_data);
+t_spotted_enemy	spot_enemy(
+			const t_raycast_data *rc_data,
+			const t_int_2d_point *pos,
+			t_game *game
+		);
 //*		enf of static declarations
 
 /**
@@ -102,14 +102,19 @@ static void	ft_walk_through_nhp(t_raycast_data *rc_data)
 	// ft_print_raycast_data(*rc_data);
 }
 
-t_enemy	*spot_enemy(
+t_spotted_enemy	spot_enemy(
 			const t_raycast_data *rc_data,
 			const t_int_2d_point *pos,
 			t_game *game
 		)
 {
-	if (rc_data->spotted_enemy)
+	if (rc_data->spotted_enemy.enemy)
 		return (rc_data->spotted_enemy);
 	else
-		return (get_enemy(pos, game));
+		return (
+			(t_spotted_enemy){
+				get_enemy(pos, game),
+				perp_calc(euclid_calc(rc_data), rc_data)
+				}
+		);
 }

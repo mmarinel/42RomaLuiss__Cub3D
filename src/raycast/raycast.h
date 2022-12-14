@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/06 19:45:11 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:10:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void			ft_set_hp(
 					const t_raycast_data *rc_data,
 					t_game *game
 				);
+float			perp_calc(
+							float euclidean_dist,
+							const t_raycast_data *rc_data
+						);
+float			euclid_calc(
+							const t_raycast_data *rc_data
+						);
 
 //*		debug
 void	ft_print_raycast_result(t_raycast_return rc_return);

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 19:57:16 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 00:11:33 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	render_next_frame(t_game *g)
 	while (col < g->screen_handle.width)
 	{
 		rc_return = raycast(g, ray_dir_for_col(col, g));
-		if (rc_return.spotted_enemy)
+		if (rc_return.spotted_enemy.enemy)
 			update_enemy_list(&enemies, &rc_return, col);
 		render_column(col, g, &rc_return);
 		col++;
@@ -135,6 +135,7 @@ t_column_info	get_column_info(
 		screen_handle.frame_data,
 		get_texture_column(rc_ret, g),
 		scaling_factor,
+		e_true
 		}
 	);
 }
@@ -178,6 +179,7 @@ void	render_enemies(
 	cur = enemies;
 	while (cur)
 	{
+		printf("enemy perp: %lf\n", ((t_rendered_enemy *)cur->content)->min_perp_dist);
 		render_enemy(cur->content, g);
 		cur = cur->next;
 	}
@@ -218,6 +220,7 @@ t_column_info	enemy_colinfo(
 		screen_handle.frame_data,
 		resized_texture_col * scaling_factor,
 		scaling_factor,
+		e_false
 		}
 	);
 }
@@ -243,7 +246,7 @@ void	enemy_render_col(
 		};
 	endpoint[1] = (t_int_2d_point){
 		screen_col,
-		col_info.gap + (col_info.wall_size - 1)
+		col_info.gap + (col_info.rendered_size - 1)
 		};
 	bresenham_plot(
 		endpoint,
@@ -260,8 +263,8 @@ void	render_enemy(
 	const size_t	enemy_size = roundf(
 		g->screen_handle.height / enemy_data->min_perp_dist
 	);
-	size_t	i;
-	int		screen_col;
+	size_t			i;
+	int				screen_col;
 
 	if (0 == enemy_size)
 		return ;
@@ -317,7 +320,7 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 	mapped.x = col_info->texture_column;
 	mapped.y = col_info->scaling_factor * resized_row;
 	// ft_print_2d_point("mapped", mapped);
-	if (resized_row == col_info->wall_size - 1)
+	if (resized_row == col_info->rendered_size - 1 && col_info->draw_shadow)
 		return (0);
 	if (mapped.y - floor(mapped.y) < 0.5f)//ceil(mapped.y) - mapped.y)
 	{

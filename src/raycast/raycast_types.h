@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 12:22:29 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:07:00 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ typedef enum e_side
 	e_SIDE_NONE
 }	t_side;
 
-// typedef struct s_spotted_enemy
-// {
-// 	t_enemy	*enemy;
-// 	t_enemy	*next;
-// }	t_spotted_enemy;
+typedef struct s_spotted_enemy
+{
+	t_enemy	*enemy;
+	float	perp_dist;
+}	t_spotted_enemy;
 
 typedef struct s_raycast_return
 {
@@ -46,7 +46,7 @@ typedef struct s_raycast_return
 	t_ray_dir		view_side_direction;
 	float			euclidean_dist;
 	float			perp_dist;
-	t_enemy			*spotted_enemy;
+	t_spotted_enemy	spotted_enemy;
 }	t_raycast_return;
 
 typedef struct s_raycast_data
@@ -60,7 +60,7 @@ typedef struct s_raycast_data
 	t_int_2d_point	cur_sq;
 	float			dist_nhp_through_x;
 	float			dist_nhp_through_y;
-	t_enemy			*spotted_enemy;
+	t_spotted_enemy	spotted_enemy;
 	t_side			side;
 }	t_raycast_data;
 
