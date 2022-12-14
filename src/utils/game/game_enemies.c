@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:17:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/14 13:25:11 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:26:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ t_bool	enemy_equals(const t_enemy *en1, const t_enemy *en2)
  */
 t_bool	enemy_pos(const void *en, const void *pos)
 {
-	const t_enemy		*__en = (const t_enemy *)en;
-	const t_2d_point	*__pos = (const t_2d_point *)pos;
+	const t_enemy			*__en = (const t_enemy *)en;
+	const t_int_2d_point	*__pos = (const t_int_2d_point *)pos;
 
 	return (
-		e_true == ft_2d_point_equals(&__en->pos, __pos)
+		e_true == ft_int_2d_point_equals(
+			&(t_int_2d_point){floor(__en->pos.x), floor(__en->pos.y)},
+			__pos
+		)
 	);
 }
 

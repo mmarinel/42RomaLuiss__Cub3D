@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:32:53 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/14 14:15:51 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:47:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,12 @@ void	update_enemy_list(
 	}
 }
 
-static t_bool	enemy_spotted(const void *list, const void *enemy)
+static t_bool	enemy_spotted(const void *cur, const void *enemy)
 {
-	const t_list	*__list = (const t_list *)list;
-	const t_enemy	*__enemy = (const t_enemy *)enemy;
+	const t_rendered_enemy	*__cur = (const t_rendered_enemy *)cur;
+	const t_enemy			*__enemy = (const t_enemy *)enemy;
 
 	return (
-		enemy_equals(
-			((t_rendered_enemy *) __list->content)->enemy,
-			__enemy
-		)
+		enemy_equals(__cur->enemy, __enemy)
 	);
 }

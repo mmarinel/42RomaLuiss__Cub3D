@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 18:40:00 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:48:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../../colors.h"
 # include "../libft/libft_module.h"
 # include "../render/render_module.h"
+# include "../utils_module.h"
 
 # include <mlx.h>
 # include <math.h>

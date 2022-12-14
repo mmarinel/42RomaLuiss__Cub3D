@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:50:45 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 18:43:12 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:31:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ t_2d_point	ft_get_new_2dpt(float x, float y)
 	pt.x = x;
 	pt.y = y;
 	return (pt);
+}
+
+t_int_2d_point	as_int_2dpt(const t_2d_point *pt)
+{
+	t_int_2d_point	__pt;
+
+	__pt.x = floor(pt->x);
+	__pt.y = floor(pt->y);
+	return (__pt);
 }
 
 t_2d_matrix	ft_get_new_2dmtrx(t_2d_point row_1, t_2d_point row_2)
