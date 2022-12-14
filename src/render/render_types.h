@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 17:15:45 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:49:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ typedef struct s_wall_camera_incidence
 	t_quadrant		player_dir_quadrant;
 	t_reentrancy	reentrancy;
 }	t_wall_camera_incidence;
+
+/**
+ * @brief an enemy is spotted multiple times as we send many rays for each tile.
+ * To render an enemy, we take the column of the screen that gives the
+ * ray which in turn gives the shortest perp distance, and for this column
+ * we draw [rendered width / 2] on the left
+ * and [rendered width / 2] on the right.
+ * 
+ */
+typedef struct s_rendered_enemy
+{
+	const t_enemy	*enemy;
+	float			min_perp_dist;
+	size_t			screen_col;
+}	t_rendered_enemy;
 
 typedef struct s_render_data
 {

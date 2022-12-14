@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_module.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 19:52:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/12 00:33:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	mlx_holder_set(const t_screen_holder *screen_holder);
 size_t	mlx_holder_max_offset( void );
 
 //*		textures
-size_t	texture_pt_clip(size_t coordinate);
+size_t	texture_pt_clip(int coordinate);
 int		texture_pt_clipper(t_clip_opcode opcode, size_t size);
 size_t	get_textures_size();
 

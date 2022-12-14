@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/11 18:57:12 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:14:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g);
 static void	draw_background_bonus(t_game *g);
 static void	draw_sun(t_game *g);
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
+void		render_enemy(t_game *g);
 //*		end of static declarations
 
 // int	ln_clipper(t_clip_opcode opcode, size_t size);
@@ -48,12 +49,14 @@ void	render_next_frame(t_game *g)
 {
 	size_t				col;
 	t_raycast_return	rc_return;
+	t_list				*enemies;
 // static	t_int_2d_point	cur = (t_int_2d_point){-1,-1}; printf(YELLOW"RENDER NEXT FRAMEn\n"RESET);
 	// printf(BOLDGREEN "player--> x: %lf, y: %lf\n" RESET, g->player_pos.x, g->player_pos.y);
 	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	(void)render_column;
 	(void)draw_background;
 	(void)ray_dir_for_col;
+	enemies = NULL;
 	// draw_sun(g);
 	// ln_clipper(e_LN_CLIPPER_INITIALIZE, g->screen_handle.textures_size);
 	//**		DESTROY IMAGE && NEW_IMAGE
@@ -90,6 +93,8 @@ void	render_next_frame(t_game *g)
 		// 	ft_print_int_2d_point("wall", rc_return.square);
 		// 	cur = rc_return.square;
 		// }
+		if (rc_return.spotted_enemy)
+			update_enemy_list(&enemies, &rc_return, col);
 		render_column(col, g, &rc_return);
 		col++;
 	}
@@ -181,8 +186,8 @@ static void	render_column(
 	t_int_2d_point	endpoint[2] = {
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, gap),
 		// frame_clipped_point(g->screen_handle.height, g->screen_handle.width, column, g->screen_handle.height <= wall_size ? g->screen_handle.height : gap + (wall_size - 1))
-		(t_int_2d_point){column, gap <= 0 ? 0 : gap},
-		(t_int_2d_point){column, gap <= 0 ? wall_size - 1 : gap + (wall_size - 1)}
+		(t_int_2d_point){column, gap},//gap <= 0 ? 0 : gap},
+		(t_int_2d_point){column, gap + (wall_size - 1)}//gap <= 0 ? wall_size - 1 : gap + (wall_size - 1)}
 	};
 	// printf("********************************\n");
 	// ft_print_int_2d_point("endpoint[0]", endpoint[0]);

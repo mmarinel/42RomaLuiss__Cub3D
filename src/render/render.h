@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/30 12:54:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:49:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "line_drawing/line_drawing_module.h"
 # include "../raycast/raycast_module.h"
 # include "../utils/utils_module.h"
+# include "enemies/rend_enem_module.h"
 
 # include <math.h>
 # include <mlx.h>

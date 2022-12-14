@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/11 16:53:52 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:20:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <limits.h>
+# include "utils/libft/libft_module.h"
 
 # define FLT_PRECISION 6
 
@@ -105,10 +106,10 @@ typedef enum e_bool
 
 typedef enum e_key
 {
-	e_UP_KEY = 126,
-	e_DOWN_KEY = 125,
-	e_RIGHT_KEY = 124,
-	e_LEFT_KEY = 123,
+	e_UP_KEY = 65362,
+	e_DOWN_KEY = 65364,
+	e_RIGHT_KEY = 65363,
+	e_LEFT_KEY = 65361,
 	e_W_KEY = -1,
 	e_A_KEY = -1,
 	e_S_KEY = -1,
@@ -235,6 +236,14 @@ typedef struct s_key_state
 # define LEFT_INDEX 7
 
 # define SUN_FRAMES 19
+# define ENEMY_DIE_ANIM_FRAMES 5
+
+typedef struct s_enemy
+{
+	t_bool			alive;
+	t_2d_point		pos;
+	size_t			die_anim_frames;//TODO fare una funzione che crea i nemici che setta valore default
+}	t_enemy;
 
 typedef struct s_game
 {
@@ -245,6 +254,8 @@ typedef struct s_game
 	t_wall_texture			wall_texture;
 	t_data					background;
 	t_data					sun[SUN_FRAMES];
+	t_data					enemy_texture[2];
+	t_list					*enemies;
 	// t_enemy			enemy
 	t_2d_point				player_dir;
 	t_2d_point				player_pos;

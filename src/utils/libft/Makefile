@@ -12,10 +12,8 @@
 
 INCLUDES=\
 ./src/libft.h\
+./src/simple_printf/ft_printf_module.h\
 ./libft_module.h\
-./src/simple_printf/ft_printf_module.h\
-./src/simple_printf/ft_printf.h\
-./src/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
 ./src/ft_atoi.c\
@@ -37,6 +35,7 @@ SRC_NOPREFIX=\
 ./src/ft_lstadd_front.c\
 ./src/ft_lstclear.c\
 ./src/ft_lstdelone.c\
+./src/ft_lstfind.c\
 ./src/ft_lstiter.c\
 ./src/ft_lstlast.c\
 ./src/ft_lstmap.c\
@@ -48,32 +47,32 @@ SRC_NOPREFIX=\
 ./src/ft_memmove.c\
 ./src/ft_memset.c\
 ./src/ft_multisplit.c\
-./src/ft_put_nbr_base.c\
 ./src/ft_putchar_fd.c\
 ./src/ft_putendl_fd.c\
+./src/ft_put_nbr_base.c\
 ./src/ft_putnbr_fd.c\
 ./src/ft_putstr_fd.c\
 ./src/ft_split.c\
-./src/ft_split_join.c\
-./src/ft_split_merge.c\
 ./src/ft_splitclear.c\
 ./src/ft_splitcpy.c\
 ./src/ft_splitinit.c\
+./src/ft_split_join.c\
 ./src/ft_splitlen.c\
+./src/ft_split_merge.c\
 ./src/ft_splitprint.c\
-./src/ft_str_isempty.c\
-./src/ft_str_member.c\
 ./src/ft_strchr.c\
 ./src/ft_strcmp.c\
 ./src/ft_strcpy.c\
 ./src/ft_strdup.c\
 ./src/ft_string_new.c\
+./src/ft_str_isempty.c\
 ./src/ft_striteri.c\
 ./src/ft_strjoin.c\
 ./src/ft_strlcat.c\
 ./src/ft_strlcpy.c\
 ./src/ft_strlen.c\
 ./src/ft_strmapi.c\
+./src/ft_str_member.c\
 ./src/ft_strncmp.c\
 ./src/ft_strnstr.c\
 ./src/ft_strrchr.c\
@@ -84,15 +83,13 @@ SRC_NOPREFIX=\
 ./src/ft_write.c\
 ./src/int_max.c\
 ./src/is_file_type.c\
-./src/simple_printf/ft_printf.c\
-./src/simple_printf/printf_cases.c\
-./src/simple_printf/printf_utils.c\
 
 USR_LIBS=\
+.\
 
 SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 
-LIBS_FLAGS=
+LIBS_FLAGS=-L./. -lft
 
 CC = @gcc
 CFLAGS = -Wall -Wextra -Werror

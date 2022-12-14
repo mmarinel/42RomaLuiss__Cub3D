@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:26:47 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/03 18:08:13 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:21:27 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_print_raycast_data(t_raycast_data rc_data)
 	printf(BOLDRED "const " RESET "delta_y: %lf\n", rc_data.delta_y);
 	printf(BOLDRED "const " RESET "step_x: %d\n", rc_data.step_x);
 	printf(BOLDRED "const " RESET "step_y: %d\n", rc_data.step_y);
-	printf("cursq_x: %d\n", rc_data.cur_sq_x);
-	printf("cursq_y: %d\n", rc_data.cur_sq_y);
+	printf("cursq_x: %d\n", rc_data.cur_sq.x);
+	printf("cursq_y: %d\n", rc_data.cur_sq.y);
 	printf("dist_nhp_through_x: %lf\n", rc_data.dist_nhp_through_x);
 	printf("dist_nhp_through_y: %lf\n", rc_data.dist_nhp_through_y);
 	if (e_HORIZONTAL == rc_data.side)

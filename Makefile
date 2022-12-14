@@ -13,19 +13,20 @@
 INCLUDES=\
 ./src/colors.h\
 ./src/types.h\
+./src/utils/gnl/get_next_line_module.h\
+./src/utils/libft/src/simple_printf/ft_printf_module.h\
+./src/utils/libft/libft_module.h\
+./src/utils/render/render_module.h\
+./src/utils/map/map_utils_module.h\
+./src/utils/game/game_utils_module.h\
+./src/utils/utils_module.h\
 ./src/init/game_init_module.h\
 ./src/map_validation/map_validation_module.h\
-./src/raycast/raycast_module.h\
-./src/render/line_drawing/line_drawing_module.h\
-./src/render/render_module.h\
 ./src/render/textures/textures_module.h\
-./src/utils/game/game_utils_module.h\
-./src/utils/gnl/get_next_line_module.h\
-./src/utils/libft/libft_module.h\
-./src/utils/libft/src/simple_printf/ft_printf_module.h\
-./src/utils/map/map_utils_module.h\
-./src/utils/render/render_module.h\
-./src/utils/utils_module.h\
+./src/render/line_drawing/line_drawing_module.h\
+./src/render/enemies/rend_enem_module.h\
+./src/render/render_module.h\
+./src/raycast/raycast_module.h\
 ./src/init/game_init.h\
 ./src/init/game_init_module.h\
 ./src/map_validation/map_validation.h\
@@ -36,12 +37,14 @@ INCLUDES=\
 ./src/render/render.h\
 ./src/render/render_module.h\
 ./src/render/render_types.h\
+./src/render/enemies/rend_enem.h\
+./src/render/enemies/rend_enem_module.h\
 ./src/render/line_drawing/line_drawing.h\
 ./src/render/line_drawing/line_drawing_module.h\
 ./src/render/line_drawing/line_drawing_types.h\
-./src/render/textures/texture_types.h\
 ./src/render/textures/textures.h\
 ./src/render/textures/textures_module.h\
+./src/render/textures/texture_types.h\
 ./src/utils/utils_module.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
@@ -65,17 +68,19 @@ SRC_NOPREFIX=\
 ./src/raycast/rc_initialization.c\
 ./src/raycast/rc_set.c\
 ./src/render/render.c\
+./src/render/enemies/rend_enem_mem.c\
 ./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_endpoints.c\
-./src/render/line_drawing/bres_logic.c\
 ./src/render/line_drawing/bresenham.c\
+./src/render/line_drawing/bres_logic.c\
 ./src/render/textures/bcb_clip.c\
 ./src/render/textures/bicubic.c\
 ./src/render/textures/cubic_interpolation.c\
 ./src/render/textures/texture_manip.c\
 ./src/render/textures/texture_types_ops.c\
 ./src/utils/game/debug.c\
+./src/utils/game/game_enemies.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/game/geometry.c\
 ./src/utils/game/math.c\
@@ -103,7 +108,7 @@ SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 LIBS_FLAGS=-L./src/utils/libft -lft
 
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address
 MLX_FLAGS = TODO
 
 RMF = /bin/rm -rf
@@ -118,10 +123,10 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(OBJS_NOPREFIX))
 # in the first case, both us and its Makefile will attempt to delete the file,
 # so -rf is used in order to keep double deletions silent.
 MLX_LIB_DIR = mlx
-MLX_TARGET = libmlx.dylib
+# MLX_TARGET = libmlx.dylib
 
 MLX_SRC_FLAGS = -Imlx
-MLX_LINK_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_LINK_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 SYS_LIBS+=\
 $(MLX_LIB_DIR)\
@@ -152,7 +157,7 @@ $(shell echo $(OBJS_DIR))/%.o: %.c $(INCLUDES)#		$(wildcard $(<D)/*.h)------this
 
 $(MLX_TARGET):
 	@make -C mlx
-	@mv mlx/libmlx.dylib .
+# @mv mlx/libmlx.dylib .
 
 clean:
 	@printf "removing Object files...\n"

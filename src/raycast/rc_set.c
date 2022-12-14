@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_set.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/04 10:30:24 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:05:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,34 @@ void	ft_set_hp_dist(
 	rc_ret->perp_dist = perp_calc(rc_ret->euclidean_dist, rc_data);
 }
 
-//*		PERHAPS USELESS !!!!!!!!!!!
 void	ft_set_hp(
 			t_raycast_return *rc_ret,
 			const t_raycast_data *rc_data,
 			t_game *game
 		)
 {
-	{
-		rc_ret->hit_point.x
-			= flt_round(
-				game->player_pos.x
-				+ (rc_data->ray.x * rc_ret->euclidean_dist),
-				FLT_PRECISION
-			);
-	}
-	{
-		rc_ret->hit_point.y
-			= flt_round(
-				game->player_pos.y
-				+ (rc_data->ray.y * rc_ret->euclidean_dist),
-				FLT_PRECISION
-			);
-	}
-	rc_ret->square.x = rc_data->cur_sq_x;
-	rc_ret->square.y = rc_data->cur_sq_y;
+	rc_ret->hit_point = ft_vec_sum(
+		game->player_pos,
+		ft_vec_prod(rc_data->ray, rc_ret->euclidean_dist)
+	);
+	// {
+	// 	rc_ret->hit_point.x
+	// 		= flt_round(
+	// 			game->player_pos.x
+	// 			+ (rc_data->ray.x * rc_ret->euclidean_dist),
+	// 			FLT_PRECISION
+	// 		);
+	// }
+	// {
+	// 	rc_ret->hit_point.y
+	// 		= flt_round(
+	// 			game->player_pos.y
+	// 			+ (rc_data->ray.y * rc_ret->euclidean_dist),
+	// 			FLT_PRECISION
+	// 		);
+	// }
+	rc_ret->square.x = rc_data->cur_sq.x;
+	rc_ret->square.y = rc_data->cur_sq.y;
 }
 
 static float	perp_calc(

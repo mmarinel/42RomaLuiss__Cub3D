@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/11 19:40:18 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/12 00:40:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,8 @@ int	key_press_hook(int key_code, t_game *game)
 {
 	const size_t	key_index = get_key_index(key_code);
 
+	// printf("key pressed: %d\n", key_code);
+	// exit(0);
 	if (e_false == game->in_game)
 		return (0);
 	game->keys[key_index].state = KeyPress;

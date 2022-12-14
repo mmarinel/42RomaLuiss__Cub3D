@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_initialization.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/11 16:56:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:01:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ t_bool	ft_game_init(
 		else
 		{
 			game_set_inital_vectors(game_ref);
+			//*	TESTING
+			game_ref->enemies = NULL;
+			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
+				ft_vec_sum(
+					game_ref->player_pos,
+					ft_vec_opposite(game_ref->player_dir)
+				)
+			));
+			//*
 			t_2d_point_print(&game_ref->player_dir, "player_dir");
 			t_2d_point_print(&game_ref->camera_plane, "cmaera_plane");
 			t_2d_point_print(&game_ref->player_pos, "player_pos");
@@ -136,13 +145,27 @@ size_t	open_bg_texture(const char *path, t_data *texture_data,
 	return (texture_data->width);
 }
 
+void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/enemy/kindpng_alive.xpm",
+		 &game_ref->enemy_texture[0],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/enemy/kindpng_alive.xpm",
+		 &game_ref->enemy_texture[1],
+		game_ref, err_flag
+	);
+}
+
 static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
 		"./img/Background/background.xpm",
 		 &game_ref->background,
 		game_ref, err_flag
-	);;
+	);
 }
 
 static void load_sun_textures(t_game *game_ref, t_bool *err_flag)
@@ -189,6 +212,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
 	load_background_textures(game_ref, err_flag);
 	load_sun_textures(game_ref, err_flag);
+	load_enemy_textures(game_ref, err_flag);
 }
 
 static void	game_set_map( t_game *game_ref )

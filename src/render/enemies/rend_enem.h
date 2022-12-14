@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   rend_enem.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 17:14:45 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 19:30:00 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/14 13:35:12 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/14 14:01:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef REND_ENEM_H
+# define REND_ENEM_H
 
-t_list	*ft_lstnew(void *(*clone)(void *), void *content)
-{
-	t_list	*el;
+# include "../../utils/utils_module.h"
+# include "../render_types.h"
 
-	el = (t_list *) malloc(sizeof(t_list));
-	if (!el)
-		return (NULL);
-	if (clone)
-		el->content = clone(content);
-	else
-		el->content = content;
-	el->next = NULL;
-	return (el);
-}
+#endif
