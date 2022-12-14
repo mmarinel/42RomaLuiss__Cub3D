@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 13:49:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:35:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ typedef struct s_wall_camera_incidence
 typedef struct s_rendered_enemy
 {
 	const t_enemy	*enemy;
+	size_t			mid_screen_col;
 	float			min_perp_dist;
-	size_t			screen_col;
+	size_t			enemy_size;
 }	t_rendered_enemy;
 
 typedef struct s_render_data

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils_imgs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 19:51:38 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:58:47 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_put_mlxpx_to_image(t_data *img_data, size_t px_offset, int color)
 {
 	char	*byte_ptr;
 
-	if (px_offset < mlx_holder_max_offset())
+	if (px_offset < mlx_holder_max_offset() && color > 0)
 	{
 		byte_ptr = img_data->addr + px_offset;
 		*(unsigned int *)byte_ptr = color;

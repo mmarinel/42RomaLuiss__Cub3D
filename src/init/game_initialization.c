@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 13:01:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:29:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,12 @@ size_t	open_bg_texture(const char *path, t_data *texture_data,
 void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
-		"./img/enemy/kindpng_alive.xpm",
+		"./img/enemy/kindpng_200x200.xpm",
 		 &game_ref->enemy_texture[0],
 		game_ref, err_flag
 	);
 	open_bg_texture(
-		"./img/enemy/kindpng_alive.xpm",
+		"./img/enemy/kindpng_dead_200x200.xpm",
 		 &game_ref->enemy_texture[1],
 		game_ref, err_flag
 	);
