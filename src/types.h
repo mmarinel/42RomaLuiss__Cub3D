@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/14 13:20:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:47:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef enum e_key
 	e_D_KEY = -1,
 	e_E_KEY = -1,
 	e_Q_KEY = -1,
-	e_SPACE_KEY = -1,
+	e_SPACE_KEY = 32,
 	e_TAB_KEY = -1,
 	e_CTRL_KEY = -1,
 	e_CMD_KEY = -1,
@@ -234,13 +234,15 @@ typedef struct s_key_state
 # define DOWN_INDEX 5
 # define RIGHT_INDEX 6
 # define LEFT_INDEX 7
+# define SPACE_INDEX 8
 
 # define SUN_FRAMES 19
-# define ENEMY_DIE_ANIM_FRAMES 5
+# define ENEMY_DIE_ANIM_FRAMES 48
 
 typedef struct s_enemy
 {
 	t_bool			alive;
+	int				health;
 	t_2d_point		pos;
 	size_t			die_anim_frames;//TODO fare una funzione che crea i nemici che setta valore default
 }	t_enemy;
@@ -248,6 +250,10 @@ typedef struct s_enemy
 typedef struct s_game
 {
 	t_bool					in_game;
+	t_bool					alive;
+	t_bool					attacking;
+	size_t					player_hp;
+	size_t					player_mana;
 	t_map_holder			map_handle;
 	t_key_state				keys[BOUND_KEYS];
 	t_screen_holder			screen_handle;

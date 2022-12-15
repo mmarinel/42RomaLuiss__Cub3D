@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 23:50:50 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:58:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ t_bool	ft_game_init(
 	game_set_mlx(game_ref, width, height);
 	game_set_key_state(game_ref);
 	load_textures(game_ref, &error);
+	game_ref->alive = e_true;
 	game_ref->in_game = e_true;
+	game_ref->player_hp = 100;
+	game_ref->player_mana = 100;
+	game_ref->attacking = e_false;
 	return (error == e_false);
 }
 

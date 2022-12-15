@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/12 00:40:22 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:08:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,31 @@ t_bool	is_free_pos(t_game *g, t_2d_point pt)
 		);
 }
 
-t_bool	collision_check(t_2d_point position, float collision_radius,
-			t_2d_point player_direction, t_game *game)
+static t_bool	enemy_collisionee(const void *enemy, const void *player_pos)
 {
-	t_2d_point	direction;
-	t_2d_point	initial_direction;
-	float		rot_angle;
-	t_2d_point	next_pos;
-	const float	angle_step = 0.174533f;//*		10º
+	const t_enemy		*__enemy = (t_enemy *)enemy;
+	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
 
-	rot_angle = 0.0f;
-	initial_direction = ft_change_magnitude(player_direction, collision_radius);
-	while (rot_angle <= M_PI)//*		SEMI-CIRCLE
+	return (
+		__enemy->health
+		&& 1 >= ft_vec_norm(
+			ft_vec_sum(
+				*__player_pos,
+				ft_vec_opposite(__enemy->pos)
+				)
+			)
+		);
+}
+
+void	collision_check(t_game *game)
+{
+	t_list	*enemy_node;
+
+	enemy_node = ft_lstfind(game->enemies, enemy_collisionee, &game->player_pos);
+	if (enemy_node)
 	{
-		direction = ft_rotate(initial_direction, rot_angle);
-		next_pos = ft_vec_sum(position, direction);
-		if (e_false == is_free_pos(game, next_pos))
-			return (e_false);
-		rot_angle += angle_step;
+		game->player_hp -= 1;
 	}
-	return (e_true);
 }
 
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
@@ -136,27 +141,76 @@ int	enter_window(t_game *game)
 	return (0);
 }
 
+void	attack_enemies(t_game *game)
+{
+	const size_t	radius = 4;
+	size_t			i;
+	t_2d_point		pos;
+	t_int_2d_point	square;
+	t_list			*enemy_node;
+
+	i = 0;
+	while (i < radius)
+	{
+		pos = ft_vec_sum(
+			game->player_pos,
+			ft_vec_prod(game->player_dir, i)
+		);
+		square = (t_int_2d_point){pos.x, pos.y};
+		enemy_node = ft_lstfind(game->enemies, enemy_pos, &square);
+		if (enemy_node && ((t_enemy *)enemy_node->content)->health)
+			((t_enemy *)enemy_node->content)->health -= 10;
+		i++;
+	}
+}
+
+void	clean_enemies(t_game *game)
+{
+	// t_list	*cur;
+	// t_list	**prev_next;
+
+	// cur = game->enemies;
+	// while (cur)
+	// {
+	// 	prev_next = &cur->next;
+	// 	if (e_false == ((t_enemy *)cur->content)->alive)
+	// 	{
+	// 		*prev_next = cur->next;
+	// 		ft_lstdelone(cur, free);
+	// 		cur->next = NULL;
+	// 	}
+	// 	// else
+	// 	// {
+	// 	// 	cur = cur->next;
+	// 	// }
+	// 		cur = *prev_next;
+	// }
+}
+
 int	loop_hook(t_game *game)
 {
-	// static struct timeval	*timestamp = NULL;
-	// struct timeval			current;
 	static float			rot_angle = 0.174533f;
-	//** static float			step_size = 1.0f;
-
-	// if (NULL == timestamp)
-	// {
-	// 	timestamp = (struct timeval *) malloc(sizeof(struct timeval));
-	// 	gettimeofday(timestamp, NULL);
-	// }
-	// gettimeofday(&current, NULL);
-	// if (get_ms_from_timestamp(&current) - get_ms_from_timestamp(timestamp) < 0)
-	// 	return (0);
-	// *timestamp = current;
 
 	if (e_false == game->in_game)
 		return (0);
+	if (KeyPress == game->keys[SPACE_INDEX].state)
+	{
+		if (game->player_mana > 0)
+		{
+			game->attacking = e_true;
+			game->player_mana -= (game->player_mana / 4.0f);
+			attack_enemies(game);
+		}
+		else
+			game->attacking = e_false;
+	}
+	else if (KeyRelease == game->keys[SPACE_INDEX].state)
+	{
+		game->attacking = e_false;
+		if (game->player_mana < 100 && time(NULL) % 2)
+			game->player_mana += 1;
+	}
 	if (KeyPress == game->keys[UP_INDEX].state
-		// || KeyRelease == game->keys[UP_INDEX].state)
 	)
 	{
 		//** if (KeyPress == game->keys[UP_INDEX].state
@@ -181,7 +235,7 @@ int	loop_hook(t_game *game)
 			{
 				// printf(YELLOW "moving upwards...\n" RESET);
 				game->player_pos = new_pos;
-				render_next_frame(game);
+				// render_next_frame(game);
 				//** if (step_size < 3.5f)
 				//** 	step_size += 0.5f;
 			}
@@ -216,7 +270,7 @@ int	loop_hook(t_game *game)
 			{
 				//*** printf(YELLOW "moving downwards...\n" RESET);
 				game->player_pos = new_pos;
-				render_next_frame(game);
+				// render_next_frame(game);
 				//** if (step_size < 3.5f)
 				//** 	step_size += 0.5f;
 			}
@@ -245,7 +299,7 @@ int	loop_hook(t_game *game)
 			{
 				game->player_dir = ft_rotate(game->player_dir, rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
 				game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
-				render_next_frame(game);
+				// render_next_frame(game);
 				if (rot_angle < 0.314159f)
 					rot_angle += 0.025f;
 			}
@@ -271,7 +325,7 @@ int	loop_hook(t_game *game)
 			{
 				game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);//0.174533f);// M_PI / 05.0f);
 				game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
-				render_next_frame(game);
+				// render_next_frame(game);
 				if (rot_angle < 0.314159f)
 					rot_angle += 0.025f;
 			}
@@ -282,6 +336,9 @@ int	loop_hook(t_game *game)
 			game->keys[LEFT_INDEX].state = -1;
 		}
 	}
+	collision_check(game);
+	clean_enemies(game);
+	render_next_frame(game);
 	return (0);
 }
 
@@ -295,6 +352,8 @@ static int	get_key_index(int key_code)
 		return (RIGHT_INDEX);
 	if (e_LEFT_KEY == key_code)
 		return (LEFT_INDEX);
+	if (e_SPACE_KEY == key_code)
+		return (SPACE_INDEX);
 	// if (e_W_KEY == key_code)
 	// 	return (UP_INDEX);
 	// if (e_UP_KEY == key_code)

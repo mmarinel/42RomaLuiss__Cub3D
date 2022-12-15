@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 11:36:26 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:47:16 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ t_column_info	enemy_colinfo(
 	const t_rendered_enemy *enemy_data,
 	t_game *g
 	);
+void			render_health_bar(t_game *g);
+void			render_mana_bar(t_game *g);
+void			render_collision(t_game *g);
+void			render_attack(t_game *g, t_list *enemies);
 //*		end of static declarations
 
 // int	ln_clipper(t_clip_opcode opcode, size_t size);
@@ -86,10 +90,173 @@ void	render_next_frame(t_game *g)
 		col++;
 	}
 	render_enemies(enemies, g);
+	render_collision(g);
+	render_health_bar(g);
+	render_mana_bar(g);
+	if (g->attacking)
+		render_attack(g, enemies);
 	mlx_put_image_to_window(
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->screen_handle.frame_data.img,
 		0, 0);
+}
+
+static int	attack_next_px(t_nxt_px_f_arg *arg)
+{
+	const t_color	color = *(const t_color *)arg->arg;
+
+	return (ft_get_mlx_color(color));
+}
+
+static void	draw_laser(
+	const t_int_2d_point *endpoint,
+	const size_t offset,
+	const t_color *laser_color,
+	t_game *g
+	)
+{
+	bresenham_plot(
+		(t_int_2d_point[2]){
+			(t_int_2d_point){
+				endpoint[0].x + offset,
+				endpoint[0].y
+			},
+			(t_int_2d_point){
+				endpoint[1].x,
+				endpoint[1].y
+			}
+		},
+		&g->screen_handle.frame_data,
+		attack_next_px, &(t_nxt_px_f_arg){laser_color, NULL}
+	);
+}
+
+void	render_attack(t_game *g, t_list *enemies)
+{
+	const t_int_2d_point	endpoint[2] = {
+		(t_int_2d_point){
+			g->screen_handle.width / 2.0f,
+			g->screen_handle.height / 2.0f
+		},
+		(t_int_2d_point){
+			g->screen_handle.width / 2.0f,
+			g->screen_handle.height
+		}
+	};
+	const t_color	laser_color = (t_color){222, 33, 65, 1};
+	const size_t	base_width = (g->screen_handle.width * .5f) / 100;
+	size_t			i;
+
+	i = 0;
+	while (i < 100)
+	{
+		draw_laser(
+			endpoint, ((base_width / 50.0f) * i) - base_width, &laser_color, g
+		);
+		i += 1;
+	}
+	(void)enemies;
+}
+
+void	render_health_bar(t_game *g)
+{
+	const size_t		full = (g->screen_handle.width * 80.0f) / 100;
+	const size_t		health = (full * g->player_hp) / 100.0f;
+	const size_t		bar_height = 5;
+	const size_t		horizontal_offset = (g->screen_handle.width * 10.0f) / 100;
+	t_int_2d_point		px;
+
+	px.y = 0;
+	while (px.y < (int)bar_height)
+	{
+		px.x = 0;
+		while (px.x < (int)health)
+		{
+			ft_put_px_to_image(
+				&g->screen_handle.frame_data,
+				ft_get_pixel_offset(
+					&g->screen_handle.frame_data,
+					(t_int_2d_point){px.x + horizontal_offset, px.y}
+					),
+				(t_color){255, 0, 0, 1}
+			);
+			px.x += 1;
+		}
+		px.y += 1;
+	}
+}
+
+void	render_mana_bar(t_game *g)
+{
+	const size_t		full = (g->screen_handle.width * 50.0f) / 100.0f;
+	const size_t		mana = (full * g->player_mana) / 100.0f;
+	const size_t		bar_height = 5;
+	const size_t		horizontal_offset = (g->screen_handle.width * 25.0f) / 100;
+	const size_t		vertical_offset = 5;
+	t_int_2d_point		px;
+
+	px.y = 0;
+	while (px.y < (int)bar_height)
+	{
+		px.x = 0;
+		while (px.x < (int)mana)
+		{
+			ft_put_px_to_image(
+				&g->screen_handle.frame_data,
+				ft_get_pixel_offset(
+					&g->screen_handle.frame_data,
+					(t_int_2d_point){px.x + horizontal_offset, px.y + vertical_offset}
+					),
+				(t_color){0, 0, 255, 1}
+			);
+			px.x += 1;
+		}
+		px.y += 1;
+	}
+}
+
+static t_bool	enemy_collision(const void *enemy, const void *player_pos)
+{
+	const t_enemy		*__enemy = (t_enemy *)enemy;
+	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
+
+	return (
+		__enemy->health
+		&& 1 >= ft_vec_norm(
+			ft_vec_sum(
+				*__player_pos,
+				ft_vec_opposite(__enemy->pos)
+				)
+			)
+		);
+}
+
+void	render_collision(t_game *g)
+{
+	t_list			*cur;
+	t_int_2d_point	px;
+
+	cur = ft_lstfind(g->enemies, enemy_collision, &g->player_pos);
+	if (cur)
+	{
+		// g->player_hp -= 1;
+		px.y = 0;
+		while (px.y < (int)g->screen_handle.height)
+		{
+			px.x = 0;
+			while (px.x < (int)g->screen_handle.width)
+			{
+				if ((px.x + px.y) % 2)
+					ft_put_px_to_image(
+						&g->screen_handle.frame_data,
+						ft_get_pixel_offset(&g->screen_handle.frame_data, px),
+						(t_color){255, 0, 0, 1}
+					);
+				px.x += 1;
+			}
+			px.y += 1;
+		}
+	}
 }
 
 static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
@@ -186,10 +353,16 @@ void	render_enemies(
 
 t_data	*get_enemy_texture(const t_enemy *enemy, t_game *g)
 {
-	if (enemy->alive)
+	if (enemy->health)
 		return (&g->enemy_texture[0]);
-	else
-		return (&g->enemy_texture[1]);
+	else //if (enemy->die_anim_frames)
+	{
+		// if (enemy->die_anim_frames % 2)
+			return (&g->enemy_texture[1]);
+		// return (NULL);
+	}
+	// else
+	// 	return (NULL);
 }
 
 t_column_info	enemy_colinfo(
@@ -265,8 +438,18 @@ void	render_enemy(
 	size_t			i;
 	int				screen_col;
 
-	if (0 == enemy_size)
+	if (0 == enemy_size || e_false == enemy_data->enemy->alive)
 		return ;
+	if (0 == enemy_data->enemy->health)
+	{
+		enemy_data->enemy->die_anim_frames -= 1;
+		if (0 == enemy_data->enemy->die_anim_frames % 2)
+		{
+			if (0 == enemy_data->enemy->die_anim_frames)
+				enemy_data->enemy->alive = e_false;
+			return ;
+		}
+	}
 	enemy_data->enemy_size = enemy_size;
 	screen_col = enemy_data->mid_screen_col;
 	i = 0;

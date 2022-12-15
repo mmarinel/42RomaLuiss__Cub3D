@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 19:38:00 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:15:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*ft_new_enemy_node(t_2d_point pos)
 	if (NULL == enemy)
 		return (NULL);
 	enemy->alive = e_true;
+	enemy->health = 100;
 	enemy->pos = pos;
 	enemy->die_anim_frames = die_anim_frames;
 	return (ft_lstnew(NULL, enemy));

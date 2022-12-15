@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 13:49:51 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:13:33 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../utils/utils_module.h"
 # include "enemies/rend_enem_module.h"
 
+# include <time.h>
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
