@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 15:08:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:36:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,42 @@ int	get_ms_from_timestamp(const struct timeval *timestamp)
 			+ (u_int64_t)timestamp->tv_usec / 1000));
 }
 
+t_bool	is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy)
+{
+	t_int_2d_point	normalized;
+	t_list			*enemy_node;
+
+	normalized.x = floor(pt.x);
+	normalized.y = floor(pt.y);
+	enemy_node = ft_lstfind(g->enemies, enemy_pos, &normalized);
+	if (enemy_node && ((t_enemy *)enemy_node->content) != enemy)
+		return (e_false);
+	else
+		return (
+			e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_W == g->map_handle.map[normalized.y][normalized.x]
+			|| e_PLAYER_E == g->map_handle.map[normalized.y][normalized.x]
+		);
+}
+
 t_bool	is_free_pos(t_game *g, t_2d_point pt)
 {
 	t_int_2d_point	normalized;
 
 	normalized.x = floor(pt.x);
 	normalized.y = floor(pt.y);
-	return (e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
+	return (
+		NULL == ft_lstfind(g->enemies, enemy_pos, &normalized)
+		&& (
+			e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_W == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_E == g->map_handle.map[normalized.y][normalized.x]
-		);
+		)
+	);
 }
 
 static t_bool	enemy_collisionee(const void *enemy, const void *player_pos)
@@ -68,7 +92,7 @@ static t_bool	enemy_collisionee(const void *enemy, const void *player_pos)
 
 	return (
 		__enemy->health
-		&& 1 >= ft_vec_norm(
+		&& 3 >= ft_vec_norm(
 			ft_vec_sum(
 				*__player_pos,
 				ft_vec_opposite(__enemy->pos)
@@ -85,15 +109,22 @@ void	collision_check(t_game *game)
 	if (enemy_node)
 	{
 		game->player_hp -= 1;
+		game->colliding = e_true;
 	}
+	else
+		game->colliding = e_false;
 }
 
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
 {
 	if (pt.x >= game->map_handle.columns)
 		pt.x = game->map_handle.columns - 1;
+	if (pt.x < 0)
+		pt.x = 0;
 	if (pt.y >= game->map_handle.rows)
 		pt.y = game->map_handle.rows - 1;
+	if (pt.y < 0)
+		pt.y = 0;
 	return (pt);
 }
 
@@ -166,29 +197,62 @@ void	attack_enemies(t_game *game)
 
 void	clean_enemies(t_game *game)
 {
-	// t_list	*cur;
-	// t_list	**prev_next;
+	t_list	*next;
+	t_list	**prev_next;
 
-	// cur = game->enemies;
-	// while (cur)
-	// {
-	// 	prev_next = &cur->next;
-	// 	if (e_false == ((t_enemy *)cur->content)->alive)
-	// 	{
-	// 		*prev_next = cur->next;
-	// 		ft_lstdelone(cur, free);
-	// 		cur->next = NULL;
-	// 	}
-	// 	// else
-	// 	// {
-	// 	// 	cur = cur->next;
-	// 	// }
-	// 		cur = *prev_next;
-	// }
+	prev_next = &game->enemies;
+	while (*prev_next)
+	{
+		next = (*prev_next)->next;
+		if (e_false == ((t_enemy *)(*prev_next)->content)->alive)
+		{
+			ft_lstdelone(*prev_next, free);
+			*prev_next = next;
+		}
+		else
+			prev_next = &(*prev_next)->next;
+	}
+}
+
+void	change_enemy_pos(t_enemy *enemy, t_game *game)
+{
+	const t_2d_point	new_pos = map_pos_clip(
+		ft_vec_sum(
+			enemy->pos,
+			ft_vec_prod(
+				ft_vec_sum(
+					game->player_pos,
+					ft_vec_opposite(enemy->pos)
+					),
+					0.01f
+				)
+		),
+		game
+	);
+
+	if (is_free_pos_for_en(game, new_pos, enemy))
+		enemy->pos = new_pos;
+}
+
+void	move_enemies(t_game *game)
+{
+	t_list	*cur;
+
+	cur = game->enemies;
+
+	while (cur)
+	{
+		if (((t_enemy *)cur->content)->health
+			&& e_false == enemy_collisionee(cur->content, &game->player_pos)
+		)
+			change_enemy_pos(cur->content, game);
+		cur = cur->next;
+	}
 }
 
 int	loop_hook(t_game *game)
 {
+	static int				frame = 0;
 	static float			rot_angle = 0.174533f;
 
 	if (e_false == game->in_game)
@@ -338,7 +402,10 @@ int	loop_hook(t_game *game)
 	}
 	collision_check(game);
 	clean_enemies(game);
+	// if (frame % 2 == 0)
+		move_enemies(game);
 	render_next_frame(game);
+	frame += 1;//(frame + 1) % 5;
 	return (0);
 }
 

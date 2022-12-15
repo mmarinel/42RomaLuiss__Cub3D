@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 13:58:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:32:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ t_bool	ft_game_init(
 	game_ref->player_hp = 100;
 	game_ref->player_mana = 100;
 	game_ref->attacking = e_false;
+	game_ref->colliding = e_false;
 	return (error == e_false);
 }
 

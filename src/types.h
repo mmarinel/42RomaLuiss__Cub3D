@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/15 14:47:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:32:24 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ typedef struct s_game
 	t_bool					in_game;
 	t_bool					alive;
 	t_bool					attacking;
+	t_bool					colliding;
 	size_t					player_hp;
 	size_t					player_mana;
 	t_map_holder			map_handle;

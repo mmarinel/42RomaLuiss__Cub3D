@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 14:47:16 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:34:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,11 +233,12 @@ static t_bool	enemy_collision(const void *enemy, const void *player_pos)
 
 void	render_collision(t_game *g)
 {
-	t_list			*cur;
+	// t_list			*cur;
 	t_int_2d_point	px;
 
-	cur = ft_lstfind(g->enemies, enemy_collision, &g->player_pos);
-	if (cur)
+	(void)enemy_collision;
+	// cur = ft_lstfind(g->enemies, enemy_collision, &g->player_pos);
+	if (g->colliding)
 	{
 		// g->player_hp -= 1;
 		px.y = 0;
