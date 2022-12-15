@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:32:53 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/15 00:04:45 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:38:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ void	update_enemy_list(
 			= rc_ret->spotted_enemy.perp_dist;
 		((t_rendered_enemy *)cur->content)->last_screen_col
 			= screen_col;
-		size_t	first = ((t_rendered_enemy *)cur->content)->first_screen_col;
-		size_t	last = ((t_rendered_enemy *)cur->content)->last_screen_col;
-		((t_rendered_enemy *)cur->content)->mid_screen_col = (float)(last + first) / 2;
-		// ((t_rendered_enemy *)cur->content)->mid_screen_col
-		// 	= roundf();
+		((t_rendered_enemy *)cur->content)->mid_screen_col
+			= (
+				((t_rendered_enemy *)cur->content)->first_screen_col
+				+ ((t_rendered_enemy *)cur->content)->last_screen_col
+			)
+			/ 2.0f;
 	}
 }
 

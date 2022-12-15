@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 00:11:33 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:36:26 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,6 @@ void	render_enemies(
 	cur = enemies;
 	while (cur)
 	{
-		printf("enemy perp: %lf\n", ((t_rendered_enemy *)cur->content)->min_perp_dist);
 		render_enemy(cur->content, g);
 		cur = cur->next;
 	}
@@ -269,11 +268,11 @@ void	render_enemy(
 	if (0 == enemy_size)
 		return ;
 	enemy_data->enemy_size = enemy_size;
-	screen_col = enemy_data->mid_screen_col - enemy_size;
+	screen_col = enemy_data->mid_screen_col;
 	i = 0;
 	while (i < enemy_size)
 	{
-		if (screen_col >= 0)
+		if (screen_col >= 0 && screen_col <= (int)g->screen_handle.width)
 			enemy_render_col(screen_col, i, enemy_data, g);
 		screen_col += 1;
 		i += 1;
