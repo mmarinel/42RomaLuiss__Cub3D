@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 23:07:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:57:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_ray_data_init(t_raycast_data *rc_data,
 	rc_data->delta_y = (float)1 / ft_flt_abs(rc_data->ray_dir.y);
 	rc_data->step_x = ft_ray_step_size(rc_data->ray_dir.x);
 	rc_data->step_y = ft_ray_step_size(rc_data->ray_dir.y);
-	rc_data->cur_sq.x = (int) (game->player_pos.x);
-	rc_data->cur_sq.y = (int) (game->player_pos.y);
-	rc_data->dist_nhp_through_x = ft_initial_delta(game->player_pos.x, rc_data->ray_dir.x);
-	rc_data->dist_nhp_through_y = ft_initial_delta(game->player_pos.y, rc_data->ray_dir.y);
+	rc_data->cur_sq.x = (int) (game->player.pos.x);
+	rc_data->cur_sq.y = (int) (game->player.pos.y);
+	rc_data->dist_nhp_through_x = ft_initial_delta(game->player.pos.x, rc_data->ray_dir.x);
+	rc_data->dist_nhp_through_y = ft_initial_delta(game->player.pos.y, rc_data->ray_dir.y);
 	rc_data->spotted_enemy.enemy = NULL;
 	rc_data->side = e_SIDE_NONE;
 }

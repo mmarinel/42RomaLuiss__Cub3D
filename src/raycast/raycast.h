@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 23:10:14 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:54:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define RAYCAST_H
 
 # include "raycast_types.h"
+# include "../game.h"
 # include "../utils/utils_module.h"
 
-# include <math.h>
-# include <stdio.h>
+# include "../sys_includes.h"
 
 //*		initialization
 void			ft_ray_data_init(t_raycast_data *rc_data,

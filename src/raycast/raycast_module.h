@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_module.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/25 11:40:51 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:52:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RAYCAST_MODULE_H
 
 # include "raycast_types.h"
+# include "../game.h"
+# include "../utils/math/uti_math_types.h"
 
 t_raycast_return	raycast(t_game *game, t_2d_point ray_dir);
 

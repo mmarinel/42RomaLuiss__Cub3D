@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_module.h                                    :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:31:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:30:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/11/06 17:50:16 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/12/16 22:47:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#include "uti_math.h"
 
-# include "render_types.h"
-# include "line_drawing/line_drawing_module.h"
-# include "textures/textures_module.h"
+float	flt_round(float nbr, size_t dec_places)
+{
+	const int	shift = pow(10, dec_places);
+	int			int_repr;
 
-void	render_next_frame(t_game *g);
-
-#endif
+	int_repr = nbr * shift;
+	return ((float)int_repr / shift);
+}

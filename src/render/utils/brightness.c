@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   brightness.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:38:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 18:55:31 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:34:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "uti_render.h"
 
 static double	ft_get_max_brightness_factor(const t_color color);
 //*		end of static declarations

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_conditions.c                                :+:      :+:    :+:   */
+/*   vec_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 12:23:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/05 12:23:18 by mmarinel         ###   ########.fr       */
+/*   Created: 2022/12/16 22:50:59 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/16 22:51:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "uti_math.h"
 
-t_bool	ft_iscolor( long long red, long long green, long long blue )
+void	t_2d_point_print(const t_2d_point *pt, const char *msg)
 {
-	return (
-		COLOR_MIN <= red && red <= COLOR_MAX
-		&& COLOR_MIN <= green && green <= COLOR_MAX
-		&& COLOR_MIN <= blue && blue <= COLOR_MAX
-	);
+	printf(YELLOW"%s: (x=%lfm y=%lf)\n" RESET, msg, pt->x, pt->y);
 }

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_module.h                                    :+:      :+:    :+:   */
+/*   vec_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:31:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:30:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/16 22:47:40 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/16 22:47:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#include "uti_math.h"
 
-# include "render_types.h"
-# include "line_drawing/line_drawing_module.h"
-# include "textures/textures_module.h"
+t_2d_point	ft_vec_normalize(t_2d_point vec)
+{
+	return (ft_change_magnitude(vec, 1.0f));
+}
 
-void	render_next_frame(t_game *g);
+t_2d_point	ft_change_magnitude(t_2d_point vec, float new_magnitude)
+{
+	const float	lambda = flt_round(
+		new_magnitude / ft_vec_norm(vec),
+		FLT_PRECISION
+	);
 
-#endif
+	return (ft_vec_prod(vec, lambda));
+}

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 14:41:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:55:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,9 @@
 # define RENDER_TYPES_H
 
 # include "../types.h"
+# include "../game.h"
 # include "../raycast/raycast_types.h"
-
-typedef enum e_reentrancy
-{
-	e_INGOING,
-	e_OUTGOING,
-	e_REENTRANCY_NONE
-}	t_reentrancy;
-
-typedef struct s_wall_camera_incidence
-{
-	float			angle;
-	t_side			side;
-	t_quadrant		player_dir_quadrant;
-	t_reentrancy	reentrancy;
-}	t_wall_camera_incidence;
+# include "../utils/math/uti_math_types.h"
 
 /**
  * @brief an enemy is spotted multiple times as we send many rays for each tile.
@@ -42,25 +29,17 @@ typedef struct s_wall_camera_incidence
 typedef struct s_rendered_enemy
 {
 	 t_enemy	*enemy;
-	size_t			mid_screen_col;
-	size_t			first_screen_col;//*column of the first ray to hit the enemy
-	size_t			last_screen_col;//*column of the last ray to hit the enemy
-	float			min_perp_dist;
-	size_t			enemy_size;
+	size_t		mid_screen_col;
+	//*column of the first ray to hit the enemy
+	size_t		first_screen_col;
+	//*column of the last ray to hit the enemy
+	size_t		last_screen_col;
+	float		min_perp_dist;
+	size_t		enemy_size;
 }	t_rendered_enemy;
-
-typedef struct s_render_data
-{
-	const t_raycast_return			rc_ret;
-	const size_t					wll_px_width;
-	const size_t					wll_px_height;
-	const size_t					wll_out_bounds_pxs;
-	const t_wall_camera_incidence	wall_camera_incidence;
-}	t_render_data;
 
 typedef struct s_column_info
 {
-	// const t_2d_point		*frame_px;
 	const size_t			rendered_size;
 	const size_t			gap;
 	const t_raycast_return	*rc_ret;

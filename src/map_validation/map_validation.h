@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:41:58 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:10:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_VALIDATION_H
 # define MAP_VALIDATION_H
 
+# include "map_validation_types.h"
 # include "../colors.h"
 # include "../types.h"
 # include "../utils/utils_module.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
+# include "utils/map_utils_module.h"
+# include "../render/utils/uti_render_module.h"
+
+# include "../sys_includes.h"
 
 # define MAP_FILE_EXTENSION ".cub"
 # define ERROR_SIG "Error\n"

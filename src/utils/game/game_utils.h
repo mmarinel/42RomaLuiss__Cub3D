@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 15:48:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:01:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 # define GAME_UTILS_H
 
 # include "../../types.h"
+# include "../../game.h"
 # include "../../colors.h"
 # include "../libft/libft_module.h"
-# include "../render/render_module.h"
 # include "../utils_module.h"
 
-# include <mlx.h>
-# include <math.h>
-# include <stdio.h>
-//*		for 'NULL' keyword
-# include <stddef.h>
+# include "../../sys_includes.h"
 
 //*		geometry
 t_2d_point	ft_rotate(t_2d_point vector, float ray_angle);

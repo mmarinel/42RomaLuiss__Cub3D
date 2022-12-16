@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_types.h                                     :+:      :+:    :+:   */
+/*   uti_render_types.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:15:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/08 18:13:06 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:32:08 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_UTILS_TYPES_H
-# define RENDER_UTILS_TYPES_H
-
-# include "../../types.h"
-# include "render_types.h"
+#ifndef UTI_RENDER_TYPES_H
+# define UTI_RENDER_TYPES_H
 
 typedef enum e_mlx_win_holder
 {

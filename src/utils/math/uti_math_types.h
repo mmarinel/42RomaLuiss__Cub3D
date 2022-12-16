@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_module.h                                    :+:      :+:    :+:   */
+/*   uti_math_types.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:31:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:30:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/16 22:31:46 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/16 22:53:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#ifndef UTI_MATH_TYPES_H
+# define UTI_MATH_TYPES_H
 
-# include "render_types.h"
-# include "line_drawing/line_drawing_module.h"
-# include "textures/textures_module.h"
+typedef struct s_int_2Dpoint
+{
+	int	x;
+	int	y;
+}	t_int_2d_point;
 
-void	render_next_frame(t_game *g);
+typedef struct s_2Dpoint
+{
+	float	x;
+	float	y;
+}	t_2d_point;
+
+typedef struct s_2Dmatrix
+{
+	t_2d_point	row_1;
+	t_2d_point	row_2;
+}	t_2d_matrix;
 
 #endif

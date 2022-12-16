@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils_module.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:05:11 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 11:51:03 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:36:02 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_MODULE_H
 # define UTILS_MODULE_H
 
+# include "game/game_utils_module.h"
+# include "math/uti_math_module.h"
+
 # include "libft/libft_module.h"
 # include "gnl/get_next_line_module.h"
-
-# include "map/map_utils_module.h"
-# include "game/game_utils_module.h"
-# include "render/render_module.h"
 
 #endif

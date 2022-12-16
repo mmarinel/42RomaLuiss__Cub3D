@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 18:00:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:58:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	render_next_frame(t_game *g)
 	render_collision(g);
 	render_health_bar(g);
 	render_mana_bar(g);
-	if (g->attacking)
+	if (g->player.attacking)
 		render_attack(g, enemies);
 	mlx_put_image_to_window(
 		g->screen_handle.mlx, g->screen_handle.window,
@@ -161,7 +161,7 @@ void	render_attack(t_game *g, t_list *enemies)
 void	render_health_bar(t_game *g)
 {
 	const size_t		full = (g->screen_handle.width * 80.0f) / 100;
-	const size_t		health = (full * g->player_hp) / 100.0f;
+	const size_t		health = (full * g->player.hp) / 100.0f;
 	const size_t		bar_height = 5;
 	const size_t		horizontal_offset = (g->screen_handle.width * 10.0f) / 100;
 	t_int_2d_point		px;
@@ -189,7 +189,7 @@ void	render_health_bar(t_game *g)
 void	render_mana_bar(t_game *g)
 {
 	const size_t		full = (g->screen_handle.width * 50.0f) / 100.0f;
-	const size_t		mana = (full * g->player_mana) / 100.0f;
+	const size_t		mana = (full * g->player.mana) / 100.0f;
 	const size_t		bar_height = 5;
 	const size_t		horizontal_offset = (g->screen_handle.width * 25.0f) / 100;
 	const size_t		vertical_offset = 5;
@@ -238,7 +238,7 @@ void	render_collision(t_game *g)
 
 	(void)enemy_collision;
 	// cur = ft_lstfind(g->enemies, enemy_collision, &g->player_pos);
-	if (g->colliding)
+	if (g->player.colliding)
 	{
 		// g->player_hp -= 1;
 		px.y = 0;
@@ -265,16 +265,16 @@ static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
 	if (e_VERTICAL == rc_ret->side)
 	{
 		if (e_RAY_EAST == rc_ret->view_side_direction)
-			return (&game->wall_texture.east);
+			return (&game->textures.wall.east);
 		else
-			return (&game->wall_texture.west);
+			return (&game->textures.wall.west);
 	}
 	else if (e_HORIZONTAL == rc_ret->side)
 	{
 		if (e_RAY_NORTH == rc_ret->view_forw_direction)
-			return (&game->wall_texture.north);
+			return (&game->textures.wall.north);
 		else
-			return (&game->wall_texture.south);
+			return (&game->textures.wall.south);
 	}
 	else
 		return (NULL);
@@ -355,11 +355,11 @@ void	render_enemies(
 t_data	*get_enemy_texture(const t_enemy *enemy, t_game *g)
 {
 	if (enemy->health)
-		return (&g->enemy_texture[0]);
+		return (&g->textures.enemy[0]);
 	else //if (enemy->die_anim_frames)
 	{
 		// if (enemy->die_anim_frames % 2)
-			return (&g->enemy_texture[1]);
+			return (&g->textures.enemy[1]);
 		// return (NULL);
 	}
 	// else
@@ -545,7 +545,7 @@ size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
 {
 	float			dist;
 	size_t			col;
-	const size_t	texture_size = game->wall_texture.north.width;
+	const size_t	texture_size = game->textures.wall.north.width;
 
 	if (e_VERTICAL == rc_ret->side)
 		dist = rc_ret->hit_point.y - floor(rc_ret->hit_point.y);
@@ -592,7 +592,7 @@ static void	draw_background_bonus(t_game *g)
 			ft_put_mlxpx_to_image(
 				&g->screen_handle.frame_data,
 				ft_get_pixel_offset(&g->screen_handle.frame_data, screen_px),
-				get_texture_px(screen_px, &g->background)
+				get_texture_px(screen_px, &g->textures.background)
 			);
 			screen_px.y++;
 		}
@@ -604,22 +604,22 @@ int	sun_set_offset(t_game *g)
 {
 	const float		unit_rot_angle_x2 = 2 * INITIAL_ROT_ANGLE;//g->unit_rot_angle;
 	const float		unit_shift = unit_rot_angle_x2 / (FOV - unit_rot_angle_x2);
-	const size_t	sun_frame_width = g->sun[0].width;
+	const size_t	sun_frame_width = g->textures.sun[0].width;
 	float			steps;
 	int				sign;
 	// float	radius;// = (g->map_handle.rows - g->player_pos.x) / cos(g->west_angle);
 
-	if (g->west_angle < M_PI)
+	if (g->player.west_angle < M_PI)
 	{
 		// return (roundf(g->west_angle * 50));
-		steps = g->west_angle / unit_rot_angle_x2;
+		steps = g->player.west_angle / unit_rot_angle_x2;
 		sign = 1;
 		// return (roundf(steps * unit_shift * (sun_frame_width - 1)) );
 	}
 	else
 	{
 		// return ((-1) * roundf(g->west_angle * 50));
-		steps = (2 * M_PI - g->west_angle) / unit_rot_angle_x2;
+		steps = (2 * M_PI - g->player.west_angle) / unit_rot_angle_x2;
 		sign = -1;
 		// return ((-1) * roundf(steps * unit_shift * (sun_frame_width - 1)) );
 	}
@@ -673,7 +673,7 @@ static void	draw_sun(t_game *g)
 			{
 				mlx_px = get_texture_px(
 					(t_int_2d_point){screen_px.x + offset, screen_px.y},
-					&g->sun[frame]
+					&g->textures.sun[frame]
 					);
 				// if (screen_px.x == 0 && screen_px.y == 0)
 				// 	printf(YELLOW"cur_px: %d\n" RESET, mlx_px);
@@ -734,8 +734,8 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 		);
 	// float		magnitude;
 
-	ray.x = g->player_dir.x + dilatation_factor * g->camera_plane.x;
-	ray.y = g->player_dir.y + dilatation_factor * g->camera_plane.y;
+	ray.x = g->player.dir.x + dilatation_factor * g->player.camera_plane.x;
+	ray.y = g->player.dir.y + dilatation_factor * g->player.camera_plane.y;
 
 	//*		makign ray a magnitude 1 vector (versor)
 	// magnitude = ft_vec_norm(ray);

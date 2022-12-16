@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_module.h                                    :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:31:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:30:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/16 22:41:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#ifndef MACROS_H
+# define MACROS_H
 
-# include "render_types.h"
-# include "line_drawing/line_drawing_module.h"
-# include "textures/textures_module.h"
+//*		66º...vision cone of our player (FOV - field of vision)
+# define FOV ( (11.0f / 30.0f) * M_PI )
 
-void	render_next_frame(t_game *g);
+# define INITIAL_ROT_ANGLE 0.104533f
+# define MAX_ROT_ANGLE 0.314159f
+# define ROT_ANGLE_INCREMENT 0.025f
+
+# define SUN_FRAMES 19
+# define ENEMY_DIE_ANIM_FRAMES 48
+
+# define FLT_PRECISION 6
 
 #endif

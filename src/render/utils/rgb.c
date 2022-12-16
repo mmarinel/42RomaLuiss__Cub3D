@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:10:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/14 22:17:37 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:34:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "uti_render.h"
 
 t_bool	is_mlx_color(t_color color)
 {

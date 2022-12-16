@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_module.h                                    :+:      :+:    :+:   */
+/*   vec_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:31:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:30:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/16 22:51:51 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/16 22:52:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_MODULE_H
-# define RENDER_MODULE_H
+#include "uti_math.h"
 
-# include "render_types.h"
-# include "line_drawing/line_drawing_module.h"
-# include "textures/textures_module.h"
+t_bool	ft_2d_point_equals(
+			const t_2d_point *p1,
+			const t_2d_point *p2
+		)
+{
+	return (
+		flt_round(p1->x, FLT_PRECISION) == flt_round(p2->x, FLT_PRECISION)
+		&& flt_round(p1->y, FLT_PRECISION) == flt_round(p2->y, FLT_PRECISION)
+	);
+}
 
-void	render_next_frame(t_game *g);
-
-#endif
+t_bool	ft_int_2d_point_equals(
+			const t_int_2d_point *p1,
+			const t_int_2d_point *p2
+		)
+{
+	return (p1->x == p2->x && p1->y == p2->y);
+}

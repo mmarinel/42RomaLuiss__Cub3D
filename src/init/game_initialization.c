@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 17:56:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:58:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ t_bool	ft_game_init(
 			//*	TESTING
 			game_ref->enemies = NULL;
 			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
-				(t_2d_point){game_ref->player_pos.x - 1, game_ref->player_pos.y}
+				(t_2d_point){game_ref->player.pos.x - 1, game_ref->player.pos.y}
 			));
 			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
 				(t_2d_point){21, 16}
 			));
 			//*
-			t_2d_point_print(&game_ref->player_dir, "player_dir");
-			t_2d_point_print(&game_ref->camera_plane, "cmaera_plane");
-			t_2d_point_print(&game_ref->player_pos, "player_pos");
+			t_2d_point_print(&game_ref->player.dir, "player_dir");
+			t_2d_point_print(&game_ref->player.camera_plane, "cmaera_plane");
+			t_2d_point_print(&game_ref->player.pos, "player_pos");
 		}
 	}
 	else
@@ -88,14 +88,15 @@ t_bool	ft_game_init(
 	game_set_mlx(game_ref, width, height);
 	game_set_key_state(game_ref);
 	load_textures(game_ref, &error);
-	game_ref->alive = e_true;
 	game_ref->in_game = e_true;
-	game_ref->player_hp = 100;
-	game_ref->player_mana = 100;
-	game_ref->attacking = e_false;
-	game_ref->colliding = e_false;
-	game_ref->west_angle = player_west_angle(game_ref);
+	game_ref->in_menu = e_true;
 	game_ref->unit_rot_angle = INITIAL_ROT_ANGLE;
+	game_ref->player.alive = e_true;
+	game_ref->player.hp = 100;
+	game_ref->player.mana = 100;
+	game_ref->player.attacking = e_false;
+	game_ref->player.colliding = e_false;
+	game_ref->player.west_angle = player_west_angle(game_ref);
 	return (error == e_false);
 }
 
@@ -171,12 +172,12 @@ void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
 		"./img/enemy/kindpng_200x200.xpm",
-		 &game_ref->enemy_texture[0],
+		 &game_ref->textures.enemy[0],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/enemy/kindpng_dead_200x200.xpm",
-		 &game_ref->enemy_texture[1],
+		 &game_ref->textures.enemy[1],
 		game_ref, err_flag
 	);
 }
@@ -185,7 +186,7 @@ static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
 		"./img/Background/background.xpm",
-		 &game_ref->background,
+		 &game_ref->textures.background,
 		game_ref, err_flag
 	);
 }
@@ -194,97 +195,97 @@ static void load_sun_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
 		"./img/Sun/frame-1.xpm",
-		 &game_ref->sun[0],
+		 &game_ref->textures.sun[0],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-2.xpm",
-		 &game_ref->sun[1],
+		 &game_ref->textures.sun[1],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-3.xpm",
-		 &game_ref->sun[2],
+		 &game_ref->textures.sun[2],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-4.xpm",
-		 &game_ref->sun[3],
+		 &game_ref->textures.sun[3],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-5.xpm",
-		 &game_ref->sun[4],
+		 &game_ref->textures.sun[4],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-6.xpm",
-		 &game_ref->sun[5],
+		 &game_ref->textures.sun[5],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-7.xpm",
-		 &game_ref->sun[6],
+		 &game_ref->textures.sun[6],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-8.xpm",
-		 &game_ref->sun[7],
+		 &game_ref->textures.sun[7],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-9.xpm",
-		 &game_ref->sun[8],
+		 &game_ref->textures.sun[8],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-10.xpm",
-		 &game_ref->sun[9],
+		 &game_ref->textures.sun[9],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-11.xpm",
-		 &game_ref->sun[10],
+		 &game_ref->textures.sun[10],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-12.xpm",
-		 &game_ref->sun[11],
+		 &game_ref->textures.sun[11],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-13.xpm",
-		 &game_ref->sun[12],
+		 &game_ref->textures.sun[12],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-14.xpm",
-		 &game_ref->sun[13],
+		 &game_ref->textures.sun[13],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-15.xpm",
-		 &game_ref->sun[14],
+		 &game_ref->textures.sun[14],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-16.xpm",
-		 &game_ref->sun[15],
+		 &game_ref->textures.sun[15],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-17.xpm",
-		 &game_ref->sun[16],
+		 &game_ref->textures.sun[16],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-18.xpm",
-		 &game_ref->sun[17],
+		 &game_ref->textures.sun[17],
 		game_ref, err_flag
 	);
 	open_bg_texture(
 		"./img/Sun/frame-19.xpm",
-		 &game_ref->sun[18],
+		 &game_ref->textures.sun[18],
 		game_ref, err_flag
 	);
 }
@@ -304,16 +305,16 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 	size_t	east_texture_size;
 
 	north_texture_size = open_texture(game_ref->map_handle.no_texture,
-		&game_ref->wall_texture.north, game_ref, err_flag
+		&game_ref->textures.wall.north, game_ref, err_flag
 	);
 	south_texture_size = open_texture(game_ref->map_handle.so_texture,
-		&game_ref->wall_texture.south, game_ref, err_flag
+		&game_ref->textures.wall.south, game_ref, err_flag
 	);
 	west_texture_size = open_texture(game_ref->map_handle.we_texture,
-		&game_ref->wall_texture.west, game_ref, err_flag
+		&game_ref->textures.wall.west, game_ref, err_flag
 	);
 	east_texture_size = open_texture(game_ref->map_handle.ea_texture,
-		&game_ref->wall_texture.east, game_ref, err_flag
+		&game_ref->textures.wall.east, game_ref, err_flag
 	);
 	if (north_texture_size != south_texture_size
 		|| north_texture_size != west_texture_size
@@ -414,7 +415,7 @@ static void	game_set_inital_vectors( t_game *game_ref )
 
 	initial_dir_vectors(
 		game_ref->map_handle.player_initial_dir,
-		&game_ref->player_dir, &game_ref->camera_plane
+		&game_ref->player.dir, &game_ref->player.camera_plane
 	);
 	row = 0;
 	while (row < game_ref->map_handle.rows)
@@ -425,8 +426,8 @@ static void	game_set_inital_vectors( t_game *game_ref )
 			printf("%c ", map[row][col]);
 			if (player_init_dir == map[row][col])
 			{
-				game_ref->player_pos.y = row + 0.5f;
-				game_ref->player_pos.x = col + 0.5f;
+				game_ref->player.pos.y = row + 0.5f;
+				game_ref->player.pos.x = col + 0.5f;
 				break ;
 			}
 			col += 1;

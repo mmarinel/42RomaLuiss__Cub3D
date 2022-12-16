@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 16:06:08 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/12 00:34:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:34:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "uti_render.h"
 
 static size_t	mlx_window_holder(t_mlx_win_holder opcode, const t_screen_holder *screen_holder)
 {

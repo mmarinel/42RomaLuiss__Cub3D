@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:35:12 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/14 14:01:30 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:05:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define REND_ENEM_H
 
 # include "../../utils/utils_module.h"
-# include "../render_types.h"
+# include "../render.h"
 
 #endif

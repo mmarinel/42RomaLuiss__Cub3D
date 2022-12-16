@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:50:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/12 12:15:50 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:33:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_utils.h"
+#include "uti_math.h"
 
 t_2d_point	ft_rotate(t_2d_point vector, float ray_angle)
 {
