@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 14:15:22 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:00:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -602,7 +602,7 @@ static void	draw_background_bonus(t_game *g)
 
 int	sun_set_offset(t_game *g)
 {
-	const float		unit_rot_angle_x2 = 2 * g->unit_rot_angle;
+	const float		unit_rot_angle_x2 = 2 * INITIAL_ROT_ANGLE;//g->unit_rot_angle;
 	const float		unit_shift = unit_rot_angle_x2 / (FOV - unit_rot_angle_x2);
 	const size_t	sun_frame_width = g->sun[0].width;
 	float			steps;

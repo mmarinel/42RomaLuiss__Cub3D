@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 15:33:03 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:57:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,13 +365,13 @@ int	loop_hook(t_game *game)
 				game->player_dir = ft_rotate(game->player_dir, game->unit_rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
 				game->camera_plane = ft_rotate(game->camera_plane, game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
 				// render_next_frame(game);
-				// if (game->unit_rot_angle < 0.314159f)
-				// 	game->unit_rot_angle += 0.025f;
+				if (game->unit_rot_angle < MAX_ROT_ANGLE)
+					game->unit_rot_angle += ROT_ANGLE_INCREMENT;
 			}
 		}
 		else if (KeyRelease == game->keys[RIGHT_INDEX].state)
 		{
-			// game->unit_rot_angle = 0.174533f;
+			game->unit_rot_angle = INITIAL_ROT_ANGLE;
 			game->keys[RIGHT_INDEX].state = -1;
 		}
 	}
@@ -392,13 +392,13 @@ int	loop_hook(t_game *game)
 				game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
 				game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
 				// render_next_frame(game);
-				// if (game->unit_rot_angle < 0.314159f)
-				// 	game->unit_rot_angle += 0.025f;
+				if (game->unit_rot_angle < MAX_ROT_ANGLE)
+					game->unit_rot_angle += ROT_ANGLE_INCREMENT;
 			}
 		}
 		else if (KeyRelease == game->keys[LEFT_INDEX].state)
 		{
-			// game->unit_rot_angle = 0.174533f;
+			game->unit_rot_angle = INITIAL_ROT_ANGLE;
 			game->keys[LEFT_INDEX].state = -1;
 		}
 	}

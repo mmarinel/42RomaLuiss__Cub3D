@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 14:16:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:56:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_bool	ft_game_init(
 	game_ref->attacking = e_false;
 	game_ref->colliding = e_false;
 	game_ref->west_angle = player_west_angle(game_ref);
-	game_ref->unit_rot_angle = 0.104533f;
+	game_ref->unit_rot_angle = INITIAL_ROT_ANGLE;
 	return (error == e_false);
 }
 
