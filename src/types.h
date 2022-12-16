@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/15 17:32:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:05:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include "utils/libft/libft_module.h"
+
+//*		66º
+# define FOV ( (11.0f / 30.0f) * M_PI )
 
 # define FLT_PRECISION 6
 
@@ -255,6 +258,8 @@ typedef struct s_game
 	t_bool					colliding;
 	size_t					player_hp;
 	size_t					player_mana;
+	float					west_angle;
+	float					unit_rot_angle;
 	t_map_holder			map_handle;
 	t_key_state				keys[BOUND_KEYS];
 	t_screen_holder			screen_handle;

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 17:36:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:33:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,8 +252,8 @@ void	move_enemies(t_game *game)
 
 int	loop_hook(t_game *game)
 {
-	static int				frame = 0;
-	static float			rot_angle = 0.174533f;
+	static int		frame = 0;
+	// static float	rot_angle = 0.104533f;
 
 	if (e_false == game->in_game)
 		return (0);
@@ -353,7 +353,7 @@ int	loop_hook(t_game *game)
 	{
 		if (KeyPress == game->keys[RIGHT_INDEX].state)
 		{
-			// new_dir = ft_rotate(game->player_dir, rot_angle);
+			// new_dir = ft_rotate(game->player_dir, game->unit_rot_angle);
 			// if (
 			// 	e_true == is_free_pos(
 			// 		game,
@@ -361,16 +361,17 @@ int	loop_hook(t_game *game)
 			// 	)
 			// )
 			{
-				game->player_dir = ft_rotate(game->player_dir, rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
-				game->camera_plane = ft_rotate(game->camera_plane, rot_angle);//0.174533f);// M_PI / 05.0f);
+				game->west_angle += game->unit_rot_angle;
+				game->player_dir = ft_rotate(game->player_dir, game->unit_rot_angle);//0.174533f);//M_PI / 05.0f);//ft_vec_sum(game->player_dir, ft_vec_prod(game->camera_plane, 0.05));
+				game->camera_plane = ft_rotate(game->camera_plane, game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
 				// render_next_frame(game);
-				if (rot_angle < 0.314159f)
-					rot_angle += 0.025f;
+				// if (game->unit_rot_angle < 0.314159f)
+				// 	game->unit_rot_angle += 0.025f;
 			}
 		}
 		else if (KeyRelease == game->keys[RIGHT_INDEX].state)
 		{
-			rot_angle = 0.174533f;
+			// game->unit_rot_angle = 0.174533f;
 			game->keys[RIGHT_INDEX].state = -1;
 		}
 	}
@@ -379,7 +380,7 @@ int	loop_hook(t_game *game)
 	{
 		if (KeyPress == game->keys[LEFT_INDEX].state)
 		{
-			// new_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);
+			// new_dir = ft_rotate(game->player_dir, 2 * M_PI - game->unit_rot_angle);
 			// if (
 			// 	e_true == is_free_pos(
 			// 		game,
@@ -387,19 +388,24 @@ int	loop_hook(t_game *game)
 			// 	)
 			// )
 			{
-				game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - rot_angle);//0.174533f);// M_PI / 05.0f);
-				game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  rot_angle);//0.174533f);// M_PI / 05.0f);
+				game->west_angle -= game->unit_rot_angle;
+				game->player_dir = ft_rotate(game->player_dir, 2 * M_PI - game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
+				game->camera_plane = ft_rotate(game->camera_plane, 2 * M_PI -  game->unit_rot_angle);//0.174533f);// M_PI / 05.0f);
 				// render_next_frame(game);
-				if (rot_angle < 0.314159f)
-					rot_angle += 0.025f;
+				// if (game->unit_rot_angle < 0.314159f)
+				// 	game->unit_rot_angle += 0.025f;
 			}
 		}
 		else if (KeyRelease == game->keys[LEFT_INDEX].state)
 		{
-			rot_angle = 0.174533f;
+			// game->unit_rot_angle = 0.174533f;
 			game->keys[LEFT_INDEX].state = -1;
 		}
 	}
+	if (game->west_angle >= 2 * M_PI)
+		game->west_angle -= 2 * M_PI;
+	else if (game->west_angle < 0)
+		game->west_angle = 2 * M_PI - ft_flt_abs(game->west_angle);
 	collision_check(game);
 	clean_enemies(game);
 	// if (frame % 2 == 0)

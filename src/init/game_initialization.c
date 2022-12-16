@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/15 17:32:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:16:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	game_set_key_state(t_game *game_ref);
 // 	return (pt);
 // }
 
+float	player_west_angle(t_game *game_ref);
+
 t_bool	ft_game_init(
 			const char *map_path,
 			t_game *game_ref,
@@ -92,7 +94,22 @@ t_bool	ft_game_init(
 	game_ref->player_mana = 100;
 	game_ref->attacking = e_false;
 	game_ref->colliding = e_false;
+	game_ref->west_angle = player_west_angle(game_ref);
+	game_ref->unit_rot_angle = 0.104533f;
 	return (error == e_false);
+}
+
+float	player_west_angle(t_game *game_ref)
+{
+	if (e_PLAYER_W == game_ref->map_handle.player_initial_dir)
+		return (0);
+	if (e_PLAYER_N == game_ref->map_handle.player_initial_dir)
+		return (M_PI / 2);
+	if (e_PLAYER_E == game_ref->map_handle.player_initial_dir)
+		return (M_PI);
+	if (e_PLAYER_S == game_ref->map_handle.player_initial_dir)
+		return (M_PI * 3.0f / 2);
+	return (-1);
 }
 
 size_t	open_texture(const char *path, t_data *texture_data,
@@ -179,7 +196,97 @@ static void load_sun_textures(t_game *game_ref, t_bool *err_flag)
 		"./img/Sun/frame-1.xpm",
 		 &game_ref->sun[0],
 		game_ref, err_flag
-	);;
+	);
+	open_bg_texture(
+		"./img/Sun/frame-2.xpm",
+		 &game_ref->sun[1],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-3.xpm",
+		 &game_ref->sun[2],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-4.xpm",
+		 &game_ref->sun[3],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-5.xpm",
+		 &game_ref->sun[4],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-6.xpm",
+		 &game_ref->sun[5],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-7.xpm",
+		 &game_ref->sun[6],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-8.xpm",
+		 &game_ref->sun[7],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-9.xpm",
+		 &game_ref->sun[8],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-10.xpm",
+		 &game_ref->sun[9],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-11.xpm",
+		 &game_ref->sun[10],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-12.xpm",
+		 &game_ref->sun[11],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-13.xpm",
+		 &game_ref->sun[12],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-14.xpm",
+		 &game_ref->sun[13],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-15.xpm",
+		 &game_ref->sun[14],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-16.xpm",
+		 &game_ref->sun[15],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-17.xpm",
+		 &game_ref->sun[16],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-18.xpm",
+		 &game_ref->sun[17],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/Sun/frame-19.xpm",
+		 &game_ref->sun[18],
+		game_ref, err_flag
+	);
 }
 
 /**
