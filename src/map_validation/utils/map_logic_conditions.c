@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:41:55 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 14:36:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:06:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 static t_bool	player_tracker(char c);
 //* end of static declarations
 
-t_bool	is_edge(const t_map_holder *map_handle, const t_int_2d_point *pos)
+t_bool	is_map_pos(
+	const t_map_holder *map_handle,
+	const t_int_2d_point *pos
+	)
 {
 	if (NULL == map_handle)
 		return (e_false);
 	else
 		return (
-			(0 == pos->x || pos->x == (int)map_handle->columns - 1)
-			|| (0 == pos->y || pos->y == (int)map_handle->rows - 1)
+			(0 <= pos->x && pos->x < (int)map_handle->columns)
+			&& (0 <= pos->y && pos->y < (int)map_handle->rows)
 		);
 }
 

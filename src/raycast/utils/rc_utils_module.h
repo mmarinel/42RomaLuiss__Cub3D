@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:15:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 14:53:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:10:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,18 @@
 //**		walk
 void	ft_walk_through_nhp(t_raycast_data *rc_data);
 
+//*		initialize
+void	ft_ray_data_init(t_raycast_data *rc_data,
+			t_2d_point ray, t_game *game
+	);
+
 //*		set
-void	rc_set_wall_info(
+void	rc_ret_set_data(
 	t_raycast_data *rc_data,
-	t_raycast_return *rc_ret,
+	t_rc_ret_data *rc_ret_data,
 	const t_2d_point *ray,
 	t_game *game
 	);
-void	rc_set_background_info(
-	t_raycast_data *rc_data,
-	t_raycast_return *rc_ret,
-	const t_2d_point *ray,
-	t_game *game
-	);
-// void	rc_set_door_info(
-// 	t_raycast_data *rc_data,
-// 	t_raycast_return *rc_ret,
-// 	const t_2d_point *ray,
-// 	t_game *game
-// 	);
 
 //*		calculations
 float	perp_calc(
@@ -46,5 +39,9 @@ float	perp_calc(
 float	euclid_calc(
 					const t_raycast_data *rc_data
 				);
+
+//*		debug
+void	ft_print_raycast_result(t_raycast_return raycast_info);
+void	ft_print_raycast_data(t_raycast_data rc_data);
 
 #endif

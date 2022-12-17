@@ -6,12 +6,16 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/16 22:41:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:01:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 //*		66º...vision cone of our player (FOV - field of vision)
 # define FOV ( (11.0f / 30.0f) * M_PI )

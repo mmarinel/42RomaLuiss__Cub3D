@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:26:47 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 13:24:22 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 16:53:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rc_utils.h"
 
 void	ft_print_raycast_result(t_raycast_return raycast_info)
 {

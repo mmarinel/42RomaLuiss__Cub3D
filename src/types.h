@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/16 23:48:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:00:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ typedef enum e_key
 	e_CMD_KEY = -1,
 }	t_key;
 
-# define COLOR_MIN 0
-# define COLOR_MAX 255
-
 typedef struct s_data
 {
 	void	*img;
@@ -61,6 +58,9 @@ typedef struct s_data
 	int		width;
 	int		height;
 }	t_data;
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
 
 # ifndef T_COLOR
 #  define T_COLOR

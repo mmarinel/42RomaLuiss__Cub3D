@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 14:30:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:30:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,27 @@ typedef struct s_rc_ret_data
 	float			perp_dist;
 }	t_rc_ret_data;
 
-typedef enum e_rc_ret_cardinal
+typedef enum e_background_cardinal
 {
-	e_RC_RET_NORTH,
-	e_RC_RET_SOUTH,
-	e_RC_RET_WEST,
-	e_RC_RET_EAST
-}	t_rc_ret_cardinal;
+	e_RC_BG_NORTH,
+	e_RC_BG_SOUTH,
+	e_RC_BG_WEST,
+	e_RC_BG_EAST,
+	e_RC_BG_NONE
+}	t_background_cardinal;
 
 typedef struct s_rc_ret_background
 {
-	t_rc_ret_cardinal	cardinal;
-	t_rc_ret_data		data;
+	t_background_cardinal	cardinal;
+	t_rc_ret_data			data;
 }	t_rc_ret_background;
 
 typedef struct s_raycast_return
 {
-	t_rc_ret_data	wall;
-	t_list			*doors;
-	t_rc_ret_data	background;
-	t_spotted_enemy	spotted_enemy;
+	t_rc_ret_data		wall;
+	t_list				*doors;
+	t_rc_ret_background	background;
+	t_spotted_enemy		spotted_enemy;
 }	t_raycast_return;
 
 typedef struct s_raycast_data
