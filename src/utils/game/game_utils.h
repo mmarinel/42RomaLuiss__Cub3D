@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 00:01:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:43:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GAME_UTILS_H
 
 # include "../../types.h"
-# include "../../game.h"
+# include "../../game_types.h"
 # include "../../colors.h"
 # include "../libft/libft_module.h"
 # include "../utils_module.h"

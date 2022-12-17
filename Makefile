@@ -1,17 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/12/17 12:52:26 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDES=\
 ./src/colors.h\
+./src/game_types.h\
 ./src/includes.h\
 ./src/macros.h\
 ./src/sys_includes.h\

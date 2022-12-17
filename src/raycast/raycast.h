@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:54:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:42:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCAST_H
 
 # include "raycast_types.h"
-# include "../game.h"
+# include "../game_types.h"
 # include "../utils/utils_module.h"
 
 # include "../sys_includes.h"

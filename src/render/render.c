@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:58:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 12:54:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	render_mana_bar(t_game *g)
 	const size_t		mana = (full * g->player.mana) / 100.0f;
 	const size_t		bar_height = 5;
 	const size_t		horizontal_offset = (g->screen_handle.width * 25.0f) / 100;
-	const size_t		vertical_offset = 5;
+	const size_t		vertical_offset = 5 + 5;
 	t_int_2d_point		px;
 
 	px.y = 0;

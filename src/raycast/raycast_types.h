@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:53:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:42:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCAST_TYPES_H
 
 # include "../utils/math/uti_math_types.h"
-# include "../game.h"
+# include "../game_types.h"
 
 typedef enum e_ray_dir
 {

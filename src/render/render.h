@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 00:11:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:43:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "render_types.h"
 # include "../types.h"
-# include "../game.h"
+# include "../game_types.h"
 # include "../utils/utils_module.h"
 # include "line_drawing/line_drawing_module.h"
 # include "../raycast/raycast_module.h"

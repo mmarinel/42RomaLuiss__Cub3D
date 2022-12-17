@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:55:30 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:43:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_TYPES_H
 
 # include "../types.h"
-# include "../game.h"
+# include "../game_types.h"
 # include "../raycast/raycast_types.h"
 # include "../utils/math/uti_math_types.h"
 
