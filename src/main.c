@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 12:52:47 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 21:51:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_bool	is_free_pos(t_game *g, t_2d_point pt)
 	normalized.x = floor(pt.x);
 	normalized.y = floor(pt.y);
 	return (
-		NULL == ft_lstfind(g->enemies, enemy_pos, &normalized)
-		&& (
+		// NULL == ft_lstfind(g->enemies, enemy_pos, &normalized)
+		(//&& (
 			e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
 			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
@@ -79,27 +79,11 @@ t_bool	is_free_pos(t_game *g, t_2d_point pt)
 	);
 }
 
-static t_bool	enemy_collisionee(const void *enemy, const void *player_pos)
-{
-	const t_enemy		*__enemy = (t_enemy *)enemy;
-	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
-
-	return (
-		__enemy->health
-		&& 3 >= ft_vec_norm(
-			ft_vec_sum(
-				*__player_pos,
-				ft_vec_opposite(__enemy->pos)
-				)
-			)
-		);
-}
-
 void	collision_check(t_game *game)
 {
 	t_list	*enemy_node;
 
-	enemy_node = ft_lstfind(game->enemies, enemy_collisionee, &game->player.pos);
+	enemy_node = ft_lstfind(game->enemies, enemy_collision, &game->player.pos);
 	if (enemy_node)
 	{
 		game->player.hp -= 1;
@@ -218,7 +202,7 @@ void	change_enemy_pos(t_enemy *enemy, t_game *game)
 					game->player.pos,
 					ft_vec_opposite(enemy->pos)
 					),
-					0.01f
+					0.05f
 				)
 		),
 		game
@@ -233,13 +217,29 @@ void	move_enemies(t_game *game)
 	t_list	*cur;
 
 	cur = game->enemies;
-
 	while (cur)
 	{
 		if (((t_enemy *)cur->content)->health
 			&& e_false == enemy_collisionee(cur->content, &game->player.pos)
 		)
 			change_enemy_pos(cur->content, game);
+		cur = cur->next;
+	}
+}
+
+void	enemies_anim_death(t_game *game)
+{
+	t_list	*cur;
+
+	cur = game->enemies;
+	while (cur)
+	{
+		if (0 == ((t_enemy *)cur->content)->health)
+		{
+			((t_enemy *)cur->content)->die_anim_frames -= 1;
+			if (0 == ((t_enemy *)cur->content)->die_anim_frames)
+				((t_enemy *)cur->content)->alive = e_false;
+		}
 		cur = cur->next;
 	}
 }
@@ -401,6 +401,7 @@ int	loop_hook(t_game *game)
 	else if (game->player.west_angle < 0)
 		game->player.west_angle = 2 * M_PI - ft_flt_abs(game->player.west_angle);
 	collision_check(game);
+	enemies_anim_death(game);
 	clean_enemies(game);
 	// if (frame % 2 == 0)
 		move_enemies(game);

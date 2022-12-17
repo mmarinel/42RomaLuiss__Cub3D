@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 13:29:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 21:50:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,28 +215,11 @@ void	render_mana_bar(t_game *g)
 	}
 }
 
-static t_bool	enemy_collision(const void *enemy, const void *player_pos)
-{
-	const t_enemy		*__enemy = (t_enemy *)enemy;
-	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
-
-	return (
-		__enemy->health
-		&& 1 >= ft_vec_norm(
-			ft_vec_sum(
-				*__player_pos,
-				ft_vec_opposite(__enemy->pos)
-				)
-			)
-		);
-}
-
 void	render_collision(t_game *g)
 {
 	// t_list			*cur;
 	t_int_2d_point	px;
 
-	(void)enemy_collision;
 	// cur = ft_lstfind(g->enemies, enemy_collision, &g->player_pos);
 	if (g->player.colliding)
 	{
@@ -439,18 +422,25 @@ void	render_enemy(
 	size_t			i;
 	int				screen_col;
 
-	if (0 == enemy_size || e_false == enemy_data->enemy->alive)
+	if (
+		0 == enemy_size
+		|| e_false == enemy_data->enemy->alive
+		|| (
+			0 == enemy_data->enemy->health
+			&& 0 == enemy_data->enemy->die_anim_frames % 2
+			)
+		)
 		return ;
-	if (0 == enemy_data->enemy->health)
-	{
-		enemy_data->enemy->die_anim_frames -= 1;
-		if (0 == enemy_data->enemy->die_anim_frames % 2)
-		{
-			if (0 == enemy_data->enemy->die_anim_frames)
-				enemy_data->enemy->alive = e_false;
-			return ;
-		}
-	}
+	// if (0 == enemy_data->enemy->health)
+	// {
+	// 	enemy_data->enemy->die_anim_frames -= 1;
+	// 	if (0 == enemy_data->enemy->die_anim_frames % 2)
+	// 	{
+	// 		if (0 == enemy_data->enemy->die_anim_frames)
+	// 			enemy_data->enemy->alive = e_false;
+	// 		return ;
+	// 	}
+	// }
 	enemy_data->enemy_size = enemy_size;
 	screen_col = enemy_data->mid_screen_col;
 	i = 0;
@@ -506,8 +496,9 @@ int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
 	col_info = (t_column_info *)nxt_px_f_arg->arg;
 	resized_row = nxt_px_f_arg->cur_px->y - col_info->gap;
 	mapped.x = col_info->texture_column;
-	mapped.y = col_info->scaling_factor * resized_row;
+	mapped.y = col_info->scaling_factor * resized_row;//TODO	rename scaling factor to vertical_scaling_factor
 	// ft_print_2d_point("mapped", mapped);
+	//TODO						rename rendered_size to rendered_height
 	if (resized_row == col_info->rendered_size - 1 && col_info->draw_shadow)
 		return (0);
 	if (mapped.y - floor(mapped.y) < 0.5f)//ceil(mapped.y) - mapped.y)

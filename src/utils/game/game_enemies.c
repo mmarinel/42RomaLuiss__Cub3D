@@ -6,11 +6,27 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:17:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/14 16:26:54 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 21:51:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
+
+t_bool	enemy_collision(const void *enemy, const void *player_pos)
+{
+	const t_enemy		*__enemy = (t_enemy *)enemy;
+	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
+
+	return (
+		__enemy->health
+		&& 1 >= ft_vec_norm(
+			ft_vec_sum(
+				*__player_pos,
+				ft_vec_opposite(__enemy->pos)
+				)
+			)
+		);
+}
 
 /**
  * @brief [domain rule]: there cannot be two enemies in the same position.
