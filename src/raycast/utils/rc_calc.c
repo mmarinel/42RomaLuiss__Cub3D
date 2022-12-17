@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rc_set.c                                           :+:      :+:    :+:   */
+/*   rc_calc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:57:32 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/17 14:15:49 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/17 14:17:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rc_utils.h"
 
-void	ft_set_hp_dist(
-			t_raycast_return *rc_ret,
-			const t_raycast_data *rc_data
-		)
-{
-	rc_ret->euclidean_dist = euclid_calc(rc_data);
-	rc_ret->perp_dist = perp_calc(rc_ret->euclidean_dist, rc_data);
-}
-
-void	ft_set_hp(
-			t_raycast_return *rc_ret,
-			const t_raycast_data *rc_data,
-			t_game *game
-		)
-{
-	rc_ret->hit_point = ft_vec_sum(
-		game->player.pos,
-		ft_vec_prod(rc_data->ray, rc_ret->euclidean_dist)
-	);
-	rc_ret->square.x = rc_data->cur_sq.x;
-	rc_ret->square.y = rc_data->cur_sq.y;
-}
+static float	get_dist_across(float dist_across, float delta_of_axis);
+//**		end of static declarations
 
 float	perp_calc(
 					float euclidean_dist,
@@ -51,19 +31,6 @@ float	perp_calc(
 	);
 }
 
-static float	get_dist_across(float dist_across, float delta_of_axis)
-{
-	if (dist_across < delta_of_axis)
-		return (dist_across);
-	else
-		return (
-			flt_round(
-				dist_across - delta_of_axis,
-				FLT_PRECISION
-			)
-		);
-}
-
 float	euclid_calc(
 					const t_raycast_data *rc_data
 				)
@@ -79,4 +46,17 @@ float	euclid_calc(
 		return (dist_nhp_through_x);
 	else
 		return (dist_nhp_through_y);
+}
+
+static float	get_dist_across(float dist_across, float delta_of_axis)
+{
+	if (dist_across < delta_of_axis)
+		return (dist_across);
+	else
+		return (
+			flt_round(
+				dist_across - delta_of_axis,
+				FLT_PRECISION
+			)
+		);
 }

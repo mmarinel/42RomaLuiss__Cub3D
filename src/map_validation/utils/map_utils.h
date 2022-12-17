@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:27:00 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 13:41:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAP_UTILS_H
 
 # include "../../types.h"
+# include "../../utils/math/uti_math_types.h"
 # include "../map_validation_types.h"
 
 # include "../../sys_includes.h"

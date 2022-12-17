@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/12/17 12:52:26 by earendil         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ INCLUDES=\
 ./src/render/line_drawing/line_drawing_module.h\
 ./src/render/enemies/rend_enem_module.h\
 ./src/render/render_module.h\
+./src/raycast/utils/rc_utils_module.h\
+./src/raycast/bonus/rc_bonus_module.h\
 ./src/raycast/raycast_module.h\
 ./src/init/game_init.h\
 ./src/init/game_init_module.h\
@@ -43,6 +45,10 @@ INCLUDES=\
 ./src/raycast/raycast.h\
 ./src/raycast/raycast_module.h\
 ./src/raycast/raycast_types.h\
+./src/raycast/bonus/rc_bonus.h\
+./src/raycast/bonus/rc_bonus_module.h\
+./src/raycast/utils/rc_utils.h\
+./src/raycast/utils/rc_utils_module.h\
 ./src/render/render.h\
 ./src/render/render_module.h\
 ./src/render/render_types.h\
@@ -82,7 +88,11 @@ SRC_NOPREFIX=\
 ./src/raycast/raycast.c\
 ./src/raycast/rc_debug.c\
 ./src/raycast/rc_initialization.c\
-./src/raycast/rc_set.c\
+./src/raycast/bonus/rc_background_bonus.c\
+./src/raycast/bonus/rc_enemies.c\
+./src/raycast/utils/rc_calc.c\
+./src/raycast/utils/rc_set.c\
+./src/raycast/utils/rc_walk.c\
 ./src/render/render.c\
 ./src/render/enemies/rend_enem_mem.c\
 ./src/render/line_drawing/bres_backup.c\

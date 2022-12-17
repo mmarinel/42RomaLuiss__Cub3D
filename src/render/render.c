@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 12:54:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 13:29:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,16 +262,16 @@ void	render_collision(t_game *g)
 
 static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
 {
-	if (e_VERTICAL == rc_ret->side)
+	if (e_VERTICAL == rc_ret->wall.side)
 	{
-		if (e_RAY_EAST == rc_ret->view_side_direction)
+		if (e_RAY_EAST == rc_ret->wall.view_side_direction)
 			return (&game->textures.wall.east);
 		else
 			return (&game->textures.wall.west);
 	}
-	else if (e_HORIZONTAL == rc_ret->side)
+	else if (e_HORIZONTAL == rc_ret->wall.side)
 	{
-		if (e_RAY_NORTH == rc_ret->view_forw_direction)
+		if (e_RAY_NORTH == rc_ret->wall.view_forw_direction)
 			return (&game->textures.wall.north);
 		else
 			return (&game->textures.wall.south);
@@ -315,7 +315,7 @@ static void	render_column(
 )
 {
 	const size_t			wall_size = roundf(
-		g->screen_handle.height / rc_ret->perp_dist
+		g->screen_handle.height / rc_ret->wall.perp_dist
 	);
 	const float				gap = ( 
 		((float)g->screen_handle.height - wall_size) / 2.0f
@@ -547,10 +547,10 @@ size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
 	size_t			col;
 	const size_t	texture_size = game->textures.wall.north.width;
 
-	if (e_VERTICAL == rc_ret->side)
-		dist = rc_ret->hit_point.y - floor(rc_ret->hit_point.y);
-	else if (e_HORIZONTAL == rc_ret->side)
-		dist = rc_ret->hit_point.x - floor(rc_ret->hit_point.x);
+	if (e_VERTICAL == rc_ret->wall.side)
+		dist = rc_ret->wall.hit_point.y - floor(rc_ret->wall.hit_point.y);
+	else if (e_HORIZONTAL == rc_ret->wall.side)
+		dist = rc_ret->wall.hit_point.x - floor(rc_ret->wall.hit_point.x);
 	else
 		return (-1);
 	col = 0;

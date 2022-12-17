@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 11:42:53 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:30:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_TYPES_H
 # define RAYCAST_TYPES_H
 
-# include "../utils/math/uti_math_types.h"
+# include "../utils/utils_module.h"
 # include "../game_types.h"
 
 typedef enum e_ray_dir
@@ -37,7 +37,7 @@ typedef struct s_spotted_enemy
 	float	perp_dist;
 }	t_spotted_enemy;
 
-typedef struct s_raycast_return
+typedef struct s_rc_ret_data
 {
 	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall
 	t_int_2d_point	square;
@@ -47,6 +47,27 @@ typedef struct s_raycast_return
 	t_ray_dir		view_side_direction;
 	float			euclidean_dist;
 	float			perp_dist;
+}	t_rc_ret_data;
+
+typedef enum e_rc_ret_cardinal
+{
+	e_RC_RET_NORTH,
+	e_RC_RET_SOUTH,
+	e_RC_RET_WEST,
+	e_RC_RET_EAST
+}	t_rc_ret_cardinal;
+
+typedef struct s_rc_ret_background
+{
+	t_rc_ret_cardinal	cardinal;
+	t_rc_ret_data		data;
+}	t_rc_ret_background;
+
+typedef struct s_raycast_return
+{
+	t_rc_ret_data	wall;
+	t_list			*doors;
+	t_rc_ret_data	background;
 	t_spotted_enemy	spotted_enemy;
 }	t_raycast_return;
 

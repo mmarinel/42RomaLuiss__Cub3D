@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:25:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 13:45:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_free_map( t_tile ***map_ref, size_t rows );
 t_tile	**ft_map_init( size_t rows, size_t columns );
 
 //*		logic conditions
+t_bool	is_edge(const t_map_holder *map_handle, const t_int_2d_point *pos);
 t_bool	is_valid_map_char( char c );
 t_bool	map_fields_complete( t_map_holder *map_handle );
 t_bool	is_player_found( void );

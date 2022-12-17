@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 11:42:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:55:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "raycast_types.h"
 # include "../game_types.h"
+# include "bonus/rc_bonus_module.h"
+# include "utils/rc_utils_module.h"
 # include "../utils/utils_module.h"
 
 # include "../sys_includes.h"
