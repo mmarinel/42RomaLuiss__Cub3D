@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:45:24 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/16 22:49:00 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:09:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector)
 
 float	ft_dot_product(t_2d_point vec_1, t_2d_point vec_2)
 {
-	float	res;
-
-	res = vec_1.x * vec_2.x + vec_1.y * vec_2.y;
-	return (flt_round(res, FLT_PRECISION));
+	return (vec_1.x * vec_2.x + vec_1.y * vec_2.y);
 }
 
 float	ft_vec_norm(t_2d_point vector)

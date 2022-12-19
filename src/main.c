@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 21:51:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/18 00:26:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ void	move_enemies(t_game *game)
 	while (cur)
 	{
 		if (((t_enemy *)cur->content)->health
-			&& e_false == enemy_collisionee(cur->content, &game->player.pos)
+			&& e_false == enemy_collision(cur->content, &game->player.pos)
 		)
 			change_enemy_pos(cur->content, game);
 		cur = cur->next;

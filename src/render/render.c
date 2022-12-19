@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 21:50:54 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:03:47 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -591,93 +591,123 @@ static void	draw_background_bonus(t_game *g)
 	}
 }
 
-int	sun_set_offset(t_game *g)
+//*		(FOV):(screen_width)	=	(west_ax_angle):(shift)
+//*	
+//*		shift = (west_ax_angle / FOV) * (screen_width)
+int	west_axis_angle_to_px_shift(t_game *g)
 {
-	const float		unit_rot_angle_x2 = 2 * INITIAL_ROT_ANGLE;//g->unit_rot_angle;
-	const float		unit_shift = unit_rot_angle_x2 / (FOV - unit_rot_angle_x2);
-	const size_t	sun_frame_width = g->textures.sun[0].width;
-	float			steps;
-	int				sign;
-	// float	radius;// = (g->map_handle.rows - g->player_pos.x) / cos(g->west_angle);
+	float	west_axis_angle;
+	int		sign;
 
-	if (g->player.west_angle < M_PI)
+	if (g->player.west_angle < FOV)
 	{
-		// return (roundf(g->west_angle * 50));
-		steps = g->player.west_angle / unit_rot_angle_x2;
-		sign = 1;
-		// return (roundf(steps * unit_shift * (sun_frame_width - 1)) );
+		west_axis_angle = g->player.west_angle;
+		sign = -1;
 	}
 	else
 	{
-		// return ((-1) * roundf(g->west_angle * 50));
-		steps = (2 * M_PI - g->player.west_angle) / unit_rot_angle_x2;
-		sign = -1;
-		// return ((-1) * roundf(steps * unit_shift * (sun_frame_width - 1)) );
+		west_axis_angle = 2 * M_PI - g->player.west_angle;
+		sign = +1;
 	}
-	// if (g->west_angle < M_PI)
-	// {
-	// 	angle = g->west_angle;
-	// 	sign = 1;
-	// }
-	// else
-	// {
-	// 	angle = 2 * M_PI - g->west_angle;
-	// 	sign = -1;
-	// }
-	// 	radius = (float)(g->map_handle.columns - g->player_pos.x) / cos(angle);
-	// 	return (roundf(sign * radius * sin(angle)));
-	return (sign * roundf(steps * unit_shift * (sun_frame_width - 1)));
+	return (
+		sign * roundf((west_axis_angle / FOV) * g->screen_handle.width)
+	);
+}
+
+//*		rows / 2 = distance from west middle point (columns -1, rows / 2)
+//*		when player is at position (x, 0)
+//*
+//*		This proportion gives the current wanted shift
+//*		(
+//*			WE WANT the sun to be shifted half the width of the screen
+//*			when we look it from position (x, 0) with x any
+//*		)
+//*	
+//*		(rows / 2):(screen_width / 2)	=	(dist):(shift)
+//*	
+//*		shift = dist * (screen_width / rows)
+int	west_middle_point_dist_to_px_shift(t_game *g)
+{
+	const float	west_middle_pt_distance
+		= g->map_handle.rows / 2.0f - g->player.pos.y;
+
+	return (
+		roundf(
+			west_middle_pt_distance * (
+				(float)g->screen_handle.width / g->map_handle.rows
+				)
+			)
+		);
+}
+
+int	sun_set_offset(t_game *g)
+{
+	return (roundf(
+		west_axis_angle_to_px_shift(g) + west_middle_point_dist_to_px_shift(g)
+		)
+	);
+}
+
+static size_t	sun_get_frame(void)
+{
+	static size_t	clock = 0;
+	static size_t	frame = 0;
+	const size_t	refresh_rate = 3;
+
+	clock = (clock + 1) % refresh_rate;
+	if (0 == clock)
+		frame = (frame + 1) % SUN_FRAMES;
+	return (frame);
+}
+
+static void	sun_draw_px(
+	const t_int_2d_point *sun_frame_px, int col_offset,
+	const t_data *sun_frame,
+	t_game *g
+	)
+{
+	t_int_2d_point	screen_mapped_px;
+	int				mlx_px;
+
+	screen_mapped_px.x = sun_frame_px->x + col_offset;
+	screen_mapped_px.y = sun_frame_px->y;
+	mlx_px = get_texture_px(
+		(t_int_2d_point){sun_frame_px->x, sun_frame_px->y},
+		sun_frame
+		);
+	if (
+		0 <= screen_mapped_px.x
+		&& screen_mapped_px.x < (int)g->screen_handle.width
+		)
+		ft_put_mlxpx_to_image(
+			&g->screen_handle.frame_data,
+			ft_get_pixel_offset(&g->screen_handle.frame_data, screen_mapped_px),
+			mlx_px
+		);
 }
 
 static void	draw_sun(t_game *g)
 {
-	static size_t	clock = 0;
-	static size_t	frame = 0;
-	int				offset;
-	t_int_2d_point	screen_px;
-	int				mlx_px;
+	t_int_2d_point	sun_frame_px;
+	size_t			frame;
+	int				col_offset;
 
-	// if (
-	// 	(g->west_angle >= M_PI / 2 && g->west_angle <= (3.0f / 2.0f) * M_PI)
-	// 	|| (g->west_angle > FOV / 2 && g->west_angle < M_PI / 2)
-	// 	|| (g->west_angle < 2 * M_PI - FOV / 2 && g->west_angle > (3.0f / 2.0f) * M_PI)
-	// )
-	// 	return ;
-	// if (g->west_angle >= M_PI / 4.0f && g->west_angle <= 2 * M_PI - M_PI / 4.0f)
-	// 	return ;
-	offset = sun_set_offset(g);
-	// if (offset > (float)g->screen_handle.width / 2 || offset < (-1) * (float)g->screen_handle.width / 2)
-	// 	return ;
-	clock = (clock + 1) % 2;
-	if (0 == clock)
-		frame = (frame + 1) % SUN_FRAMES;
-	screen_px.x = 0;//roundf(((float)g->screen_handle.width / 2.0f ) + offset);
-	// printf("offset: %d\n", offset);
-	while (screen_px.x < (int)g->screen_handle.frame_data.width)
+	if (
+		(g->player.west_angle >= FOV && g->player.west_angle <= 2 * M_PI - FOV)
+	)
+		return ;
+	frame = sun_get_frame();
+	col_offset = sun_set_offset(g);
+	sun_frame_px.x = 0;
+	while (sun_frame_px.x < (int)g->textures.sun[frame].width)
 	{
-		screen_px.y = 0;
-		while (screen_px.y < (float)g->screen_handle.frame_data.height / 2)
+		sun_frame_px.y = 0;
+		while (sun_frame_px.y < (float)g->textures.sun[frame].height)
 		{
-			// if ((screen_px.x >= 0 && screen_px.x < (int)g->screen_handle.width)
-			// 	&& (screen_px.y >= 0 && screen_px.y < (int)g->screen_handle.height)
-			// )
-			{
-				mlx_px = get_texture_px(
-					(t_int_2d_point){screen_px.x + offset, screen_px.y},
-					&g->textures.sun[frame]
-					);
-				// if (screen_px.x == 0 && screen_px.y == 0)
-				// 	printf(YELLOW"cur_px: %d\n" RESET, mlx_px);
-				if (mlx_px > 0)
-					ft_put_mlxpx_to_image(
-						&g->screen_handle.frame_data,
-						ft_get_pixel_offset(&g->screen_handle.frame_data, screen_px),
-						mlx_px
-					);
-			}
-			screen_px.y++;
+			sun_draw_px(&sun_frame_px, col_offset, &g->textures.sun[frame], g);
+			sun_frame_px.y++;
 		}
-		screen_px.x++;
+		sun_frame_px.x++;
 	}
 }
 
