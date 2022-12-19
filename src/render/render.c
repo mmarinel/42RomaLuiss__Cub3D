@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 18:03:47 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:11:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			render_attack(t_game *g, t_list *enemies);
 // int	ln_clipper(t_clip_opcode opcode, size_t size);
 // size_t	ln_clip(size_t coordinate);
 size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game);
-int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg);
+int		nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg);
 //*																			
 //*									DECOMMENTARE 						
 //*																			
@@ -316,7 +316,7 @@ static void	render_column(
 		bresenham_plot(
 			endpoint,
 			&g->screen_handle.frame_data,
-			linear_interpolation, &(t_nxt_px_f_arg){&col_info, NULL}
+			nearest_neighbour, &(t_nxt_px_f_arg){&col_info, NULL}
 		);
 }
 
@@ -402,12 +402,12 @@ void	enemy_render_col(
 		};
 	endpoint[1] = (t_int_2d_point){
 		screen_col,
-		col_info.gap + (col_info.rendered_size - 1)
+		col_info.gap + (col_info.rendered_height - 1)
 		};
 	bresenham_plot(
 		endpoint,
 		&g->screen_handle.frame_data,
-		linear_interpolation, &(t_nxt_px_f_arg){&col_info, NULL}
+		nearest_neighbour, &(t_nxt_px_f_arg){&col_info, NULL}
 	);
 }
 
@@ -487,50 +487,48 @@ int	get_texture_px(t_int_2d_point coordinate, const t_data *texture_data)
 // 		return (val);
 // }
 
-int	linear_interpolation(t_nxt_px_f_arg *nxt_px_f_arg)
+static int	nn_map_px_row(float y_mapping)
+{
+	if (y_mapping - floor(y_mapping) < 0.5f)
+		return (texture_pt_clip(floor(y_mapping)));
+	else
+		return (texture_pt_clip(ceil(y_mapping)));
+}
+
+t_int_2d_point	nn_map_px(
+	const t_column_info* col_info,
+	const t_int_2d_point *cur_px
+	)
+{
+	t_int_2d_point	original_texture_px;
+	size_t		resized_texture_row;
+
+	resized_texture_row = cur_px->y - col_info->gap;
+	original_texture_px.x = col_info->texture_column;
+	original_texture_px.y = nn_map_px_row(
+		col_info->vertical_scaling_factor * resized_texture_row
+		);
+	return (original_texture_px);
+}
+
+int	nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg)
 {
 	t_column_info	*col_info;
-	size_t			resized_row;
-	t_2d_point		mapped;
+	t_int_2d_point	original_texture_px;
 
 	col_info = (t_column_info *)nxt_px_f_arg->arg;
-	resized_row = nxt_px_f_arg->cur_px->y - col_info->gap;
-	mapped.x = col_info->texture_column;
-	mapped.y = col_info->scaling_factor * resized_row;//TODO	rename scaling factor to vertical_scaling_factor
-	// ft_print_2d_point("mapped", mapped);
-	//TODO						rename rendered_size to rendered_height
-	if (resized_row == col_info->rendered_size - 1 && col_info->draw_shadow)
+	original_texture_px = nn_map_px(col_info, nxt_px_f_arg->cur_px);
+	if (
+		original_texture_px.y == (int)get_textures_size() - 1
+		&& col_info->draw_shadow
+	)
 		return (0);
-	if (mapped.y - floor(mapped.y) < 0.5f)//ceil(mapped.y) - mapped.y)
-	{
-		// printf(BOLDCYAN "QUI!\n" RESET);
+	else
 		return get_texture_px(
-			(t_int_2d_point){mapped.x, texture_pt_clip(floor(mapped.y))},//, col_info->rc_ret->side
+			original_texture_px,
 			col_info->texture
 		);
-	}
-	else {
-		// printf(BOLDCYAN "QUAA!\n" RESET);
-		return get_texture_px(
-			(t_int_2d_point){mapped.x, texture_pt_clip(ceil(mapped.y))},
-			col_info->texture
-		);
-	}
 }
-	// return rgb_clip(floor(
-	// 	(
-	// 		(1.0f - (mapped.y - ln_clip(floor(mapped.y)))) * get_texture_px(
-	// 			(t_int_2d_point){mapped.x, ln_clip(floor(mapped.y))},
-	// 			col_info->texture
-	// 			)
-	// 	)
-	// 	+ (
-	// 		(1.0f - (ln_clip(ceil(mapped.y)) - mapped.y)) * get_texture_px(
-	// 			(t_int_2d_point){mapped.x, ln_clip(ceil(mapped.y))},
-	// 			col_info->texture
-	// 		)
-	// 	)
-	// ));
 
 size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
 {
