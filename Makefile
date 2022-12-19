@@ -86,7 +86,6 @@ SRC_NOPREFIX=\
 ./src/map_validation/utils/t_tile_debug.c\
 ./src/map_validation/utils/t_tile_map_trim.c\
 ./src/raycast/raycast.c\
-./src/raycast/bonus/rc_background_bonus.c\
 ./src/raycast/bonus/rc_enemies.c\
 ./src/raycast/utils/rc_calc.c\
 ./src/raycast/utils/rc_debug.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 17:16:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:45:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 	}
 	rc_ret_set_data(&rc_data, &rc_ret.wall, &ray, game);
 	rc_ret_set_enemy(&rc_data, &rc_ret);
-	rc_set_background_info(&rc_data, &rc_ret, &ray, game);
 	return (rc_ret);
 }

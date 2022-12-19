@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:36:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 18:07:46 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:46:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 # define RC_BONUS_MODULE_H
 
 # include "../raycast_types.h"
-
-//*		sun texture
-void			rc_set_background_info(
-	t_raycast_data *rc_data,
-	t_raycast_return *rc_ret,
-	const t_2d_point *ray,
-	t_game *game
-	);
 
 //*		enemies
 void			rc_ret_set_enemy(

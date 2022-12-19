@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:17:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 21:51:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:43:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ t_bool	enemy_collision(const void *enemy, const void *player_pos)
 {
 	const t_enemy		*__enemy = (t_enemy *)enemy;
 	const t_2d_point	*__player_pos = (t_2d_point *)player_pos;
+	const size_t		collision_radius = 2;
 
 	return (
 		__enemy->health
-		&& 1 >= ft_vec_norm(
+		&& collision_radius >= ft_vec_norm(
 			ft_vec_sum(
 				*__player_pos,
 				ft_vec_opposite(__enemy->pos)
