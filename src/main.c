@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 22:58:35 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:33:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,80 @@ void	enemies_anim_death(t_game *game)
 	}
 }
 
+void	animate_doors(t_game *game)
+{
+	t_list	*cur_node;
+	t_door	*door;
+
+	cur_node = game->doors;
+	while (cur_node)
+	{
+		door = (t_door *)cur_node->content;
+		if (door)
+		{
+			if (e_DOOR_AJAR == door->status)
+			{
+				door->opening_delay_frames -= 1;
+				if (0 == door->opening_delay_frames)
+				{
+					door->status = (door->prev_status + 1) % 2;
+					door->opening_delay_frames = DOOR_OPENING_DELAY_FRAMES;
+				}
+			}
+		}
+		cur_node = cur_node->next;
+	}
+}
+
+void	open_door(t_game *game)
+{
+	const t_2d_point		forward_pos
+		= map_pos_clip(
+			ft_vec_sum(
+				game->player.pos,
+				game->player.dir
+			),
+			game);
+	const t_int_2d_point	forward_tile
+		= as_int_2dpt(&forward_pos);
+	t_list					*door_node;
+	t_door					*door;
+
+	if (e_DOOR == game->map_handle.map[forward_tile.y][forward_tile.x])
+	{
+		door_node = ft_lstfind(game->doors, door_pos, &forward_tile);
+		if (NULL == door_node)
+			return ;
+		door = (t_door *)door_node->content;
+		if (e_DOOR_CLOSED == door->status || e_DOOR_OPEN == door->status)
+		{
+			door->prev_status = door->status;
+			door->status = e_DOOR_AJAR;
+		}
+	}
+}
+
+void	move_across_door(t_game *game, t_2d_point *guessed)
+{
+	const t_int_2d_point	door_square = as_int_2dpt(guessed);
+	t_list					*door_node;
+	t_door					*door;
+
+	door_node = ft_lstfind(game->doors, door_pos, &door_square);
+	if (NULL == door_node)
+		return ;
+	door = (t_door *)door_node->content;
+	if (NULL == door)
+		return ;
+	if (e_DOOR_OPEN == door->status)
+	{
+		game->player.pos = ft_vec_sum(
+			*guessed,
+			game->player.dir
+		);
+	}
+}
+
 int	loop_hook(t_game *game)
 {
 	static int		frame = 0;
@@ -251,6 +325,8 @@ int	loop_hook(t_game *game)
 
 	if (e_false == game->in_game)
 		return (0);
+	if (KeyPress == game->keys[E_INDEX].state)
+		open_door(game);
 	if (KeyPress == game->keys[SPACE_INDEX].state)
 	{
 		if (game->player.mana > 0)
@@ -271,73 +347,29 @@ int	loop_hook(t_game *game)
 	if (KeyPress == game->keys[UP_INDEX].state
 	)
 	{
-		//** if (KeyPress == game->keys[UP_INDEX].state
-		//** 	|| KeyPress == game->keys[W_INDEX].state)
-		//** {
-			t_2d_point	new_pos;
-			//** t_2d_point	next_pos;
-		//** 	float		step;
-	
-		//** 	new_pos = game->player_pos;
-		//** 	step = 0.25f;
-		//** 	while (step < step_size)
-		//** 	{
-				//** next_pos = new_player_pos(game->player_pos, e_UP_KEY, 0.5f, game);
-				//** if (e_false == is_free_pos(game, next_pos))
-				//** 	return (0);//break ;
-				//** new_pos = next_pos;
-				new_pos = new_player_pos(game->player.pos, e_UP_KEY, 0.5f, game);
-			//** 	step += 0.25f;
-			//** }
-			if (is_free_pos(game, new_pos))
-			{
-				// printf(YELLOW "moving upwards...\n" RESET);
-				game->player.pos = new_pos;
-				// render_next_frame(game);
-				//** if (step_size < 3.5f)
-				//** 	step_size += 0.5f;
-			}
-		//** }
-		//** else if (KeyRelease == game->keys[UP_INDEX].state)
-		//** {
-		//** 	step_size = 1.0f;
-		//** 	game->keys[UP_INDEX].state = -1;
-		//** }
+		t_2d_point	new_pos;
+		new_pos = new_player_pos(game->player.pos, e_UP_KEY, 0.5f, game);
+		if (is_free_pos(game, new_pos))
+		{
+			game->player.pos = new_pos;
+		}
+		else if (e_DOOR == game->map_handle.map[(int)new_pos.y][(int)new_pos.x])
+			move_across_door(game, &new_pos);
 	}
-	if (KeyPress == game->keys[DOWN_INDEX].state
-		//** || KeyRelease == game->keys[DOWN_INDEX].state)
-	){
-		//** if (KeyPress == game->keys[DOWN_INDEX].state
-		//** 	|| KeyPress == game->keys[S_INDEX].state)
-		//** {
-			t_2d_point	new_pos;
-			t_2d_point	next_pos;
-			//** float		step;
-			
-			//** new_pos = game->player_pos;
-			//** step = 0.25f;
-			//** while (step < step_size)
-			//** {
-				next_pos = new_player_pos(game->player.pos, e_DOWN_KEY, 0.5f, game);
-				if (e_false == is_free_pos(game, next_pos))
-					return (0);//break ;
-				new_pos = next_pos;
-				//** step += 0.25f;
-			//** }
-			if (is_free_pos(game, new_pos))
-			{
-				//*** printf(YELLOW "moving downwards...\n" RESET);
-				game->player.pos = new_pos;
-				// render_next_frame(game);
-				//** if (step_size < 3.5f)
-				//** 	step_size += 0.5f;
-			}
-		// }
-		// else if (KeyRelease == game->keys[UP_INDEX].state)
-		// {
-		// 	step_size = 1.0f;
-		// 	game->keys[DOWN_INDEX].state = -1;
-		// }
+	if (KeyPress == game->keys[DOWN_INDEX].state)
+	{
+		t_2d_point	new_pos;
+		t_2d_point	next_pos;
+		next_pos = new_player_pos(game->player.pos, e_DOWN_KEY, 0.5f, game);
+		if (e_false == is_free_pos(game, next_pos))
+			return (0);
+		new_pos = next_pos;
+		if (is_free_pos(game, new_pos))
+		{
+			game->player.pos = new_pos;
+		}
+		else if (e_DOOR == game->map_handle.map[(int)new_pos.y][(int)new_pos.x])
+			move_across_door(game, &new_pos);
 	}
 
 	// t_2d_point	new_dir;
@@ -405,6 +437,7 @@ int	loop_hook(t_game *game)
 	clean_enemies(game);
 	// if (frame % 2 == 0)
 		move_enemies(game);
+	animate_doors(game);
 	render_next_frame(game);
 	frame += 1;//(frame + 1) % 5;
 	return (0);
@@ -422,6 +455,8 @@ static int	get_key_index(int key_code)
 		return (LEFT_INDEX);
 	if (e_SPACE_KEY == key_code)
 		return (SPACE_INDEX);
+	if (e_E_KEY == key_code)
+		return (E_INDEX);
 	// if (e_W_KEY == key_code)
 	// 	return (UP_INDEX);
 	// if (e_UP_KEY == key_code)

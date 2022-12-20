@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 18:42:11 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:50:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_key_state
 # define RIGHT_INDEX 6
 # define LEFT_INDEX 7
 # define SPACE_INDEX 8
+# define E_INDEX 9
 
 typedef struct s_enemy
 {
@@ -67,14 +68,15 @@ typedef struct s_enemy
 
 typedef enum e_door_status
 {
-	e_DOOR_CLOSED,
-	e_DOOR_AJAR,
-	e_DOOR_OPEN,
+	e_DOOR_OPEN = 0,
+	e_DOOR_CLOSED = 1,
+	e_DOOR_AJAR = 2,
 }	t_door_status;
 
 typedef struct s_door
 {
 	t_door_status	status;
+	t_door_status	prev_status;
 	t_int_2d_point	pos;
 	int				opening_delay_frames;
 }	t_door;

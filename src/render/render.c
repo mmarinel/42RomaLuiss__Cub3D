@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 19:06:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:56:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -796,24 +796,28 @@ t_column_info	get_door_column_info(
 	const t_spotted_door *door_data,
 	t_game *g)
 {
-	float	scaling_factor;
+	const t_data	*door_texture = get_door_texture(door_data, g);
+	t_bool			draw_shadow;
+	float			scaling_factor;
 
-	{
-		if (0 == rendered_size)
-			scaling_factor = INFINITY;
-		else
-			scaling_factor = (float)get_textures_size() / rendered_size;
-	}
+	if (door_texture == &g->textures.door.closed)
+		draw_shadow = e_true;
+	else
+		draw_shadow = e_false;
+	if (0 == rendered_size)
+		scaling_factor = INFINITY;
+	else
+		scaling_factor = (float)get_textures_size() / rendered_size;
 	return ((t_column_info){
 		rendered_size,
 		gap,
 		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
-		get_door_texture(door_data, g),
+		door_texture,
 		&g->\
 		screen_handle.frame_data,
 		get_texture_column(&door_data->rc_data, g),
 		scaling_factor,
-		e_true
+		draw_shadow
 		}
 	);
 }

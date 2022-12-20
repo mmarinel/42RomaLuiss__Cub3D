@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 17:00:34 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:30:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum e_key
 	e_A_KEY = -1,
 	e_S_KEY = -1,
 	e_D_KEY = -1,
-	e_E_KEY = -1,
+	e_E_KEY = 101,
 	e_Q_KEY = -1,
 	e_SPACE_KEY = 32,
 	e_TAB_KEY = -1,
