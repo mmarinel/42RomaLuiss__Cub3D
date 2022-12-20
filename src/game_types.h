@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 01:06:48 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:42:11 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_wall_texture {
 	t_data	west;
 	t_data	east;
 }	t_wall_texture;
+
+typedef struct s_door_texture {
+	t_data	open;
+	t_data	ajar;
+	t_data	closed;
+}	t_door_texture;
 
 typedef struct s_key_state
 {
@@ -89,6 +95,7 @@ typedef struct s_player
 typedef struct s_game_texture
 {
 	t_wall_texture	wall;
+	t_door_texture	door;
 	t_data			background;
 	t_data			sun[SUN_FRAMES];
 	t_data			enemy[2];

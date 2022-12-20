@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:32:53 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/15 11:38:55 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:56:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	update_enemy_list(
 {
 	t_list	*cur;
 
-	if (NULL == list)
+	if (NULL == rc_ret->spotted_enemy.enemy || NULL == list)
 		return ;
 	cur = ft_lstfind(*list, enemy_spotted, rc_ret->spotted_enemy.enemy);
 	if (NULL == cur)

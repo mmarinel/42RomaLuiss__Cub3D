@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 14:04:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:02:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ t_bool	ft_game_init(
 			}
 			map_reset(&game_ref->map_handle);
 			//*	TESTING
-			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
-				(t_2d_point){game_ref->player.pos.x - 1, game_ref->player.pos.y}
-			));
-			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
-				(t_2d_point){21, 16}
-			));
-			ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
-				(t_2d_point){53, 15}
-			));
+			// ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
+			// 	(t_2d_point){game_ref->player.pos.x - 1, game_ref->player.pos.y}
+			// ));
+			// ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
+			// 	(t_2d_point){21, 16}
+			// ));
+			// ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(
+			// 	(t_2d_point){53, 15}
+			// ));
 			//*
 			t_2d_point_print(&game_ref->player.dir, "player_dir");
 			t_2d_point_print(&game_ref->player.camera_plane, "cmaera_plane");
@@ -178,6 +178,7 @@ size_t	open_bg_texture(const char *path, t_data *texture_data,
 	return (texture_data->width);
 }
 
+//TODO			CAMBIARE !!! (rimuovere [open_bg_texture])
 void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
 {
 	open_bg_texture(
@@ -191,6 +192,27 @@ void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
 		game_ref, err_flag
 	);
 }
+
+//TODO			CAMBIARE !!! (rimuovere [open_bg_texture])
+void	load_door_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/door/door_closed.xpm",
+		 &game_ref->textures.door.closed,
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/door/door_ajar.xpm",
+		 &game_ref->textures.door.ajar,
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/door/door_opened.xpm",
+		 &game_ref->textures.door.open,
+		game_ref, err_flag
+	);
+}
+
 
 static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 {
@@ -335,6 +357,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
 	load_background_textures(game_ref, err_flag);
 	load_sun_textures(game_ref, err_flag);
+	load_door_textures(game_ref, err_flag);
 	load_enemy_textures(game_ref, err_flag);
 }
 

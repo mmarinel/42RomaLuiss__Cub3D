@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 21:11:51 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:06:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,16 @@ void			render_health_bar(t_game *g);
 void			render_mana_bar(t_game *g);
 void			render_collision(t_game *g);
 void			render_attack(t_game *g, t_list *enemies);
+void			render_doors(
+	const size_t screen_col,
+	const t_raycast_return *rc_ret,
+	t_game *g
+	);
 //*		end of static declarations
 
 // int	ln_clipper(t_clip_opcode opcode, size_t size);
 // size_t	ln_clip(size_t coordinate);
-size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game);
+size_t	get_texture_column(const t_rc_ret_data *rc_ret, const t_game *game);
 int		nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg);
 //*																			
 //*									DECOMMENTARE 						
@@ -84,9 +89,15 @@ void	render_next_frame(t_game *g)
 	while (col < g->screen_handle.width)
 	{
 		rc_return = raycast(g, ray_dir_for_col(col, g));
-		if (rc_return.spotted_enemy.enemy)
+		if (BONUS)
+		{
 			update_enemy_list(&enemies, &rc_return, col);
+		}
 		render_column(col, g, &rc_return);
+		if (BONUS)
+		{
+			render_doors(col, &rc_return, g);
+		}
 		col++;
 	}
 	render_enemies(enemies, g);
@@ -243,18 +254,18 @@ void	render_collision(t_game *g)
 	}
 }
 
-static t_data *get_wall_texture(t_game *game, const t_raycast_return *rc_ret)
+static t_data *get_wall_texture(t_game *game, const t_rc_ret_data *rc_ret_data)
 {
-	if (e_VERTICAL == rc_ret->wall.side)
+	if (e_VERTICAL == rc_ret_data->side)
 	{
-		if (e_RAY_EAST == rc_ret->wall.view_side_direction)
+		if (e_RAY_EAST == rc_ret_data->view_side_direction)
 			return (&game->textures.wall.east);
 		else
 			return (&game->textures.wall.west);
 	}
-	else if (e_HORIZONTAL == rc_ret->wall.side)
+	else if (e_HORIZONTAL == rc_ret_data->side)
 	{
-		if (e_RAY_NORTH == rc_ret->wall.view_forw_direction)
+		if (e_RAY_NORTH == rc_ret_data->view_forw_direction)
 			return (&game->textures.wall.north);
 		else
 			return (&game->textures.wall.south);
@@ -280,11 +291,11 @@ t_column_info	get_column_info(
 	return ((t_column_info){
 		rendered_size,
 		gap,
-		rc_ret,
-		get_wall_texture(g, rc_ret),
+		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
+		get_wall_texture(g, &rc_ret->wall),
 		&g->\
 		screen_handle.frame_data,
-		get_texture_column(rc_ret, g),
+		get_texture_column(&rc_ret->wall, g),
 		scaling_factor,
 		e_true
 		}
@@ -530,16 +541,16 @@ int	nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg)
 		);
 }
 
-size_t	get_texture_column(const t_raycast_return *rc_ret, const t_game *game)
+size_t	get_texture_column(const t_rc_ret_data *rc_ret_data, const t_game *game)
 {
 	float			dist;
 	size_t			col;
 	const size_t	texture_size = game->textures.wall.north.width;
 
-	if (e_VERTICAL == rc_ret->wall.side)
-		dist = rc_ret->wall.hit_point.y - floor(rc_ret->wall.hit_point.y);
-	else if (e_HORIZONTAL == rc_ret->wall.side)
-		dist = rc_ret->wall.hit_point.x - floor(rc_ret->wall.hit_point.x);
+	if (e_VERTICAL == rc_ret_data->side)
+		dist = rc_ret_data->hit_point.y - floor(rc_ret_data->hit_point.y);
+	else if (e_HORIZONTAL == rc_ret_data->side)
+		dist = rc_ret_data->hit_point.x - floor(rc_ret_data->hit_point.x);
 	else
 		return (-1);
 	col = 0;
@@ -761,4 +772,93 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 	// ray.x = ray.x / magnitude;
 	// ray.y = ray.y / magnitude;
 	return (ray);
+}
+
+t_data	*get_door_texture(const t_spotted_door *door_data, t_game *g)
+{
+	if (e_VERTICAL == door_data->rc_data.side)
+	{
+		if (e_DOOR_CLOSED == door_data->door_ref->status)
+			return (&g->textures.door.closed);
+		if (e_DOOR_AJAR == door_data->door_ref->status)
+			return (&g->textures.door.ajar);
+		if (e_DOOR_OPEN == door_data->door_ref->status)
+			return (&g->textures.door.open);
+		return (NULL);
+	}
+	else
+		return (get_wall_texture(g, &door_data->rc_data));
+}
+
+t_column_info	get_door_column_info(
+	size_t rendered_size,
+	float gap,
+	const t_spotted_door *door_data,
+	t_game *g)
+{
+	float	scaling_factor;
+
+	{
+		if (0 == rendered_size)
+			scaling_factor = INFINITY;
+		else
+			scaling_factor = (float)get_textures_size() / rendered_size;
+	}
+	return ((t_column_info){
+		rendered_size,
+		gap,
+		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
+		get_door_texture(door_data, g),
+		&g->\
+		screen_handle.frame_data,
+		get_texture_column(&door_data->rc_data, g),
+		scaling_factor,
+		e_true
+		}
+	);
+}
+
+void	render_door_col(
+	const size_t screen_col,
+	t_spotted_door *spotted_door,
+	t_game *g
+)
+{
+	const size_t			door_size = roundf(
+		g->screen_handle.height / spotted_door->rc_data.perp_dist
+	);
+	const float				gap = ( 
+		((float)g->screen_handle.height - door_size) / 2.0f
+	);
+	const t_column_info		col_info = get_door_column_info(
+		door_size, gap, spotted_door, g
+		);
+	t_int_2d_point			endpoint[2];
+	
+	endpoint[0] = (t_int_2d_point){screen_col, gap};
+	endpoint[1] = (t_int_2d_point){screen_col, gap + (door_size - 1)};
+	if (0 == door_size)
+		return ;
+	else
+		bresenham_plot(
+			endpoint,
+			&g->screen_handle.frame_data,
+			nearest_neighbour, &(t_nxt_px_f_arg){&col_info, NULL}
+		);
+}
+
+void	render_doors(
+	const size_t screen_col,
+	const t_raycast_return *rc_ret,
+	t_game *g
+	)
+{
+	t_list	*cur;
+
+	cur = rc_ret->doors;
+	while (cur)
+	{
+		render_door_col(screen_col, cur->content, g);
+		cur = cur->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 14:41:55 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:57:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ static t_spotted_door *new_spotted_door_data(
 	t_game *game
 	);
 //*		end of static declarations
+
+void	rc_ret_set_doors(
+	const t_raycast_data* rc_data,
+	t_raycast_return *rc_ret
+	)
+{
+	rc_ret->doors = rc_data->doors;
+}
 
 void	add_door(
 	t_raycast_data *rc_data,

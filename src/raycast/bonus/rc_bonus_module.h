@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:36:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 00:06:34 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:58:11 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	add_door(
 	t_raycast_data *rc_data,
 	const t_2d_point *ray,
 	t_game *game
+	);
+void	rc_ret_set_doors(
+	const t_raycast_data* rc_data,
+	t_raycast_return *rc_ret
 	);
 
 //*		enemies

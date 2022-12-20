@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 00:00:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:00:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 			rc_bonus(&rc_data, &ray, game);
 	}
 	rc_ret_set_data(&rc_data, &rc_ret.wall, &ray, game);
+	// if (BONUS)
+	// 	set_bonus()
+	rc_ret_set_doors(&rc_data, &rc_ret);
 	rc_ret_set_enemy(&rc_data, &rc_ret);
 	return (rc_ret);
 }
@@ -56,12 +59,12 @@ static void	rc_bonus(
 	t_game *game
 	)
 {
+	if (e_DOOR == game->map_handle\
+		.map[rc_data->cur_sq.y][rc_data->cur_sq.x])
+		add_door(rc_data, ray, game);
 	rc_data->spotted_enemy = spot_enemy(
 		rc_data,
 		&rc_data->cur_sq,
 		game
 	);
-	if (e_DOOR == game->map_handle\
-		.map[rc_data->cur_sq.y][rc_data->cur_sq.x])
-		add_door(rc_data, ray, game);
 }
