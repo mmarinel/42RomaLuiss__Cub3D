@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_module.h                            :+:      :+:    :+:   */
+/*   game_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 14:23:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 13:39:09 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/20 14:30:03 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/20 14:31:42 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_MODULE_H
-# define MAP_VALIDATION_MODULE_H
+#include "game_utils.h"
 
-# include "map_validation_types.h"
-# include "../types.h"
+t_bool	door_pos(const void *door, const void *pos)
+{
+	const t_door			*__door = (const t_door *)door;
+	const t_int_2d_point	*__pos = (const t_int_2d_point *)pos;
 
-t_bool	is_valid_map( const char *path, t_map_holder *map_handle );
-void	map_reset(t_map_holder *map_handle);
-
-#endif
+	return (
+		e_true == ft_int_2d_point_equals(
+			&__door->pos,
+			__pos
+		)
+	);
+}

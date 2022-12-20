@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/30 15:46:21 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:39:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static t_bool	is_map_char_pos_valid(
 	if (is_floor_map_char(map[row_index][col_index])
 		|| is_player_map_char(map[row_index][col_index])
 	)
+	{
 		if (
 			(row_index == 0
 				|| is_empty_map_char(map[row_index - 1][col_index])
@@ -111,6 +112,10 @@ static t_bool	is_map_char_pos_valid(
 				|| is_empty_map_char(map[row_index][col_index + 1])
 			)
 		)
+			return (e_false);
+	}
+	else if (BONUS && is_door_map_char(map[row_index][col_index])
+			&& is_map_edge(map_handle, col_index, row_index))
 			return (e_false);
 	return (e_true);
 }

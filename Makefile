@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/12/20 00:48:54 by earendil         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ INCLUDES=\
 ./src/utils/utils_module.h\
 ./src/utils/math/uti_math_module.h\
 ./src/init/game_init_module.h\
+./src/init/bonus/game_init_bonus_module.h\
 ./src/map_validation/utils/map_utils_module.h\
 ./src/map_validation/map_validation_module.h\
+./src/map_validation/bonus/map_validation_bonus_module.h\
 ./src/render/textures/textures_module.h\
 ./src/render/utils/uti_render_module.h\
 ./src/render/line_drawing/line_drawing_module.h\
@@ -37,9 +39,13 @@ INCLUDES=\
 ./src/raycast/raycast_module.h\
 ./src/init/game_init.h\
 ./src/init/game_init_module.h\
+./src/init/bonus/game_init_bonus.h\
+./src/init/bonus/game_init_bonus_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
 ./src/map_validation/map_validation_types.h\
+./src/map_validation/bonus/map_validation_bonus.h\
+./src/map_validation/bonus/map_validation_bonus_module.h\
 ./src/map_validation/utils/map_utils.h\
 ./src/map_validation/utils/map_utils_module.h\
 ./src/raycast/raycast.h\
@@ -75,12 +81,17 @@ INCLUDES=\
 SRC_NOPREFIX=\
 ./src/main.c\
 ./src/init/game_initialization.c\
+./src/init/bonus/scan_doors.c\
+./src/init/bonus/scan_enemies.c\
 ./src/map_validation/map_attributes.c\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
+./src/map_validation/map_reset.c\
 ./src/map_validation/validate.c\
+./src/map_validation/bonus/map_chars_conditions_bonus.c\
 ./src/map_validation/utils/atttrs_chars_conditions.c\
 ./src/map_validation/utils/map_chars_conditions.c\
+./src/map_validation/utils/map_chars_tracking.c\
 ./src/map_validation/utils/map_logic_conditions.c\
 ./src/map_validation/utils/map_memory.c\
 ./src/map_validation/utils/t_tile_debug.c\
@@ -111,6 +122,7 @@ SRC_NOPREFIX=\
 ./src/render/utils/render_conditions.c\
 ./src/render/utils/rgb.c\
 ./src/utils/game/debug.c\
+./src/utils/game/game_doors.c\
 ./src/utils/game/game_enemies.c\
 ./src/utils/game/game_memory.c\
 ./src/utils/gnl/get_next_line.c\

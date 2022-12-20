@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 23:54:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:36:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef enum e_side
 	e_SIDE_NONE
 }	t_side;
 
-typedef struct s_spotted_enemy
-{
-	t_enemy	*enemy;
-	float	perp_dist;
-}	t_spotted_enemy;
-
 typedef struct s_rc_ret_data
 {
 	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall
@@ -48,6 +42,18 @@ typedef struct s_rc_ret_data
 	float			euclidean_dist;
 	float			perp_dist;
 }	t_rc_ret_data;
+
+typedef struct s_spotted_enemy
+{
+	t_enemy	*enemy;
+	float	perp_dist;
+}	t_spotted_enemy;
+
+typedef struct s_spotted_door
+{
+	t_door			*door_ref;
+	t_rc_ret_data	rc_data;
+}	t_spotted_door;
 
 typedef struct s_raycast_return
 {

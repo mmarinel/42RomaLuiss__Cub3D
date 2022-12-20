@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 21:51:42 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:32:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ t_2d_point		ft_get_new_2dpt(float x, float y);
 void			t_2d_point_print(const t_2d_point *pt, const char *msg);
 void			ft_print_int_2d_point(const char* pt_name, t_int_2d_point pt);
 
+				//*			
+				//*			BONUS
+				//*			
+
 //*		enemies
 t_bool			enemy_collision(const void *enemy, const void *player_pos);
 t_list			*ft_new_enemy_node(t_2d_point pos);
@@ -70,5 +74,9 @@ t_enemy			*ft_clone_enemy(const t_enemy *enemy);
 t_bool			enemy_equals(const t_enemy *en1, const t_enemy *en2);
 t_bool			enemy_pos(const void *en, const void *pos);
 t_enemy			*get_enemy(const t_int_2d_point *pos, t_game *game);
+
+//*		doors
+t_list	*ft_new_door_node(t_int_2d_point pos);
+t_bool	door_pos(const void *door, const void *pos);
 
 #endif

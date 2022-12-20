@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 17:43:00 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:21:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ t_tile	**ft_map_init( size_t rows, size_t columns );
 t_bool	is_map_pos(
 	const t_map_holder *map_handle,
 	const t_int_2d_point *pos
+	);
+t_bool	is_map_edge(
+	const t_map_holder *map_handle,
+	int x, int y
 	);
 t_bool	is_valid_map_char( char c );
 t_bool	map_fields_complete( t_map_holder *map_handle );

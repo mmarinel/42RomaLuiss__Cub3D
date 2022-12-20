@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_module.h                            :+:      :+:    :+:   */
+/*   map_validation_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 14:23:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 13:39:09 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/20 13:22:04 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/20 13:24:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_MODULE_H
-# define MAP_VALIDATION_MODULE_H
+#ifndef MAP_VALIDATION_BONUS_H
+# define MAP_VALIDATION_BONUS_H
 
-# include "map_validation_types.h"
-# include "../types.h"
+# include "../../types.h"
+# include "../../utils/math/uti_math_types.h"
+# include "../map_validation_types.h"
 
-t_bool	is_valid_map( const char *path, t_map_holder *map_handle );
-void	map_reset(t_map_holder *map_handle);
+# include "../../sys_includes.h"
 
 #endif

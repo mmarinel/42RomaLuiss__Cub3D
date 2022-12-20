@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_module.h                            :+:      :+:    :+:   */
+/*   scan_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 14:23:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 13:39:09 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/20 14:04:24 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/20 14:38:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_MODULE_H
-# define MAP_VALIDATION_MODULE_H
+#include "game_init_bonus.h"
 
-# include "map_validation_types.h"
-# include "../types.h"
-
-t_bool	is_valid_map( const char *path, t_map_holder *map_handle );
-void	map_reset(t_map_holder *map_handle);
-
-#endif
+void	scan_enemies(t_game *game_ref)
+{
+	(void)game_ref;
+	printf(RED"src/init/bonus/scan_enemies/: "RESET"function [scan_enemies(.)] not implemented\n");
+}

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_module.h                            :+:      :+:    :+:   */
+/*   game_init_bonus_module.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 14:23:13 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 13:39:09 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/20 13:51:46 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/20 13:52:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_MODULE_H
-# define MAP_VALIDATION_MODULE_H
+#ifndef GAME_INIT_BONUS_MODULE_H
+# define GAME_INIT_BONUS_MODULE_H
 
-# include "map_validation_types.h"
-# include "../types.h"
+# include "../../game_types.h"
 
-t_bool	is_valid_map( const char *path, t_map_holder *map_handle );
-void	map_reset(t_map_holder *map_handle);
+void	scan_enemies(t_game *game_ref);
+void	scan_doors(t_game *game_ref);
 
 #endif
