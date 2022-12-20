@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 11:42:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 01:06:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ typedef struct s_enemy
 	size_t		die_anim_frames;
 }	t_enemy;
 
+typedef enum e_door_status
+{
+	e_DOOR_CLOSED,
+	e_DOOR_AJAR,
+	e_DOOR_OPEN,
+}	t_door_status;
+
+typedef struct s_door
+{
+	t_door_status	status;
+	t_int_2d_point	pos;
+	int				opening_delay_frames;
+}	t_door;
+
 typedef struct s_player
 {
 	t_bool		alive;
@@ -86,6 +100,7 @@ typedef struct s_game
 	t_bool			in_menu;
 	t_player		player;
 	t_list			*enemies;
+	t_list			*doors;
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
 	t_game_texture	textures;

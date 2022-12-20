@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/18 00:26:04 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:58:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void	change_enemy_pos(t_enemy *enemy, t_game *game)
 					game->player.pos,
 					ft_vec_opposite(enemy->pos)
 					),
-					0.05f
+					0.1f//was 0.05f
 				)
 		),
 		game

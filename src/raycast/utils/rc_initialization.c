@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 16:57:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:51:26 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_ray_data_init(t_raycast_data *rc_data,
 	rc_data->dist_nhp_through_x = ft_initial_delta(game->player.pos.x, rc_data->ray_dir.x);
 	rc_data->dist_nhp_through_y = ft_initial_delta(game->player.pos.y, rc_data->ray_dir.y);
 	rc_data->spotted_enemy.enemy = NULL;
+	rc_data->doors = NULL;
 	rc_data->side = e_SIDE_NONE;
 }
 

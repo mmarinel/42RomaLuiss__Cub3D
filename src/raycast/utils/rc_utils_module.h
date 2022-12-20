@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:15:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 17:10:39 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:58:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_ray_data_init(t_raycast_data *rc_data,
 
 //*		set
 void	rc_ret_set_data(
-	t_raycast_data *rc_data,
+	const t_raycast_data *rc_data,
 	t_rc_ret_data *rc_ret_data,
 	const t_2d_point *ray,
 	t_game *game

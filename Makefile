@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/12/20 00:48:54 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ SRC_NOPREFIX=\
 ./src/map_validation/utils/t_tile_debug.c\
 ./src/map_validation/utils/t_tile_map_trim.c\
 ./src/raycast/raycast.c\
+./src/raycast/bonus/rc_doors.c\
 ./src/raycast/bonus/rc_enemies.c\
 ./src/raycast/utils/rc_calc.c\
 ./src/raycast/utils/rc_debug.c\
@@ -132,7 +133,7 @@ SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 LIBS_FLAGS=-L./src/utils/libft -lft
 
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address -DBONUS=1
 MLX_FLAGS = TODO
 
 RMF = /bin/rm -rf

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 17:13:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:58:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_set_hp(
 //**		end of static declarations
 
 void	rc_ret_set_data(
-	t_raycast_data *rc_data,
+	const t_raycast_data *rc_data,
 	t_rc_ret_data *rc_ret_data,
 	const t_2d_point *ray,
 	t_game *game
