@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 14:36:35 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:32:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ typedef enum e_ray_dir
 	e_RAY_EAST = 0,
 	e_RAY_WEST = 1,
 }	t_ray_dir;
-
-typedef enum e_side
-{
-	e_HORIZONTAL,
-	e_VERTICAL,
-	e_SIDE_NONE
-}	t_side;
 
 typedef struct s_rc_ret_data
 {

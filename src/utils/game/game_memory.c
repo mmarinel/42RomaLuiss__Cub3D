@@ -6,13 +6,13 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 14:01:16 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:25:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
 
-t_list	*ft_new_door_node(t_int_2d_point pos)
+t_list	*ft_new_door_node(t_int_2d_point pos, t_tile type)
 {
 	const size_t	opening_delay_frames = DOOR_OPENING_DELAY_FRAMES;
 	t_door			*door;
@@ -21,6 +21,7 @@ t_list	*ft_new_door_node(t_int_2d_point pos)
 	if (NULL == door)
 		return (NULL);
 	door->status = e_DOOR_CLOSED;
+	door->type = type;
 	door->pos = pos;
 	door->opening_delay_frames = opening_delay_frames;
 	return (ft_lstnew(NULL, door));

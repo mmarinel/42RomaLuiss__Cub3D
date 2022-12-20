@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 11:43:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:29:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "../raycast/raycast_module.h"
 # include "enemies/rend_enem_module.h"
 # include "utils/uti_render_module.h"
+
+# include "../utils/utils_module.h"
 
 # include "../sys_includes.h"
 

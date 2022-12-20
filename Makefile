@@ -88,8 +88,8 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_read.c\
 ./src/map_validation/map_reset.c\
 ./src/map_validation/validate.c\
-./src/map_validation/bonus/map_chars_conditions_bonus.c\
 ./src/map_validation/utils/atttrs_chars_conditions.c\
+./src/map_validation/utils/map_chars_conditions_bonus.c\
 ./src/map_validation/utils/map_chars_conditions.c\
 ./src/map_validation/utils/map_chars_tracking.c\
 ./src/map_validation/utils/map_logic_conditions.c\

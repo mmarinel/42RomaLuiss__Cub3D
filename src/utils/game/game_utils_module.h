@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 14:32:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:28:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ t_bool			enemy_pos(const void *en, const void *pos);
 t_enemy			*get_enemy(const t_int_2d_point *pos, t_game *game);
 
 //*		doors
-t_list	*ft_new_door_node(t_int_2d_point pos);
+t_list	*ft_new_door_node(t_int_2d_point pos, t_tile type);
+t_bool	door_front_side(t_tile door_type, t_side side);
 t_bool	door_pos(const void *door, const void *pos);
 
 #endif

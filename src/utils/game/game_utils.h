@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 11:43:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:32:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "../../types.h"
 # include "../../game_types.h"
+// # include "../../init/game_init_types.h"
+// # include "../../map_validation/map_validation_types.h"
+// # include "../../raycast/raycast_types.h"
+// # include "../../render/render_types.h"
 # include "../../colors.h"
 # include "../libft/libft_module.h"
 # include "../utils_module.h"
@@ -41,5 +45,12 @@ float		flt_round(float nbr, size_t dec_places);
 
 //*		utils
 void	ft_print_2d_point(const char* pt_name, t_2d_point pt);
+
+//*				BONUS
+//*				
+//*				
+
+//*		doors
+t_bool	door_front_side(t_tile door_type, t_side side);
 
 #endif

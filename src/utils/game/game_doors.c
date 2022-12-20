@@ -6,11 +6,19 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:30:03 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 14:31:42 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:26:16 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
+
+t_bool	door_front_side(t_tile door_type, t_side side)
+{
+	return (
+		(side == e_HORIZONTAL && door_type == e_DOOR_HORIZONTAL)
+		|| (side == e_VERTICAL && door_type == e_DOOR_VERTICAL)
+	);
+}
 
 t_bool	door_pos(const void *door, const void *pos)
 {

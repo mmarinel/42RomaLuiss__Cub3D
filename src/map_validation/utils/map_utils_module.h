@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 14:21:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:17:59 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_bool	is_player_found( void );
 t_bool	is_player_map_char( char c );
 t_bool	is_floor_map_char( char c );
 t_bool	is_wall_map_char( char c );
+t_bool	is_door_map_char( char c );
 t_bool	is_empty_map_char( char c );
 
 //*		attrs id conditions

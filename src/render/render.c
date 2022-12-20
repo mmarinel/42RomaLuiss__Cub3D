@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 19:56:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:26:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -776,7 +776,7 @@ static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 
 t_data	*get_door_texture(const t_spotted_door *door_data, t_game *g)
 {
-	if (e_VERTICAL == door_data->rc_data.side)
+	if (door_front_side(door_data->door_ref->type, door_data->rc_data.side))
 	{
 		if (e_DOOR_CLOSED == door_data->door_ref->status)
 			return (&g->textures.door.closed);

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 19:50:34 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:32:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_key_state
 	int		state;
 }	t_key_state;
 
+typedef enum e_side
+{
+	e_HORIZONTAL,
+	e_VERTICAL,
+	e_SIDE_NONE
+}	t_side;
+
 # define BOUND_KEYS 14
 
 # define W_INDEX 0
@@ -77,6 +84,7 @@ typedef struct s_door
 {
 	t_door_status	status;
 	t_door_status	prev_status;
+	t_tile			type;
 	t_int_2d_point	pos;
 	int				opening_delay_frames;
 }	t_door;

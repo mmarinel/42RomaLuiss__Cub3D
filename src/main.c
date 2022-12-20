@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 20:33:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:14:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "utils/utils_module.h"
 # include "init/game_init_module.h"
 # include "map_validation/map_validation_module.h"
+# include "map_validation/utils/map_utils_module.h"
 # include "raycast/raycast_module.h"
 # include "render/render_module.h"
 
@@ -63,19 +64,10 @@ t_bool	is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy)
 
 t_bool	is_free_pos(t_game *g, t_2d_point pt)
 {
-	t_int_2d_point	normalized;
+	const t_int_2d_point	normalized = as_int_2dpt(&pt);
 
-	normalized.x = floor(pt.x);
-	normalized.y = floor(pt.y);
 	return (
-		// NULL == ft_lstfind(g->enemies, enemy_pos, &normalized)
-		(//&& (
-			e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_W == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_E == g->map_handle.map[normalized.y][normalized.x]
-		)
+		e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
 	);
 }
 
@@ -283,7 +275,7 @@ void	open_door(t_game *game)
 	t_list					*door_node;
 	t_door					*door;
 
-	if (e_DOOR == game->map_handle.map[forward_tile.y][forward_tile.x])
+	if (is_door_map_char(game->map_handle.map[forward_tile.y][forward_tile.x]))
 	{
 		door_node = ft_lstfind(game->doors, door_pos, &forward_tile);
 		if (NULL == door_node)
@@ -297,13 +289,19 @@ void	open_door(t_game *game)
 	}
 }
 
-void	move_across_door(t_game *game, t_2d_point *guessed)
+void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)
 {
 	const t_int_2d_point	door_square = as_int_2dpt(guessed);
+	t_2d_point				new_pos;
+	int						sign;
 	t_list					*door_node;
 	t_door					*door;
 
 	door_node = ft_lstfind(game->doors, door_pos, &door_square);
+	if (e_UP_KEY == keycode)
+		sign = +1;
+	else
+		sign = -1;
 	if (NULL == door_node)
 		return ;
 	door = (t_door *)door_node->content;
@@ -311,10 +309,15 @@ void	move_across_door(t_game *game, t_2d_point *guessed)
 		return ;
 	if (e_DOOR_OPEN == door->status)
 	{
-		game->player.pos = ft_vec_sum(
-			*guessed,
-			game->player.dir
+		new_pos = map_pos_clip(
+			ft_vec_sum(
+				*guessed,
+				ft_vec_prod(game->player.dir, sign)
+				),
+				game
 		);
+		if (is_free_pos(game, new_pos))
+			game->player.pos = new_pos;
 	}
 }
 
@@ -353,23 +356,19 @@ int	loop_hook(t_game *game)
 		{
 			game->player.pos = new_pos;
 		}
-		else if (e_DOOR == game->map_handle.map[(int)new_pos.y][(int)new_pos.x])
-			move_across_door(game, &new_pos);
+		else if (is_door_map_char(game->map_handle.map[(int)new_pos.y][(int)new_pos.x]))
+			move_across_door(game, &new_pos, e_UP_KEY);
 	}
 	if (KeyPress == game->keys[DOWN_INDEX].state)
 	{
 		t_2d_point	new_pos;
-		t_2d_point	next_pos;
-		next_pos = new_player_pos(game->player.pos, e_DOWN_KEY, 0.5f, game);
-		if (e_false == is_free_pos(game, next_pos))
-			return (0);
-		new_pos = next_pos;
+		new_pos = new_player_pos(game->player.pos, e_DOWN_KEY, 0.5f, game);
 		if (is_free_pos(game, new_pos))
 		{
 			game->player.pos = new_pos;
 		}
-		else if (e_DOOR == game->map_handle.map[(int)new_pos.y][(int)new_pos.x])
-			move_across_door(game, &new_pos);
+		else if (is_door_map_char(game->map_handle.map[(int)new_pos.y][(int)new_pos.x]))
+			move_across_door(game, &new_pos, e_DOWN_KEY);
 	}
 
 	// t_2d_point	new_dir;

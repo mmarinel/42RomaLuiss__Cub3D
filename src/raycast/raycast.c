@@ -6,17 +6,26 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 19:00:04 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:08:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-static void	rc_bonus(
+static void	rc_scan_door(
 	t_raycast_data *rc_data,
 	const t_2d_point *ray,
 	t_game *game
 	);
+static void	rc_scan_enemy(
+	t_raycast_data *rc_data,
+	t_game *game
+	);
+static t_bool	rc_door_wall_hit(
+	const t_int_2d_point *prev_square,
+	const t_raycast_data *rc_data,
+	t_game *game
+);
 //*		end of static declarations
 
 /**
@@ -31,19 +40,25 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 	t_raycast_return	rc_ret;
 	t_raycast_data		rc_data;
 	t_bool				hit;
+	t_int_2d_point		prev_square;
 
 	ft_ray_data_init(&rc_data, ray, game);
 	// ft_print_raycast_data(rc_data);
 	hit = e_false;
 	while (e_false == hit)
 	{
+		prev_square = rc_data.cur_sq;
 		ft_walk_through_nhp(&rc_data);
 		if (e_WALL == game->\
 				map_handle.map[rc_data.cur_sq.y][rc_data.cur_sq.x]
 			)
 			hit = e_true;
-		if (BONUS)
-			rc_bonus(&rc_data, &ray, game);
+		else if (BONUS)
+		{
+			hit = rc_door_wall_hit(&prev_square, &rc_data, game);
+			rc_scan_door(&rc_data, &ray, game);
+			rc_scan_enemy(&rc_data, game);
+		}
 	}
 	rc_ret_set_data(&rc_data, &rc_ret.wall, &ray, game);
 	// if (BONUS)
@@ -53,18 +68,61 @@ t_raycast_return	raycast(t_game *game, t_2d_point ray)
 	return (rc_ret);
 }
 
-static void	rc_bonus(
+static void	rc_scan_door(
 	t_raycast_data *rc_data,
 	const t_2d_point *ray,
 	t_game *game
 	)
 {
-	if (e_DOOR == game->map_handle\
-		.map[rc_data->cur_sq.y][rc_data->cur_sq.x])
+	if (
+		is_door_map_char(game->map_handle\
+			.map[rc_data->cur_sq.y][rc_data->cur_sq.x]
+			)
+	)
 		add_door(rc_data, ray, game);
+}
+
+static void	rc_scan_enemy(
+	t_raycast_data *rc_data,
+	t_game *game
+	)
+{
 	rc_data->spotted_enemy = spot_enemy(
 		rc_data,
 		&rc_data->cur_sq,
 		game
 	);
+}
+
+/**
+ * @brief this function returns true iff we hit the side of a door
+ * 
+ * @param prev_square 
+ * @param rc_data 
+ * @param game 
+ * @return t_bool 
+ */
+static t_bool	rc_door_wall_hit(
+	const t_int_2d_point *prev_square,
+	const t_raycast_data *rc_data,
+	t_game *game
+)
+{
+	t_list	*door_node;
+	t_door	*door;
+
+	if (is_door_map_char(game->map_handle\
+		.map[prev_square->y][prev_square->x])
+		)
+	{
+		door_node = ft_lstfind(game->doors, door_pos, prev_square);
+		if (NULL == door_node)
+			return (e_false);
+		door = (t_door *)door_node->content;
+		if (NULL == door)
+			return (e_false);
+		if (e_false == door_front_side(door->type, rc_data->side))
+			return (e_true);
+	}
+	return (e_false);
 }
