@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rend_enem_module.h                                 :+:      :+:    :+:   */
+/*   rend_bonus_module.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 13:47:05 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 00:06:35 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/22 00:24:10 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/22 00:39:47 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REND_ENEM_MODULE_H
-# define REND_ENEM_MODULE_H
+#ifndef REND_BONUS_MODULE_H
+# define REND_BONUS_MODULE_H
 
-# include "../render.h"
-# include "../../utils/utils_module.h"
+# include "../../types.h"
+# include "../../game_types.h"
+# include "../../raycast/raycast_types.h"
+# include "../render_types.h"
 
-# include "../../sys_includes.h"
+//*		doors
+void	render_doors(
+	const size_t screen_col,
+	const t_raycast_return *rc_ret,
+	t_game *g
+	);
 
+//*		enemies
+void	render_enemies(
+	t_list *enemies,
+	t_game *g
+	);
 void	update_enemy_list(
 	t_list **list,
 	const t_raycast_return *rc_ret,

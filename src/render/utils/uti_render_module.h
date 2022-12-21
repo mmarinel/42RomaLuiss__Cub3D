@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:33:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 23:23:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color);
 void	ft_put_mlxpx_to_image(t_data *img_data, size_t px_offset, int color);
 size_t	ft_get_pixel_offset(const t_data *img_data, t_int_2d_point pt);
+int		get_texture_px(t_int_2d_point coordinate, const t_data *texture_data);
+size_t	texture_px_max_offset(const t_data *texture_data);
 
 //*		color
 t_bool	is_mlx_px(int px);

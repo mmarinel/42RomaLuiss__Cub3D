@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    header.txt                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/12/21 20:43:25 by earendil         ###   ########.fr        #
+#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ INCLUDES=\
 ./src/render/textures/textures_module.h\
 ./src/render/utils/uti_render_module.h\
 ./src/render/line_drawing/line_drawing_module.h\
-./src/render/enemies/rend_enem_module.h\
+./src/render/bonus_entities/rend_bonus_module.h\
 ./src/render/render_module.h\
 ./src/raycast/utils/rc_utils_module.h\
 ./src/raycast/bonus/rc_bonus_module.h\
@@ -64,14 +64,13 @@ INCLUDES=\
 ./src/render/render.h\
 ./src/render/render_module.h\
 ./src/render/render_types.h\
-./src/render/enemies/rend_enem.h\
-./src/render/enemies/rend_enem_module.h\
+./src/render/bonus_entities/rend_bonus.h\
+./src/render/bonus_entities/rend_bonus_module.h\
 ./src/render/line_drawing/line_drawing.h\
 ./src/render/line_drawing/line_drawing_module.h\
 ./src/render/line_drawing/line_drawing_types.h\
 ./src/render/textures/textures.h\
 ./src/render/textures/textures_module.h\
-./src/render/textures/texture_types.h\
 ./src/render/utils/uti_render.h\
 ./src/render/utils/uti_render_module.h\
 ./src/render/utils/uti_render_types.h\
@@ -126,27 +125,34 @@ SRC_NOPREFIX=\
 ./src/raycast/utils/rc_set.c\
 ./src/raycast/utils/rc_walk.c\
 ./src/render/render.c\
-./src/render/enemies/rend_enem_mem.c\
+./src/render/attack/attack_bonus.c\
+./src/render/background/background_bonus.c\
+./src/render/background/background.c\
+./src/render/background/sun_bonus.c\
+./src/render/bonus_entities/doors/doors_bonus.c\
+./src/render/bonus_entities/enemies/enemies_bonus.c\
+./src/render/bonus_entities/enemies/rend_enem_mem_bonus.c\
 ./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bresenham.c\
 ./src/render/line_drawing/bres_logic.c\
-./src/render/textures/bcb_clip.c\
-./src/render/textures/bicubic.c\
-./src/render/textures/cubic_interpolation.c\
-./src/render/textures/texture_manip.c\
-./src/render/textures/texture_types_ops.c\
+./src/render/textures/door_bonus.c\
+./src/render/textures/enemies_bonus.c\
+./src/render/textures/nearest_neighbour.c\
+./src/render/textures/wall.c\
+./src/render/uhd/uhd.c\
 ./src/render/utils/brightness.c\
 ./src/render/utils/mlx_holder.c\
 ./src/render/utils/mlx_utils_imgs.c\
 ./src/render/utils/render_conditions.c\
 ./src/render/utils/rgb.c\
 ./src/utils/game/debug.c\
-./src/utils/game/game_doors.c\
-./src/utils/game/game_enemies.c\
-./src/utils/game/game_memory.c\
+./src/utils/game/game_doors_bonus.c\
+./src/utils/game/game_enemies_bonus.c\
+./src/utils/game/game_memory_bonus.c\
 ./src/utils/game/game_player.c\
+./src/utils/game/game_sun_bonus.c\
 ./src/utils/game/map_chars_conditions_bonus.c\
 ./src/utils/game/map_utils.c\
 ./src/utils/gnl/get_next_line.c\

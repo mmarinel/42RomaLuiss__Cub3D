@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rend_enem_mem.c                                    :+:      :+:    :+:   */
+/*   rend_enem_mem_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:32:53 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 18:56:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 00:28:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rend_enem.h"
+#include "../rend_bonus.h"
 
 static t_bool	enemy_spotted(const void *list, const void *enemy);
 //*		end of static declarations
