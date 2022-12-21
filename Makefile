@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2022/12/21 18:44:39 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ INCLUDES=\
 ./src/utils/math/uti_math_module.h\
 ./src/init/game_init_module.h\
 ./src/init/bonus/game_init_bonus_module.h\
+./src/hooks/hooks_module.h\
+./src/hooks/key_behavior/keys_behavior_module.h\
 ./src/map_validation/utils/map_utils_module.h\
 ./src/map_validation/map_validation_module.h\
 ./src/map_validation/bonus/map_validation_bonus_module.h\
@@ -37,6 +39,10 @@ INCLUDES=\
 ./src/raycast/utils/rc_utils_module.h\
 ./src/raycast/bonus/rc_bonus_module.h\
 ./src/raycast/raycast_module.h\
+./src/hooks/hooks.h\
+./src/hooks/hooks_module.h\
+./src/hooks/key_behavior/keys_behavior.h\
+./src/hooks/key_behavior/keys_behavior_module.h\
 ./src/init/game_init.h\
 ./src/init/game_init_module.h\
 ./src/init/bonus/game_init_bonus.h\
@@ -80,6 +86,20 @@ INCLUDES=\
 
 SRC_NOPREFIX=\
 ./src/main.c\
+./src/hooks/doors_bonus.c\
+./src/hooks/enemies_bonus.c\
+./src/hooks/keys_hook.c\
+./src/hooks/loop_hook.c\
+./src/hooks/player_bonus.c\
+./src/hooks/west_angle_bonus.c\
+./src/hooks/win_focus_hooks.c\
+./src/hooks/key_behavior/E_key_bonus.c\
+./src/hooks/key_behavior/left_key_bonus.c\
+./src/hooks/key_behavior/right_key_bonus.c\
+./src/hooks/key_behavior/S_key.c\
+./src/hooks/key_behavior/SPACE_key_bonus.c\
+./src/hooks/key_behavior/W_key.c\
+./src/hooks/key_behavior/utils/player_movement.c\
 ./src/init/game_initialization.c\
 ./src/init/bonus/scan_doors.c\
 ./src/init/bonus/scan_enemies.c\
@@ -148,6 +168,7 @@ LIBS_FLAGS=-L./src/utils/libft -lft
 
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address -DBONUS=1
+# CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -DBONUS=1
 MLX_FLAGS = TODO
 
 RMF = /bin/rm -rf
