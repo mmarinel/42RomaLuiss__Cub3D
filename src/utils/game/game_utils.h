@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 22:32:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:07:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # include "../utils_module.h"
 
 # include "../../sys_includes.h"
+
+//*		map
+t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);
+t_bool		is_door_map_char( char c );
+t_bool		is_enemy_map_char( char c );
 
 //*		geometry
 t_2d_point	ft_rotate(t_2d_point vector, float ray_angle);

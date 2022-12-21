@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 22:28:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:12:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include "../../types.h"
 # include "game_utils.h"
+
+//*		player
+t_bool	is_free_pos(t_game *g, t_2d_point pt);
+
+//*		map
+t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);
+t_bool		is_door_map_char( char c );
+t_bool		is_enemy_map_char( char c );
 
 //*		geometry
 t_2d_point		ft_rotate(t_2d_point vector, float ray_angle);
@@ -56,9 +64,6 @@ float			flt_round(float nbr, size_t dec_places);
 //*		coordinates
 t_2d_point		ft_get_new_2dpt(float x, float y);
 
-//*		game memory management
-// void			ft_game_init( t_game *game_ref, size_t width, size_t height );
-
 //*		debug
 void			t_2d_point_print(const t_2d_point *pt, const char *msg);
 void			ft_print_int_2d_point(const char* pt_name, t_int_2d_point pt);
@@ -68,8 +73,10 @@ void			ft_print_int_2d_point(const char* pt_name, t_int_2d_point pt);
 				//*			
 
 //*		enemies
+t_bool			is_enemy_trapped(t_enemy *enemy, t_game *game);
+t_bool			is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy);
 t_bool			enemy_collision(const void *enemy, const void *player_pos);
-t_list			*ft_new_enemy_node(t_2d_point pos);
+t_list			*ft_new_enemy_node(const t_2d_point *pos);
 t_enemy			*ft_clone_enemy(const t_enemy *enemy);
 t_bool			enemy_equals(const t_enemy *en1, const t_enemy *en2);
 t_bool			enemy_pos(const void *en, const void *pos);

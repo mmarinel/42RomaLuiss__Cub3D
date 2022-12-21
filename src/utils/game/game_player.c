@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reset.c                                        :+:      :+:    :+:   */
+/*   game_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 13:30:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 12:53:05 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/21 16:12:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_validation.h"
+#include "game_utils.h"
 
-void	map_reset(t_map_holder *map_handle)
+t_bool	is_free_pos(t_game *g, t_2d_point pt)
 {
-	size_t	x;
-	size_t	y;
+	const t_int_2d_point	normalized = as_int_2dpt(&pt);
 
-	if (NULL == map_handle)
-		return ;
-	x = 0;
-	while (x < map_handle->columns)
-	{
-		y = 0;
-		while (y < map_handle->rows)
-		{
-			if (is_player_map_char(map_handle->map[y][x])
-				|| is_enemy_map_char(map_handle->map[y][x])
-				)
-				map_handle->map[y][x] = e_FLOOR;
-			y++;
-		}
-		x++;
-	}
+	return (
+		e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
+	);
 }

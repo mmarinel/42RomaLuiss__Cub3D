@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 19:02:36 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:43:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -439,6 +439,19 @@ void	game_set_key_state(t_game *game_ref)
 	// return (keys);
 }
 
+static void	initial_pos_vector(
+	const size_t row,
+	const size_t col,
+	t_game *game_ref
+	)
+{
+	const float	horizontal_alignment = 0.5f;
+	const float	vertical_alignment = 0.1f;
+
+	game_ref->player.pos.y = row + vertical_alignment;
+	game_ref->player.pos.x = col + horizontal_alignment;
+}
+
 static void	game_set_inital_vectors( t_game *game_ref )
 {
 	const t_tile	player_init_dir = game_ref->map_handle.player_initial_dir;
@@ -456,19 +469,15 @@ static void	game_set_inital_vectors( t_game *game_ref )
 		col = 0;
 		while (col < game_ref->map_handle.columns)
 		{
-			printf("%c ", map[row][col]);
 			if (player_init_dir == map[row][col])
 			{
-				game_ref->player.pos.y = row + 0.5f;
-				game_ref->player.pos.x = col + 0.5f;
+				initial_pos_vector(row, col, game_ref);
 				break ;
 			}
 			col += 1;
 		}
-		printf("\n");
 		row += 1;
 	}
-	printf("\n");
 }
 
 static void	initial_dir_vectors(

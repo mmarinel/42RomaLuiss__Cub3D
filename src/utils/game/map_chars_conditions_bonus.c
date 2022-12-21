@@ -6,15 +6,20 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:23:24 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 21:17:33 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:06:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_utils.h"
+#include "game_utils.h"
 
 t_bool	is_door_map_char( char c )
 {
 	return (
 		e_DOOR_HORIZONTAL == c || e_DOOR_VERTICAL == c
 	);
+}
+
+t_bool	is_enemy_map_char( char c )
+{
+	return (e_ENEMY == c);
 }

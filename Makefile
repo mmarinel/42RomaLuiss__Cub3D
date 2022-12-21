@@ -89,7 +89,6 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_reset.c\
 ./src/map_validation/validate.c\
 ./src/map_validation/utils/atttrs_chars_conditions.c\
-./src/map_validation/utils/map_chars_conditions_bonus.c\
 ./src/map_validation/utils/map_chars_conditions.c\
 ./src/map_validation/utils/map_chars_tracking.c\
 ./src/map_validation/utils/map_logic_conditions.c\
@@ -125,6 +124,9 @@ SRC_NOPREFIX=\
 ./src/utils/game/game_doors.c\
 ./src/utils/game/game_enemies.c\
 ./src/utils/game/game_memory.c\
+./src/utils/game/game_player.c\
+./src/utils/game/map_chars_conditions_bonus.c\
+./src/utils/game/map_utils.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_nonl.c\
 ./src/utils/gnl/get_next_line_utils.c\

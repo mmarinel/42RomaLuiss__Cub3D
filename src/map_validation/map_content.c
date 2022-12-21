@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 14:39:46 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 12:53:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ static t_bool	is_map_char_pos_valid(
 {
 	if (is_floor_map_char(map[row_index][col_index])
 		|| is_player_map_char(map[row_index][col_index])
+		|| is_enemy_map_char(map[row_index][col_index])
 	)
 	{
 		if (

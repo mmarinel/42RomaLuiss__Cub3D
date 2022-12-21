@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 23:08:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:27:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,20 @@ static void	rc_scan_enemy(
 	t_game *game
 	)
 {
-	rc_data->spotted_enemy = spot_enemy(
-		rc_data,
-		&rc_data->cur_sq,
-		game
-	);
+	t_spotted_door	*first_door;
+	t_list			*door_node;
+
+	door_node = ft_lstlast(rc_data->doors);
+	if (door_node)
+		first_door = (t_spotted_door *)door_node->content;
+	else
+		first_door = NULL;
+	if (NULL == first_door || first_door->door_ref->status != e_DOOR_CLOSED)
+		rc_data->spotted_enemy = spot_enemy(
+			rc_data,
+			&rc_data->cur_sq,
+			game
+		);
 }
 
 /**

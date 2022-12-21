@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 12:40:50 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:29:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,56 +27,19 @@
 
 # include "map_validation/utils/map_utils_module.h"
 
-int	get_current_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000
-			+ (u_int64_t)time.tv_usec / 1000));
-}
-
-int	get_ms_from_timestamp(const struct timeval *timestamp)
-{
-	return ((timestamp->tv_sec * 1000
-			+ (u_int64_t)timestamp->tv_usec / 1000));
-}
-
-t_bool	is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy)
-{
-	t_int_2d_point	normalized;
-	t_list			*enemy_node;
-
-	normalized.x = floor(pt.x);
-	normalized.y = floor(pt.y);
-	enemy_node = ft_lstfind(g->enemies, enemy_pos, &normalized);
-	if (enemy_node && ((t_enemy *)enemy_node->content) != enemy)
-		return (e_false);
-	else
-		return (
-			e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_N == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_S == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_W == g->map_handle.map[normalized.y][normalized.x]
-			|| e_PLAYER_E == g->map_handle.map[normalized.y][normalized.x]
-		);
-}
-
-t_bool	is_free_pos(t_game *g, t_2d_point pt)
-{
-	const t_int_2d_point	normalized = as_int_2dpt(&pt);
-
-	return (
-		e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
-	);
-}
-
 void	collision_check(t_game *game)
 {
 	t_list	*enemy_node;
+	t_enemy	*enemy;
 
 	enemy_node = ft_lstfind(game->enemies, enemy_collision, &game->player.pos);
-	if (enemy_node)
+	{
+		if (enemy_node)
+			enemy = (t_enemy *)enemy_node->content;
+		else
+			enemy = NULL;
+	}
+	if (enemy && e_false == is_enemy_trapped(enemy, game))
 	{
 		game->player.hp -= 1;
 		game->player.colliding = e_true;
@@ -85,49 +48,37 @@ void	collision_check(t_game *game)
 		game->player.colliding = e_false;
 }
 
-t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
+int	new_player_pos_direction(int key_pressed)
 {
-	if (pt.x >= game->map_handle.columns)
-		pt.x = game->map_handle.columns - 1;
-	if (pt.x < 0)
-		pt.x = 0;
-	if (pt.y >= game->map_handle.rows)
-		pt.y = game->map_handle.rows - 1;
-	if (pt.y < 0)
-		pt.y = 0;
-	return (pt);
+	if (e_UP_KEY == key_pressed)
+		return (+1);
+	else if (e_DOWN_KEY == key_pressed)
+		return (-1);
+	else
+		return (0);
 }
 
-t_2d_point	new_player_pos(t_2d_point current,
-				int key_pressed, float step_size, t_game *game)
+t_2d_point	new_player_pos(
+	int key_pressed,
+	t_game *game
+	)
 {
-	t_2d_point	pos;
+	const float	player_step_size = 0.5f;
+	int			sign;
 
-	pos = current;
-	if (e_UP_KEY == key_pressed)
-	{
-		pos = map_pos_clip(
+	sign = new_player_pos_direction(key_pressed);
+	return (
+		map_pos_clip(
 			ft_vec_sum(
 				game->player.pos,
-				ft_vec_prod(game->player.dir, step_size)
+				ft_vec_prod(
+					game->player.dir,
+					player_step_size * sign
+				)
 			),
 			game
-		);
-	}
-	if (e_DOWN_KEY == key_pressed)
-	{
-		pos = map_pos_clip(
-				ft_vec_sum(
-					game->player.pos,
-					ft_vec_prod(
-						ft_vec_opposite(game->player.dir),
-						step_size
-					)
-				),
-				game
-			);
-	}
-	return (pos);
+		)
+	);
 }
 
 int	leave_window(t_game *game)
@@ -186,16 +137,17 @@ void	clean_enemies(t_game *game)
 
 void	change_enemy_pos(t_enemy *enemy, t_game *game)
 {
+	const t_2d_point	dir = ft_change_magnitude(
+		ft_vec_sum(
+			game->player.pos,
+			ft_vec_opposite(enemy->pos)
+			),
+			0.25f
+	);
 	const t_2d_point	new_pos = map_pos_clip(
 		ft_vec_sum(
 			enemy->pos,
-			ft_vec_prod(
-				ft_vec_sum(
-					game->player.pos,
-					ft_vec_opposite(enemy->pos)
-					),
-					0.1f//was 0.05f
-				)
+			dir
 		),
 		game
 	);
@@ -375,7 +327,7 @@ int	loop_hook(t_game *game)
 	)
 	{
 		t_2d_point	new_pos;
-		new_pos = new_player_pos(game->player.pos, e_UP_KEY, 0.5f, game);
+		new_pos = new_player_pos(e_UP_KEY, game);
 		if (is_free_pos(game, new_pos))
 		{
 			game->player.pos = new_pos;
@@ -386,7 +338,7 @@ int	loop_hook(t_game *game)
 	if (KeyPress == game->keys[DOWN_INDEX].state)
 	{
 		t_2d_point	new_pos;
-		new_pos = new_player_pos(game->player.pos, e_DOWN_KEY, 0.5f, game);
+		new_pos = new_player_pos(e_DOWN_KEY, game);
 		if (is_free_pos(game, new_pos))
 		{
 			game->player.pos = new_pos;

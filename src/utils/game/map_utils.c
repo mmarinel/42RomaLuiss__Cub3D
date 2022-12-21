@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reset.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 13:30:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 12:53:05 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/21 15:51:18 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/21 15:51:42 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_validation.h"
+#include "game_utils.h"
 
-void	map_reset(t_map_holder *map_handle)
+t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
 {
-	size_t	x;
-	size_t	y;
-
-	if (NULL == map_handle)
-		return ;
-	x = 0;
-	while (x < map_handle->columns)
-	{
-		y = 0;
-		while (y < map_handle->rows)
-		{
-			if (is_player_map_char(map_handle->map[y][x])
-				|| is_enemy_map_char(map_handle->map[y][x])
-				)
-				map_handle->map[y][x] = e_FLOOR;
-			y++;
-		}
-		x++;
-	}
+	if (pt.x >= game->map_handle.columns)
+		pt.x = game->map_handle.columns - 1;
+	if (pt.x < 0)
+		pt.x = 0;
+	if (pt.y >= game->map_handle.rows)
+		pt.y = game->map_handle.rows - 1;
+	if (pt.y < 0)
+		pt.y = 0;
+	return (pt);
 }
