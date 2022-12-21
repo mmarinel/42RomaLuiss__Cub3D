@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:18:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 21:43:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static void	player_movement_handler(t_game *game)
 {
 	if (KeyPress == game->keys[W_INDEX].state)
 		w_key_handler_pressed(game);
-	// if (KeyPress == game->keys[A_INDEX].state)
-	// 	a_key_handler_pressed(game);
-	if (KeyPress == game->keys[S_INDEX].state)
+	else if (KeyPress == game->keys[A_INDEX].state)
+		a_key_handler_pressed(game);
+	else if (KeyPress == game->keys[S_INDEX].state)
 		s_key_handler_pressed(game);
-	// if (KeyPress == game->keys[D_INDEX].state)
-	// 	d_key_handler_pressed(game);
+	else if (KeyPress == game->keys[D_INDEX].state)
+		d_key_handler_pressed(game);
 }
 
 static void	player_direction_handler(t_game *game)

@@ -6,58 +6,57 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:45:01 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:40:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 21:45:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../keys_behavior.h"
 
-int	new_player_pos_direction(int key_pressed)
-{
-	if (e_W_KEY == key_pressed)
-		return (+1);
-	else if (e_S_KEY == key_pressed)
-		return (-1);
-	else
-		return (0);
-}
+static t_2d_point	new_player_pos_direction(t_key key_pressed, t_game *game);
+//*		end of static declarations
 
 t_2d_point	new_player_pos(
-	int key_pressed,
+	t_key key_pressed,
 	t_game *game
 	)
 {
 	const float	player_step_size = 0.5f;
-	int			sign;
+	t_2d_point	direction;
 
-	sign = new_player_pos_direction(key_pressed);
+	direction = new_player_pos_direction(key_pressed, game);
 	return (
 		map_pos_clip(
 			ft_vec_sum(
 				game->player.pos,
-				ft_vec_prod(
-					game->player.dir,
-					player_step_size * sign
-				)
+				ft_vec_prod(direction, player_step_size)
 			),
 			game
 		)
 	);
 }
 
+static t_2d_point	new_player_pos_direction(t_key key_pressed, t_game *game)
+{
+	if (e_W_KEY == key_pressed)
+		return (game->player.dir);
+	else if (e_A_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, (3.0f / 2.0f) * M_PI));
+	else if (e_S_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, M_PI));
+	else if (e_D_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, M_PI / 2));
+	else
+		return ((t_2d_point){0,0});
+}
+
 void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)
 {
 	const t_int_2d_point	door_square = as_int_2dpt(guessed);
 	t_2d_point				new_pos;
-	int						sign;
 	t_list					*door_node;
 	t_door					*door;
 
 	door_node = ft_lstfind(game->doors, door_pos, &door_square);
-	if (e_W_KEY == keycode)
-		sign = +1;
-	else
-		sign = -1;
 	if (NULL == door_node)
 		return ;
 	door = (t_door *)door_node->content;
@@ -68,7 +67,7 @@ void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)
 		new_pos = map_pos_clip(
 			ft_vec_sum(
 				*guessed,
-				ft_vec_prod(game->player.dir, sign)
+				new_player_pos_direction(keycode, game)
 				),
 				game
 		);

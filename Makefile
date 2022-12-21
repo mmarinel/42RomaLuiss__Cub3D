@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/12/21 18:44:39 by earendil         ###   ########.fr        #
+#    Updated: 2022/12/21 20:43:25 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,8 @@ SRC_NOPREFIX=\
 ./src/hooks/player_bonus.c\
 ./src/hooks/west_angle_bonus.c\
 ./src/hooks/win_focus_hooks.c\
+./src/hooks/key_behavior/A_key.c\
+./src/hooks/key_behavior/D_key.c\
 ./src/hooks/key_behavior/E_key_bonus.c\
 ./src/hooks/key_behavior/left_key_bonus.c\
 ./src/hooks/key_behavior/right_key_bonus.c\
