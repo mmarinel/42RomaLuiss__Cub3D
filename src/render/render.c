@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 22:26:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 01:58:11 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			render_doors(
 
 // int	ln_clipper(t_clip_opcode opcode, size_t size);
 // size_t	ln_clip(size_t coordinate);
-size_t	get_texture_column(const t_rc_ret_data *rc_ret, const t_game *game);
+size_t	get_texture_column(const t_rc_ret_data *rc_ret);
 int		nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg);
 //*																			
 //*									DECOMMENTARE 						
@@ -295,7 +295,7 @@ t_column_info	get_column_info(
 		get_wall_texture(g, &rc_ret->wall),
 		&g->\
 		screen_handle.frame_data,
-		get_texture_column(&rc_ret->wall, g),
+		get_texture_column(&rc_ret->wall),
 		scaling_factor,
 		e_true
 		}
@@ -541,35 +541,19 @@ int	nearest_neighbour(t_nxt_px_f_arg *nxt_px_f_arg)
 		);
 }
 
-size_t	get_texture_column(const t_rc_ret_data *rc_ret_data, const t_game *game)
+size_t	get_texture_column(const t_rc_ret_data *rc_ret_data)
 {
-	float			dist;
-	size_t			col;
-	const size_t	texture_size = game->textures.wall.north.width;
+	double			dist;
+	const size_t	texture_size = get_textures_size();
 
 	if (e_VERTICAL == rc_ret_data->side)
-		dist = rc_ret_data->hit_point.y - floor(rc_ret_data->hit_point.y);
+		dist = rc_ret_data->hit_point.y - rc_ret_data->square.y;
 	else if (e_HORIZONTAL == rc_ret_data->side)
-		dist = rc_ret_data->hit_point.x - floor(rc_ret_data->hit_point.x);
+		dist = rc_ret_data->hit_point.x - rc_ret_data->square.x;
 	else
 		return (-1);
-	col = 0;
-	while (col < texture_size)
-	{
-		if (
-			(float)col / texture_size <= dist
-			&& dist <= (float)(col + 1) / texture_size
-		)
-			break ;
-		col += 1;
-	}
-	return (col);
+	return (texture_pt_clip(roundl(dist * (double)texture_size)));
 }
-
-// static void	print_color(t_color color, const char *msg)
-// {
-// 	// printf(YELLOW "%s: (R=%d G=%d B=%d)\n" RESET, msg, color.red, color.green, color.blue);
-// }
 
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg)
 {
@@ -757,11 +741,11 @@ static void			draw_background(t_game *g)
 static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
 {
 	t_2d_point	ray;
-	const float	dilatation_factor
-		= flt_round(
-			((2.0f * col) / (g->screen_handle.width - 1.0f)) - 1.0f,
-			FLT_PRECISION
-		);
+	const float	dilatation_factor =
+		// = flt_round(
+			((2.0f * col) / (g->screen_handle.width - 1.0f)) - 1.0f;//,
+			// FLT_PRECISION
+		// );
 	// float		magnitude;
 
 	ray.x = g->player.dir.x + dilatation_factor * g->player.camera_plane.x;
@@ -815,7 +799,7 @@ t_column_info	get_door_column_info(
 		door_texture,
 		&g->\
 		screen_handle.frame_data,
-		get_texture_column(&door_data->rc_data, g),
+		get_texture_column(&door_data->rc_data),
 		scaling_factor,
 		draw_shadow
 		}

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 23:58:10 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 01:53:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_set_hp(
 {
 	rc_ret_data->hit_point = ft_vec_sum(
 		game->player.pos,
-		ft_vec_prod(rc_data->ray, rc_ret_data->euclidean_dist)
+		ft_vec_prod(rc_data->ray_dir, rc_ret_data->euclidean_dist)
 	);
 	rc_ret_data->square.x = rc_data->cur_sq.x;
 	rc_ret_data->square.y = rc_data->cur_sq.y;
