@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/20 22:14:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 12:40:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,31 +261,55 @@ void	animate_doors(t_game *game)
 	}
 }
 
-void	open_door(t_game *game)
+
+t_bool	door_opened(t_2d_point forward_pos, t_game *game)
 {
-	const t_2d_point		forward_pos
-		= map_pos_clip(
-			ft_vec_sum(
-				game->player.pos,
-				game->player.dir
-			),
-			game);
-	const t_int_2d_point	forward_tile
-		= as_int_2dpt(&forward_pos);
+	const t_int_2d_point	forward_tile = as_int_2dpt(&forward_pos);
 	t_list					*door_node;
 	t_door					*door;
 
 	if (is_door_map_char(game->map_handle.map[forward_tile.y][forward_tile.x]))
 	{
 		door_node = ft_lstfind(game->doors, door_pos, &forward_tile);
-		if (NULL == door_node)
-			return ;
-		door = (t_door *)door_node->content;
-		if (e_DOOR_CLOSED == door->status || e_DOOR_OPEN == door->status)
+		if (door_node)
 		{
-			door->prev_status = door->status;
-			door->status = e_DOOR_AJAR;
+			door = (t_door *)door_node->content;
+			if (door)
+			{
+				if (e_DOOR_CLOSED == door->status
+					|| e_DOOR_OPEN == door->status)
+				{
+					door->prev_status = door->status;
+					door->status = e_DOOR_AJAR;
+					return (e_true);
+				}
+			}
 		}
+	}
+	return (e_false);
+}
+
+void	open_door(t_game *game)
+{
+	const float		check_step_size = 0.15f;
+	t_2d_point		cur_guess;
+	float			cur_dilation;
+
+	cur_dilation = -0.5f;
+	while (cur_dilation < +0.5f)
+	{
+		cur_guess = ft_vec_sum(
+			game->player.pos,
+			ft_vec_normalize(
+				ft_vec_sum(
+					game->player.dir,
+					ft_vec_prod(game->player.camera_plane, cur_dilation)
+				)
+			)
+		);
+		if (door_opened(cur_guess, game))
+			return ;
+		cur_dilation += check_step_size;
 	}
 }
 
