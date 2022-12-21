@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:17:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 16:10:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/21 22:06:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy)
 
 /**
  * @brief this function returns true iff
- * the given enemy is trapped behind a door
+ * the given enemy is trapped behind a door or wall
  * 
  * @param enemy 
  * @param game 
@@ -41,7 +41,7 @@ t_bool	is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy)
 t_bool	is_enemy_trapped(t_enemy *enemy, t_game *game)
 {
 	const float				collision_radius = 0.5f;
-	const t_2d_point		new_dir = ft_change_magnitude(
+	const t_2d_point		towards_player_dir = ft_change_magnitude(
 		ft_vec_sum(
 			game->player.pos,
 			ft_vec_opposite(enemy->pos)
@@ -49,16 +49,11 @@ t_bool	is_enemy_trapped(t_enemy *enemy, t_game *game)
 		collision_radius
 	);
 	const t_2d_point		new_pos = map_pos_clip(
-		ft_vec_sum(enemy->pos, new_dir),
+		ft_vec_sum(enemy->pos, towards_player_dir),
 		game
 	);
-	const t_int_2d_point	new_tile = as_int_2dpt(&new_pos);
 
-	return (
-		is_door_map_char(
-			game->map_handle.map[new_tile.y][new_tile.x]
-			)
-	);
+	return (e_false == is_free_pos(game, new_pos));
 }
 
 t_bool	enemy_collision(const void *enemy, const void *player_pos)
