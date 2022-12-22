@@ -6,15 +6,24 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 19:17:33 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 22:24:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-static void	rc_process_bonus(
+/**
+ * @brief 
+ * 
+ * @param rc_data 
+ * @param pos 
+ * @param ray 
+ * @param game 
+ * @return t_bool true iff the wall-side of a door has been hit
+ */
+static t_bool	rc_process_bonus(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray, t_bool *hit_flag,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	);
 static void	rc_set_bonus(
@@ -32,44 +41,49 @@ static void	rc_set_bonus(
  * @return t_raycast_return 
  */
 t_raycast_return	raycast(
-	t_game *game, t_2d_point ray,
-	t_bool(*test_f)(const void *, const void *)
+	const t_2d_point *pos, const t_2d_point *ray,
+	t_bool(*test_f)(const void *, const void *),
+	t_game *game
 	)
 {
 	t_raycast_return	rc_ret;
 	t_raycast_data		rc_data;
 	t_bool				hit;
 
-	ft_ray_data_init(&rc_data, ray, game);
+	ft_ray_data_init(&rc_data, pos, ray);
 	hit = e_false;
 	while (e_false == hit && e_false == (*test_f)(&rc_data, &hit))
 	{
 		rc_data.prev_sq = rc_data.cur_sq;
 		ft_walk_through_nhp(&rc_data);
-		if (e_WALL == game->\
-				map_handle.map[rc_data.cur_sq.y][rc_data.cur_sq.x]
+		if (e_WALL == game->map_handle\
+				.map[rc_data.cur_sq.y][rc_data.cur_sq.x]
 			)
 			hit = e_true;
 		else
-			rc_process_bonus(&rc_data, &ray, &hit, game);
+			hit = rc_process_bonus(&rc_data, pos, ray, game);
 	}
-	rc_ret_set_data(&rc_data, &rc_ret.wall, &ray, game);
+	rc_ret_set_data(&rc_data, &rc_ret.wall, pos, ray);
 	rc_set_bonus(&rc_data, &rc_ret);
 	return (rc_ret);
 }
 
-static void	rc_process_bonus(
+static t_bool	rc_process_bonus(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray, t_bool *hit_flag,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	)
 {
+	t_bool	hit;
+
+	hit = e_false;
 	if (BONUS)
 	{
-		*hit_flag = rc_door_wall_hit(&rc_data->prev_sq, rc_data, game);
-		rc_scan_door(rc_data, ray, game);
+		hit = rc_door_wall_hit(&rc_data->prev_sq, rc_data, game);
+		rc_scan_door(rc_data, pos, ray, game);
 		rc_scan_enemy(rc_data, game);
 	}
+	return (hit);
 }
 
 static void	rc_set_bonus(

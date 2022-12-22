@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:36:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:55:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //*		doors
 void	rc_scan_door(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	);
 t_bool	rc_door_wall_hit(

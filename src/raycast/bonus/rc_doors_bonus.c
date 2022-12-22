@@ -6,15 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 17:38:27 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:55:59 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rc_bonus.h"
 
-static void				add_door(
+static void	add_door(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	);
 //*		end of static declarations
@@ -29,7 +29,7 @@ void	rc_ret_set_doors(
 
 void	rc_scan_door(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	)
 {
@@ -38,7 +38,7 @@ void	rc_scan_door(
 			.map[rc_data->cur_sq.y][rc_data->cur_sq.x]
 			)
 	)
-		add_door(rc_data, ray, game);
+		add_door(rc_data, pos, ray, game);
 }
 
 /**
@@ -76,13 +76,13 @@ t_bool	rc_door_wall_hit(
 
 static void	add_door(
 	t_raycast_data *rc_data,
-	const t_2d_point *ray,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	)
 {
 	t_spotted_door	*spotted_door_data;
 
-	spotted_door_data = new_spotted_door_data(rc_data, ray, game);
+	spotted_door_data = new_spotted_door_data(rc_data, pos, ray, game);
 	if (spotted_door_data)
 		ft_lstadd_front(
 			&rc_data->doors,
