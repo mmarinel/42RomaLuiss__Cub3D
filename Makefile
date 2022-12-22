@@ -116,9 +116,11 @@ SRC_NOPREFIX=\
 ./src/map_validation/utils/map_memory.c\
 ./src/map_validation/utils/t_tile_debug.c\
 ./src/map_validation/utils/t_tile_map_trim.c\
+./src/raycast/raycast_algorithm.c\
 ./src/raycast/raycast.c\
-./src/raycast/bonus/rc_doors.c\
-./src/raycast/bonus/rc_enemies.c\
+./src/raycast/bonus/rc_bon_memory.c\
+./src/raycast/bonus/rc_doors_bonus.c\
+./src/raycast/bonus/rc_enemies_bonus.c\
 ./src/raycast/utils/rc_calc.c\
 ./src/raycast/utils/rc_debug.c\
 ./src/raycast/utils/rc_initialization.c\
@@ -149,7 +151,10 @@ SRC_NOPREFIX=\
 ./src/render/utils/rgb.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_doors_bonus.c\
+./src/utils/game/game_doors_callbacks_bonus.c\
 ./src/utils/game/game_enemies_bonus.c\
+./src/utils/game/game_enemies_conds_bonus.c\
+./src/utils/game/game_enemies_lst_callbacks_bonus.c\
 ./src/utils/game/game_memory_bonus.c\
 ./src/utils/game/game_player.c\
 ./src/utils/game/game_sun_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:45:01 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 21:45:51 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:38:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ t_2d_point	new_player_pos(
 	);
 }
 
-static t_2d_point	new_player_pos_direction(t_key key_pressed, t_game *game)
+t_raycast_return	raycast_for_newpos_mov(
+	const t_2d_point *new_pos, t_game *game
+	)
 {
-	if (e_W_KEY == key_pressed)
-		return (game->player.dir);
-	else if (e_A_KEY == key_pressed)
-		return (ft_rotate(game->player.dir, (3.0f / 2.0f) * M_PI));
-	else if (e_S_KEY == key_pressed)
-		return (ft_rotate(game->player.dir, M_PI));
-	else if (e_D_KEY == key_pressed)
-		return (ft_rotate(game->player.dir, M_PI / 2));
-	else
-		return ((t_2d_point){0,0});
+	const t_2d_point	mov_dir = ft_vec_normalize(
+		ft_vec_sum(
+			ft_vec_opposite(game->player.pos),
+			*new_pos
+		)
+	);
+
+	return (raycast_movements(game, mov_dir, new_pos));
 }
 
 void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)
@@ -74,4 +74,18 @@ void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)
 		if (is_free_pos(game, new_pos))
 			game->player.pos = new_pos;
 	}
+}
+
+static t_2d_point	new_player_pos_direction(t_key key_pressed, t_game *game)
+{
+	if (e_W_KEY == key_pressed)
+		return (game->player.dir);
+	else if (e_A_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, (3.0f / 2.0f) * M_PI));
+	else if (e_S_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, M_PI));
+	else if (e_D_KEY == key_pressed)
+		return (ft_rotate(game->player.dir, M_PI / 2));
+	else
+		return ((t_2d_point){0,0});
 }

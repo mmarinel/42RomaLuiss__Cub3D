@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 23:54:10 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:28:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,19 @@
 
 //*		player
 t_bool	is_free_pos(t_game *g, t_2d_point pt);
+t_bool	door_obstacle_through_dir(t_list *spotted_doors);
+t_bool	is_traversable_pos(
+	t_game *g,
+	t_2d_point *pt,
+	const t_raycast_return *rc_return
+	);
 
 //*		map
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);
+t_bool		is_map_pos(
+	const t_map_holder *map_handle,
+	const t_int_2d_point *pos
+	);
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );
 
@@ -86,6 +96,7 @@ t_enemy			*get_enemy(const t_int_2d_point *pos, t_game *game);
 t_list	*ft_new_door_node(t_int_2d_point pos, t_tile type);
 t_bool	door_front_side(t_tile door_type, t_side side);
 t_bool	door_pos(const void *door, const void *pos);
+t_bool	is_spotted_door_valicable(const void *door, const void *_);
 
 //*		sun
 int	west_axis_angle_to_px_shift(t_game *g);

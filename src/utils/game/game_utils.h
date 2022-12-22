@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 16:07:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:27:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../../types.h"
 # include "../../game_types.h"
+# include "../../raycast/raycast_types.h"
 // # include "../../init/game_init_types.h"
 // # include "../../map_validation/map_validation_types.h"
 // # include "../../raycast/raycast_types.h"
@@ -25,8 +26,21 @@
 
 # include "../../sys_includes.h"
 
+//*		player
+t_bool	is_free_pos(t_game *g, t_2d_point pt);
+t_bool	door_obstacle_through_dir(t_list *spotted_doors);
+t_bool	is_traversable_pos(
+	t_game *g,
+	t_2d_point *pt,
+	const t_raycast_return *rc_return
+	);
+
 //*		map
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);
+t_bool		is_map_pos(
+	const t_map_holder *map_handle,
+	const t_int_2d_point *pos
+	);
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );
 
@@ -57,5 +71,7 @@ void	ft_print_2d_point(const char* pt_name, t_2d_point pt);
 
 //*		doors
 t_bool	door_front_side(t_tile door_type, t_side side);
+t_bool	door_pos(const void *door, const void *pos);
+t_bool	is_spotted_door_valicable(const void *door, const void *_);
 
 #endif

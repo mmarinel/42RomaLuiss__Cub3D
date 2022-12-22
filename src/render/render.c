@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 00:50:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:39:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	render_next_frame(t_game *g)
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
-		rc_return = raycast(g, ray_dir_for_col(col, g));
+		rc_return = raycast_wall(g, ray_dir_for_col(col, g));
 		if (BONUS)
 		{
 			update_enemy_list(&enemies, &rc_return, col);

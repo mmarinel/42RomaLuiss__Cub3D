@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_memory.c                                      :+:      :+:    :+:   */
+/*   game_memory_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 15:59:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:17:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_list	*ft_new_enemy_node(const t_2d_point *pos)
 		return (NULL);
 	enemy->alive = e_true;
 	enemy->health = 100;
+	enemy->collision_radius = ENEMIES_DEFAULT_COLLISION_RADIUS;
 	enemy->pos = (t_2d_point){pos->x + alignment, pos->y + alignment};
 	enemy->die_anim_frames = die_anim_frames;
 	return (ft_lstnew(NULL, enemy));
@@ -51,6 +52,8 @@ t_enemy	*ft_clone_enemy(const t_enemy *enemy)
 	if (NULL == clone)
 		return (clone);
 	clone->alive = enemy->alive;
+	clone->health = enemy->health;
+	clone->collision_radius = enemy->collision_radius;
 	clone->pos = enemy->pos;
 	clone->die_anim_frames = enemy->die_anim_frames;
 	return (clone);

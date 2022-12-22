@@ -6,132 +6,74 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:27:37 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:58:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-static void	rc_scan_door(
-	t_raycast_data *rc_data,
-	const t_2d_point *ray,
-	t_game *game
-	);
-static void	rc_scan_enemy(
-	t_raycast_data *rc_data,
-	t_game *game
-	);
-static t_bool	rc_door_wall_hit(
-	const t_int_2d_point *prev_square,
-	const t_raycast_data *rc_data,
-	t_game *game
-);
-//*		end of static declarations
-
 /**
- * @brief this function casts a ray until it hits a wall
+ * @brief this function provides the additional stopping criteria 
+ * for the  raycast_wall function
  * 
- * @param game 
- * @param ray_angle the angle the ray forms with the camera plane
- * @return t_raycast_return 
- */
-t_raycast_return	raycast(t_game *game, t_2d_point ray)
-{
-	t_raycast_return	rc_ret;
-	t_raycast_data		rc_data;
-	t_bool				hit;
-	t_int_2d_point		prev_square;
-
-	ft_ray_data_init(&rc_data, ray, game);
-	// ft_print_raycast_data(rc_data);
-	hit = e_false;
-	while (e_false == hit)
-	{
-		prev_square = rc_data.cur_sq;
-		ft_walk_through_nhp(&rc_data);
-		if (e_WALL == game->\
-				map_handle.map[rc_data.cur_sq.y][rc_data.cur_sq.x]
-			)
-			hit = e_true;
-		else if (BONUS)
-		{
-			hit = rc_door_wall_hit(&prev_square, &rc_data, game);
-			rc_scan_door(&rc_data, &ray, game);
-			rc_scan_enemy(&rc_data, game);
-		}
-	}
-	rc_ret_set_data(&rc_data, &rc_ret.wall, &ray, game);
-	// if (BONUS)
-	// 	set_bonus()
-	rc_ret_set_doors(&rc_data, &rc_ret);
-	rc_ret_set_enemy(&rc_data, &rc_ret);
-	return (rc_ret);
-}
-
-static void	rc_scan_door(
-	t_raycast_data *rc_data,
-	const t_2d_point *ray,
-	t_game *game
-	)
-{
-	if (
-		is_door_map_char(game->map_handle\
-			.map[rc_data->cur_sq.y][rc_data->cur_sq.x]
-			)
-	)
-		add_door(rc_data, ray, game);
-}
-
-static void	rc_scan_enemy(
-	t_raycast_data *rc_data,
-	t_game *game
-	)
-{
-	t_spotted_door	*first_door;
-	t_list			*door_node;
-
-	door_node = ft_lstlast(rc_data->doors);
-	if (door_node)
-		first_door = (t_spotted_door *)door_node->content;
-	else
-		first_door = NULL;
-	if (NULL == first_door || first_door->door_ref->status != e_DOOR_CLOSED)
-		rc_data->spotted_enemy = spot_enemy(
-			rc_data,
-			&rc_data->cur_sq,
-			game
-		);
-}
-
-/**
- * @brief this function returns true iff we hit the side of a door
- * 
- * @param prev_square 
- * @param rc_data 
- * @param game 
+ * @param hit_flag the flag indicating whether a wall has been hit until now
  * @return t_bool 
  */
-static t_bool	rc_door_wall_hit(
-	const t_int_2d_point *prev_square,
-	const t_raycast_data *rc_data,
-	t_game *game
-)
-{
-	t_list	*door_node;
-	t_door	*door;
+static t_bool			wall_hit(const void *_, const void *hit_flag);
+/**
+ * @brief this function provides the additional stopping criteria 
+ * for the raycast_movements function
+ * 
+ * @param rc_data 
+ * @return t_bool 
+ */
+static t_bool			collided(const void *rc_data, const void *_);
+static t_2d_point	rcmov_endpoint_holder(const t_2d_point *given);
+//*		end of static declarations
 
-	if (is_door_map_char(game->map_handle\
-		.map[prev_square->y][prev_square->x])
-		)
-	{
-		door_node = ft_lstfind(game->doors, door_pos, prev_square);
-		if (NULL == door_node)
-			return (e_false);
-		door = (t_door *)door_node->content;
-		if (NULL == door)
-			return (e_false);
-		if (e_false == door_front_side(door->type, rc_data->side))
-			return (e_true);
-	}
-	return (e_false);
+t_raycast_return	raycast_wall(
+	t_game *game, t_2d_point ray
+	)
+{
+	return (raycast(game, ray, wall_hit));
+}
+
+t_raycast_return	raycast_movements(
+	t_game *game, t_2d_point ray,
+	const t_2d_point *end_point
+	)
+{
+	rcmov_endpoint_holder(end_point);
+	return (raycast(game, ray, collided));
+}
+
+static t_bool	wall_hit(const void *_, const void *hit_flag)
+{
+	const t_bool	*__hit_flag = (const t_bool *)hit_flag;
+
+	if (_)
+	{}
+	return (e_true == *__hit_flag);
+}
+
+static t_bool	collided(const void *rc_data, const void *_)
+{
+	const t_raycast_data	*__rc_data = (const t_raycast_data *)rc_data;
+	const t_2d_point		endpoint = rcmov_endpoint_holder(NULL);
+	const t_int_2d_point	endtile = as_int_2dpt(&endpoint);
+	
+	if(_)
+	{}
+	return (
+		ft_int_2d_point_equals(&__rc_data->cur_sq, &endtile)
+	);
+}
+
+static t_2d_point	rcmov_endpoint_holder(const t_2d_point *given)
+{
+	static t_2d_point	endpoint = (t_2d_point){0.0f, 0.0f};
+
+	if (given)
+		endpoint = *given;
+	return (endpoint);
 }

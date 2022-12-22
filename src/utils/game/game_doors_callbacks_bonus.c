@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_logic_conditions.c                             :+:      :+:    :+:   */
+/*   game_doors_callbacks_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 17:41:55 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 14:51:14 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/22 18:26:21 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/22 19:57:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_utils.h"
+#include "game_utils.h"
 
-t_bool	is_map_edge(
-	const t_map_holder *map_handle,
-	int x, int y
-)
+t_bool	door_pos(const void *door, const void *pos)
 {
+	const t_door			*__door = (const t_door *)door;
+	const t_int_2d_point	*__pos = (const t_int_2d_point *)pos;
+
 	return (
-		(0 == x || (int)map_handle->columns - 1 == x)
-		|| (0 == y || (int)map_handle->rows - 1 == y)
+		e_true == ft_int_2d_point_equals(
+			&__door->pos,
+			__pos
+		)
 	);
 }
 
-t_bool	map_fields_complete( t_map_holder *map_handle )
+t_bool	is_spotted_door_valicable(const void *door, const void *_)
 {
+	const t_spotted_door	*__door = (const t_spotted_door *)door;
+	(void)_;
+
 	return (
-		map_handle->no_texture && map_handle->so_texture
-		&& map_handle->we_texture && map_handle->ea_texture
-		&& -1 != map_handle->f_color.alpha && -1 != map_handle->c_color.alpha
+		e_DOOR_OPEN == __door->door_ref->status
 	);
 }

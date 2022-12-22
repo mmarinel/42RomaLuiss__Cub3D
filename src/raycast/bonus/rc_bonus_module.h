@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:36:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 17:58:11 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:36:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@
 # include "../raycast_types.h"
 
 //*		doors
-void	add_door(
+void	rc_scan_door(
 	t_raycast_data *rc_data,
 	const t_2d_point *ray,
+	t_game *game
+	);
+t_bool	rc_door_wall_hit(
+	const t_int_2d_point *prev_square,
+	const t_raycast_data *rc_data,
 	t_game *game
 	);
 void	rc_ret_set_doors(
@@ -27,14 +32,13 @@ void	rc_ret_set_doors(
 	);
 
 //*		enemies
-void			rc_ret_set_enemy(
+void	rc_scan_enemy(
+	t_raycast_data *rc_data,
+	t_game *game
+	);
+void	rc_ret_set_enemy(
 	const t_raycast_data* rc_data,
 	t_raycast_return *rc_ret
 	);
-t_spotted_enemy	spot_enemy(
-			const t_raycast_data *rc_data,
-			const t_int_2d_point *pos,
-			t_game *game
-		);
 
 #endif

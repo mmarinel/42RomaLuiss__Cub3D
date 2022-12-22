@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rc_bonus.h                                         :+:      :+:    :+:   */
+/*   rc_bon_memory.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 13:36:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 17:38:54 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/22 17:38:09 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/22 17:38:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RC_BONUS_H
-# define RC_BONUS_H
+#include "rc_bonus.h"
 
-# include "../raycast_types.h"
-# include "../utils/rc_utils_module.h"
-# include "../../map_validation/utils/map_utils_module.h"
-
-//*		memory utils
 t_spotted_door *new_spotted_door_data(
 	const t_raycast_data *rc_data,
 	const t_2d_point *ray,
 	t_game *game
-	);
+	)
+{
+	t_spotted_door	*door_data;
+	t_list			*door_node;
 
-#endif
+	door_data = (t_spotted_door *) malloc(sizeof(t_spotted_door));
+	if (NULL == door_data)
+		return (NULL);
+	rc_ret_set_data(rc_data, &door_data->rc_data, ray, game);//TODO		CAMBIARE ORDINE PARAMETRI
+	door_node = ft_lstfind(game->doors, door_pos, &rc_data->cur_sq);
+	if (door_node)
+		door_data->door_ref = (t_door *)door_node->content;
+	else
+		door_data->door_ref = NULL;
+	return (door_data);
+}
