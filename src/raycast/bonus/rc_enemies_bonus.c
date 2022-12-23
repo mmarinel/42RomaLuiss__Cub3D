@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:53:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 18:19:40 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:57:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ void	rc_ret_set_enemy(
 	rc_ret->spotted_enemy = rc_data->spotted_enemy;
 }
 
+/**
+ * @brief this function spots a new enemy along the path of the casted ray.
+ * 
+ * @param rc_data 
+ * @param game 
+ */
 void	rc_scan_enemy(
 	t_raycast_data *rc_data,
 	t_game *game
 	)
 {
-	// t_spotted_door	*first_door;
 	t_spotted_door	*last_door;
 	t_list			*door_node;
 

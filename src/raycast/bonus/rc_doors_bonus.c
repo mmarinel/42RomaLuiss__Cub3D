@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 23:53:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:54:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,16 @@ void	rc_ret_set_doors(
 	rc_ret->doors = rc_data->doors;
 }
 
-void	rc_scan_door(
-	t_raycast_data *rc_data,
-	const t_2d_point *pos, const t_2d_point *ray,
-	t_game *game
-	)
-{
-	if (
-		is_door_map_char(game->map_handle\
-			.map[rc_data->cur_sq.y][rc_data->cur_sq.x]
-			)
-		|| (is_door_map_char(game->map_handle\
-			.map[rc_data->prev_sq.y][rc_data->prev_sq.x]
-			) && rc_data->side == e_HORIZONTAL)
-	)
-		add_door(rc_data, pos, ray, game);
-}
-
 /**
- * @brief this function returns true iff we hit the side of a door
+ * @brief this function spots a new door along the path of the casted ray.
  * 
- * @param prev_square 
  * @param rc_data 
+ * @param pos the initial position from where we cast the ray
+ * @param ray the casted ray
  * @param game 
- * @return t_bool 
+ * @return t_bool true iff we hit the wall-side of a door
  */
-t_bool	rc_door_wall_hit(
+t_bool	rc_scan_door(
 	t_raycast_data *rc_data,
 	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
