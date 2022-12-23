@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 17:13:03 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:58:00 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_enemy
 	t_bool		alive;
 	int			health;
 	float		collision_radius;
+	float		step_size;
 	t_2d_point	pos;
 	size_t		die_anim_frames;
 }	t_enemy;
@@ -97,6 +98,7 @@ typedef struct s_player
 	t_bool		alive;
 	size_t		hp;
 	size_t		mana;
+	size_t		attack_damage;
 	t_bool		attacking;
 	t_bool		enemy_colliding;
 	float		west_angle;

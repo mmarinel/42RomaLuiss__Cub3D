@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 21:43:22 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:29:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	loop_hook(t_game *game)
 	if (BONUS)
 	{
 		west_angle_update(game);
-		collision_check(game);
+		player_enemy_collision_check(game);
 		enemies_anim_death(game);
 		clean_enemies(game);
 		move_enemies(game);

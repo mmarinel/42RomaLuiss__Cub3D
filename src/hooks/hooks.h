@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:15:46 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:34:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:29:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	clean_enemies(t_game *game);
 //*			doors
 void	animate_doors(t_game *game);
 //*			player
-void	collision_check(t_game *game);
+void	player_enemy_collision_check(t_game *game);
 
 #endif

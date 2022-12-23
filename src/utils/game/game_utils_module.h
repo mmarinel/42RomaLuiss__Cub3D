@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 13:48:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:31:16 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void			ft_print_int_2d_point(const char* pt_name, t_int_2d_point pt);
 				//*			
 
 //*		enemies
-t_bool			is_enemy_trapped(t_enemy *enemy, t_game *game);
 t_bool			is_free_pos_for_en(t_game *g, t_2d_point pt, t_enemy *enemy);
-t_bool			enemy_collision(const void *enemy, const void *player_pos);
+t_bool			enemy_aggro(const void *enemy, const void *game);
+t_bool			enemy_colliding(const void *enemy, const void *pos);
 t_list			*ft_new_enemy_node(const t_2d_point *pos);
 t_enemy			*ft_clone_enemy(const t_enemy *enemy);
 t_bool			enemy_equals(const t_enemy *en1, const t_enemy *en2);
