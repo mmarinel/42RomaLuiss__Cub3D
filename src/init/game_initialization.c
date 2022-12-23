@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 01:18:30 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:41 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_bool	ft_game_init(
 	game_ref->player.hp = 100;
 	game_ref->player.mana = 100;
 	game_ref->player.attacking = e_false;
-	game_ref->player.colliding = e_false;
+	game_ref->player.enemy_colliding = e_false;
 	game_ref->player.west_angle = player_west_angle(game_ref);
 	return (error == e_false);
 }

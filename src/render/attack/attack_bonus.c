@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:43:27 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:48:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	render_collision(t_game *g)
 {
 	t_int_2d_point	px;
 
-	if (g->player.colliding)
+	if (g->player.enemy_colliding)
 	{
 		px.y = 0;
 		while (px.y < (int)g->screen_handle.height)

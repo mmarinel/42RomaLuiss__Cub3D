@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 14:28:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_player
 	size_t		hp;
 	size_t		mana;
 	t_bool		attacking;
-	t_bool		colliding;
+	t_bool		enemy_colliding;
 	float		west_angle;
 	t_2d_point	pos;
 	t_2d_point	dir;
