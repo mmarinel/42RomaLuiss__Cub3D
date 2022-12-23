@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 21:49:13 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 00:24:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,38 @@ void	enemies_anim_death(t_game *game)
 	}
 }
 
+static void	enemy_take_damage(t_enemy *enemy, t_game *game)
+{
+	enemy->health -= game->player.attack_damage;
+	if (enemy->health <= 0)
+		enemy->health = 0;
+}
+
+static void	attack_enemy(t_game *game)
+{
+	//TODO	cast multiple ray for a certain angle instead of just using the player direction
+}
+
 void	attack_enemies(t_game *game)
 {
 	t_list				*enemy_node;
 	t_enemy				*enemy;
-	t_2d_point			towards_enemy_dir;
+	t_int_2d_point		enemy_tile;
+	t_raycast_return	rc_ret;
 
-	enemy_node = ft_lstfind(game->enemies, enemy_aggro, game);
-	if (enemy_node)
+	enemy_node = game->enemies;
+	while (enemy_node)
 	{
 		enemy = (t_enemy *)enemy_node->content;
-		towards_enemy_dir = ft_vec_sum(
-			ft_vec_opposite(game->player.pos),
-			enemy->pos
-		);
-		if (ft_2d_point_equals(&towards_enemy_dir, &game->player.dir))
-			enemy->health -= game->player.attack_damage;
+		enemy_tile = as_int_2dpt(&enemy->pos);
+		rc_ret = raycast(
+			game, game->player.pos, game->player.dir, enemy_tile
+			);
+		if (ft_int_2d_point_equals(&enemy_tile, &rc_ret.wall.square)
+			&& e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
+			&& rc_ret.wall.euclidean_dist <= game->player.attack_range)
+			enemy_take_damage(enemy, game);//TODO	enemy_take_damage function if player.attack_damage is float
+		enemy_node = enemy_node->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 14:23:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 23:03:59 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../sys_includes.h"
 
 //*		raycast algorithm
-t_raycast_return	raycast(
+t_raycast_return	raycast_algorithm(
 	const t_2d_point *pos, const t_2d_point *ray,
 	t_rc_handlers rc_handlers,
 	t_game *game

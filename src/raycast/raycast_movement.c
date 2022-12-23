@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:33:50 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 14:42:38 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 23:03:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_raycast_return	raycast_movement(
 	);
 
 	rcmov_endpoint_holder(end_point);
-	return (raycast(old_pos, &mov_dir, rc_handlers, game));
+	return (raycast_algorithm(old_pos, &mov_dir, rc_handlers, game));
 }
 
 static void	rc_mov_init(void *rc_data, const void *pos, const void *ray)

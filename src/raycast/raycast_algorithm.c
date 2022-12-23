@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 14:58:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 23:03:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	rc_set_bonus(
  * @param test_f the additional stopping criteria for the raycast
  * @return t_raycast_return 
  */
-t_raycast_return	raycast(
+t_raycast_return	raycast_algorithm(
 	const t_2d_point *pos, const t_2d_point *ray,
 	t_rc_handlers rc_handlers,
 	t_game *game

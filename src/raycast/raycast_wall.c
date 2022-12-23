@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:25:26 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 14:38:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 23:03:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_raycast_return	raycast_wall(
 {
 	const t_rc_handlers	rc_handlers = (t_rc_handlers){rc_wall_hit, rc_wall_init};
 
-	return (raycast(&game->player.pos, &ray, rc_handlers, game));
+	return (raycast_algorithm(&game->player.pos, &ray, rc_handlers, game));
 }
 
 static void	rc_wall_init(void *rc_data, const void *pos, const void *ray)

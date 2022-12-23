@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:26:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 19:54:29 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 23:35:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_bool	door_pos(const void *door, const void *pos)
 	);
 }
 
-t_bool	is_spotted_door_valicable(const void *door, const void *end_tile)
+//TODO		eliminare
+t_bool	is_spotted_door_valicable_in_tile(const void *door, const void *end_tile)
 {
 	const t_spotted_door	*__door = (const t_spotted_door *)door;
 	const t_int_2d_point	*__end_tile = (const t_int_2d_point *)end_tile;
@@ -33,6 +34,18 @@ t_bool	is_spotted_door_valicable(const void *door, const void *end_tile)
 	return (
 		e_DOOR_OPEN == __door->door_ref->status
 		&& ft_int_2d_point_equals(&__door->door_ref->pos, __end_tile)
+		&& door_front_side(__door->door_ref->type, __door->rc_data.side)
+	);
+}
+
+t_bool	is_spotted_door_valicable(const void *door, const void *_)
+{
+	const t_spotted_door	*__door = (const t_spotted_door *)door;
+
+	if (_)
+	{}
+	return (
+		e_DOOR_OPEN == __door->door_ref->status
 		&& door_front_side(__door->door_ref->type, __door->rc_data.side)
 	);
 }
