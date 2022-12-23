@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 22:24:04 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:28:24 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,8 @@ typedef struct s_raycast_data
 	float			dist_nhp_through_x;
 	float			dist_nhp_through_y;
 	t_spotted_enemy	spotted_enemy;
+	t_bool			process_bonus_doors;
+	t_bool			process_bonus_enemies;
 	t_list			*doors;
 	t_side			side;
 }	t_raycast_data;

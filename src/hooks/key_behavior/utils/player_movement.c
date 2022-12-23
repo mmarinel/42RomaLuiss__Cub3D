@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:45:01 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 19:38:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:55:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_2d_point	new_player_pos(
 	t_game *game
 	)
 {
-	const float	player_step_size = 0.5f;
+	const float	player_step_size = 0.4f;
 	t_2d_point	direction;
 
 	direction = new_player_pos_direction(key_pressed, game);
@@ -33,20 +33,6 @@ t_2d_point	new_player_pos(
 			game
 		)
 	);
-}
-
-t_raycast_return	raycast_for_newpos_mov(
-	const t_2d_point *new_pos, t_game *game
-	)
-{
-	const t_2d_point	mov_dir = ft_vec_normalize(
-		ft_vec_sum(
-			ft_vec_opposite(game->player.pos),
-			*new_pos
-		)
-	);
-
-	return (raycast_movements(game, mov_dir, new_pos));
 }
 
 void	move_across_door(t_game *game, t_2d_point *guessed, t_key keycode)

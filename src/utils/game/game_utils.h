@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 19:27:53 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:59:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 // # include "../../raycast/raycast_types.h"
 // # include "../../render/render_types.h"
 # include "../../colors.h"
+
+# include "../../raycast/raycast_module.h"
 # include "../libft/libft_module.h"
 # include "../utils_module.h"
 
@@ -28,11 +30,11 @@
 
 //*		player
 t_bool	is_free_pos(t_game *g, t_2d_point pt);
-t_bool	door_obstacle_through_dir(t_list *spotted_doors);
+t_bool	door_obstacle_through_dir(t_list *spotted_doors, const t_int_2d_point *end_tile);
 t_bool	is_traversable_pos(
 	t_game *g,
-	t_2d_point *pt,
-	const t_raycast_return *rc_return
+	const t_2d_point *old_pos,
+	const t_2d_point *next_pos
 	);
 
 //*		map
@@ -72,6 +74,6 @@ void	ft_print_2d_point(const char* pt_name, t_2d_point pt);
 //*		doors
 t_bool	door_front_side(t_tile door_type, t_side side);
 t_bool	door_pos(const void *door, const void *pos);
-t_bool	is_spotted_door_valicable(const void *door, const void *_);
+t_bool	is_spotted_door_valicable(const void *door, const void *end_tile);
 
 #endif

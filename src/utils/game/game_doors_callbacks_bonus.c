@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:26:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 19:57:37 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:39:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ t_bool	door_pos(const void *door, const void *pos)
 	);
 }
 
-t_bool	is_spotted_door_valicable(const void *door, const void *_)
+t_bool	is_spotted_door_valicable(const void *door, const void *end_tile)
 {
 	const t_spotted_door	*__door = (const t_spotted_door *)door;
-	(void)_;
+	const t_int_2d_point	*__end_tile = (const t_int_2d_point *)end_tile;
 
 	return (
 		e_DOOR_OPEN == __door->door_ref->status
+		 && ft_int_2d_point_equals(&__door->door_ref->pos, __end_tile)
 	);
 }

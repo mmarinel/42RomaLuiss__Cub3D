@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 15:43:38 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 01:18:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,7 +446,7 @@ static void	initial_pos_vector(
 	)
 {
 	const float	horizontal_alignment = 0.5f;
-	const float	vertical_alignment = 0.1f;
+	const float	vertical_alignment = 0.5f;
 
 	game_ref->player.pos.y = row + vertical_alignment;
 	game_ref->player.pos.x = col + horizontal_alignment;

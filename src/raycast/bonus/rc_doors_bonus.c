@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 21:55:59 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/22 23:53:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	rc_scan_door(
 		is_door_map_char(game->map_handle\
 			.map[rc_data->cur_sq.y][rc_data->cur_sq.x]
 			)
+		|| (is_door_map_char(game->map_handle\
+			.map[rc_data->prev_sq.y][rc_data->prev_sq.x]
+			) && rc_data->side == e_HORIZONTAL)
 	)
 		add_door(rc_data, pos, ray, game);
 }
@@ -50,19 +53,22 @@ void	rc_scan_door(
  * @return t_bool 
  */
 t_bool	rc_door_wall_hit(
-	const t_int_2d_point *prev_square,
-	const t_raycast_data *rc_data,
+	t_raycast_data *rc_data,
+	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	)
 {
-	t_list	*door_node;
-	t_door	*door;
+	const t_int_2d_point	prev_square = rc_data->prev_sq;
+	const t_int_2d_point	cur_square = rc_data->cur_sq;
+	t_tile					**const map = game->map_handle.map;
+	t_list					*door_node;
+	t_door					*door;
 
-	if (is_door_map_char(game->map_handle\
-		.map[prev_square->y][prev_square->x])
-		)
+	if (is_door_map_char(map[cur_square.y][cur_square.x]))
+		add_door(rc_data, pos, ray, game);
+	else if (is_door_map_char(map[prev_square.y][prev_square.x]))
 	{
-		door_node = ft_lstfind(game->doors, door_pos, prev_square);
+		door_node = ft_lstfind(game->doors, door_pos, &prev_square);
 		if (NULL == door_node)
 			return (e_false);
 		door = (t_door *)door_node->content;
@@ -70,6 +76,8 @@ t_bool	rc_door_wall_hit(
 			return (e_false);
 		if (e_false == door_front_side(door->type, rc_data->side))
 			return (e_true);
+		else
+			add_door(rc_data, pos, ray, game);
 	}
 	return (e_false);
 }

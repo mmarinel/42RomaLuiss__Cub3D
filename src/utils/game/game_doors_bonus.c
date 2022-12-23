@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:30:03 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 19:59:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:32:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@ t_bool	door_front_side(t_tile door_type, t_side side)
 	);
 }
 
-t_bool	door_obstacle_through_dir(t_list *spotted_doors)
+t_bool	door_obstacle_through_dir(t_list *spotted_doors, const t_int_2d_point *end_tile)
 {
-	t_list	*cur;
-
-	cur = spotted_doors;
-	while (cur)
-	{
-		if (e_false == is_spotted_door_valicable(cur->content, NULL))
-			return (e_true);
-		cur = cur->next;
-	}
-	return (e_false);
+	return (
+		spotted_doors
+		&& NULL == ft_lstfind(
+			spotted_doors, is_spotted_door_valicable, end_tile
+			)
+	);
 }

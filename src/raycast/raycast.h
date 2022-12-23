@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 21:34:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:23:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 //*		raycast algorithm
 t_raycast_return	raycast(
 	const t_2d_point *pos, const t_2d_point *ray,
-	t_bool(*test_f)(const void *, const void *),
+	t_rc_handlers rc_handlers,
 	t_game *game
 	);
 

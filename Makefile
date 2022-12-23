@@ -118,6 +118,8 @@ SRC_NOPREFIX=\
 ./src/map_validation/utils/t_tile_map_trim.c\
 ./src/raycast/raycast_algorithm.c\
 ./src/raycast/raycast.c\
+./src/raycast/raycast_movement.c\
+./src/raycast/raycast_wall.c\
 ./src/raycast/bonus/rc_bon_memory.c\
 ./src/raycast/bonus/rc_doors_bonus.c\
 ./src/raycast/bonus/rc_enemies_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 22:24:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:24:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	rc_set_bonus(
  */
 t_raycast_return	raycast(
 	const t_2d_point *pos, const t_2d_point *ray,
-	t_bool(*test_f)(const void *, const void *),
+	t_rc_handlers rc_handlers,
 	t_game *game
 	)
 {
@@ -50,9 +50,10 @@ t_raycast_return	raycast(
 	t_raycast_data		rc_data;
 	t_bool				hit;
 
-	ft_ray_data_init(&rc_data, pos, ray);
+	rc_handlers.rc_init(&rc_data, pos, ray);
 	hit = e_false;
-	while (e_false == hit && e_false == (*test_f)(&rc_data, &hit))
+	while (e_false == hit
+		&& e_false == rc_handlers.rc_stop(&rc_data, &hit))
 	{
 		rc_data.prev_sq = rc_data.cur_sq;
 		ft_walk_through_nhp(&rc_data);
@@ -79,8 +80,8 @@ static t_bool	rc_process_bonus(
 	hit = e_false;
 	if (BONUS)
 	{
-		hit = rc_door_wall_hit(&rc_data->prev_sq, rc_data, game);
-		rc_scan_door(rc_data, pos, ray, game);
+		hit = rc_door_wall_hit(rc_data, pos, ray, game);
+		// rc_scan_door(rc_data, pos, ray, game);
 		rc_scan_enemy(rc_data, game);
 	}
 	return (hit);
