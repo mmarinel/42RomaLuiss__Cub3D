@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/19 20:45:29 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:35:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ typedef struct s_rendered_enemy
 	float	min_perp_dist;
 	size_t	enemy_size;
 }	t_rendered_enemy;
+
+typedef struct s_rendered_item
+{
+	t_item	*item;
+	//*			average of the two below
+	size_t	mid_screen_col;
+	//*			column of the first ray to hit the enemy
+	size_t	first_screen_col;
+	//*			column of the last ray to hit the enemy
+	size_t	last_screen_col;
+	float	min_perp_dist;
+	size_t	item_size;
+}	t_rendered_item;
 
 typedef struct s_column_info
 {
