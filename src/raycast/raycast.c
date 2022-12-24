@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 23:14:35 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:04:47 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static void	rc_init(void *rc_data, const void *pos, const void *ray)
 	ft_ray_data_init(__rc_data, __pos, __ray);
 	__rc_data->process_bonus_doors = e_true;
 	__rc_data->process_bonus_enemies = e_false;
+	__rc_data->process_bonus_items = e_false;
 }
 
 static t_bool	rc_tile_reached(const void *rc_data, const void *_)

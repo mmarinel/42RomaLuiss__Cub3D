@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 18:42:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 19:50:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,15 @@ void	load_enemy_textures(t_game *game_ref, t_bool *err_flag)
 	);
 }
 
+void	load_item_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/items/memory-chip-42.xpm",
+		 &game_ref->textures.item,
+		game_ref, err_flag
+	);
+}
+
 //TODO			CAMBIARE !!! (rimuovere [open_bg_texture])
 void	load_door_textures(t_game *game_ref, t_bool *err_flag)
 {
@@ -366,6 +375,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 	load_sun_textures(game_ref, err_flag);
 	load_door_textures(game_ref, err_flag);
 	load_enemy_textures(game_ref, err_flag);
+	load_item_textures(game_ref, err_flag);
 }
 
 static void	game_set_map( t_game *game_ref )

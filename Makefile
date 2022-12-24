@@ -124,6 +124,7 @@ SRC_NOPREFIX=\
 ./src/raycast/bonus/rc_bon_memory.c\
 ./src/raycast/bonus/rc_doors_bonus.c\
 ./src/raycast/bonus/rc_enemies_bonus.c\
+./src/raycast/bonus/rc_items_bonus.c\
 ./src/raycast/utils/rc_calc.c\
 ./src/raycast/utils/rc_debug.c\
 ./src/raycast/utils/rc_initialization.c\
@@ -158,6 +159,8 @@ SRC_NOPREFIX=\
 ./src/utils/game/game_enemies_bonus.c\
 ./src/utils/game/game_enemies_conds_bonus.c\
 ./src/utils/game/game_enemies_lst_callbacks_bonus.c\
+./src/utils/game/game_items_bonus.c\
+./src/utils/game/game_items_lst_callbacks_bonus.c\
 ./src/utils/game/game_memory_bonus.c\
 ./src/utils/game/game_player.c\
 ./src/utils/game/game_sun_bonus.c\

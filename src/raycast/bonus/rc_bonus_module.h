@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:36:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 12:47:13 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:21:42 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	rc_scan_enemy(
 	t_game *game
 	);
 void	rc_ret_set_enemy(
+	const t_raycast_data* rc_data,
+	t_raycast_return *rc_ret
+	);
+
+//*		items
+void	rc_scan_item(
+	t_raycast_data *rc_data,
+	t_game *game
+	);
+void	rc_ret_set_item(
 	const t_raycast_data* rc_data,
 	t_raycast_return *rc_ret
 	);

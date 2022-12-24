@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 15:29:45 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:25:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_game_texture
 	t_data			background;
 	t_data			sun[SUN_FRAMES];
 	t_data			enemy[2];
+	t_data			item;
 }	t_game_texture;
 
 typedef struct s_game
@@ -169,17 +170,17 @@ typedef struct s_rc_ret_data
 	float			perp_dist;
 }	t_rc_ret_data;
 
-typedef struct s_spotted_item
-{
-	t_item	*item;
-	float	perp_dist;
-}	t_spotted_item;
-
 typedef struct s_spotted_enemy
 {
 	t_enemy	*enemy;
 	float	perp_dist;
 }	t_spotted_enemy;
+
+typedef struct s_spotted_item
+{
+	t_item	*item;
+	float	perp_dist;
+}	t_spotted_item;
 
 typedef struct s_spotted_door
 {
@@ -192,6 +193,7 @@ typedef struct s_raycast_return
 	t_rc_ret_data	wall;
 	t_list			*doors;
 	t_spotted_enemy	spotted_enemy;
+	t_spotted_item	spotted_item;
 }	t_raycast_return;
 
 typedef struct s_raycast_data
@@ -207,8 +209,10 @@ typedef struct s_raycast_data
 	float			dist_nhp_through_x;
 	float			dist_nhp_through_y;
 	t_spotted_enemy	spotted_enemy;
+	t_spotted_item	spotted_item;
 	t_bool			process_bonus_doors;
 	t_bool			process_bonus_enemies;
+	t_bool			process_bonus_items;
 	t_list			*doors;
 	t_bool			door_obstacle;
 	t_side			side;

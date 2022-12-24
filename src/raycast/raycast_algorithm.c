@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 12:54:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:23:42 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ static void	rc_process_bonus(
 		if (rc_data->process_bonus_doors)
 			rc_scan_door(rc_data, pos, ray, game);
 		if (rc_data->process_bonus_enemies
-			&& e_false == rc_data->door_obstacle
-			)
+			&& e_false == rc_data->door_obstacle)
 			rc_scan_enemy(rc_data, game);
+		if (rc_data->process_bonus_items)
+			rc_scan_item(rc_data, game);
 	}
 }
 
@@ -97,5 +98,7 @@ static void	rc_set_bonus(
 			rc_ret_set_enemy(rc_data, rc_ret);
 		if (rc_data->process_bonus_doors)
 			rc_ret_set_doors(rc_data, rc_ret);
+		if (rc_data->process_bonus_items)
+			rc_ret_set_item(rc_data, rc_ret);
 	}
 }

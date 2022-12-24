@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 15:15:57 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:24:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ t_bool	is_spotted_door_invalicable(const void *door, const void *_);
 
 //*		items
 t_list	*ft_new_item_node(const t_2d_point *pos);
+t_item	*get_item(const t_int_2d_point *pos, t_game *game);
+t_bool	item_pos(const void *item, const void *pos);
 
 //*		sun
 int	west_axis_angle_to_px_shift(t_game *g);
