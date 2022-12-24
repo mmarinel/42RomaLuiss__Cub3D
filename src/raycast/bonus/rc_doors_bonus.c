@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 14:54:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 04:10:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,38 @@ t_bool	rc_scan_door(
 	const t_int_2d_point	cur_square = rc_data->cur_sq;
 	t_tile					**const map = game->map_handle.map;
 	t_list					*door_node;
-	t_door					*door;
+	// t_door					*door;
 
-	if (is_door_map_char(map[cur_square.y][cur_square.x]))
-		add_door(rc_data, pos, ray, game);
-	else if (is_door_map_char(map[prev_square.y][prev_square.x]))
+	if (is_door_map_char(map[prev_square.y][prev_square.x]))
 	{
 		door_node = ft_lstfind(game->doors, door_pos, &prev_square);
-		if (NULL == door_node)
-			return (e_false);
-		door = (t_door *)door_node->content;
-		if (NULL == door)
-			return (e_false);
-		if (e_false == door_front_side(door->type, rc_data->side))
+		if (door_node && door_node->content
+			&& e_false == door_front_side(
+				((t_door *)door_node->content)->type, rc_data->side
+				)
+			)
+		{
+			add_door(rc_data, pos, ray, game);
 			return (e_true);
-		else
+		}
+		else if (is_floor_map_char(map[cur_square.y][cur_square.x]))
 			add_door(rc_data, pos, ray, game);
 	}
+	if (is_door_map_char(map[cur_square.y][cur_square.x]))
+		add_door(rc_data, pos, ray, game);//TODO	fare la stessa cosa di prima: se lo prendo sul lato, torna hit=true
+	// else if (is_door_map_char(map[prev_square.y][prev_square.x]))
+	// {
+	// 	door_node = ft_lstfind(game->doors, door_pos, &prev_square);
+	// 	if (NULL == door_node)
+	// 		return (e_false);
+	// 	door = (t_door *)door_node->content;
+	// 	if (NULL == door)
+	// 		return (e_false);
+	// 	if (e_false == door_front_side(door->type, rc_data->side))
+	// 		return (e_true);
+	// 	else
+	// 		add_door(rc_data, pos, ray, game);
+	// }
 	return (e_false);
 }
 

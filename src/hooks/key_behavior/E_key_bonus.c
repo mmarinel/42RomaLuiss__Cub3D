@@ -6,68 +6,68 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:32:09 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 02:25:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys_behavior.h"
 
-static void		open_door(t_game *game);
-static t_bool	door_opened(t_2d_point forward_pos, t_game *game);
+static void		open_close_doors(t_game *game);
+static t_bool	door_reached(t_door *door, float ray_angle, t_game *game);
+static void		open_close_door(t_door *door);
 //*		end of static declarations
 
 void	e_key_handler(t_game *game)
 {
-	open_door(game);
+	open_close_doors(game);
 }
 
-static void	open_door(t_game *game)
+static void	open_close_doors(t_game *game)
 {
-	const float		check_step_size = 0.15f;
-	t_2d_point		cur_guess;
-	float			cur_dilation;
+	const float			range = M_PI / 4;
+	t_list				*door_node;
 
-	cur_dilation = -0.5f;
-	while (cur_dilation < +0.5f)
+	door_node = game->doors;
+	while (door_node)
 	{
-		cur_guess = ft_vec_sum(
-			game->player.pos,
-			ft_vec_normalize(
-				ft_vec_sum(
-					game->player.dir,
-					ft_vec_prod(game->player.camera_plane, cur_dilation)
-				)
+		if (
+			door_reached(door_node->content, 2 * M_PI - range / 2, game)
+			|| door_reached(door_node->content, 0, game)
+			|| door_reached(door_node->content, range / 2, game)
+		)
+			open_close_door(door_node->content);
+		door_node = door_node->next;
+	}
+}
+
+static t_bool	door_reached(t_door *door, float ray_angle, t_game *game)
+{
+	const t_2d_point		ray = ft_rotate(game->player.dir, ray_angle);
+	t_list					*first_spotted_door_node;
+	t_spotted_door			*first_spotted_door;
+	t_raycast_return		rc_ret;
+
+	rc_ret = raycast(game, game->player.pos, ray, (t_int_2d_point){-1, -1});
+	first_spotted_door_node = ft_lstlast(rc_ret.doors);
+	if (NULL == first_spotted_door_node)
+		return (e_false);
+	first_spotted_door = first_spotted_door_node->content;
+	return (
+		first_spotted_door && first_spotted_door->door_ref
+		&& ft_int_2d_point_equals(
+			&first_spotted_door->door_ref->pos, &door->pos
 			)
-		);
-		if (door_opened(cur_guess, game))
-			return ;
-		cur_dilation += check_step_size;
-	}
+		&& first_spotted_door->\
+			rc_data.euclidean_dist <= game->player.action_range
+	);
 }
 
-static t_bool	door_opened(t_2d_point forward_pos, t_game *game)
+static void		open_close_door(t_door *door)
 {
-	const t_int_2d_point	forward_tile = as_int_2dpt(&forward_pos);
-	t_list					*door_node;
-	t_door					*door;
-
-	if (is_door_map_char(game->map_handle.map[forward_tile.y][forward_tile.x]))
+	if (e_DOOR_CLOSED == door->status
+		|| e_DOOR_OPEN == door->status)
 	{
-		door_node = ft_lstfind(game->doors, door_pos, &forward_tile);
-		if (door_node)
-		{
-			door = (t_door *)door_node->content;
-			if (door)
-			{
-				if (e_DOOR_CLOSED == door->status
-					|| e_DOOR_OPEN == door->status)
-				{
-					door->prev_status = door->status;
-					door->status = e_DOOR_AJAR;
-					return (e_true);
-				}
-			}
-		}
+		door->prev_status = door->status;
+		door->status = e_DOOR_AJAR;
 	}
-	return (e_false);
 }

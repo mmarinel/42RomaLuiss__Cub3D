@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 12:04:08 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 20:07:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 02:37:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ t_bool	enemy_aggro(const void *enemy, const void *game)
 {
 	const t_enemy		*__enemy = (const t_enemy *)enemy;
 	const t_game		*__game = (const t_game *)game;
-	const t_2d_point	dir
-		= ft_vec_sum(
-			ft_vec_opposite(__enemy->pos),
-			__game->player.pos
-		);
-	const t_2d_point	next_pos
-		= map_pos_clip(
-			ft_vec_sum(
-				__enemy->pos,
-				ft_change_magnitude(dir, __enemy->step_size)
-				),
-			(t_game *)__game
-		);
+	// const t_2d_point	dir
+	// 	= ft_vec_sum(
+	// 		ft_vec_opposite(__enemy->pos),
+	// 		__game->player.pos
+	// 	);
+	// const t_2d_point	next_pos
+	// 	= map_pos_clip(
+	// 		ft_vec_sum(
+	// 			__enemy->pos,
+	// 			ft_change_magnitude(dir, __enemy->step_size)
+	// 			),
+	// 		(t_game *)__game
+	// 	);
 
 	return (
 		enemy_colliding(__enemy, &__game->player.pos)
-		&& is_traversable_pos((t_game *)__game, &__enemy->pos, &next_pos)
+		&& is_traversable_pos((t_game *)__game, &__enemy->pos, &__game->player.pos)
 		);
 }
 
@@ -42,8 +42,8 @@ t_bool	enemy_colliding(const void *enemy, const void *pos)
 	const t_2d_point	*__pos = (const t_2d_point *)pos;
 	const t_2d_point	dist_vec
 		= ft_vec_sum(
-			*__pos,
-			ft_vec_opposite(__enemy->pos)
+			ft_vec_opposite(__enemy->pos),
+			*__pos
 			);
 	
 	return (

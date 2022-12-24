@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 23:21:38 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 02:59:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_bool	door_front_side(t_tile door_type, t_side side);
 t_bool	door_pos(const void *door, const void *pos);
 t_bool	is_spotted_door_valicable_in_tile(const void *door, const void *end_tile);
 t_bool	is_spotted_door_valicable(const void *door, const void *_);
+t_bool	is_spotted_door_invalicable(const void *door, const void *_);
 
 //*		enemies
 t_bool	enemy_colliding(const void *enemy, const void *pos);

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 17:35:46 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 03:06:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*ft_new_door_node(t_int_2d_point pos, t_tile type)
 t_list	*ft_new_enemy_node(const t_2d_point *pos)
 {
 	const size_t	die_anim_frames = ENEMY_DIE_ANIM_FRAMES;
-	const float		alignment = 0.1f;
+	const float		alignment = 0.5f;//*	was 0.1f
 	t_enemy			*enemy;
 
 	enemy = (t_enemy *) malloc(sizeof(t_enemy));

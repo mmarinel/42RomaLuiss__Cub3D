@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 23:43:26 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 03:32:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ t_bool	ft_game_init(
 	game_ref->player.hp = 100;
 	game_ref->player.mana = 100;
 	game_ref->player.attack_damage = 10;
-	game_ref->player.attack_range = (3.0f / 2) * ENEMIES_DEFAULT_COLLISION_RADIUS;
+	game_ref->player.attack_range = (3.0f / 2) * ENEMIES_DEFAULT_COLLISION_RADIUS + 1;
+	game_ref->player.action_range = 1.0f + 1;
 	game_ref->player.attacking = e_false;
 	game_ref->player.enemy_colliding = e_false;
 	game_ref->player.west_angle = player_west_angle(game_ref);

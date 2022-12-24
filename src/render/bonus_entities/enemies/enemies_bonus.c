@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:36:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:42:34 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 03:40:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ void	render_enemies(
 	t_game *g
 	)
 {
-	t_list	*cur;
+	t_list				*cur;
+	t_rendered_enemy	*spotted_enemy;
 
 	cur = enemies;
 	while (cur)
 	{
-		render_enemy(cur->content, g);
+		spotted_enemy = (t_rendered_enemy *)cur->content;
+		if (is_traversable_pos(g, &spotted_enemy->enemy->pos, &g->player.pos))
+			render_enemy(spotted_enemy, g);
 		cur = cur->next;
 	}
 }

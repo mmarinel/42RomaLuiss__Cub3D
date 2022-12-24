@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 00:24:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 02:25:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,34 @@ static void	enemy_take_damage(t_enemy *enemy, t_game *game)
 		enemy->health = 0;
 }
 
-static void	attack_enemy(t_game *game)
+static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game)
 {
-	//TODO	cast multiple ray for a certain angle instead of just using the player direction
+	const t_int_2d_point	enemy_tile = as_int_2dpt(&enemy->pos);
+	const t_2d_point		ray = ft_rotate(game->player.dir, ray_angle);
+	t_raycast_return		rc_ret;
+
+	rc_ret = raycast(game, game->player.pos, ray, enemy_tile);
+	return (
+		ft_int_2d_point_equals(&enemy_tile, &rc_ret.wall.square)
+		&& e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
+		&& rc_ret.wall.euclidean_dist <= game->player.attack_range
+		);
 }
 
 void	attack_enemies(t_game *game)
 {
+	const float			attack_view = M_PI / 4;
 	t_list				*enemy_node;
-	t_enemy				*enemy;
-	t_int_2d_point		enemy_tile;
-	t_raycast_return	rc_ret;
 
 	enemy_node = game->enemies;
 	while (enemy_node)
 	{
-		enemy = (t_enemy *)enemy_node->content;
-		enemy_tile = as_int_2dpt(&enemy->pos);
-		rc_ret = raycast(
-			game, game->player.pos, game->player.dir, enemy_tile
-			);
-		if (ft_int_2d_point_equals(&enemy_tile, &rc_ret.wall.square)
-			&& e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
-			&& rc_ret.wall.euclidean_dist <= game->player.attack_range)
-			enemy_take_damage(enemy, game);//TODO	enemy_take_damage function if player.attack_damage is float
+		if (
+			enemy_hit(enemy_node->content, 2 * M_PI - attack_view / 2, game)
+			|| enemy_hit(enemy_node->content, 0, game)
+			|| enemy_hit(enemy_node->content, attack_view / 2, game)
+		)
+			enemy_take_damage(enemy_node->content, game);
 		enemy_node = enemy_node->next;
 	}
 }

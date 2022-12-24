@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 23:03:43 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 04:10:19 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_bool	rc_process_bonus(
 	{
 		if (rc_data->process_bonus_doors)
 			hit = rc_scan_door(rc_data, pos, ray, game);
-		if (rc_data->process_bonus_enemies)
+		if (e_false == hit && rc_data->process_bonus_enemies)
 			rc_scan_enemy(rc_data, game);
 	}
 	return (hit);
