@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:27:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 21:41:33 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:37:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	rc_ret_set_data(
 	rc_ret_data->side = rc_data->side;
 	rc_ret_data->view_side_direction = (rc_data->ray_dir.x >= 0);
 	rc_ret_data->view_forw_direction = (rc_data->ray_dir.y >= 0);
+	rc_ret_data->door_obstacle = rc_data->door_obstacle;
 	rc_ret_data->ray = *ray;
 }
 

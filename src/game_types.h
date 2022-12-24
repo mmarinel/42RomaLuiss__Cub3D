@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 02:13:10 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:36:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_rc_ret_data
 	t_2d_point		ray;
 	t_ray_dir		view_forw_direction;
 	t_ray_dir		view_side_direction;
+	t_bool			door_obstacle;
 	float			euclidean_dist;
 	float			perp_dist;
 }	t_rc_ret_data;
@@ -190,6 +191,7 @@ typedef struct s_raycast_data
 	t_bool			process_bonus_doors;
 	t_bool			process_bonus_enemies;
 	t_list			*doors;
+	t_bool			door_obstacle;
 	t_side			side;
 }	t_raycast_data;
 

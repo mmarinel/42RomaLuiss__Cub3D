@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 04:10:19 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:54:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param game 
  * @return t_bool true iff the wall-side of a door has been hit
  */
-static t_bool	rc_process_bonus(
+static void	rc_process_bonus(
 	t_raycast_data *rc_data,
 	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
@@ -53,7 +53,8 @@ t_raycast_return	raycast_algorithm(
 	rc_handlers.rc_init(&rc_data, pos, ray);
 	hit = e_false;
 	while (e_false == hit
-		&& e_false == rc_handlers.rc_stop(&rc_data, &hit))
+		&& e_false == rc_handlers.rc_stop(&rc_data, &hit)
+		&& (e_false == (BONUS && e_true == rc_data.door_obstacle)))
 	{
 		rc_data.prev_sq = rc_data.cur_sq;
 		ft_walk_through_nhp(&rc_data);
@@ -62,30 +63,28 @@ t_raycast_return	raycast_algorithm(
 			)
 			hit = e_true;
 		else
-			hit = rc_process_bonus(&rc_data, pos, ray, game);
+			rc_process_bonus(&rc_data, pos, ray, game);
 	}
 	rc_ret_set_data(&rc_data, &rc_ret.wall, pos, ray);
 	rc_set_bonus(&rc_data, &rc_ret);
 	return (rc_ret);
 }
 
-static t_bool	rc_process_bonus(
+static void	rc_process_bonus(
 	t_raycast_data *rc_data,
 	const t_2d_point *pos, const t_2d_point *ray,
 	t_game *game
 	)
 {
-	t_bool	hit;
-
-	hit = e_false;
 	if (BONUS)
 	{
 		if (rc_data->process_bonus_doors)
-			hit = rc_scan_door(rc_data, pos, ray, game);
-		if (e_false == hit && rc_data->process_bonus_enemies)
+			rc_scan_door(rc_data, pos, ray, game);
+		if (rc_data->process_bonus_enemies
+			&& e_false == rc_data->door_obstacle
+			)
 			rc_scan_enemy(rc_data, game);
 	}
-	return (hit);
 }
 
 static void	rc_set_bonus(

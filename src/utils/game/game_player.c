@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 23:39:08 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:52:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,10 @@ static t_bool	door_collision(
 	const t_int_2d_point *next_tile,
 	const t_raycast_return *rc_return
 	)
-{
+{(void)next_tile;
 	return (
-		(BONUS && e_true == door_obstacle_through_dir(rc_return->doors, next_tile))
+		(BONUS && e_true == rc_return->wall.door_obstacle)
+		// (BONUS && e_true == door_obstacle_through_dir(rc_return->doors, next_tile))
 	);
 }
 
