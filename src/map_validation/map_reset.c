@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:30:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 12:53:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:07:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	map_reset(t_map_holder *map_handle)
 		{
 			if (is_player_map_char(map_handle->map[y][x])
 				|| is_enemy_map_char(map_handle->map[y][x])
+				|| is_item_map_char(map_handle->map[y][x])
 				)
 				map_handle->map[y][x] = e_FLOOR;
 			y++;

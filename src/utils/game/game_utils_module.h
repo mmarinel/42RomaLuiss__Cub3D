@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 02:59:24 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:15:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool		is_map_pos(
 	);
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );
+t_bool		is_item_map_char( char c );
 
 //*		geometry
 t_2d_point		ft_rotate(t_2d_point vector, float ray_angle);
@@ -99,6 +100,9 @@ t_bool	door_pos(const void *door, const void *pos);
 t_bool	is_spotted_door_valicable_in_tile(const void *door, const void *end_tile);
 t_bool	is_spotted_door_valicable(const void *door, const void *_);
 t_bool	is_spotted_door_invalicable(const void *door, const void *_);
+
+//*		items
+t_list	*ft_new_item_node(const t_2d_point *pos);
 
 //*		sun
 int	west_axis_angle_to_px_shift(t_game *g);

@@ -104,6 +104,7 @@ SRC_NOPREFIX=\
 ./src/init/game_initialization.c\
 ./src/init/bonus/scan_doors.c\
 ./src/init/bonus/scan_enemies.c\
+./src/init/bonus/scan_items.c\
 ./src/map_validation/map_attributes.c\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\

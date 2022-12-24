@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 17:39:35 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 18:44:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	render_next_frame(t_game *g)
 	render_collision(g);
 	render_health_bar(g);
 	render_mana_bar(g);
+	render_items_bar(g);
 	if (g->player.attacking)
 		render_attack(g);
 	mlx_put_image_to_window(

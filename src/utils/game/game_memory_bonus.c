@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 03:06:54 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:28:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ t_list	*ft_new_enemy_node(const t_2d_point *pos)
 	enemy->pos = (t_2d_point){pos->x + alignment, pos->y + alignment};
 	enemy->die_anim_frames = die_anim_frames;
 	return (ft_lstnew(NULL, enemy));
+}
+
+t_list	*ft_new_item_node(const t_2d_point *pos)
+{
+	const float		alignment = 0.5f;//*	was 0.1f
+	t_item			*item;
+
+	item = (t_item *) malloc(sizeof(t_item));
+	if (NULL == item)
+		return (NULL);
+	item->picked = e_false;
+	item->pos = (t_2d_point){pos->x + alignment, pos->y + alignment};
+	item->anim_dir = (+1);
+	item->cur_shift = 0;
+	item->bouncing_px_shift = ITEM_BOUNCING_PX_SHIFT;
+	item->anim_clock = 3;
+	return (ft_lstnew(NULL, item));
 }
 
 t_enemy	*ft_clone_enemy(const t_enemy *enemy)

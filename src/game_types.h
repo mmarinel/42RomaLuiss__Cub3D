@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 12:36:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:29:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ typedef struct s_enemy
 	size_t		die_anim_frames;
 }	t_enemy;
 
+typedef struct s_item
+{
+	t_bool		picked;
+	t_2d_point	pos;
+	int			anim_dir;
+	int			cur_shift;
+	size_t		bouncing_px_shift;
+	int			anim_clock;
+}	t_item;
+
 typedef enum e_door_status
 {
 	e_DOOR_OPEN = 0,
@@ -104,6 +114,8 @@ typedef struct s_player
 	t_bool		attacking;
 	t_bool		enemy_colliding;
 	float		west_angle;
+	size_t		tot_items;
+	size_t		picked_items;
 	t_2d_point	pos;
 	t_2d_point	dir;
 	t_2d_point	camera_plane;
@@ -125,6 +137,7 @@ typedef struct s_game
 	t_player		player;
 	t_list			*enemies;
 	t_list			*doors;
+	t_list			*items;
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
 	t_game_texture	textures;
@@ -155,6 +168,12 @@ typedef struct s_rc_ret_data
 	float			euclidean_dist;
 	float			perp_dist;
 }	t_rc_ret_data;
+
+typedef struct s_spotted_item
+{
+	t_item	*item;
+	float	perp_dist;
+}	t_spotted_item;
 
 typedef struct s_spotted_enemy
 {

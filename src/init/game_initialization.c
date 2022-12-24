@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 03:32:28 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 18:42:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ t_bool	ft_game_init(
 		{
 			game_set_inital_vectors(game_ref);
 			game_ref->enemies = NULL;
+			game_ref->items = NULL;
 			game_ref->doors = NULL;
 			if (BONUS)
 			{
+				scan_items(game_ref);
 				scan_enemies(game_ref);
 				scan_doors(game_ref);
 			}
@@ -110,6 +112,8 @@ t_bool	ft_game_init(
 	game_ref->player.attacking = e_false;
 	game_ref->player.enemy_colliding = e_false;
 	game_ref->player.west_angle = player_west_angle(game_ref);
+	game_ref->player.picked_items = 0;
+	game_ref->player.tot_items = ft_lstsize(game_ref->items);
 	return (error == e_false);
 }
 

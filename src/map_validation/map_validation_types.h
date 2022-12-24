@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:12:31 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:00:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_tile
 	e_DOOR_HORIZONTAL = 'D',
 	e_DOOR_VERTICAL = 'd',
 	e_ENEMY = 'X',
+	e_ITEM = 'C',
 	e_PLAYER_N = 'N',
 	e_PLAYER_S = 'S',
 	e_PLAYER_E = 'E',

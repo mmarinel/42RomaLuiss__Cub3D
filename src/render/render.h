@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 00:48:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 18:44:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@
 
 # include "../sys_includes.h"
 
+# define UHD_HP_VERT_OFFS (0					+	0 * UHD_BAR_HEIGHT)
+# define UHD_MANA_VERT_OFFS (UHD_HP_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
+# define UHD_ITEM_VERT_OFFS (UHD_MANA_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
+
 void	draw_background(t_game *g);
 
 //*		uhd
 void	render_health_bar(t_game *g);
 void	render_mana_bar(t_game *g);
+void	render_items_bar(t_game *g);
 
 
 //******		bonuses

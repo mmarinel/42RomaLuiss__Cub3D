@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 12:53:45 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:06:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ static t_bool	is_map_char_pos_valid(
 {
 	if (is_floor_map_char(map[row_index][col_index])
 		|| is_player_map_char(map[row_index][col_index])
+		|| is_door_map_char(map[row_index][col_index])
 		|| is_enemy_map_char(map[row_index][col_index])
+		|| is_item_map_char(map[row_index][col_index])
 	)
 	{
 		if (
@@ -115,9 +117,9 @@ static t_bool	is_map_char_pos_valid(
 		)
 			return (e_false);
 	}
-	else if (BONUS && is_door_map_char(map[row_index][col_index])
-			&& is_map_edge(map_handle, col_index, row_index))
-			return (e_false);
+	// else if (BONUS && is_door_map_char(map[row_index][col_index])
+	// 		&& is_map_edge(map_handle, col_index, row_index))
+	// 		return (e_false);
 	return (e_true);
 }
 
