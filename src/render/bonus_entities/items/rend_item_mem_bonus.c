@@ -6,12 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:32:53 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 20:45:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:11:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rend_bonus.h"
 
+static void		item_update_cols(
+	t_rendered_item *rend_item, const size_t screen_col
+	);
 static t_bool	item_spotted(const void *list, const void *item);
 //*		end of static declarations
 
@@ -39,29 +42,34 @@ void	update_item_list(
 	size_t screen_col
 	)
 {
-	t_list	*cur;
+	t_list			*cur;
+	t_rendered_item	*rend_item;
 
 	if (NULL == rc_ret->spotted_item.item || NULL == list)
 		return ;
 	cur = ft_lstfind(*list, item_spotted, rc_ret->spotted_item.item);
 	if (NULL == cur)
 		ft_lstadd_back(list, ft_new_rend_item_node(screen_col, rc_ret));
-	else if (
-		((t_rendered_item *)cur->content)\
-			->min_perp_dist > rc_ret->spotted_item.perp_dist
-	)
+	else
 	{
-		((t_rendered_item *)cur->content)->min_perp_dist
-			= rc_ret->spotted_item.perp_dist;
-		((t_rendered_item *)cur->content)->last_screen_col
-			= screen_col;
-		((t_rendered_item *)cur->content)->mid_screen_col
-			= (
-				((t_rendered_item *)cur->content)->first_screen_col
-				+ ((t_rendered_item *)cur->content)->last_screen_col
-			)
-			/ 2.0f;
+		rend_item = ((t_rendered_item *)cur->content);
+		if (rc_ret->spotted_item.perp_dist < rend_item->min_perp_dist)
+		{
+			rend_item->min_perp_dist = rc_ret->spotted_item.perp_dist;
+		}
+		item_update_cols(rend_item, screen_col);
 	}
+}
+
+static void		item_update_cols(
+	t_rendered_item *rend_item, const size_t screen_col
+	)
+{
+	rend_item->last_screen_col = screen_col;
+	rend_item->mid_screen_col = (
+			(rend_item->first_screen_col + rend_item->last_screen_col)
+			/ 2.0f
+		);
 }
 
 static t_bool	item_spotted(const void *cur, const void *item)

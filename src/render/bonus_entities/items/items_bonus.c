@@ -6,18 +6,21 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 00:34:37 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 17:23:45 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:47:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rend_bonus.h"
 
-static void	render_item(
+static void		render_item(
 	t_rendered_item *item_data,
 	t_game *g
 	);
-static void	item_shift(t_rendered_item *item_data);
-static void	item_render_col(
+static t_bool	renderable(
+	t_rendered_item *item_data, const size_t item_size
+	);
+static void		item_shift(t_rendered_item *item_data);
+static void		item_render_col(
 	const size_t screen_col,
 	const size_t resized_texture_col,
 	const t_rendered_item *item_data,
@@ -37,8 +40,7 @@ void	render_items(
 	while (cur)
 	{
 		spotted_item = (t_rendered_item *)cur->content;
-		if (spotted_item->item
-			&& is_traversable_pos(g, &spotted_item->item->pos, &g->player.pos))
+		if (is_traversable_pos(g, &spotted_item->item->pos, &g->player.pos))
 			render_item(spotted_item, g);
 		cur = cur->next;
 	}
@@ -55,19 +57,32 @@ static void	render_item(
 	size_t			i;
 	int				screen_col;
 
-	if (0 == item_size || item_data->item->picked)
+	if (e_false == renderable(item_data, item_size))
 		return ;
 	item_data->item_size = item_size;
-	screen_col = item_data->mid_screen_col;
 	item_shift(item_data);
+	screen_col = item_data->mid_screen_col - (float)item_size / 2;
 	i = 0;
 	while (i < item_size)
 	{
-		if (screen_col >= 0 && screen_col < (int)g->screen_handle.width)//TODO	"<" anche in render enemy !!!!!
+		if (screen_col >= 0 && screen_col < (int)g->screen_handle.width)
 			item_render_col(screen_col, i, item_data, g);
 		screen_col += 1;
 		i += 1;
 	}
+}
+
+static t_bool	renderable(
+	t_rendered_item *item_data, const size_t item_size
+	)
+{
+	return (
+		e_false == item_data->item->picked
+		&& item_size > 0
+		&& item_size <= (
+			item_data->last_screen_col - item_data->first_screen_col
+		)
+	);
 }
 
 static void	item_shift(t_rendered_item *item_data)
