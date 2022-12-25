@@ -138,6 +138,7 @@ SRC_NOPREFIX=\
 ./src/render/bonus_entities/doors/doors_bonus.c\
 ./src/render/bonus_entities/enemies/enemies_bonus.c\
 ./src/render/bonus_entities/enemies/rend_enem_mem_bonus.c\
+./src/render/bonus_entities/items/items_bonus.c\
 ./src/render/bonus_entities/items/rend_item_mem_bonus.c\
 ./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
@@ -146,6 +147,7 @@ SRC_NOPREFIX=\
 ./src/render/line_drawing/bres_logic.c\
 ./src/render/textures/door_bonus.c\
 ./src/render/textures/enemies_bonus.c\
+./src/render/textures/items_bonus.c\
 ./src/render/textures/nearest_neighbour.c\
 ./src/render/textures/wall.c\
 ./src/render/uhd/uhd.c\

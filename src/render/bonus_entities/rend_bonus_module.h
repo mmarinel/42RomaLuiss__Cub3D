@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:24:10 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 20:46:21 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 01:14:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ t_list	*ft_new_rend_enem_node(
 	);
 
 //*		items
+void	render_items(
+	t_list *items,
+	t_game *g
+	);
 void	update_item_list(
 	t_list **list,
 	const t_raycast_return *rc_ret,

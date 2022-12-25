@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 20:47:27 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 01:14:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	render_next_frame(t_game *g)
 		col++;
 	}
 	render_enemies(enemies, g);
-	// render_items(items, g);
+	render_items(items, g);
 	render_collision(g);
 	render_health_bar(g);
 	render_mana_bar(g);

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 18:07:07 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 01:41:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@
 # define ROT_ANGLE_INCREMENT 0.025f
 
 # define SUN_FRAMES 19
+
 # define ENEMY_DIE_ANIM_FRAMES 48
-# define ITEM_BOUNCING_PX_SHIFT 50
-# define ITEM_ANIM_DELAY_FRAMES 2
-# define ITEM_BOUNCING_NEXTPOS_OFFS 4
+
 # define DOOR_OPENING_DELAY_FRAMES 12
+
+# define ITEM_BOUNCING_PX_SHIFT 4
+# define ITEM_BOUNCING_MAX_SHIFT 16
 
 # define UHD_BAR_HEIGHT 5
 
