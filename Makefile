@@ -87,6 +87,7 @@ SRC_NOPREFIX=\
 ./src/main.c\
 ./src/hooks/doors_bonus.c\
 ./src/hooks/enemies_bonus.c\
+./src/hooks/items_bonus.c\
 ./src/hooks/keys_hook.c\
 ./src/hooks/loop_hook.c\
 ./src/hooks/player_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 17:29:39 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:40:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	loop_hook(t_game *game)
 	{
 		west_angle_update(game);
 		player_enemy_collision_check(game);
+		player_item_collision_check(game);
 		enemies_anim_death(game);
 		clean_enemies(game);
+		clean_items(game);
 		move_enemies(game);
 		animate_doors(game);
 	}
