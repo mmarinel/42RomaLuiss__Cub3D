@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 00:34:37 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 01:42:49 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:23:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	render_item(
 	t_rendered_item *item_data,
 	t_game *g
 	);
-static void	item_shift(t_item *item);
+static void	item_shift(t_rendered_item *item_data);
 static void	item_render_col(
 	const size_t screen_col,
 	const size_t resized_texture_col,
@@ -59,7 +59,7 @@ static void	render_item(
 		return ;
 	item_data->item_size = item_size;
 	screen_col = item_data->mid_screen_col;
-	item_shift(item_data->item);
+	item_shift(item_data);
 	i = 0;
 	while (i < item_size)
 	{
@@ -70,13 +70,19 @@ static void	render_item(
 	}
 }
 
-static void	item_shift(t_item *item)
+static void	item_shift(t_rendered_item *item_data)
 {
-	if (ft_flt_abs(item->cur_shift) >= ITEM_BOUNCING_MAX_SHIFT)
-		item->anim_dir *= (-1);
-	item->cur_shift += (
-		(item->anim_dir) * item->bouncing_px_shift
-		);
+	const size_t	max_shift = item_data->item_size / 4.0f;
+	const size_t	unit_shift = max_shift / ITEM_ANIM_FRAME_STEP;
+	t_item			*const item = item_data->item;
+
+	item->bouncing_clock = (
+		(item->bouncing_clock + 1) % (ITEM_ANIM_FRAME_STEP + 1)
+	);
+	if (0 == item->bouncing_clock)
+		item->anim_dir *= -1;
+	item->cur_increment += (item->anim_dir);
+	item->cur_shift = (item->cur_increment) * (int)unit_shift;
 }
 
 static void	item_render_col(

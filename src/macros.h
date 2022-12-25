@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 01:41:53 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 13:52:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@
 # define MAX_ROT_ANGLE 0.314159f
 # define ROT_ANGLE_INCREMENT 0.025f
 
+# define FLT_PRECISION 6
+
+//*		BONUSES
+
 # define SUN_FRAMES 19
 
 # define ENEMY_DIE_ANIM_FRAMES 48
 
 # define DOOR_OPENING_DELAY_FRAMES 12
 
-# define ITEM_BOUNCING_PX_SHIFT 4
-# define ITEM_BOUNCING_MAX_SHIFT 16
+# define ITEM_ANIM_FRAMES 16
+# define ITEM_ANIM_FRAME_STEP (ITEM_ANIM_FRAMES / 2)
 
 # define UHD_BAR_HEIGHT 5
-
-# define FLT_PRECISION 6
 
 #endif

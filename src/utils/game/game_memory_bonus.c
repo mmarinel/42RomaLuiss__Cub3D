@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/25 01:42:10 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 14:18:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ t_list	*ft_new_item_node(const t_2d_point *pos)
 		return (NULL);
 	item->picked = e_false;
 	item->pos = (t_2d_point){pos->x + alignment, pos->y + alignment};
-	item->anim_dir = (+1);
 	item->cur_shift = 0;
-	item->bouncing_px_shift = ITEM_BOUNCING_PX_SHIFT;
+	item->cur_increment = 0;
+	item->anim_dir = (+1);
+	item->bouncing_clock = 0;
 	return (ft_lstnew(NULL, item));
 }
 

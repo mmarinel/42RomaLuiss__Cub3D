@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 01:42:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/25 14:18:02 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ typedef struct s_item
 	t_bool		picked;
 	t_2d_point	pos;
 	int			anim_dir;
+	int			cur_increment;
 	int			cur_shift;
-	size_t		bouncing_px_shift;
+	int			bouncing_clock;
 }	t_item;
 
 typedef enum e_door_status
