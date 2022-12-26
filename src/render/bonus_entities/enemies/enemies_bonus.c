@@ -6,47 +6,25 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:36:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 23:55:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:13:24 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rend_bonus.h"
 
-static void	render_enemy(
-	t_rendered_enemy *enemy_data,
-	t_game *g
-	);
 static t_bool	renderable(
-	t_rendered_enemy *enemy_data, const size_t enemy_size
+	t_rendered_entity *enemy_data, const size_t enemy_size
 	);
 static void	enemy_render_col(
 	const size_t screen_col,
 	const size_t resized_texture_col,
-	const t_rendered_enemy *enemy_data,
+	const t_rendered_entity *enemy_data,
 	t_game *g
 	);
 //*		end of static declarations
 
-void	render_enemies(
-	t_list *enemies,
-	t_game *g
-	)
-{
-	t_list				*cur;
-	t_rendered_enemy	*spotted_enemy;
-
-	cur = enemies;
-	while (cur)
-	{
-		spotted_enemy = (t_rendered_enemy *)cur->content;
-		if (is_traversable_pos(g, &spotted_enemy->enemy->pos, &g->player.pos))
-			render_enemy(spotted_enemy, g);
-		cur = cur->next;
-	}
-}
-
-static void	render_enemy(
-	t_rendered_enemy *enemy_data,
+void	render_enemy(
+	t_rendered_entity *enemy_data,
 	t_game *g
 	)
 {
@@ -58,7 +36,7 @@ static void	render_enemy(
 
 	if (e_false == renderable(enemy_data, enemy_size))
 		return ;
-	enemy_data->enemy_size = enemy_size;
+	enemy_data->entity_size = enemy_size;
 	screen_col = enemy_data->mid_screen_col - (float)enemy_size / 2;
 	i = 0;
 	while (i < enemy_size)
@@ -71,33 +49,38 @@ static void	render_enemy(
 }
 
 static t_bool	renderable(
-	t_rendered_enemy *enemy_data, const size_t enemy_size
+	t_rendered_entity *enemy_data, const size_t enemy_size
 	)
 {
-	return (
-		enemy_data->enemy->alive
-		&& (
-			enemy_data->enemy->health > 0
-			|| 0 != enemy_data->enemy->die_anim_frames % 2
-		)
-		&& enemy_size > 0
-		&& enemy_size / 2.0f <= (
-			enemy_data->last_screen_col - enemy_data->first_screen_col
-		)
-	);
+	t_enemy	*enemy;
+
+	if (e_ENT_ENEMY != enemy_data->which)
+		return (e_false);
+	else
+	{
+		enemy = (t_enemy *)enemy_data->entity;
+		return (
+			enemy->alive
+			&& (enemy->health > 0 || 0 != enemy->die_anim_frames % 2)
+			&& enemy_size > 0
+			&& enemy_size / 2.0f <= (
+				enemy_data->last_screen_col - enemy_data->first_screen_col
+			)
+		);
+	}
 }
 
 static void	enemy_render_col(
 	const size_t screen_col,
 	const size_t resized_texture_col,
-	const t_rendered_enemy *enemy_data,
+	const t_rendered_entity *enemy_data,
 	t_game *g
 	)
 {
 	const t_column_info		col_info = get_enemy_column_info(
 		resized_texture_col,
-		enemy_data->enemy_size,
-		enemy_data,
+		enemy_data->entity_size,
+		enemy_data->entity,
 		g
 	);
 	t_int_2d_point	endpoint[2];

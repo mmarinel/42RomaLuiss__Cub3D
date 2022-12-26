@@ -33,9 +33,11 @@ SRC_NOPREFIX=\
 ./src/ft_itoa.c\
 ./src/ft_lstadd_back.c\
 ./src/ft_lstadd_front.c\
+./src/ft_lstadd_in_order.c\
 ./src/ft_lstclear.c\
 ./src/ft_lstdelone.c\
 ./src/ft_lstfind.c\
+./src/ft_lst_get_prevnext.c\
 ./src/ft_lstiter.c\
 ./src/ft_lstlast.c\
 ./src/ft_lstmap.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/25 01:14:13 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:49:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,20 @@ void	render_next_frame(t_game *g)
 {
 	size_t				col;
 	t_raycast_return	rc_return;
-	t_list				*enemies;
-	t_list				*items;
+	t_list				*entities;
 	
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	(void)draw_background;//* MANDATORY
 	draw_background_bonus(g);
 	draw_sun(g);
-	enemies = NULL;
-	items = NULL;
+	entities = NULL;
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
 		rc_return = raycast_wall(g, ray_dir_for_col(col, g));
 		if (BONUS)
 		{
-			update_enemy_list(&enemies, &rc_return, col);
-			update_item_list(&items, &rc_return, col);
+			update_entity_list(&entities, &rc_return, col);
 		}
 		render_column(col, g, &rc_return);
 		if (BONUS)
@@ -52,8 +49,7 @@ void	render_next_frame(t_game *g)
 		}
 		col++;
 	}
-	render_enemies(enemies, g);
-	render_items(items, g);
+	render_entities(entities, g);
 	render_collision(g);
 	render_health_bar(g);
 	render_mana_bar(g);

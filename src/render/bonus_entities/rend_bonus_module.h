@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:24:10 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 01:14:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:52:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,12 @@ void	render_doors(
 	t_game *g
 	);
 
-//*		enemies
-void	render_enemies(
-	t_list *enemies,
-	t_game *g
-	);
-void	update_enemy_list(
+//*		entities (enemy and item)
+void	render_entities(t_list *entities, t_game *g);
+void	update_entity_list(
 	t_list **list,
 	const t_raycast_return *rc_ret,
 	size_t screen_col
-	);
-t_list	*ft_new_rend_enem_node(
-	size_t screen_col,
-	const t_raycast_return *rc_ret
-	);
-
-//*		items
-void	render_items(
-	t_list *items,
-	t_game *g
-	);
-void	update_item_list(
-	t_list **list,
-	const t_raycast_return *rc_ret,
-	size_t screen_col
-	);
-t_list	*ft_new_rend_item_node(
-	size_t screen_col,
-	const t_raycast_return *rc_ret
 	);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 14:18:02 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 00:00:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ typedef enum e_side
 # define E_INDEX 9
 
 # define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
+
+typedef enum e_entity
+{
+	e_ENT_DOOR,
+	e_ENT_ENEMY,
+	e_ENT_ITEM,
+}	t_entity;
 
 typedef struct s_enemy
 {

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/13 19:45:02 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 01:12:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,14 @@ t_list				*ft_lstmap(
 						);
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char*));
+t_list				**ft_lst_get_prevnext(t_list **head,
+						t_bool(*criteria)(const void *, const void *),
+						const void *info
+						);
+void				ft_lstadd_in_order(t_list **head,
+						t_list *const new_el,
+						t_bool(*greater_than)(const void *, const void *)
+					);
 
 //* Printing
 void				ft_write( int fd, const char *str );

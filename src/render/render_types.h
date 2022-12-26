@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 20:35:46 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:56:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,27 @@
 # include "../utils/math/uti_math_types.h"
 
 /**
- * @brief an enemy is spotted multiple times as we send many rays for each tile.
- * To render an enemy, we take the column of the screen that gives the
+ * @brief an entity (enemy or item) is spotted multiple times
+ * as we send many rays for each tile.
+ * To render an entity, we take the column of the screen that gives the
  * ray which in turn gives the shortest perp distance, and for this column
  * we draw [rendered width / 2] on the left
  * and [rendered width / 2] on the right.
  * 
  */
-typedef struct s_rendered_enemy
+typedef struct s_rendered_entity
 {
-	t_enemy	*enemy;
-	//*			average of the two below
-	size_t	mid_screen_col;
-	//*			column of the first ray to hit the enemy
-	size_t	first_screen_col;
-	//*			column of the last ray to hit the enemy
-	size_t	last_screen_col;
-	float	min_perp_dist;
-	size_t	enemy_size;
-}	t_rendered_enemy;
-
-typedef struct s_rendered_item
-{
-	t_item	*item;
-	//*			average of the two below
-	size_t	mid_screen_col;
-	//*			column of the first ray to hit the enemy
-	size_t	first_screen_col;
-	//*			column of the last ray to hit the enemy
-	size_t	last_screen_col;
-	float	min_perp_dist;
-	size_t	item_size;
-}	t_rendered_item;
+	void		*entity;
+	t_entity	which;
+	size_t		entity_size;
+	float		min_perp_dist;
+	//*				average of the two below
+	size_t		mid_screen_col;
+	//*				column of the first ray to hit the entity
+	size_t		first_screen_col;
+	//*				column of the last ray to hit the entity
+	size_t		last_screen_col;
+}	t_rendered_entity;
 
 typedef struct s_column_info
 {

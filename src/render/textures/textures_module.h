@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:47:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/25 01:11:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:12:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_column_info	get_wall_column_info(
 t_column_info	get_enemy_column_info(
 	size_t resized_texture_col,
 	size_t enemy_size,
-	const t_rendered_enemy *enemy_data,
+	t_enemy *enemy,
 	t_game *g
 	);
 t_column_info	get_item_column_info(
