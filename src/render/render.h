@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 18:44:14 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/26 20:56:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,24 @@
 # define UHD_MANA_VERT_OFFS (UHD_HP_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
 # define UHD_ITEM_VERT_OFFS (UHD_MANA_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
 
+# define MMP_OFFSET (15)
+# define MMP_WIDTH (500)
+# define MMP_HEIGHT (200)
+# define MMP_BORDER_WIDTH (10)
+
 void	draw_background(t_game *g);
 
 //*		uhd
+void	render_minimap(t_game *g);
 void	render_health_bar(t_game *g);
 void	render_mana_bar(t_game *g);
 void	render_items_bar(t_game *g);
+void	mmp_border_draw_vertical_frames(
+			const t_int_2d_point *mmp_start, t_game *g
+			);
+void	mmp_border_draw_horizontal_frames(
+			const t_int_2d_point *mmp_start, t_game *g
+			);
 
 
 //******		bonuses
