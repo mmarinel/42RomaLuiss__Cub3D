@@ -154,6 +154,7 @@ SRC_NOPREFIX=\
 ./src/render/textures/wall.c\
 ./src/render/uhd/minimap.c\
 ./src/render/uhd/minimap_frames.c\
+./src/render/uhd/minimap_map.c\
 ./src/render/uhd/uhd.c\
 ./src/render/utils/brightness.c\
 ./src/render/utils/mlx_holder.c\

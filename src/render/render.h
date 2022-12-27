@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/26 20:56:18 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/27 21:10:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define MMP_WIDTH (500)
 # define MMP_HEIGHT (200)
 # define MMP_BORDER_WIDTH (10)
+# define MMP_TILE_WIDTH (16)
 
 void	draw_background(t_game *g);
 
@@ -51,6 +52,11 @@ void	mmp_border_draw_vertical_frames(
 			);
 void	mmp_border_draw_horizontal_frames(
 			const t_int_2d_point *mmp_start, t_game *g
+			);
+void	mmp_draw_tile(
+			const t_int_2d_point *mmp_px,
+			const t_int_2d_point *player_mmp_px,
+			t_game *g
 			);
 
 
