@@ -6,14 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:09:13 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/27 21:17:19 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:26:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../render.h"
 
-static t_int_2d_point	mmp_get_map_pos(
-	const t_int_2d_point *mmp_px, const t_int_2d_point *player_mmp_px,
+static void	mmp_draw_tile(
+	const t_int_2d_point *mmp_px,
+	const t_int_2d_point *player_mmp_px,
 	t_game *g
 	);
 static void	draw_mmp_wall(
@@ -30,7 +31,34 @@ static void	draw_enemy_box(
 	);
 //*		end of static declarations
 
-void	mmp_draw_tile(
+void	mmp_draw_map(
+	const t_int_2d_point *mmp_bottom_left, t_game *g
+	)
+{
+	const t_int_2d_point	top_left_corner = (t_int_2d_point){
+		mmp_bottom_left->x,
+		mmp_bottom_left->y - MMP_HEIGHT + 1
+	};
+	const t_int_2d_point	player_mmp_px = (t_int_2d_point){
+		mmp_bottom_left->x + MMP_WIDTH / 2,
+		mmp_bottom_left->y - MMP_HEIGHT / 2,
+	};
+	t_int_2d_point			mmp_px;
+
+	mmp_px.x = top_left_corner.x;
+	while (mmp_px.x < top_left_corner.x + MMP_WIDTH)
+	{
+		mmp_px.y = top_left_corner.y;
+		while (mmp_px.y < top_left_corner.y + MMP_HEIGHT)
+		{
+			mmp_draw_tile(&mmp_px, &player_mmp_px, g);
+			mmp_px.y += 1;
+		}
+		mmp_px.x += 1;
+	}
+}
+
+static void	mmp_draw_tile(
 	const t_int_2d_point *mmp_px,
 	const t_int_2d_point *player_mmp_px,
 	t_game *g
@@ -44,32 +72,10 @@ void	mmp_draw_tile(
 	enemy = ft_lstfind(g->enemies, enemy_pos, &map_pos);
 	if (enemy)
 		draw_enemy_box(mmp_px, g);
-	else if (ft_int_2d_point_equals(&player_map_pos, &map_pos))//*debug
+	else if (ft_int_2d_point_equals(&player_map_pos, &map_pos))
 		draw_mmp_player_box(mmp_px, g);
 	else if (e_FLOOR != g->map_handle.map[map_pos.y][map_pos.x])
 		draw_mmp_wall(mmp_px, g);
-}
-
-static t_int_2d_point	mmp_get_map_pos(
-	const t_int_2d_point *mmp_px, const t_int_2d_point *player_mmp_px,
-	t_game *g
-	)
-{
-	const t_2d_point	pos = map_pos_clip(
-		(t_2d_point){
-			(
-				(float)(mmp_px->x - player_mmp_px->x) / MMP_TILE_WIDTH
-					+ g->player.pos.x
-			),
-			(
-				(float)(mmp_px->y - player_mmp_px->y) / MMP_TILE_WIDTH
-					+ g->player.pos.y
-			)
-		},
-		g
-	);
-
-	return (as_int_2dpt(&pos));
 }
 
 static void	draw_mmp_wall(
@@ -108,15 +114,17 @@ static void	draw_enemy_box(
 	);
 }
 
-//*		debug
 static void	draw_mmp_player_box(
 	const t_int_2d_point *mmp_px,
 	t_game *g
 	)
 {
-	const t_color	box_col = (t_color){214, 4, 158, 1};;
+	const t_color	box_col = (t_color){214, 4, 158, 1};
+	static int		calls = 0;
 
 
+	calls += 1;
+	// printf("player printed %d times\n", calls);
 	ft_put_px_to_image(
 		&g->screen_handle.frame_data,
 		ft_get_pixel_offset(

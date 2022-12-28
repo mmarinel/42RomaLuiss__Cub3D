@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:12:20 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 23:23:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:25:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,16 @@ size_t	mlx_holder_max_offset( void );
 size_t	texture_pt_clip(int coordinate);
 int		texture_pt_clipper(t_clip_opcode opcode, size_t size);
 size_t	get_textures_size();
+
+//*		minimap
+t_int_2d_point	mmp_px_clip(
+	const t_int_2d_point *bottom_left,
+	const t_int_2d_point *mmp_px
+	);
+t_int_2d_point	mmp_get_map_pos(
+	const t_int_2d_point *mmp_px,
+	const t_int_2d_point *player_mmp_px,
+	t_game *g
+	);
 
 #endif

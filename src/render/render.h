@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/27 21:10:34 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:55:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,30 @@
 
 # include "../sys_includes.h"
 
-# define UHD_HP_VERT_OFFS (0					+	0 * UHD_BAR_HEIGHT)
-# define UHD_MANA_VERT_OFFS (UHD_HP_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
-# define UHD_ITEM_VERT_OFFS (UHD_MANA_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
-
-# define MMP_OFFSET (15)
-# define MMP_WIDTH (500)
-# define MMP_HEIGHT (200)
-# define MMP_BORDER_WIDTH (10)
-# define MMP_TILE_WIDTH (16)
-
 void	draw_background(t_game *g);
 
-//*		uhd
-void	render_minimap(t_game *g);
-void	render_health_bar(t_game *g);
-void	render_mana_bar(t_game *g);
-void	render_items_bar(t_game *g);
+//*		hud
+void	render_minimap(t_list *rays, t_game *g);
+void	mmp_draw_map(
+			const t_int_2d_point *mmp_bottom_left, t_game *g
+			);
+void	mmp_draw_rays(
+			t_list *rays,
+			const t_int_2d_point *mmp_bottom_left,
+			t_game *g
+			);
 void	mmp_border_draw_vertical_frames(
 			const t_int_2d_point *mmp_start, t_game *g
 			);
 void	mmp_border_draw_horizontal_frames(
 			const t_int_2d_point *mmp_start, t_game *g
 			);
-void	mmp_draw_tile(
-			const t_int_2d_point *mmp_px,
-			const t_int_2d_point *player_mmp_px,
-			t_game *g
+void	mmp_draw_background(
+			const t_int_2d_point *mmp_bottom_left, t_game *g
 			);
-
+void	render_health_bar(t_game *g);
+void	render_mana_bar(t_game *g);
+void	render_items_bar(t_game *g);
 
 //******		bonuses
 

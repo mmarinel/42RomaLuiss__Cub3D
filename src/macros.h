@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 13:52:39 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:09:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@
 # define ITEM_ANIM_FRAMES 16
 # define ITEM_ANIM_FRAME_STEP (ITEM_ANIM_FRAMES / 2)
 
+//*		minimap
+
 # define UHD_BAR_HEIGHT 5
+
+# define UHD_HP_VERT_OFFS (0					+	0 * UHD_BAR_HEIGHT)
+# define UHD_MANA_VERT_OFFS (UHD_HP_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
+# define UHD_ITEM_VERT_OFFS (UHD_MANA_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
+
+# define MMP_OFFSET (15)
+# define MMP_WIDTH (500)
+# define MMP_HEIGHT (200)
+# define MMP_BORDER_WIDTH (10)
+# define MMP_TILE_WIDTH (5)
+
 
 #endif

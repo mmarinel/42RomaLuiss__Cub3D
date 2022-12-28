@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/26 18:23:19 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:58:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,18 @@ void	render_next_frame(t_game *g)
 	size_t				col;
 	t_raycast_return	rc_return;
 	t_list				*entities;
+	t_list				*rays;
 	
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	(void)draw_background;//* MANDATORY
-	draw_background_bonus(g);
-	draw_sun(g);
-	entities = NULL;
+	if (BONUS)
+	{
+		entities = NULL;
+		rays = NULL;
+		draw_background_bonus(g);
+		draw_sun(g);
+	}
+	else
+		draw_background(g);
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
@@ -41,6 +47,7 @@ void	render_next_frame(t_game *g)
 		if (BONUS)
 		{
 			update_entity_list(&entities, &rc_return, col);
+			ft_lstadd_back(&rays, ft_new_ray_node(&rc_return));
 		}
 		render_column(col, g, &rc_return);
 		if (BONUS)
@@ -49,18 +56,22 @@ void	render_next_frame(t_game *g)
 		}
 		col++;
 	}
-	render_entities(entities, g);
-	render_collision(g);
-	render_health_bar(g);
-	render_mana_bar(g);
-	render_items_bar(g);
-	render_minimap(g);
-	if (g->player.attacking)
-		render_attack(g);
+	if (BONUS)
+	{
+		render_entities(entities, g);
+		render_minimap(rays, g);
+		render_collision(g);
+		render_health_bar(g);
+		render_mana_bar(g);
+		render_items_bar(g);
+		if (g->player.attacking)
+			render_attack(g);
+	}
 	mlx_put_image_to_window(
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->screen_handle.frame_data.img,
 		0, 0);
+	// rc_clean(rays);
 }
 
 static void	render_column(

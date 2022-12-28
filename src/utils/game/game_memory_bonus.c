@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/25 14:18:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:39:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,18 @@ t_enemy	*ft_clone_enemy(const t_enemy *enemy)
 	clone->pos = enemy->pos;
 	clone->die_anim_frames = enemy->die_anim_frames;
 	return (clone);
+}
+
+t_list	*ft_new_ray_node(const t_raycast_return *rc_ret)
+{
+	t_raycast_return	*clone;
+
+	clone = (t_raycast_return *) malloc(sizeof(t_raycast_return));
+	if (NULL == rc_ret)
+		return (NULL);
+	clone->doors = rc_ret->doors;
+	clone->spotted_enemy = rc_ret->spotted_enemy;
+	clone->spotted_item = rc_ret->spotted_item;
+	clone->wall = rc_ret->wall;
+	return (ft_lstnew(NULL, clone));
 }

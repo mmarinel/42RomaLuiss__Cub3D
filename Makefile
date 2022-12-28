@@ -142,6 +142,12 @@ SRC_NOPREFIX=\
 ./src/render/bonus_entities/entities/rend_ent_callbacks_bonus.c\
 ./src/render/bonus_entities/entities/rend_ent_mem_bonus.c\
 ./src/render/bonus_entities/items/items_bonus.c\
+./src/render/hud/hud.c\
+./src/render/hud/minimap_background.c\
+./src/render/hud/minimap_border.c\
+./src/render/hud/minimap.c\
+./src/render/hud/minimap_map.c\
+./src/render/hud/minimap_rays.c\
 ./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_endpoints.c\
@@ -152,11 +158,8 @@ SRC_NOPREFIX=\
 ./src/render/textures/items_bonus.c\
 ./src/render/textures/nearest_neighbour.c\
 ./src/render/textures/wall.c\
-./src/render/uhd/minimap.c\
-./src/render/uhd/minimap_frames.c\
-./src/render/uhd/minimap_map.c\
-./src/render/uhd/uhd.c\
 ./src/render/utils/brightness.c\
+./src/render/utils/minimap_utils.c\
 ./src/render/utils/mlx_holder.c\
 ./src/render/utils/mlx_utils_imgs.c\
 ./src/render/utils/render_conditions.c\
