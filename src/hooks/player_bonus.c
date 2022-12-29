@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:27:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 17:45:06 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:14:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ void	player_item_collision_check(t_game *game)
 	if (item_node)
 	{
 		item = item_node->content;
+		if (game->player.hp < 100)
+			game->player.hp += ceil(
+				(100 - game->player.hp) * 10.0f / 100.0f
+				);
+		else
+			game->player.attack_damage += 5.0f;
 		game->player.picked_items += 1;
 		item->picked = e_true;
 	}

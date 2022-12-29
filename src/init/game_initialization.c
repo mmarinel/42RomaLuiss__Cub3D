@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 19:50:03 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:28:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ t_bool	ft_game_init(
 {
 	t_bool	error;
 
+	game_ref->enemies = NULL;
+	game_ref->items = NULL;
+	game_ref->doors = NULL;
 	if (game_ref)
 	{
 		error = e_false;
@@ -69,9 +72,6 @@ t_bool	ft_game_init(
 		else
 		{
 			game_set_inital_vectors(game_ref);
-			game_ref->enemies = NULL;
-			game_ref->items = NULL;
-			game_ref->doors = NULL;
 			if (BONUS)
 			{
 				scan_items(game_ref);

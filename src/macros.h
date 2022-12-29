@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/29 12:57:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:13:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define SUN_FRAMES 19
 
-# define ENEMY_DIE_ANIM_FRAMES 48
+# define ENEMY_DIE_ANIM_FRAMES 32
 
 # define DOOR_OPENING_DELAY_FRAMES 12
 
