@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/28 16:58:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:03:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,11 @@ static void	render_column(
 		);
 	t_int_2d_point			endpoint[2];
 	
-	endpoint[0] = (t_int_2d_point){column, gap};
-	endpoint[1] = (t_int_2d_point){column, gap + (wall_size - 1)};
+	endpoint[0] = endpoint_clip((t_int_2d_point){column, gap});
+	endpoint[1] = endpoint_clip((t_int_2d_point){
+		column, gap + (wall_size - 1)
+		}
+	);
 	if (0 == wall_size)
 		return ;
 	else

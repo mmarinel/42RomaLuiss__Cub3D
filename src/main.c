@@ -6,13 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 11:54:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:57:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 720
-
+# include "macros.h"
 # include "colors.h"
 
 # include "types.h"

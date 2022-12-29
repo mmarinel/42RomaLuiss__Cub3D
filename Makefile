@@ -162,6 +162,7 @@ SRC_NOPREFIX=\
 ./src/render/utils/minimap_utils.c\
 ./src/render/utils/mlx_holder.c\
 ./src/render/utils/mlx_utils_imgs.c\
+./src/render/utils/render_clipping.c\
 ./src/render/utils/render_conditions.c\
 ./src/render/utils/rgb.c\
 ./src/utils/game/debug.c\

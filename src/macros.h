@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/28 16:09:21 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:57:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 
 //*		66º...vision cone of our player (FOV - field of vision)
 # define FOV ( (11.0f / 30.0f) * M_PI )

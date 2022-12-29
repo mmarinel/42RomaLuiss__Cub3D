@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:30:33 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:42:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:03:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ static void	render_door_col(
 		);
 	t_int_2d_point			endpoint[2];
 	
-	endpoint[0] = (t_int_2d_point){screen_col, gap};
-	endpoint[1] = (t_int_2d_point){screen_col, gap + (door_size - 1)};
+	endpoint[0] = endpoint_clip((t_int_2d_point){screen_col, gap});
+	endpoint[1] = endpoint_clip((t_int_2d_point){
+		screen_col, gap + (door_size - 1)
+		}
+	);
 	if (0 == door_size)
 		return ;
 	else
