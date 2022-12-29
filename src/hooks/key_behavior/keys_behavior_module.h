@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:24:17 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 20:10:01 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:46:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	s_key_handler_pressed(t_game *game);
 void	d_key_handler_pressed(t_game *game);
 
 //*		player visual
+void	mouse_hook(t_game *game);
 void	right_key_handler_pressed(t_game *game);
 void	right_key_handler_released(t_game *game);
 void	left_key_handler_pressed(t_game *game);

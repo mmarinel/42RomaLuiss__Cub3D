@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 12:52:21 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:38:40 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ t_bool	is_free_pos(t_game *g, t_2d_point pt)
 	return (
 		e_FLOOR == g->map_handle.map[normalized.y][normalized.x]
 	);
+}
+
+t_2d_point	ray_for_column(size_t screen_column, t_game *g)
+{
+	t_2d_point	ray;
+	const float	dilatation_factor =
+			((2.0f * screen_column) / (g->screen_handle.width - 1.0f)) - 1.0f;
+
+	ray.x = g->player.dir.x + dilatation_factor * g->player.camera_plane.x;
+	ray.y = g->player.dir.y + dilatation_factor * g->player.camera_plane.y;
+	return (ray);
 }
 
 t_bool	is_traversable_pos(

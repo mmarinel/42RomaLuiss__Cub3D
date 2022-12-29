@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/29 12:57:12 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:47:16 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int argc, char const *argv[])
 		mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
 		mlx_hook(game.screen_handle.window, FocusOut, GenericEvent, leave_window, &game);
 		mlx_hook(game.screen_handle.window, FocusIn, GenericEvent, enter_window, &game);
+		// mlx_mouse_hook(game.screen_handle.window, mouse_hook, &game);
 		// mlx_do_sync(game.screen_handle.mlx);
 		render_next_frame(&game);
 		mlx_loop_hook(game.screen_handle.mlx, loop_hook, &game);

@@ -97,6 +97,7 @@ SRC_NOPREFIX=\
 ./src/hooks/key_behavior/D_key.c\
 ./src/hooks/key_behavior/E_key_bonus.c\
 ./src/hooks/key_behavior/left_key_bonus.c\
+./src/hooks/key_behavior/mouse.c\
 ./src/hooks/key_behavior/right_key_bonus.c\
 ./src/hooks/key_behavior/S_key.c\
 ./src/hooks/key_behavior/SPACE_key_bonus.c\

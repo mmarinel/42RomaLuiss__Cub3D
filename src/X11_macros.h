@@ -6,12 +6,16 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:41:40 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/16 22:42:23 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:29:33 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef X11_MACROS_H
 # define X11_MACROS_H
+
+//*		Mouse events (self written)
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 3
 
 //*		X11		Events & events Masks
 

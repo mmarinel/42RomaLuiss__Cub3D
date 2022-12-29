@@ -6,16 +6,12 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/29 13:03:13 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:39:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static t_2d_point	ray_dir_for_col(
-	size_t col,
-	t_game *g
-	);
 static void			render_column(
 	size_t column,
 	t_game *g,
@@ -43,7 +39,7 @@ void	render_next_frame(t_game *g)
 	col = 0;
 	while (col < g->screen_handle.width)
 	{
-		rc_return = raycast_wall(g, ray_dir_for_col(col, g));
+		rc_return = raycast_wall(g, ray_for_column(col, g));
 		if (BONUS)
 		{
 			update_entity_list(&entities, &rc_return, col);
@@ -104,15 +100,4 @@ static void	render_column(
 			&g->screen_handle.frame_data,
 			nearest_neighbour, &(t_nxt_px_f_arg){&col_info, NULL}
 		);
-}
-
-static t_2d_point	ray_dir_for_col(size_t col, t_game *g)
-{
-	t_2d_point	ray;
-	const float	dilatation_factor =
-			((2.0f * col) / (g->screen_handle.width - 1.0f)) - 1.0f;
-
-	ray.x = g->player.dir.x + dilatation_factor * g->player.camera_plane.x;
-	ray.y = g->player.dir.y + dilatation_factor * g->player.camera_plane.y;
-	return (ray);
 }

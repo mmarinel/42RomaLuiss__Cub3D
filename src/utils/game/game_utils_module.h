@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/28 16:39:54 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:39:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include "game_utils.h"
 
 //*		player
-t_bool	is_free_pos(t_game *g, t_2d_point pt);
-t_bool	door_obstacle_through_dir(t_list *spotted_doors, const t_int_2d_point *end_tile);
-t_bool	is_traversable_pos(
-	t_game *g,
-	const t_2d_point *old_pos,
-	const t_2d_point *next_pos
-	);
+t_2d_point	ray_for_column(size_t screen_column, t_game *g);
+t_bool		is_free_pos(t_game *g, t_2d_point pt);
+t_bool		door_obstacle_through_dir(t_list *spotted_doors, const t_int_2d_point *end_tile);
+t_bool		is_traversable_pos(
+				t_game *g,
+				const t_2d_point *old_pos,
+				const t_2d_point *next_pos
+				);
 
 //*		map
 t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);

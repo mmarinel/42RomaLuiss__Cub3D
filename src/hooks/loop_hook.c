@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 17:40:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:10:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	player_movement_handler(t_game *game)
 
 static void	player_direction_handler(t_game *game)
 {
+	mouse_hook(game);
 	if (KeyPress == game->keys[RIGHT_INDEX].state)
 		right_key_handler_pressed(game);
 	else if (KeyRelease == game->keys[RIGHT_INDEX].state)
