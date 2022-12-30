@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:29:20 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:10:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ typedef struct s_game_texture
 
 typedef struct s_game
 {
+	char			*lvls[LEVELS];
+	char			*cur_lvl;
 	t_bool			in_focus;
 	t_bool			in_menu;
 	t_bool			in_end;

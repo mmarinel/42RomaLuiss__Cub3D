@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:43:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:09:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	game_set_inital_vectors(t_game *game_ref);
 float	player_west_angle(t_game *game_ref);
 
 //*		t_game
-void	t_game_set(t_game *game_ref);
+void	t_game_set(const char *map_path, t_game *game_ref);
 
 //*		mlx
 void	game_set_mlx( t_game *game_ref, size_t width, size_t height );

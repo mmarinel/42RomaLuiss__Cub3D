@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 13:50:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:00:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bool	ft_game_init(
 		map_reset(&game_ref->map_handle);
 		game_set_mlx(game_ref, width, height);
 		game_set_key_state(game_ref);
-		t_game_set(game_ref);
+		t_game_set(map_path, game_ref);
 		load_textures(game_ref, &error);
 	}
 	return (error == e_false);

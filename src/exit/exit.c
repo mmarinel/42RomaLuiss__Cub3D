@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 17:53:47 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:06:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	t_screen_holder_clean(t_game *game);
 static void	textures_clean(t_game *game);
 //*		end of static declarations
 
-void	exit_game(t_game *game)
+void	clean_game(t_game *game)
 {
 	ft_lstclear(&game->doors, free);
 	ft_lstclear(&game->items, free);
@@ -26,6 +26,11 @@ void	exit_game(t_game *game)
 	textures_clean(game);
 	t_screen_holder_clean(game);
 	t_game_set_nulls(game);
+}
+
+void	exit_game(t_game *game)
+{
+	clean_game(game);
 	exit(EXIT_SUCCESS);
 }
 

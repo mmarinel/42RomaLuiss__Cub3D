@@ -6,14 +6,18 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:45:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:10:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_init.h"
 
-void	t_game_set(t_game *game_ref)
+static void	set_lvls(const char *map_path, t_game *game_ref);
+//*		end of static declarations
+
+void	t_game_set(const char *map_path, t_game *game_ref)
 {
+	set_lvls(map_path, game_ref);
 	game_ref->in_focus = e_true;
 	game_ref->in_menu = e_true;
 	game_ref->in_end = e_false;
@@ -30,4 +34,11 @@ void	t_game_set(t_game *game_ref)
 	game_ref->player.west_angle = player_west_angle(game_ref);
 	game_ref->player.picked_items = 0;
 	game_ref->player.tot_items = ft_lstsize(game_ref->items);
+}
+
+static void	set_lvls(const char *map_path, t_game *game_ref)
+{
+	game_ref->cur_lvl = (char *)map_path;
+	game_ref->lvls[0] = "bonus_level.cub";
+	game_ref->lvls[1] = "map_2.cub";
 }

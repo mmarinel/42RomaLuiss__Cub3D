@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:33:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:59:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define FLT_PRECISION 6
 
 //*		BONUSES
+
+# define LEVELS 2
 
 # define SUN_FRAMES 19
 
