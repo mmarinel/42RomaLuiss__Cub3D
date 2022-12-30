@@ -6,13 +6,13 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:36:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 23:23:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:32:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "uti_render.h"
+#include "utils_render.h"
 
-void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)//!		cambiare color in PX !!!!!!!!!!!
+void	ft_put_px_to_image(t_data *img_data, size_t px_offset, t_color color)
 {
 	char	*byte_ptr;
 

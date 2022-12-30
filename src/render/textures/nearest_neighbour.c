@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:33:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:17:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:35:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ size_t	get_texture_column(const t_rc_ret_data *rc_ret_data)
 		dist = rc_ret_data->hit_point.x - rc_ret_data->square.x;
 	else
 		return (-1);
-	return (texture_pt_clip(roundl(dist * (double)texture_size)));
+	return (textures_pt_clip(roundl(dist * (double)texture_size)));
 }
 
 static int	nn_map_px_row(float y_mapping)
 {
 	if (y_mapping - floor(y_mapping) < 0.5f)
-		return (texture_pt_clip(floor(y_mapping)));
+		return (textures_pt_clip(floor(y_mapping)));
 	else
-		return (texture_pt_clip(ceil(y_mapping)));
+		return (textures_pt_clip(ceil(y_mapping)));
 }
 
 static t_int_2d_point	nn_map_px(

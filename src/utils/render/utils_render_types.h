@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uti_render.h                                       :+:      :+:    :+:   */
+/*   utils_render_types.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 11:12:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:24:13 by earendil         ###   ########.fr       */
+/*   Created: 2022/11/05 11:15:00 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/12/30 14:20:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTI_RENDER_H
-# define UTI_RENDER_H
+#ifndef UTILS_RENDER_TYPES_H
+# define UTILS_RENDER_TYPES_H
 
-# include "../render_types.h"
+typedef enum e_mlx_win_holder
+{
+	e_MLX_HOLDER_GET_MAX_OFFSET,
+	e_MLX_HOLDER_SET,
+}	t_mlx_win_holder;
 
-# include "../../sys_includes.h"
+typedef enum e_clip_opcode
+{
+	e_TEXTURE_CLIPPER_INITIALIZE,
+	e_TEXTURE_CLIPPER_GET,
+}	t_clip_opcode;
 
 #endif

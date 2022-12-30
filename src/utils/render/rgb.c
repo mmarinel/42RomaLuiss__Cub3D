@@ -1,20 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uti_render.h                                       :+:      :+:    :+:   */
+/*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 11:12:49 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:24:13 by earendil         ###   ########.fr       */
+/*   Created: 2022/11/05 11:10:38 by mmarinel          #+#    #+#             */
+/*   Updated: 2022/12/30 14:31:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTI_RENDER_H
-# define UTI_RENDER_H
+#include "utils_render.h"
 
-# include "../render_types.h"
+t_bool	is_mlx_color(t_color color)
+{
+	return (
+		color.alpha == 1
+		&& color.red <= 255
+		&& color.green <= 255
+		&& color.blue <= 255
+	);
+}
 
-# include "../../sys_includes.h"
+t_bool	is_mlx_px(int px)
+{
+	return (
+		px >= 0 && px <= (255 | (255 << 8) | (255 << 16))
+	);
+}
 
-#endif
+size_t	ft_get_mlx_color(t_color color)
+{
+	return (
+		color.blue
+		| color.green << 8
+		| color.red << 16
+		// | 1 << 24
+	);
+}

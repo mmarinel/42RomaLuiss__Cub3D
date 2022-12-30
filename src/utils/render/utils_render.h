@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uti_render_types.h                                 :+:      :+:    :+:   */
+/*   utils_render.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 11:15:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 23:32:08 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 14:16:20 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 14:38:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTI_RENDER_TYPES_H
-# define UTI_RENDER_TYPES_H
+#ifndef UTILS_RENDER_H
+# define UTILS_RENDER_H
 
-typedef enum e_mlx_win_holder
-{
-	e_MLX_HOLDER_GET_MAX_OFFSET,
-	e_MLX_HOLDER_SET,
-}	t_mlx_win_holder;
+# include "../../types.h"
+# include "../../game_types.h"
 
-typedef enum e_clip_opcode
-{
-	e_TEXTURE_CLIPPER_INITIALIZE,
-	e_TEXTURE_CLIPPER_GET,
-}	t_clip_opcode;
+# include "utils_render_types.h"
+
+size_t	texture_px_max_offset(const t_data *texture_data);
+size_t	ft_get_mlx_color(t_color color);
+t_bool	is_mlx_px(int px);
+t_bool	is_mlx_color(t_color color);
 
 #endif

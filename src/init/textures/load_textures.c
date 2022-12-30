@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:34:41 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:35:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:29:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 	)
 		*err_flag = e_true;
 	else
-		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
+		textures_clipper_init(north_texture_size);
 	if (BONUS)
 		load_bonus_textures(game_ref, err_flag);
 }

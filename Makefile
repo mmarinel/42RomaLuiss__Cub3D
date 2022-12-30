@@ -21,6 +21,7 @@ INCLUDES=\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/libft/libft_module.h\
+./src/utils/render/utils_render_module.h\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/utils_module.h\
 ./src/utils/math/uti_math_module.h\
@@ -79,7 +80,6 @@ INCLUDES=\
 ./src/render/textures/textures_module.h\
 ./src/render/utils/uti_render.h\
 ./src/render/utils/uti_render_module.h\
-./src/render/utils/uti_render_types.h\
 ./src/utils/utils_module.h\
 ./src/utils/game/game_utils.h\
 ./src/utils/game/game_utils_module.h\
@@ -88,6 +88,9 @@ INCLUDES=\
 ./src/utils/math/uti_math.h\
 ./src/utils/math/uti_math_module.h\
 ./src/utils/math/uti_math_types.h\
+./src/utils/render/utils_render.h\
+./src/utils/render/utils_render_module.h\
+./src/utils/render/utils_render_types.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -181,13 +184,9 @@ SRC_NOPREFIX=\
 ./src/render/textures/items_bonus.c\
 ./src/render/textures/nearest_neighbour.c\
 ./src/render/textures/wall.c\
-./src/render/utils/brightness.c\
 ./src/render/utils/minimap_utils.c\
-./src/render/utils/mlx_holder.c\
-./src/render/utils/mlx_utils_imgs.c\
 ./src/render/utils/render_clipping.c\
 ./src/render/utils/render_conditions.c\
-./src/render/utils/rgb.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_doors_bonus.c\
 ./src/utils/game/game_doors_callbacks_bonus.c\
@@ -213,6 +212,10 @@ SRC_NOPREFIX=\
 ./src/utils/math/vec_memory.c\
 ./src/utils/math/vectorial_ops.c\
 ./src/utils/math/vec_to_vec_ops.c\
+./src/utils/render/mlx_holder.c\
+./src/utils/render/mlx_utils_imgs.c\
+./src/utils/render/rgb.c\
+./src/utils/render/squared_texture_clipper.c\
 
 USR_LIBS=\
 src/utils/libft\
