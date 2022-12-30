@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:15:06 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 14:33:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:47:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ size_t	get_textures_size(void);
 
 //*		rgb
 t_bool	is_mlx_color(t_color color);
+t_bool	ft_iscolor( long long red, long long green, long long blue );
 size_t	ft_get_mlx_color(t_color color);
 t_bool	is_mlx_px(int px);
 

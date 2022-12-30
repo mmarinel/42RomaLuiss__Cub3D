@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:10:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:31:36 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:47:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ t_bool	is_mlx_color(t_color color)
 		&& color.red <= 255
 		&& color.green <= 255
 		&& color.blue <= 255
+	);
+}
+
+t_bool	ft_iscolor( long long red, long long green, long long blue )
+{
+	return (
+		COLOR_MIN <= red && red <= COLOR_MAX
+		&& COLOR_MIN <= green && green <= COLOR_MAX
+		&& COLOR_MIN <= blue && blue <= COLOR_MAX
 	);
 }
 
