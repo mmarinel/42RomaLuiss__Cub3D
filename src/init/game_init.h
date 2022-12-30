@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 18:09:10 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:29:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void	game_set_key_state(t_game *game_ref);
 
 //*		map
 void	game_set_map( t_game *game_ref );
+
+//*		sys bonus
+void	set_rand(void);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/29 17:47:16 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:17:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 
 # include "map_validation/utils/map_utils_module.h"
 
+//TODO isolare in un file apposito (in ogni sorgente .h (non module) dei bonus includi gli header illegali)
 int main(int argc, char const *argv[])
 {
 	t_game	game;
 
-	srand(time(NULL));
 	if (2 == argc
 		&& ft_game_init(argv[1], &game, SCREEN_WIDTH, SCREEN_HEIGHT))
 	{

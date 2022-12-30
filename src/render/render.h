@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 11:42:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:28:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	render_game_next_frame(t_game *g);
 
 //*		in_menu
 void	render_menu_next_frame(t_game *g);
+void	render_end_next_frame(t_game *g);
 
 void	draw_background_bonus(t_game *g);
 void	draw_sun(t_game *g);

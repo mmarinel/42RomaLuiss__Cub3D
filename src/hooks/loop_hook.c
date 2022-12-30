@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:52:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:12:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	loop_hook(t_game *game)
 		return (0);
 	if (BONUS && game->in_menu)
 		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
+	else if (BONUS && game->in_end)
+		in_end_loop(game);
 	else
 		in_game_loop(game);
 	render_next_frame(game);

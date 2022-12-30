@@ -1,0 +1,19 @@
+
+
+								
+
+
+
+NO 		 ./img/wall/North.xpm
+SO                                                                          ./img/wall/South.xpm
+WE																			./img/wall/West.xpm
+EA	 	 	 	 ./img/wall/East.xpm
+
+
+F 255 	, 	255 ,             125
+C		 0	,	 100       ,								255
+
+111
+1C1
+1S1
+111

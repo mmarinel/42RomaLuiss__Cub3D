@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:15:46 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:46:50 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:28:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 void	in_game_loop(t_game *game);
 void	in_menu_loop(t_game *game);
+void	in_end_loop(t_game *game);
 void	west_angle_update(t_game *game);
 
 //*			enemies

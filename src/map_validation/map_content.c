@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 15:06:56 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:23:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,32 @@ static void	parse_map( t_map_holder *map_handle, char **map,
 	}
 	if (e_false == is_player_found())
 		*err_flag = e_true;
+	parse_row(NULL, NULL, (size_t)-1, NULL);
 }
 
-static void	parse_row( t_map_holder *map_handle,
-				char **map, size_t row_index,
-				t_bool *err_flag )
+/**
+ * @brief if map_handle is NULL, static variables are reset.
+ * 
+ * @param map_handle 
+ * @param map 
+ * @param row_index 
+ * @param err_flag 
+ */
+static void	parse_row(
+	t_map_holder *map_handle,
+	char **map, size_t row_index,
+	t_bool *err_flag
+	)
 {
 	static t_bool	empty_line_found_after_non_empty_one = e_false;
 	static t_bool	non_empty_line_found = e_false;
 
+	if (NULL == map_handle)
+	{
+		empty_line_found_after_non_empty_one = e_false;
+		non_empty_line_found = e_false;
+		return ;
+	}
 	if (ft_str_isempty(map[row_index]))
 	{
 		if (non_empty_line_found)

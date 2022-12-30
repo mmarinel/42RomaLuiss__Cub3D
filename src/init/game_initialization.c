@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 18:00:51 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:50:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_bool	ft_game_init(
 			size_t width, size_t height
 		)
 {
-	t_bool	error;
+	static int	calls = 0;
+	t_bool		error;
 
 	game_ref->enemies = NULL;
 	game_ref->items = NULL;
@@ -37,10 +38,15 @@ t_bool	ft_game_init(
 			scan_doors(game_ref);
 		}
 		map_reset(&game_ref->map_handle);
-		game_set_mlx(game_ref, width, height);
+		if (0 == calls)
+		{
+			set_rand();
+			game_set_mlx(game_ref, width, height);
+		}
 		game_set_key_state(game_ref);
 		t_game_set(map_path, game_ref);
 		load_textures(game_ref, &error);
 	}
+	calls++;
 	return (error == e_false);
 }

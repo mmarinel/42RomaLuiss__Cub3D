@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/22 14:49:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:06:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_bool	is_map_edge(
 t_bool	is_valid_map_char( char c );
 t_bool	map_fields_complete( t_map_holder *map_handle );
 t_bool	is_player_found( void );
+void	forget_player(void);
 
 //*		characters conditions
 t_bool	is_player_map_char( char c );

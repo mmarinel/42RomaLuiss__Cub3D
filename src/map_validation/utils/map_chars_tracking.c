@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:16:59 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 15:01:12 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:06:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ t_bool	is_player_found(void)
 	return (player_tracker(e_WALL));
 }
 
+void	forget_player(void)
+{
+	player_tracker('\0');
+}
+
 /**
  * @brief This function returns true iff player has already been found.
  * That means if a previous call to this function was successful
@@ -65,7 +70,12 @@ t_bool	player_tracker(char c)
 {
 	static t_bool	player_found = e_false;
 
-	if (is_player_map_char(c))
-		player_found = e_true;
+	if (!c)
+		player_found = e_false;
+	else
+	{
+		if (is_player_map_char(c))
+			player_found = e_true;
+	}
 	return (player_found);
 }
