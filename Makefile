@@ -149,6 +149,7 @@ SRC_NOPREFIX=\
 ./src/map_validation/utils/t_tile_map_trim.c\
 ./src/raycast/raycast_algorithm.c\
 ./src/raycast/raycast.c\
+./src/raycast/raycast_memory.c\
 ./src/raycast/raycast_movement.c\
 ./src/raycast/raycast_wall.c\
 ./src/raycast/bonus/rc_bon_memory.c\
@@ -163,6 +164,7 @@ SRC_NOPREFIX=\
 ./src/render/render.c\
 ./src/render/render_end.c\
 ./src/render/render_game.c\
+./src/render/render_memory.c\
 ./src/render/render_menu.c\
 ./src/render/attack/attack_bonus.c\
 ./src/render/background/background_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/29 16:38:40 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:34:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_bool	is_traversable_pos(
 {
 	const t_int_2d_point	next_tile = as_int_2dpt(next_pos);
 	const t_int_2d_point	cur_tile = as_int_2dpt(old_pos);
+	t_bool					occluded;
 	t_raycast_return		rc_ret;
 
 	if (ft_int_2d_point_equals(&next_tile, &cur_tile))
@@ -58,13 +59,12 @@ t_bool	is_traversable_pos(
 	else
 	{
 		rc_ret = raycast_movement(old_pos, next_pos, g);
-		if (
+		occluded = (
 			wall_collision(&next_tile, &rc_ret, g)
 			|| door_collision(&next_tile, &rc_ret)
-		)
-			return (e_false);
-		else
-			return (e_true);
+		);
+		raycast_clean(&rc_ret);
+		return (e_false == occluded);
 	}
 }
 

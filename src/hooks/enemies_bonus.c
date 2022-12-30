@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 02:25:37 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:04:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,17 @@ static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game)
 {
 	const t_int_2d_point	enemy_tile = as_int_2dpt(&enemy->pos);
 	const t_2d_point		ray = ft_rotate(game->player.dir, ray_angle);
+	t_bool					hit;
 	t_raycast_return		rc_ret;
 
 	rc_ret = raycast(game, game->player.pos, ray, enemy_tile);
-	return (
+	hit = (
 		ft_int_2d_point_equals(&enemy_tile, &rc_ret.wall.square)
 		&& e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
 		&& rc_ret.wall.euclidean_dist <= game->player.attack_range
 		);
+	raycast_clean(&rc_ret);
+	return (hit);
 }
 
 void	attack_enemies(t_game *game)

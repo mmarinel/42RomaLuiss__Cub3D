@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 02:25:58 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:36:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	open_close_doors(t_game *game)
 static t_bool	door_reached(t_door *door, float ray_angle, t_game *game)
 {
 	const t_2d_point		ray = ft_rotate(game->player.dir, ray_angle);
+	t_bool					reached;
 	t_list					*first_spotted_door_node;
 	t_spotted_door			*first_spotted_door;
 	t_raycast_return		rc_ret;
@@ -52,7 +53,7 @@ static t_bool	door_reached(t_door *door, float ray_angle, t_game *game)
 	if (NULL == first_spotted_door_node)
 		return (e_false);
 	first_spotted_door = first_spotted_door_node->content;
-	return (
+	reached = (
 		first_spotted_door && first_spotted_door->door_ref
 		&& ft_int_2d_point_equals(
 			&first_spotted_door->door_ref->pos, &door->pos
@@ -60,6 +61,8 @@ static t_bool	door_reached(t_door *door, float ray_angle, t_game *game)
 		&& first_spotted_door->\
 			rc_data.euclidean_dist <= game->player.action_range
 	);
+	raycast_clean(&rc_ret);
+	return (reached);
 }
 
 static void		open_close_door(t_door *door)

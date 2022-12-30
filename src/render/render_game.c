@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:41:07 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:25:05 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:59:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	render_game_next_frame(t_game *g)
 		{
 			render_doors(col, &rc_return, g);
 		}
+		raycast_clean(&rc_return);
 		col++;
 	}
 	if (BONUS)
@@ -67,7 +68,8 @@ void	render_game_next_frame(t_game *g)
 		g->screen_handle.mlx, g->screen_handle.window,
 		g->screen_handle.frame_data.img,
 		0, 0);
-	// rc_clean(rays);
+	clean_entities(&entities);
+	clean_rays(&rays);
 }
 
 static void	render_column(

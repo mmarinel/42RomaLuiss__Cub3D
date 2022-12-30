@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 18:28:28 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:00:30 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,9 @@ void	draw_background_bonus(t_game *g);
 void	draw_sun(t_game *g);
 void	render_attack(t_game *g);
 void	render_collision(t_game *g);
+
+//*		memory
+void	clean_rays(t_list **rays);
+void	clean_entities(t_list **entities);
 
 #endif
