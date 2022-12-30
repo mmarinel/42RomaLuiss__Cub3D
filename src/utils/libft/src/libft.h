@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/26 01:12:46 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:46:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_bool				is_file_type( const char *path_name,
 
 //* memory
 void				*ft_calloc(size_t count, size_t size);
-void				ft_free( void **ptr );
+void				ft_free( void *ptr );
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t len);

@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   textures_clean.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 17:46:06 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 17:30:11 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 17:34:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "exit.h"
 
-void	ft_free( void *ptr )
+void	wall_texture_clean(t_game *game)
 {
-	if (ptr)
-		free(ptr);
+	mlx_destroy_image(
+		game->screen_handle.mlx,
+		game->textures.wall.north.img
+	);
+	mlx_destroy_image(
+		game->screen_handle.mlx,
+		game->textures.wall.south.img
+	);
+	mlx_destroy_image(
+		game->screen_handle.mlx,
+		game->textures.wall.east.img
+	);
+	mlx_destroy_image(
+		game->screen_handle.mlx,
+		game->textures.wall.west.img
+	);
 }

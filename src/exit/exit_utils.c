@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:01:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 17:46:06 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 17:46:42 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 17:50:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "exit.h"
 
-void	ft_free( void *ptr )
+void	t_game_set_nulls(t_game *game)
 {
-	if (ptr)
-		free(ptr);
+	game->doors = NULL;
+	game->items = NULL;
+	game->enemies = NULL;
+	game->map_handle.map = NULL;
+	game->map_handle.no_texture = NULL;
+	game->map_handle.so_texture = NULL;
+	game->map_handle.ea_texture = NULL;
+	game->map_handle.we_texture = NULL;
+	game->screen_handle.mlx = NULL;
+	game->screen_handle.window = NULL;
 }

@@ -95,6 +95,10 @@ INCLUDES=\
 SRC_NOPREFIX=\
 ./src/main.c\
 ./src/exit/exit.c\
+./src/exit/exit_utils.c\
+./src/exit/sun_textures_bonus.c\
+./src/exit/textures_clean_bonus.c\
+./src/exit/textures_clean.c\
 ./src/hooks/doors_bonus.c\
 ./src/hooks/enemies_bonus.c\
 ./src/hooks/in_end_loop_bonus.c\
@@ -186,7 +190,6 @@ SRC_NOPREFIX=\
 ./src/render/textures/wall.c\
 ./src/render/utils/minimap_utils.c\
 ./src/render/utils/render_clipping.c\
-./src/render/utils/render_conditions.c\
 ./src/utils/game/debug.c\
 ./src/utils/game/game_doors_bonus.c\
 ./src/utils/game/game_doors_callbacks_bonus.c\
