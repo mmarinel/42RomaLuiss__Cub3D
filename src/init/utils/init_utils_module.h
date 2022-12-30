@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_hook.c                                        :+:      :+:    :+:   */
+/*   init_utils_module.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:52:44 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 13:23:05 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 13:26:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#ifndef INIT_UTILS_MODULE_H
+# define INIT_UTILS_MODULE_H
 
-//*		end of static declarations
+# include "../../game_types.h"
 
-int	loop_hook(t_game *game)
-{
-	if (e_false == game->in_focus)
-		return (0);
-	if (BONUS && game->in_menu)
-		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
-	else
-		in_game_loop(game);
-	render_next_frame(game);
-	return (0);
-}
+size_t	open_squared_texture(
+	const char *path, t_data *texture_data,
+	t_game *game_ref, t_bool *err_flag
+	);
+size_t	open_texture(
+	const char *path, t_data *texture_data,
+	t_game *game_ref, t_bool *err_flag
+	);
+
+#endif

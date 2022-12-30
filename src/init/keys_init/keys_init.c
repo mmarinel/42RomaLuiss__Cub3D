@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_hook.c                                        :+:      :+:    :+:   */
+/*   keys_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:52:44 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 13:39:32 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 13:39:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "../game_init.h"
 
-//*		end of static declarations
-
-int	loop_hook(t_game *game)
+void	game_set_key_state(t_game *game_ref)
 {
-	if (e_false == game->in_focus)
-		return (0);
-	if (BONUS && game->in_menu)
-		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
-	else
-		in_game_loop(game);
-	render_next_frame(game);
-	return (0);
+	size_t	cur_key;
+
+	cur_key = 0;
+	while (cur_key < BOUND_KEYS)
+	{
+		game_ref->keys[cur_key].state = -1;
+		cur_key += 1;
+	}
 }

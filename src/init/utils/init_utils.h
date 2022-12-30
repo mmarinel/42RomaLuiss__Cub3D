@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_hook.c                                        :+:      :+:    :+:   */
+/*   init_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:52:44 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 13:24:11 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 13:26:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#ifndef INIT_UTILS_H
+# define INIT_UTILS_H
 
-//*		end of static declarations
+# include "../../game_types.h"
+# include "../../colors.h"
 
-int	loop_hook(t_game *game)
-{
-	if (e_false == game->in_focus)
-		return (0);
-	if (BONUS && game->in_menu)
-		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
-	else
-		in_game_loop(game);
-	render_next_frame(game);
-	return (0);
-}
+#endif

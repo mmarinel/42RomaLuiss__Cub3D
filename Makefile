@@ -24,6 +24,7 @@ INCLUDES=\
 ./src/utils/game/game_utils_module.h\
 ./src/utils/utils_module.h\
 ./src/utils/math/uti_math_module.h\
+./src/init/utils/init_utils_module.h\
 ./src/init/game_init_module.h\
 ./src/init/bonus/game_init_bonus_module.h\
 ./src/hooks/hooks_module.h\
@@ -50,6 +51,8 @@ INCLUDES=\
 ./src/init/game_init_module.h\
 ./src/init/bonus/game_init_bonus.h\
 ./src/init/bonus/game_init_bonus_module.h\
+./src/init/utils/init_utils.h\
+./src/init/utils/init_utils_module.h\
 ./src/map_validation/map_validation.h\
 ./src/map_validation/map_validation_module.h\
 ./src/map_validation/map_validation_types.h\
@@ -91,8 +94,9 @@ SRC_NOPREFIX=\
 ./src/exit/exit.c\
 ./src/hooks/doors_bonus.c\
 ./src/hooks/enemies_bonus.c\
+./src/hooks/in_end_loop_bonus.c\
 ./src/hooks/in_game_loop_bonus.c\
-./src/hooks/in_menu_loop.c\
+./src/hooks/in_menu_loop_bonus.c\
 ./src/hooks/items_bonus.c\
 ./src/hooks/keys_hook.c\
 ./src/hooks/loop_hook.c\
@@ -110,9 +114,19 @@ SRC_NOPREFIX=\
 ./src/hooks/key_behavior/W_key.c\
 ./src/hooks/key_behavior/utils/player_movement.c\
 ./src/init/game_initialization.c\
+./src/init/bonus/menu_textures_bonus.c\
 ./src/init/bonus/scan_doors.c\
 ./src/init/bonus/scan_enemies.c\
 ./src/init/bonus/scan_items.c\
+./src/init/bonus/sun_textures_bonus.c\
+./src/init/bonus/textures_bonus.c\
+./src/init/game/t_game_init.c\
+./src/init/geometry/init_geometry.c\
+./src/init/keys_init/keys_init.c\
+./src/init/map_init/map_init.c\
+./src/init/mlx_init/mlx_init.c\
+./src/init/textures/load_textures.c\
+./src/init/utils/init_utils.c\
 ./src/map_validation/map_attributes.c\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
