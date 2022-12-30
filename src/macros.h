@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/29 13:13:52 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:33:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@
 
 # define ITEM_ANIM_FRAMES 16
 # define ITEM_ANIM_FRAME_STEP (ITEM_ANIM_FRAMES / 2)
+
+//*		menus
+
+# define MENU_NEWG 0
+# define MENU_EXIT 1
 
 //*		minimap
 

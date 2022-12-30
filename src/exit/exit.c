@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_hook.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:12:36 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 12:47:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "exit.h"
 
-//*		end of static declarations
-
-int	loop_hook(t_game *game)
+void	exit_game(t_game *game)
 {
-	if (e_false == game->in_focus)
-		return (0);
-	if (BONUS && game->in_menu)
-		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
-	else
-		in_game_loop(game);
-	render_next_frame(game);
-	return (0);
+	ft_lstclear(&game->doors, free);
+	ft_lstclear(&game->items, free);
+	ft_lstclear(&game->enemies, free);
+	exit(EXIT_SUCCESS);
 }

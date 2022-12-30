@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_hook.c                                        :+:      :+:    :+:   */
+/*   render_menu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:12:36 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/30 11:44:18 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/30 12:24:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "render.h"
 
-//*		end of static declarations
-
-int	loop_hook(t_game *game)
+void	render_menu_next_frame(t_game *g)
 {
-	if (e_false == game->in_focus)
-		return (0);
-	if (BONUS && game->in_menu)
-		in_menu_loop(game);
-	// else if (BONUS && game->in_end)
-	// 	in_end_loop(game);
-	else
-		in_game_loop(game);
-	render_next_frame(game);
-	return (0);
+	static int	prev_frame = -1;
+	// printf("menu screen: %d\n", g->menu_screen);
+
+	if (prev_frame == g->menu_screen)
+		return ;
+	prev_frame = g->menu_screen;
+	mlx_put_image_to_window(
+		g->screen_handle.mlx, g->screen_handle.window,
+		g->textures.menu[g->menu_screen].img,
+		0, 0
+	);
 }

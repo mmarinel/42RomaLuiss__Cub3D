@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/29 13:28:44 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:34:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	initial_dir_vectors(
 			);
 void	load_textures(t_game *game_ref, t_bool *err_flag);
 void	game_set_key_state(t_game *game_ref);
+void	load_menu_textures(t_game *game_ref, t_bool *err_flag);
 //*		end of static declarations
 
 // static t_2d_point	get_initial_dir(t_tile dir)
@@ -100,8 +101,10 @@ t_bool	ft_game_init(
 	game_set_mlx(game_ref, width, height);
 	game_set_key_state(game_ref);
 	load_textures(game_ref, &error);
-	game_ref->in_game = e_true;
+	game_ref->in_focus = e_true;
 	game_ref->in_menu = e_true;
+	game_ref->in_end = e_false;
+	game_ref->menu_screen = 0;
 	game_ref->unit_rot_angle = INITIAL_ROT_ANGLE;
 	game_ref->player.alive = e_true;
 	game_ref->player.hp = 100;
@@ -229,6 +232,41 @@ void	load_door_textures(t_game *game_ref, t_bool *err_flag)
 	);
 }
 
+void	load_menu_textures(t_game *game_ref, t_bool *err_flag)
+{
+	open_bg_texture(
+		"./img/menus/menu_initial_newg.xpm",
+		&game_ref->textures.menu[MENU_NEWG],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/menus/menu_initial_exit.xpm",
+		&game_ref->textures.menu[MENU_EXIT],
+		game_ref, err_flag
+	);
+	
+	open_bg_texture(
+		"./img/menus/game_win_newg.xpm",
+		&game_ref->textures.game_win[MENU_NEWG],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/menus/game_win_exit.xpm",
+		&game_ref->textures.game_win[MENU_EXIT],
+		game_ref, err_flag
+	);
+
+	open_bg_texture(
+		"./img/menus/game_over_newg.xpm",
+		&game_ref->textures.game_over[MENU_NEWG],
+		game_ref, err_flag
+	);
+	open_bg_texture(
+		"./img/menus/game_over_exit.xpm",
+		&game_ref->textures.game_over[MENU_EXIT],
+		game_ref, err_flag
+	);
+}
 
 static void load_background_textures(t_game *game_ref, t_bool *err_flag)
 {
@@ -371,6 +409,7 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 		*err_flag = e_true;
 	else
 		texture_pt_clipper(e_TEXTURE_CLIPPER_INITIALIZE, north_texture_size);
+	load_menu_textures(game_ref, err_flag);
 	load_background_textures(game_ref, err_flag);
 	load_sun_textures(game_ref, err_flag);
 	load_door_textures(game_ref, err_flag);

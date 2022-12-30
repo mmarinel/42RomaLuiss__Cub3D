@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/26 00:00:52 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:29:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef enum e_side
 # define LEFT_INDEX 7
 # define SPACE_INDEX 8
 # define E_INDEX 9
+# define ENTER_INDEX 10
 
 # define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
 
@@ -136,12 +137,17 @@ typedef struct s_game_texture
 	t_data			sun[SUN_FRAMES];
 	t_data			enemy[2];
 	t_data			item;
+	t_data			menu[2];
+	t_data			game_over[2];
+	t_data			game_win[2];
 }	t_game_texture;
 
 typedef struct s_game
 {
-	t_bool			in_game;
+	t_bool			in_focus;
 	t_bool			in_menu;
+	t_bool			in_end;
+	int				menu_screen;
 	t_player		player;
 	t_list			*enemies;
 	t_list			*doors;

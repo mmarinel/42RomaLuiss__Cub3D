@@ -28,6 +28,7 @@ INCLUDES=\
 ./src/init/bonus/game_init_bonus_module.h\
 ./src/hooks/hooks_module.h\
 ./src/hooks/key_behavior/keys_behavior_module.h\
+./src/exit/exit_module.h\
 ./src/map_validation/utils/map_utils_module.h\
 ./src/map_validation/map_validation_module.h\
 ./src/map_validation/bonus/map_validation_bonus_module.h\
@@ -39,6 +40,8 @@ INCLUDES=\
 ./src/raycast/utils/rc_utils_module.h\
 ./src/raycast/bonus/rc_bonus_module.h\
 ./src/raycast/raycast_module.h\
+./src/exit/exit.h\
+./src/exit/exit_module.h\
 ./src/hooks/hooks.h\
 ./src/hooks/hooks_module.h\
 ./src/hooks/key_behavior/keys_behavior.h\
@@ -85,8 +88,11 @@ INCLUDES=\
 
 SRC_NOPREFIX=\
 ./src/main.c\
+./src/exit/exit.c\
 ./src/hooks/doors_bonus.c\
 ./src/hooks/enemies_bonus.c\
+./src/hooks/in_game_loop_bonus.c\
+./src/hooks/in_menu_loop.c\
 ./src/hooks/items_bonus.c\
 ./src/hooks/keys_hook.c\
 ./src/hooks/loop_hook.c\
@@ -133,6 +139,8 @@ SRC_NOPREFIX=\
 ./src/raycast/utils/rc_set.c\
 ./src/raycast/utils/rc_walk.c\
 ./src/render/render.c\
+./src/render/render_game.c\
+./src/render/render_menu.c\
 ./src/render/attack/attack_bonus.c\
 ./src/render/background/background_bonus.c\
 ./src/render/background/background.c\

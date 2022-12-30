@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:15:46 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 17:43:32 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:46:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@
 
 # include "../sys_includes.h"
 
+# include "../exit/exit_module.h"
 # include "../utils/utils_module.h"
 # include "key_behavior/keys_behavior_module.h"
 # include "../render/render_module.h"
 
 //*		loop bonuses
 
+void	in_game_loop(t_game *game);
+void	in_menu_loop(t_game *game);
 void	west_angle_update(t_game *game);
 
 //*			enemies
