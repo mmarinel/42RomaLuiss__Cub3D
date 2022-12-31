@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:05:11 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:34:27 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:14:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 
 # include "libft/libft_module.h"
 # include "gnl/get_next_line_module.h"
+# include "simple_printf/ft_printf_module.h"
 
 #endif

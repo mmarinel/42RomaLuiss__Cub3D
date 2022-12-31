@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 18:29:25 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 17:59:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,21 @@ void	game_set_inital_vectors(t_game *game_ref);
 float	player_west_angle(t_game *game_ref);
 
 //*		t_game
+void	t_game_init(t_game *game_ref);
 void	t_game_set(const char *map_path, t_game *game_ref);
 
 //*		mlx
 void	game_set_mlx( t_game *game_ref, size_t width, size_t height );
 
 //*		textures
+void	game_init_textures(t_game *game_ref);
 void	load_textures(t_game *game_ref, t_bool *err_flag);
 
 //*		keys
 void	game_set_key_state(t_game *game_ref);
 
 //*		map
-void	game_set_map( t_game *game_ref );
+void	game_init_map( t_game *game_ref );
 
 //*		sys bonus
 void	set_rand(void);

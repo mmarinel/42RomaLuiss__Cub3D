@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 13:31:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:48:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	clean_game(t_game *game)
 	ft_lstclear(&game->items, free);
 	ft_lstclear(&game->enemies, free);
 	t_map_holder_clean(game);
-	textures_clean(game);
+	if (game->textures.loaded)
+		textures_clean(game);
 	t_game_set_nulls(game);
 }
 

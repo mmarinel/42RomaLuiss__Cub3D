@@ -19,10 +19,10 @@ INCLUDES=\
 ./src/types.h\
 ./src/X11_macros.h\
 ./src/utils/gnl/get_next_line_module.h\
-./src/utils/libft/src/simple_printf/ft_printf_module.h\
 ./src/utils/libft/libft_module.h\
 ./src/utils/render/utils_render_module.h\
 ./src/utils/game/game_utils_module.h\
+./src/utils/simple_printf/ft_printf_module.h\
 ./src/utils/utils_module.h\
 ./src/utils/math/uti_math_module.h\
 ./src/init/utils/init_utils_module.h\
@@ -91,6 +91,8 @@ INCLUDES=\
 ./src/utils/render/utils_render.h\
 ./src/utils/render/utils_render_module.h\
 ./src/utils/render/utils_render_types.h\
+./src/utils/simple_printf/ft_printf.h\
+./src/utils/simple_printf/ft_printf_module.h\
 
 SRC_NOPREFIX=\
 ./src/main.c\
@@ -133,6 +135,7 @@ SRC_NOPREFIX=\
 ./src/init/keys_init/keys_init.c\
 ./src/init/map_init/map_init.c\
 ./src/init/mlx_init/mlx_init.c\
+./src/init/textures/init_textures.c\
 ./src/init/textures/load_textures.c\
 ./src/init/utils/init_utils.c\
 ./src/map_validation/map_attributes.c\
@@ -140,6 +143,7 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_read.c\
 ./src/map_validation/map_reset.c\
 ./src/map_validation/validate.c\
+./src/map_validation/utils/attrs.c\
 ./src/map_validation/utils/atttrs_chars_conditions.c\
 ./src/map_validation/utils/map_chars_conditions.c\
 ./src/map_validation/utils/map_chars_tracking.c\
@@ -223,6 +227,9 @@ SRC_NOPREFIX=\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/rgb.c\
 ./src/utils/render/squared_texture_clipper.c\
+./src/utils/simple_printf/ft_printf.c\
+./src/utils/simple_printf/printf_cases.c\
+./src/utils/simple_printf/printf_utils.c\
 
 USR_LIBS=\
 src/utils/libft\

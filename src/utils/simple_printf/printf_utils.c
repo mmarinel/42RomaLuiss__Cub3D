@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:34 by earendil          #+#    #+#             */
-/*   Updated: 2022/11/04 11:14:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:17:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pf_write(const char *c, int *count)
 {
-	write(STDOUT_FILENO, c, sizeof(char));
-	*count = *count + 1;
+	if (-1 != write(STDOUT_FILENO, c, sizeof(char)))
+		*count = *count + 1;
 }
 
 void	pf_put_nbr_base(long long num, const char *base,

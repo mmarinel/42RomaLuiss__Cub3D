@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:19:54 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 19:25:15 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:51:08 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_bool	is_valid_map( const char *path, t_map_holder *map_handle )
 		|| e_false == is_file_content_valid(path, map_handle)
 	)
 	{
-		ft_free_map(&map_handle->map, map_handle->rows);
 		return (e_false);
 	}
 	else
@@ -57,6 +56,10 @@ static t_bool	is_file_content_valid( const char *path,
 	else if (e_false == is_map_content_ok(map_fd, map_handle))
 		ft_write(STDERR_FILENO, RED "Error\n" RESET "map: invalid map\n");
 	else
+	{
+		close(map_fd);
 		return (e_true);
+	}
+	close(map_fd);
 	return (e_false);
 }

@@ -6,16 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 17:46:22 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:18:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H 
 
-# include "simple_printf/ft_printf_module.h"
-
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <stddef.h>
 # include <math.h>

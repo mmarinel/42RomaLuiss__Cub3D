@@ -6,9 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/31 13:30:17 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:01:27 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+# include "sys_includes.h"
 
 # include "macros.h"
 # include "colors.h"
@@ -16,48 +18,43 @@
 # include "types.h"
 # include "game_types.h"
 
+# include "init/game_init_module.h"
 # include "hooks/hooks_module.h"
+# include "exit/exit_module.h"
 
 # include "utils/utils_module.h"
-# include "init/game_init_module.h"
-# include "map_validation/map_validation_module.h"
-# include "map_validation/utils/map_utils_module.h"
-# include "raycast/raycast_module.h"
-# include "exit/exit_module.h"
-# include "render/render_module.h"
 
-# include "map_validation/utils/map_utils_module.h"
+static void	set_hooks(void *mlx, void *window, t_game *game);
+//*		end of static declarations
 
 //TODO isolare in un file apposito (in ogni sorgente .h (non module) dei bonus includi gli header illegali)
 int main(int argc, char const *argv[])
 {
 	t_game	game;
 
+	t_game_init(&game);
 	if (2 == argc
 		&& ft_game_init(argv[1], &game, SCREEN_WIDTH, SCREEN_HEIGHT))
 	{
-		printf( GREEN "map is ok\n" RESET );
-		mlx_hook(game.screen_handle.window, KeyPress, KeyPressMask, key_press_hook, &game);
-		mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
-		mlx_hook(game.screen_handle.window, FocusOut, GenericEvent, leave_window, &game);
-		mlx_hook(game.screen_handle.window, FocusIn, GenericEvent, enter_window, &game);
-		mlx_hook(game.screen_handle.window, DestroyNotify, StructureNotifyMask, exit_game, &game);
-		// mlx_mouse_hook(game.screen_handle.window, mouse_hook, &game);
-		// mlx_do_sync(game.screen_handle.mlx);
-		render_next_frame(&game);
-		mlx_loop_hook(game.screen_handle.mlx, loop_hook, &game);
+		ft_printf( BOLDGREEN "map is ok\n" RESET );
+		set_hooks(game.screen_handle.mlx, game.screen_handle.window, &game);
 		mlx_loop(game.screen_handle.mlx);
-			
-		ft_free_map(&game.map_handle.map, game.map_handle.rows);
-		free(game.map_handle.no_texture);
-		free(game.map_handle.so_texture);
-		free(game.map_handle.we_texture);
-		free(game.map_handle.ea_texture);
+		return (0);
 	}
 	else
 	{
-		printf( RED "map not ok\n" RESET );
+		ft_printf( BOLDRED "map not ok or args error\n" RESET );
+		clean_game(&game);
 		return (1);
 	}
-	return 0;
+}
+
+static void	set_hooks(void *mlx, void *window, t_game *game)
+{
+	mlx_hook(window, KeyPress, KeyPressMask, key_press_hook, game);
+	mlx_hook(window, KeyRelease, KeyReleaseMask, key_release_hook, game);
+	mlx_hook(window, FocusOut, GenericEvent, leave_window, game);
+	mlx_hook(window, FocusIn, GenericEvent, enter_window, game);
+	mlx_hook(window, DestroyNotify, StructureNotifyMask, exit_game, game);
+	mlx_loop_hook(mlx, loop_hook, game);
 }

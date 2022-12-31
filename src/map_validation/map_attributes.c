@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_attributes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/08 20:05:00 by mmarinel         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:17:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ static void	parse_wall_texture( t_map_holder *map_handle,
 				const char *id, const char *path )
 {
 	if (0 == ft_strcmp(id, "NO"))
-		map_handle->no_texture = ft_strdup(path);
+		read_texture_attr(&map_handle->no_texture, path);
 	else if (0 == ft_strcmp(id, "SO"))
-		map_handle->so_texture = ft_strdup(path);
+		read_texture_attr(&map_handle->so_texture, path);
 	else if (0 == ft_strcmp(id, "WE"))
-		map_handle->we_texture = ft_strdup(path);
+		read_texture_attr(&map_handle->we_texture, path);
 	else if (0 == ft_strcmp(id, "EA"))
-		map_handle->ea_texture = ft_strdup(path);
+		read_texture_attr(&map_handle->ea_texture, path);
 }
 
 static void	parse_rgb_field( t_map_holder *map_handle,

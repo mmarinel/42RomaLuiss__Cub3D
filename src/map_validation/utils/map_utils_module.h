@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 19:06:28 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:16:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //*		memory
 void	ft_free_map( t_tile ***map_ref, size_t rows );
 t_tile	**ft_map_init( size_t rows, size_t columns );
+void	read_texture_attr(char **ref, const char *path);
 
 //*		logic conditions
 t_bool	is_map_edge(

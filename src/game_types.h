@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 13:09:50 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:46:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,9 @@ typedef struct s_player
 	t_2d_point	camera_plane;
 }	t_player;
 
-typedef struct s_game_texture
+typedef struct s_game_textures
 {
+	t_bool			loaded;
 	t_wall_texture	wall;
 	t_door_texture	door;
 	t_data			background;
@@ -141,7 +142,7 @@ typedef struct s_game_texture
 	t_data			menu[2];
 	t_data			game_over[2];
 	t_data			game_win[2];
-}	t_game_texture;
+}	t_game_textures;
 
 typedef struct s_game
 {
@@ -157,7 +158,7 @@ typedef struct s_game
 	t_list			*items;
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
-	t_game_texture	textures;
+	t_game_textures	textures;
 	t_key_state		keys[BOUND_KEYS];
 	float			unit_rot_angle;
 }	t_game;

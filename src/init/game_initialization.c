@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 20:50:12 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:00:21 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ t_bool	ft_game_init(
 	static int	calls = 0;
 	t_bool		error;
 
-	game_ref->enemies = NULL;
-	game_ref->items = NULL;
-	game_ref->doors = NULL;
-	game_set_map(game_ref);
+	t_game_init(game_ref);
 	error = e_false;
 	if (e_false == is_valid_map(map_path, &game_ref->map_handle))
 		error = e_true;

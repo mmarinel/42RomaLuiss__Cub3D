@@ -6,13 +6,13 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:40:16 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:40:27 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 14:49:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_init.h"
 
-void	game_set_map( t_game *game_ref )
+void	game_init_map( t_game *game_ref )
 {
 	game_ref->map_handle.player_initial_pos
 		= ft_get_new_2dpt(-1, -1);

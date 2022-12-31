@@ -12,7 +12,6 @@
 
 INCLUDES=\
 ./src/libft.h\
-./src/simple_printf/ft_printf_module.h\
 ./libft_module.h\
 
 SRC_NOPREFIX=\

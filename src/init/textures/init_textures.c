@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init_module.h                                 :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 14:27:00 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/31 18:00:56 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/31 14:44:47 by earendil          #+#    #+#             */
+/*   Updated: 2022/12/31 14:46:24 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_INIT_MODULE_H
-# define GAME_INIT_MODULE_H
+#include "../game_init.h"
 
-# include "../types.h"
-# include "../game_types.h"
-# include "../utils/utils_module.h"
-# include "../sys_includes.h"
-
-t_bool	ft_game_init(
-			const char *map_path,
-			t_game *game_ref,
-			size_t width, size_t height
-		);
-void	t_game_init(t_game *game_ref);
-
-# endif
+void	game_init_textures(t_game *game_ref)
+{
+	game_ref->textures.loaded = e_false;
+}
