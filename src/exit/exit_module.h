@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:42:31 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 18:06:40 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:31:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../types.h"
 # include "../game_types.h"
 
-void	exit_game(t_game *game);
+int		exit_game(t_game *game);
 void	clean_game(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 18:17:48 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:30:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "map_validation/map_validation_module.h"
 # include "map_validation/utils/map_utils_module.h"
 # include "raycast/raycast_module.h"
+# include "exit/exit_module.h"
 # include "render/render_module.h"
 
 # include "map_validation/utils/map_utils_module.h"
@@ -40,6 +41,7 @@ int main(int argc, char const *argv[])
 		mlx_hook(game.screen_handle.window, KeyRelease, KeyReleaseMask, key_release_hook, &game);
 		mlx_hook(game.screen_handle.window, FocusOut, GenericEvent, leave_window, &game);
 		mlx_hook(game.screen_handle.window, FocusIn, GenericEvent, enter_window, &game);
+		mlx_hook(game.screen_handle.window, DestroyNotify, StructureNotifyMask, exit_game, &game);
 		// mlx_mouse_hook(game.screen_handle.window, mouse_hook, &game);
 		// mlx_do_sync(game.screen_handle.mlx);
 		render_next_frame(&game);

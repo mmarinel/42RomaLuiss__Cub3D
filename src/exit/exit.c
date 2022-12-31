@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 00:51:29 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:31:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	clean_game(t_game *game)
 	t_game_set_nulls(game);
 }
 
-void	exit_game(t_game *game)
+int	exit_game(t_game *game)
 {
 	clean_game(game);
 	t_screen_holder_clean(game);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 static void	t_map_holder_clean(t_game *game)

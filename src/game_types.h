@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 18:10:01 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:09:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef enum e_side
 # define SPACE_INDEX 8
 # define E_INDEX 9
 # define ENTER_INDEX 10
+# define ESC_INDEX 11
 
 # define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
 

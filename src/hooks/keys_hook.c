@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:19:50 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:29:42 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:38:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	key_press_hook(int key_code, t_game *game)
 	// exit(0);
 	if (e_false == game->in_focus || (-1) == key_index)
 		return (0);
-	game->keys[key_index].state = KeyPress;
+	else if (ESC_INDEX == key_index)
+		exit_game(game);
+	else
+		game->keys[key_index].state = KeyPress;
 	return (0);
 }
 
@@ -62,6 +65,8 @@ static int	get_key_index(int key_code)
 		return (E_INDEX);
 	if (e_ENTER_KEY == key_code)
 		return (ENTER_INDEX);
+	if (e_ESC_KEY == key_code)
+		return (ESC_INDEX);
 	// if (e_UP_KEY == key_code)
 	// 	return (UP_INDEX);
 	// if (e_UP_KEY == key_code)
