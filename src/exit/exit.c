@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 18:55:31 by earendil         ###   ########.fr       */
+/*   Updated: 2022/12/31 00:51:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	t_screen_holder_clean(t_game *game)
 		game->screen_handle.mlx, game->screen_handle.window
 	);
 	mlx_destroy_display(game->screen_handle.mlx);
+	free(game->screen_handle.mlx);
 }
 
 static void	textures_clean(t_game *game)
