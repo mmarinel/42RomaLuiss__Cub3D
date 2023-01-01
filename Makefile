@@ -15,6 +15,7 @@ INCLUDES=\
 ./src/game_types.h\
 ./src/includes.h\
 ./src/macros.h\
+./src/sys_includes_bonus.h\
 ./src/sys_includes.h\
 ./src/types.h\
 ./src/X11_macros.h\
@@ -123,7 +124,7 @@ SRC_NOPREFIX=\
 ./src/hooks/keys_hook.c\
 ./src/hooks/loop_hook.c\
 ./src/hooks/win_focus_hooks.c\
-./src/hooks/in_game_loop/in_game_loop_bonus.c\
+./src/hooks/in_game_loop/in_game_loop.c\
 ./src/hooks/in_game_loop/keys/in_game_keys.c\
 ./src/hooks/in_game_loop/keys/movement_key.c\
 ./src/hooks/in_game_loop/keys/rotation_key_bonus.c\
