@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 22:04:56 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:13:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,25 @@ void	clean_enemies(t_game *game)
 	}
 }
 
+static size_t	ampl(const t_2d_point *dist_v, t_enemy *enemy)
+{
+	const size_t	dist = ft_vec_norm(*dist_v);
+	const size_t	max_apl = 4;
+	size_t			cur_ampl;
+
+	cur_ampl = max_apl;
+	while (cur_ampl > 1)
+	{
+		if (dist >= enemy->collision_radius + enemy->step_size * cur_ampl)
+			break ;
+		cur_ampl /= 2;
+	}
+	return (cur_ampl);
+}
+
 static void	change_enemy_pos(t_enemy *enemy, t_game *game)
 {
-	const t_2d_point		dir
+	const t_2d_point		dist_v
 		= ft_vec_sum(
 			game->player.pos,
 			ft_vec_opposite(enemy->pos)
@@ -124,7 +140,9 @@ static void	change_enemy_pos(t_enemy *enemy, t_game *game)
 		= map_pos_clip(
 			ft_vec_sum(
 				enemy->pos,
-				ft_change_magnitude(dir, enemy->step_size)
+				ft_change_magnitude(
+					dist_v, enemy->step_size * ampl(&dist_v, enemy)
+					)
 			),
 			game
 		);
