@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   in_menu_move.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/01 17:44:44 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/01 17:08:44 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 17:26:10 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "../in_menu_loop_bonus.h"
 
-void	render_next_frame(t_game *g)
+void	in_menu_move(t_key_state *key, t_game *game)
 {
-	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	if (BONUS && g->in_initial_menu)
-		render_menu_next_frame(g);
-	else if (BONUS && g->in_end_menu)
-		render_end_next_frame(g);
-	else
-		render_game_next_frame(g);
+	const int	menu_frames = 2;
+
+	if (
+		KeyPress == key->state
+		&& (e_UP_KEY == key->code || e_DOWN_KEY == key->code))
+	{
+		key->state = -1;
+		game->menu_screen = (game->menu_screen + 1) % menu_frames;
+	}
 }

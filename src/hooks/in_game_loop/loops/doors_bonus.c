@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:24:22 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:31:45 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:31:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "in_game_loops_bonus.h"
 
 void	animate_doors(t_game *game)
 {

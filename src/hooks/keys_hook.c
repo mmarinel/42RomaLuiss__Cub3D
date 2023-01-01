@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:19:50 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 16:03:41 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:17:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_key_index(int key_code, t_game *game)
 	i = 0;
 	while (i < BOUND_KEYS)
 	{
-		if (key_code == (int)game->key_map.keys[i].key)
+		if (key_code == (int)game->key_map.keys[i].code)
 			return (i);
 		i++;
 	}

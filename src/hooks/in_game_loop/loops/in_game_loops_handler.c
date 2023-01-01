@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   in_game_loops_handler.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/01 17:44:44 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/01 19:41:51 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 19:53:27 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "in_game_loops_bonus.h"
 
-void	render_next_frame(t_game *g)
+void	in_game_loops_handler(t_game *game)
 {
-	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	if (BONUS && g->in_initial_menu)
-		render_menu_next_frame(g);
-	else if (BONUS && g->in_end_menu)
-		render_end_next_frame(g);
-	else
-		render_game_next_frame(g);
+	west_angle_adjust(game);
+	player_enemy_collision_check(game);
+	player_item_collision_check(game);
+	enemies_anim_death(game);
+	clean_enemies(game);
+	clean_items(game);
+	move_enemies(game);
+	animate_doors(game);
 }

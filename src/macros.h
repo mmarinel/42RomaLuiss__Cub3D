@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 17:59:13 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 20:36:00 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef BONUS
 #  define BONUS 0
+# endif
+
+# ifndef M_PI
+#  define M_PI		3.14159265358979323846	/* pi */
 # endif
 
 # define SCREEN_WIDTH 1280

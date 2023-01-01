@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   west_angle.c                                       :+:      :+:    :+:   */
+/*   items_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 18:16:13 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:17:12 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/25 17:41:11 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 19:35:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "in_game_loops_bonus.h"
 
-void	west_angle_update(t_game *game)
+void	clean_items(t_game *game)
 {
-	if (game->player.west_angle >= 2 * M_PI)
-		game->player.west_angle
-			-= 2 * M_PI;
-	else if (game->player.west_angle < 0)
-		game->player.west_angle
-			= 2 * M_PI - ft_flt_abs(game->player.west_angle);
+	t_list	*next;
+	t_list	**prev_next;
+
+	prev_next = &game->items;
+	while (*prev_next)
+	{
+		next = (*prev_next)->next;
+		if (e_true == ((t_item *)(*prev_next)->content)->picked)
+		{
+			ft_lstdelone(*prev_next, free);
+			*prev_next = next;
+		}
+		else
+			prev_next = &(*prev_next)->next;
+	}
 }

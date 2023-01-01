@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   sys_includes_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/01 17:44:44 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/16 21:21:35 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 20:23:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#ifndef SYS_INCLUDES_BONUS_H
+# define SYS_INCLUDES_BONUS_H
 
-void	render_next_frame(t_game *g)
-{
-	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	if (BONUS && g->in_initial_menu)
-		render_menu_next_frame(g);
-	else if (BONUS && g->in_end_menu)
-		render_end_next_frame(g);
-	else
-		render_game_next_frame(g);
-}
+# include <sys/time.h>
+# include <time.h>
+
+#endif

@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   D_key.c                                            :+:      :+:    :+:   */
+/*   movement_key.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:37:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 19:28:14 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 20:02:34 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys_behavior.h"
+#include "in_game_keys.h"
 
-void	d_key_handler_pressed(t_game *game)
+void	in_game_movement_key(t_key_state *key, t_game *game)
 {
-	t_2d_point			new_pos;
-	// t_int_2d_point		next_tile;
+	t_2d_point	new_pos;
 	
-	new_pos = new_player_pos(e_D_KEY, game);
-	// next_tile = as_int_2dpt(&new_pos);
-	if (is_traversable_pos(game, &game->player.pos, &new_pos))
+	// if (e_SHIFT_KEY == key->code)
+	// 	shift_key_handler(key, game);
+	// else
+	if (KeyPress == key->state)
 	{
-		// if (BONUS && is_door_map_char(
-		// 	game->map_handle.map[next_tile.y][next_tile.x]
-		// 	))
-		// 	move_across_door(game, &new_pos, e_D_KEY);
-		// else
-			game->player.pos = new_pos;
+		new_pos = new_player_pos(key->code, game);
+		if (is_traversable_pos(game, &game->player.pos, &new_pos))
+		{
+				game->player.pos = new_pos;
+		}
 	}
 }

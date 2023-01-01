@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 16:05:31 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:43:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_door_texture {
 
 typedef struct s_key_state
 {
-	t_key	key;
+	t_key	code;
 	int		state;
 }	t_key_state;
 
@@ -155,8 +155,8 @@ typedef struct s_game
 	char			*lvls[LEVELS];
 	char			*cur_lvl;
 	t_bool			in_focus;
-	t_bool			in_menu;
-	t_bool			in_end;
+	t_bool			in_initial_menu;
+	t_bool			in_end_menu;
 	int				menu_screen;
 	t_player		player;
 	t_list			*enemies;

@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:58:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/29 17:46:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:52:11 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys_behavior.h"
+#include "in_game_mouse_bonus.h"
 
 static int		get_rot_sign(
 	const t_int_2d_point *mouse_pos,
@@ -22,7 +22,7 @@ static float	get_rot_angle(
 	t_game *g);
 //*		end of static declarations
 
-void	mouse_hook(t_game *game)
+void	in_game_mouse_handler(t_game *game)
 {
 	static t_int_2d_point	prev_pos = (t_int_2d_point){-1, -1};
 	t_int_2d_point			mouse_pos;

@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   items_bonus.c                                      :+:      :+:    :+:   */
+/*   in_menu_loop_module.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 17:41:11 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 17:42:35 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/01 16:48:21 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 17:42:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#ifndef IN_MENU_LOOP_MODULE_H
+# define IN_MENU_LOOP_MODULE_H
 
-void	clean_items(t_game *game)
-{
-	t_list	*next;
-	t_list	**prev_next;
+# include "../../types.h"
+# include "../../game_types.h"
 
-	prev_next = &game->items;
-	while (*prev_next)
-	{
-		next = (*prev_next)->next;
-		if (e_true == ((t_item *)(*prev_next)->content)->picked)
-		{
-			ft_lstdelone(*prev_next, free);
-			*prev_next = next;
-		}
-		else
-			prev_next = &(*prev_next)->next;
-	}
-}
+void	in_menus_loop(t_game *game);
+
+#endif

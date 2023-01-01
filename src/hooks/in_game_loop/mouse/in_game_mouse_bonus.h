@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   in_game_mouse_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 09:35:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/01 17:44:44 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/01 19:26:22 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/01 20:23:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#ifndef IN_GAME_MOUSE_BONUS_H
+# define IN_GAME_MOUSE_BONUS_H
 
-void	render_next_frame(t_game *g)
-{
-	// mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
-	if (BONUS && g->in_initial_menu)
-		render_menu_next_frame(g);
-	else if (BONUS && g->in_end_menu)
-		render_end_next_frame(g);
-	else
-		render_game_next_frame(g);
-}
+# include "../../../types.h"
+# include "../../../game_types.h"
+
+# include "../../../sys_includes.h"
+# include "../../../sys_includes_bonus.h"
+# include "../../../utils/utils_module.h"
+
+#endif

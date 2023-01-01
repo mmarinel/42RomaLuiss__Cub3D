@@ -6,20 +6,21 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 21:36:20 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:21:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys_behavior.h"
+#include "in_game_keys_bonus.h"
 
 static void		open_close_doors(t_game *game);
 static t_bool	door_reached(t_door *door, float ray_angle, t_game *game);
 static void		open_close_door(t_door *door);
 //*		end of static declarations
 
-void	e_key_handler(t_game *game)
+void	in_game_e_key(t_key_state *key, t_game *game)
 {
-	open_close_doors(game);
+	if (KeyPress == key->state)
+		open_close_doors(game);
 }
 
 static void	open_close_doors(t_game *game)

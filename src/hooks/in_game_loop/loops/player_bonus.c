@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:27:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:14:22 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:37:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hooks.h"
+#include "in_game_loops_bonus.h"
 
 void	player_enemy_collision_check(t_game *game)
 {
@@ -22,7 +22,7 @@ void	player_enemy_collision_check(t_game *game)
 		game->player.hp -= 1;
 		game->player.enemy_colliding = e_true;
 		if (game->player.hp <= 0)
-			game->in_end = e_true;
+			game->in_end_menu = e_true;
 	}
 	else
 		game->player.enemy_colliding = e_false;
@@ -46,6 +46,6 @@ void	player_item_collision_check(t_game *game)
 		game->player.picked_items += 1;
 		item->picked = e_true;
 		if (game->player.picked_items == game->player.tot_items)
-			game->in_end = e_true;
+			game->in_end_menu = e_true;
 	}
 }
