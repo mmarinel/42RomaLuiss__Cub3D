@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 17:59:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:41:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	t_game_init(t_game *game_ref)
 	game_ref->doors = NULL;
 	game_ref->enemies = NULL;
 	game_ref->items = NULL;
+	game_init_keys(game_ref);
 	game_init_map(game_ref);
 	game_init_textures(game_ref);
 }

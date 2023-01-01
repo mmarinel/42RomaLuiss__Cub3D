@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 14:46:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 16:05:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,32 @@ typedef struct s_door_texture {
 	t_data	closed;
 }	t_door_texture;
 
+# define BOUND_KEYS 13
+
+# define W_INDEX 0
+# define A_INDEX 1
+# define S_INDEX 2
+# define D_INDEX 3
+# define SHIFT_INDEX 4
+# define UP_INDEX 5
+# define DOWN_INDEX 6
+# define RIGHT_INDEX 7
+# define LEFT_INDEX 8
+# define SPACE_INDEX 9
+# define E_INDEX 10
+# define ENTER_INDEX 11
+# define ESC_INDEX 12
+
 typedef struct s_key_state
 {
 	t_key	key;
 	int		state;
 }	t_key_state;
+
+typedef struct s_key_state_map
+{
+	t_key_state		keys[BOUND_KEYS];
+}	t_key_state_map;
 
 typedef enum e_side
 {
@@ -51,21 +72,6 @@ typedef enum e_side
 	e_VERTICAL,
 	e_SIDE_NONE
 }	t_side;
-
-# define BOUND_KEYS 14
-
-# define W_INDEX 0
-# define A_INDEX 1
-# define S_INDEX 2
-# define D_INDEX 3
-# define UP_INDEX 4
-# define DOWN_INDEX 5
-# define RIGHT_INDEX 6
-# define LEFT_INDEX 7
-# define SPACE_INDEX 8
-# define E_INDEX 9
-# define ENTER_INDEX 10
-# define ESC_INDEX 11
 
 # define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
 
@@ -159,7 +165,7 @@ typedef struct s_game
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
 	t_game_textures	textures;
-	t_key_state		keys[BOUND_KEYS];
+	t_key_state_map	key_map;
 	float			unit_rot_angle;
 }	t_game;
 

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/31 17:59:55 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:40:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	game_init_textures(t_game *game_ref);
 void	load_textures(t_game *game_ref, t_bool *err_flag);
 
 //*		keys
-void	game_set_key_state(t_game *game_ref);
+void	game_init_keys(t_game *game_ref);
 
 //*		map
 void	game_init_map( t_game *game_ref );

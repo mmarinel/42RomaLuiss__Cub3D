@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:55:27 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 18:09:06 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 15:56:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	right_key_handler_pressed(t_game *game)
 void	right_key_handler_released(t_game *game)
 {
 	game->unit_rot_angle = INITIAL_ROT_ANGLE;
-	game->keys[RIGHT_INDEX].state = -1;
+	game->key_map.keys[RIGHT_INDEX].state = -1;
 }

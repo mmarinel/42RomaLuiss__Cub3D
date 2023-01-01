@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 13:09:26 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:39:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,10 @@ typedef enum e_key
 	e_S_KEY = 115,
 	e_D_KEY = 100,
 	e_E_KEY = 101,
-	e_Q_KEY = 113,
 	e_SPACE_KEY = 32,
 	e_ENTER_KEY = 65293,
 	e_ESC_KEY = 65307,
-	e_TAB_KEY = -1,
-	e_CTRL_KEY = -1,
-	e_CMD_KEY = -1,
+	e_SHIFT_KEY = 65505,
 }	t_key;
 
 typedef struct s_data

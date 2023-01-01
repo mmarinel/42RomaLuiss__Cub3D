@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:59:49 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 12:12:30 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 15:55:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	in_game_loop(t_game *game)
 
 static void	player_movement_handler(t_game *game)
 {
-	if (KeyPress == game->keys[W_INDEX].state)
+	if (KeyPress == game->key_map.keys[W_INDEX].state)
 		w_key_handler_pressed(game);
-	else if (KeyPress == game->keys[A_INDEX].state)
+	else if (KeyPress == game->key_map.keys[A_INDEX].state)
 		a_key_handler_pressed(game);
-	else if (KeyPress == game->keys[S_INDEX].state)
+	else if (KeyPress == game->key_map.keys[S_INDEX].state)
 		s_key_handler_pressed(game);
-	else if (KeyPress == game->keys[D_INDEX].state)
+	else if (KeyPress == game->key_map.keys[D_INDEX].state)
 		d_key_handler_pressed(game);
 }
 
@@ -59,26 +59,26 @@ static void	player_direction_handler(t_game *game)
 {
 	if (BONUS)
 		mouse_hook(game);
-	if (KeyPress == game->keys[RIGHT_INDEX].state)
+	if (KeyPress == game->key_map.keys[RIGHT_INDEX].state)
 		right_key_handler_pressed(game);
-	else if (KeyRelease == game->keys[RIGHT_INDEX].state)
+	else if (KeyRelease == game->key_map.keys[RIGHT_INDEX].state)
 		right_key_handler_released(game);
-	if (KeyPress == game->keys[LEFT_INDEX].state)
+	if (KeyPress == game->key_map.keys[LEFT_INDEX].state)
 		left_key_handler_pressed(game);
-	else if (KeyRelease == game->keys[LEFT_INDEX].state)
+	else if (KeyRelease == game->key_map.keys[LEFT_INDEX].state)
 		left_key_handler_released(game);
 }
 
 static void	player_attack_handler(t_game *game)
 {
-	if (KeyPress == game->keys[SPACE_INDEX].state)
+	if (KeyPress == game->key_map.keys[SPACE_INDEX].state)
 		space_key_handler_pressed(game);
-	else if (KeyRelease == game->keys[SPACE_INDEX].state)
+	else if (KeyRelease == game->key_map.keys[SPACE_INDEX].state)
 		space_key_handler_released(game);
 }
 
 static void	player_doors_handler(t_game *game)
 {
-	if (KeyPress == game->keys[E_INDEX].state)
+	if (KeyPress == game->key_map.keys[E_INDEX].state)
 		e_key_handler(game);
 }
