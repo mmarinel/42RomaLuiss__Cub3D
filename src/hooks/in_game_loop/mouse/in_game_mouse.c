@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:58:58 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 18:25:27 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:53:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,26 @@ static float	get_rot_angle(
 	const t_int_2d_point *prev_pos,
 	t_game *g)
 {
-	static float	prev_angle = 0;
 	float			rot_angle;
 	float			main_axis_angle;
-	float			variation;
-	
+	const float		invers_rot_angle = 0.0174533f;//*	1°
+
 	main_axis_angle = M_PI / 2 - asin(
 		1.0f / ft_vec_norm(ray_for_column(mouse_pos->x, g))
 	);
-	variation = ft_flt_abs(main_axis_angle - prev_angle);
 	if (mouse_pos->x >= SCREEN_WIDTH / 2)
 	{
 		if (mouse_pos->x < prev_pos->x)
-			rot_angle = (2 * M_PI - variation);
+			rot_angle = (2 * M_PI - invers_rot_angle);
 		else
 			rot_angle = (main_axis_angle);
 	}
 	else if (mouse_pos->x < SCREEN_WIDTH / 2)
 	{
 		if (mouse_pos->x > prev_pos->x)
-			rot_angle = (variation);
+			rot_angle = (invers_rot_angle);
 		else
 			rot_angle = (2 * M_PI - main_axis_angle);
 	}
-	prev_angle = main_axis_angle;
 	return (rot_angle);
 }
