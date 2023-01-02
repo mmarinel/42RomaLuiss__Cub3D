@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                            :+:      :+:    :+:   */
+/*   in_game_mouse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:58:58 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:52:11 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:25:27 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "in_game_mouse_bonus.h"
 
-static int		get_rot_sign(
-	const t_int_2d_point *mouse_pos,
-	const t_int_2d_point *prev_pos
-	);
 static float	get_rot_angle(
 	const t_int_2d_point *mouse_pos,
 	const t_int_2d_point *prev_pos,
@@ -49,35 +45,34 @@ void	in_game_mouse_handler(t_game *game)
 	}
 }
 
-static int		get_rot_sign(
-	const t_int_2d_point *mouse_pos,
-	const t_int_2d_point *prev_pos
-	)
-{
-	if (mouse_pos->x < prev_pos->x)
-		return (-1);
-	else if (mouse_pos->x == prev_pos->x)
-		return (0);
-	else
-		return (+1);
-}
-
 static float	get_rot_angle(
 	const t_int_2d_point *mouse_pos,
 	const t_int_2d_point *prev_pos,
 	t_game *g)
 {
-	int		rot_sign;
-	float	theta;
+	static float	prev_angle = 0;
+	float			rot_angle;
+	float			main_axis_angle;
+	float			variation;
 	
-	rot_sign = get_rot_sign(mouse_pos, prev_pos);
-	theta = M_PI / 2 - asin(
+	main_axis_angle = M_PI / 2 - asin(
 		1.0f / ft_vec_norm(ray_for_column(mouse_pos->x, g))
 	);
-	if (rot_sign > 0)
-		return (theta);
-	else if (0 == rot_sign)
-		return (0);
-	else
-		return (2 * M_PI - theta);
+	variation = ft_flt_abs(main_axis_angle - prev_angle);
+	if (mouse_pos->x >= SCREEN_WIDTH / 2)
+	{
+		if (mouse_pos->x < prev_pos->x)
+			rot_angle = (2 * M_PI - variation);
+		else
+			rot_angle = (main_axis_angle);
+	}
+	else if (mouse_pos->x < SCREEN_WIDTH / 2)
+	{
+		if (mouse_pos->x > prev_pos->x)
+			rot_angle = (variation);
+		else
+			rot_angle = (2 * M_PI - main_axis_angle);
+	}
+	prev_angle = main_axis_angle;
+	return (rot_angle);
 }

@@ -139,7 +139,7 @@ SRC_NOPREFIX=\
 ./src/hooks/in_game_loop/loops/items_bonus.c\
 ./src/hooks/in_game_loop/loops/player_bonus.c\
 ./src/hooks/in_game_loop/loops/west_angle_bonus.c\
-./src/hooks/in_game_loop/mouse/mouse.c\
+./src/hooks/in_game_loop/mouse/in_game_mouse.c\
 ./src/hooks/in_menus_loop/in_menu_keys.c\
 ./src/hooks/in_menus_loop/in_menu_loop_bonus.c\
 ./src/hooks/in_menus_loop/in_menu_mouse.c\
