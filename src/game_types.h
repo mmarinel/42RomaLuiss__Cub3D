@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 09:41:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 10:43:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,18 +153,28 @@ typedef struct s_game_textures
 	t_data			game_win[2];
 }	t_game_textures;
 
+typedef struct s_menu
+{
+	t_bool			in_initial_menu;
+	t_bool			in_end_menu;
+	int				menu_screen;
+	t_bool			mouse_clicked;
+	t_int_2d_point	newg_btn_top_left;
+	t_int_2d_point	newg_btn_bottom_right;
+	t_int_2d_point	exit_btn_top_left;
+	t_int_2d_point	exit_btn_bottom_right;
+}	t_menu;
+
 typedef struct s_game
 {
 	char			*lvls[LEVELS];
 	char			*cur_lvl;
 	t_bool			in_focus;
-	t_bool			in_initial_menu;
-	t_bool			in_end_menu;
-	int				menu_screen;
 	t_player		player;
 	t_list			*enemies;
 	t_list			*doors;
 	t_list			*items;
+	t_menu			menu;
 	t_map_holder	map_handle;
 	t_screen_holder	screen_handle;
 	t_game_textures	textures;

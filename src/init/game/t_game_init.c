@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 09:56:54 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 10:19:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@ void	t_game_init(t_game *game_ref)
 	game_ref->doors = NULL;
 	game_ref->enemies = NULL;
 	game_ref->items = NULL;
-	game_init_keys(game_ref);
 	game_init_map(game_ref);
 	game_init_textures(game_ref);
+	game_init_keys(game_ref);
+	game_init_menus(game_ref);
 }
 
 void	t_game_set(const char *map_path, t_game *game_ref)
 {
 	set_lvls(map_path, game_ref);
 	game_ref->in_focus = e_true;
-	game_ref->in_initial_menu = e_true;
-	game_ref->in_end_menu = e_false;
-	game_ref->menu_screen = 0;
+	game_ref->menu.in_initial_menu = e_true;
+	game_ref->menu.in_end_menu = e_false;
+	game_ref->menu.menu_screen = 0;
 	game_ref->unit_rot_angle = INITIAL_ROT_ANGLE;
 	game_ref->player.alive = e_true;
 	game_ref->player.hp = 100;

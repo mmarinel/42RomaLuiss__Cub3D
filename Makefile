@@ -123,6 +123,7 @@ SRC_NOPREFIX=\
 ./src/hooks/in_end_loop_bonus.c\
 ./src/hooks/keys_hook.c\
 ./src/hooks/loop_hook.c\
+./src/hooks/mouse_click_hook.c\
 ./src/hooks/win_focus_hooks.c\
 ./src/hooks/in_game_loop/in_game_loop.c\
 ./src/hooks/in_game_loop/keys/in_game_keys.c\
@@ -156,6 +157,7 @@ SRC_NOPREFIX=\
 ./src/init/geometry/init_geometry.c\
 ./src/init/keys_init/keys_init.c\
 ./src/init/map_init/map_init.c\
+./src/init/menus_init/menus_init.c\
 ./src/init/mlx_init/mlx_init.c\
 ./src/init/textures/init_textures.c\
 ./src/init/textures/load_textures.c\
@@ -234,6 +236,7 @@ SRC_NOPREFIX=\
 ./src/utils/game/game_sun_bonus.c\
 ./src/utils/game/map_chars_conditions_bonus.c\
 ./src/utils/game/map_utils.c\
+./src/utils/game/menu_utils_bonus.c\
 ./src/utils/gnl/get_next_line.c\
 ./src/utils/gnl/get_next_line_nonl.c\
 ./src/utils/gnl/get_next_line_utils.c\

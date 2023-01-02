@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   in_menu_move.c                                     :+:      :+:    :+:   */
+/*   menu_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 17:08:44 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 10:17:09 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/02 10:29:22 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/02 10:32:08 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../in_menu_loop_bonus.h"
+#include "game_utils.h"
 
-void	in_menu_move(t_key_state *key, t_game *game)
+t_bool	rect_button_focused(
+	const t_int_2d_point *px,
+	const t_int_2d_point *top_left,
+	const t_int_2d_point *bottom_right
+	)
 {
-	const int	menu_frames = 2;
-
-	if (
-		KeyPress == key->state
-		&& (e_UP_KEY == key->code || e_DOWN_KEY == key->code))
-	{
-		key->state = -1;
-		game->menu.menu_screen = (game->menu.menu_screen + 1) % menu_frames;
-	}
+	return (
+		(px->x >= top_left->x && px->x <= bottom_right->x)
+		&& (px->y >= top_left->y && px->y <= bottom_right->y)
+	);
 }
