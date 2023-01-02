@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:27:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:37:23 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 21:34:31 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,14 @@ void	player_item_collision_check(t_game *game)
 		item->picked = e_true;
 		if (game->player.picked_items == game->player.tot_items)
 			game->in_end_menu = e_true;
+	}
+}
+
+void	player_recharge_mana(t_game *game)
+{
+	if (e_false == game->player.attacking && e_false == game->player.running)
+	{
+		if (game->player.mana < 100 && time(NULL) % 2)
+			game->player.mana += 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:51:18 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 14:51:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 09:59:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ t_2d_point	map_pos_clip(t_2d_point pt, t_game *game)
 t_bool	is_map_pos(
 	const t_map_holder *map_handle,
 	const t_int_2d_point *pos
+	)
+{
+	if (NULL == map_handle)
+		return (e_false);
+	else
+		return (
+			(0 <= pos->x && pos->x < (int)map_handle->columns)
+			&& (0 <= pos->y && pos->y < (int)map_handle->rows)
+		);
+}
+
+t_bool	is_map_posf(
+	const t_map_holder *map_handle,
+	const t_2d_point *pos
 	)
 {
 	if (NULL == map_handle)

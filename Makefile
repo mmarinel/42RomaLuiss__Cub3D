@@ -129,6 +129,7 @@ SRC_NOPREFIX=\
 ./src/hooks/in_game_loop/keys/movement_key.c\
 ./src/hooks/in_game_loop/keys/rotation_key_bonus.c\
 ./src/hooks/in_game_loop/keys/bonus/E_key_bonus.c\
+./src/hooks/in_game_loop/keys/bonus/in_game_shift_key.c\
 ./src/hooks/in_game_loop/keys/bonus/SPACE_key_bonus.c\
 ./src/hooks/in_game_loop/keys/utils/player_movement.c\
 ./src/hooks/in_game_loop/loops/doors_bonus.c\

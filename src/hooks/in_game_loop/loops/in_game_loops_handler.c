@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:41:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:53:27 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/01 21:31:56 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	in_game_loops_handler(t_game *game)
 {
 	west_angle_adjust(game);
+	player_recharge_mana(game);
 	player_enemy_collision_check(game);
 	player_item_collision_check(game);
 	enemies_anim_death(game);

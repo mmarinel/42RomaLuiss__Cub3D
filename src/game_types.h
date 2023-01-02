@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 17:43:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 09:41:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,10 @@ typedef struct s_player
 	size_t		attack_damage;
 	float		attack_range;
 	float		action_range;
+	float		step_size;
+	float		step_ampl;
 	t_bool		attacking;
+	t_bool		running;
 	t_bool		enemy_colliding;
 	float		west_angle;
 	size_t		tot_items;

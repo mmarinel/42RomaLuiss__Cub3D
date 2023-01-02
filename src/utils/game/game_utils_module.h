@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/29 16:39:14 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 10:00:08 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ t_2d_point	map_pos_clip(t_2d_point pt, t_game *game);
 t_bool		is_map_pos(
 	const t_map_holder *map_handle,
 	const t_int_2d_point *pos
+	);
+t_bool		is_map_posf(
+	const t_map_holder *map_handle,
+	const t_2d_point *pos
 	);
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );

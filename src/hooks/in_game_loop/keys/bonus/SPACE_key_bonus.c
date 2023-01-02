@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:58:33 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 09:55:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "in_game_keys_bonus.h"
 
 static void		attack(t_game *game);
-static void		recharge(t_game *game);
+static void		reset_attack(t_game *game);
 static void		attack_enemies(t_game *game);
 static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game);
 static void		enemy_take_damage(t_enemy *enemy, t_game *game);
@@ -22,31 +22,24 @@ static void		enemy_take_damage(t_enemy *enemy, t_game *game);
 void	in_game_space_key(t_key_state *key, t_game *game)
 {
 
-	if (KeyPress == key->state)
+	if (KeyPress == key->state && game->player.mana > 0)
 		attack(game);
-	else if (KeyRelease == key->state)
-		recharge(game);
+	else
+		reset_attack(game);
 }
 
 static void	attack(t_game *game)
 {
 	const float	cost = game->player.mana / 4.0f;
 
-	if (game->player.mana > 0)
-	{
-		game->player.attacking = e_true;
-		game->player.mana -= cost;
-		attack_enemies(game);
-	}
-	else
-		game->player.attacking = e_false;
+	game->player.attacking = e_true;
+	game->player.mana -= cost;
+	attack_enemies(game);
 }
 
-static void	recharge(t_game *game)
+static void	reset_attack(t_game *game)
 {
 	game->player.attacking = e_false;
-	if (game->player.mana < 100 && time(NULL) % 2)
-		game->player.mana += 1;
 }
 
 static void	attack_enemies(t_game *game)
