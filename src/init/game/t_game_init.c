@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 10:19:29 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:43:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	t_game_set(const char *map_path, t_game *game_ref)
 {
 	set_lvls(map_path, game_ref);
 	game_ref->in_focus = e_true;
-	game_ref->menu.in_initial_menu = e_true;
-	game_ref->menu.in_end_menu = e_false;
-	game_ref->menu.menu_screen = 0;
+	game_ref->mouse_clicked = e_false;
 	game_ref->unit_rot_angle = INITIAL_ROT_ANGLE;
 	game_ref->player.alive = e_true;
 	game_ref->player.hp = 100;

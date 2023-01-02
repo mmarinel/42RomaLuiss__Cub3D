@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 10:43:48 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:41:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ typedef struct s_menu
 	t_bool			in_initial_menu;
 	t_bool			in_end_menu;
 	int				menu_screen;
-	t_bool			mouse_clicked;
 	t_int_2d_point	newg_btn_top_left;
 	t_int_2d_point	newg_btn_bottom_right;
 	t_int_2d_point	exit_btn_top_left;
@@ -169,6 +168,7 @@ typedef struct s_game
 {
 	char			*lvls[LEVELS];
 	char			*cur_lvl;
+	t_bool			mouse_clicked;
 	t_bool			in_focus;
 	t_player		player;
 	t_list			*enemies;

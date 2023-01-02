@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 09:55:03 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:48:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void		enemy_take_damage(t_enemy *enemy, t_game *game);
 void	in_game_space_key(t_key_state *key, t_game *game)
 {
 
-	if (KeyPress == key->state && game->player.mana > 0)
+	if (game->player.mana > 0
+		&& (KeyPress == key->state || game->mouse_clicked))
 		attack(game);
 	else
 		reset_attack(game);
