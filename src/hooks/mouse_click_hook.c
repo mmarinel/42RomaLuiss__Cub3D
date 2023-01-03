@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:37:08 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 18:51:10 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:56:57 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ static void	in_menu_hook(int key, const t_int_2d_point *px, t_game *game)
 static void	in_game_hook(int key, const t_int_2d_point *px, t_game *game)
 {
 	(void)px;
-	(void)key;
-	game->mouse_clicked = e_true;
+	if (LEFT_CLICK == key)
+		game->mouse_clicked = e_true;
 }
