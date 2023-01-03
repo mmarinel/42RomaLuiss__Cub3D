@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:45:01 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 10:03:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 23:01:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ t_2d_point	new_player_pos(
 			game->player.pos,
 			ft_vec_prod(direction, player_step_size * (player_step_ampl + 1))
 			);
-		if (is_map_posf(&game->map_handle, &new_pos))
+		if (is_map_posf(&game->map_handle, &new_pos)
+			&& is_free_pos(game, new_pos))
 			return (new_pos);
 		if (0 == player_step_ampl)
 			return (map_pos_clip(new_pos, game));
-		player_step_ampl /= 2;
+		player_step_ampl -= game->player.acceleration;
 	}
 }
 

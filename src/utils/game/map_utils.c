@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:51:18 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 09:59:50 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 22:14:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_bool	is_map_posf(
 		return (e_false);
 	else
 		return (
-			(0 <= pos->x && pos->x < (int)map_handle->columns)
-			&& (0 <= pos->y && pos->y < (int)map_handle->rows)
+			(0.0f <= pos->x && pos->x < (float)map_handle->columns)
+			&& (0.0f <= pos->y && pos->y < (float)map_handle->rows)
 		);
 }

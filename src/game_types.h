@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 18:41:53 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:23:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_player
 	float		action_range;
 	float		step_size;
 	float		step_ampl;
+	float		acceleration;
 	t_bool		attacking;
 	t_bool		running;
 	t_bool		enemy_colliding;
