@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 20:36:00 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:28:41 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 //*		BONUSES
 
-# define LEVELS 2
+# define LEVELS 4
 
 # define SUN_FRAMES 19
 

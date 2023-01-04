@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/03 01:28:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:28:22 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ static void	set_lvls(const char *map_path, t_game *game_ref)
 {
 	game_ref->cur_lvl = (char *)map_path;
 	game_ref->lvls[0] = "map/bonus_level.cub";
-	game_ref->lvls[1] = "map/map_2.cub";
+	game_ref->lvls[1] = "map/bonus_level_2.cub";
+	game_ref->lvls[2] = "map/bonus_level_3.cub";
+	game_ref->lvls[3] = "map/bonus_level_4.cub";
 }
