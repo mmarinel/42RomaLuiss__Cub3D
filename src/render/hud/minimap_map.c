@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:09:13 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/04 13:43:14 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:08:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ static void	mmp_draw_tile(
 {
 	const t_int_2d_point	player_map_pos = as_int_2dpt(&g->player.pos);
 	t_int_2d_point			map_pos;
-	t_list					*enemy;
-	t_list					*door;
+	t_enemy					*enemy;
+	t_door					*door;
 
 	map_pos = mmp_get_map_pos(mmp_px, player_mmp_px, g);
-	enemy = ft_lstfind(g->enemies, enemy_pos, &map_pos);
-	door = ft_lstfind(g->doors, door_pos, &map_pos);
+	enemy = (t_enemy *) ft_lstfind_cont(g->enemies, enemy_pos, &map_pos);
+	door = (t_door *) ft_lstfind_cont(g->doors, door_pos, &map_pos);
 	if (enemy)
 		draw_enemy_box(mmp_px, g);
 	else if (ft_int_2d_point_equals(&player_map_pos, &map_pos))
 		draw_mmp_player_box(mmp_px, g);
 	else if (e_WALL == g->map_handle.map[map_pos.y][map_pos.x]
-			|| (door && e_DOOR_CLOSED == ((t_door *)door->content)->status))
+			|| (door && e_DOOR_CLOSED == door->status))
 		draw_mmp_wall(mmp_px, g);
 }
 
