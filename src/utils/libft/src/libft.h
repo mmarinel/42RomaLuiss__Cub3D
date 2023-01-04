@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/31 14:18:37 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:14:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,10 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstfind(t_list *head,
+						t_bool(*test)(const void *, const void *),
+						const void *to_find
+					);
+void				*ft_lstfind_cont(t_list *head,
 						t_bool(*test)(const void *, const void *),
 						const void *to_find
 					);

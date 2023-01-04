@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    header.txt                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2022/10/25 19:06:21 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/04 17:36:02 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NOPREFIX=\
 ./src/ft_lstclear.c\
 ./src/ft_lstdelone.c\
 ./src/ft_lstfind.c\
+./src/ft_lstfind_content.c\
 ./src/ft_lst_get_prevnext.c\
 ./src/ft_lstiter.c\
 ./src/ft_lstlast.c\
