@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/25 18:06:37 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:03:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_raycast_return	raycast_algorithm(
 		else
 			rc_process_bonus(&rc_data, pos, ray, game);
 	}
-	rc_ret_set_data(&rc_data, &rc_ret.wall, pos, ray);
+	rc_ret_set_data(&rc_data, &rc_ret.final_tile, pos, ray);
 	rc_set_bonus(&rc_data, &rc_ret);
 	return (rc_ret);
 }

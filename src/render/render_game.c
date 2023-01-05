@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:41:07 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 21:59:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:45:07 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	render_column(
 	)
 {
 	const size_t			wall_size = roundf(
-		g->screen_handle.height / rc_ret->wall.perp_dist
+		g->screen_handle.height / rc_ret->final_tile.perp_dist
 	);
 	const float				gap = ( 
 		((float)g->screen_handle.height - wall_size) / 2.0f

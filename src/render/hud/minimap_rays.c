@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:20:19 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/28 16:55:20 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:48:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,23 @@ static void	render_minimap_ray(
 {
 	const t_int_2d_point	player_map_pos = as_int_2dpt(&g->player.pos);
 	const t_int_2d_point	player_mmp_px = mmp_px_clip(
-		mmp_bottom_left, &(t_int_2d_point){
-			mmp_bottom_left->x + MMP_WIDTH / 2,
-			mmp_bottom_left->y - MMP_HEIGHT / 2,
-		}
+		mmp_bottom_left,
+		&(t_int_2d_point){
+				mmp_bottom_left->x + MMP_WIDTH / 2,
+				mmp_bottom_left->y - MMP_HEIGHT / 2,
+			}
 	);
 	const t_int_2d_point	wall_mmp_px = mmp_px_clip(
-		mmp_bottom_left, &(t_int_2d_point){
+		mmp_bottom_left,
+		&(t_int_2d_point){
 			player_mmp_px.x
-			+ MMP_TILE_WIDTH * (rc_ret->wall.hit_point.x - player_map_pos.x),
-		player_mmp_px.y
-			+ MMP_TILE_WIDTH * (rc_ret->wall.hit_point.y - player_map_pos.y),
+				+ MMP_TILE_WIDTH * (
+					(rc_ret->final_tile.hit_point.x - player_map_pos.x)
+				),
+			player_mmp_px.y
+				+ MMP_TILE_WIDTH * (
+					(rc_ret->final_tile.hit_point.y - player_map_pos.y)
+				),
 			}
 	);
 

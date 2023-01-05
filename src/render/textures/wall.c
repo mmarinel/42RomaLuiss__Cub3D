@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:01:43 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:06:27 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:59:54 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ t_column_info	get_wall_column_info(
 		rendered_size,
 		gap,
 		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
-		get_wall_texture(g, &rc_ret->wall),
+		get_wall_texture(g, &rc_ret->final_tile),
 		&g->\
 		screen_handle.frame_data,
-		get_texture_column(&rc_ret->wall),
+		get_texture_column(&rc_ret->final_tile),
 		scaling_factor,
 		e_true
 		}

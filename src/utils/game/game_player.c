@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 21:34:18 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:04:44 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ static t_bool	wall_collision(
 	)
 {
 	return (
-		e_WALL == g->map_handle.map[next_tile->y][next_tile->x]//TODO spostare is_wall_map_char in src/utils
-		|| e_false  == ft_int_2d_point_equals(next_tile, &rc_return->wall.square)
+		is_wall_map_char(g->map_handle.map[next_tile->y][next_tile->x])
+		|| e_false  == ft_int_2d_point_equals(
+			next_tile, &rc_return->final_tile.square
+			)
 	);
 }
 
@@ -86,18 +88,7 @@ static t_bool	door_collision(
 	)
 {(void)next_tile;
 	return (
-		(BONUS && e_true == rc_return->wall.door_obstacle)
+		(BONUS && e_true == rc_return->final_tile.door_obstacle)
 		// (BONUS && e_true == door_obstacle_through_dir(rc_return->doors, next_tile))
 	);
 }
-
-//TODO
-//			check same pos
-//			check wall collision (line 39, 40)
-//			check door collision (la sola porta che può esserci, deve essere nella posizione di arrivo
-//									e deve essere aperta!)
-
-
-		// 
-		// || e_false == ft_int_2d_point_equals(&next_tile, &rc_return->wall.square)
-		// || (BONUS && e_true == door_obstacle_through_dir(rc_return->doors))//*NON VA BENE

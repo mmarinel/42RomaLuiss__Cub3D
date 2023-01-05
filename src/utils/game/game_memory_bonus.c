@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/28 16:39:36 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:00:46 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ t_list	*ft_new_ray_node(const t_raycast_return *rc_ret)
 	clone->doors = rc_ret->doors;
 	clone->spotted_enemy = rc_ret->spotted_enemy;
 	clone->spotted_item = rc_ret->spotted_item;
-	clone->wall = rc_ret->wall;
+	clone->final_tile = rc_ret->final_tile;
 	return (ft_lstnew(NULL, clone));
 }

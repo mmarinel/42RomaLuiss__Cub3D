@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 18:48:50 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:03:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game)
 
 	rc_ret = raycast(game, game->player.pos, ray, enemy_tile);
 	hit = (
-		ft_int_2d_point_equals(&enemy_tile, &rc_ret.wall.square)
+		ft_int_2d_point_equals(&enemy_tile, &rc_ret.final_tile.square)
 		&& e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
-		&& rc_ret.wall.euclidean_dist <= game->player.attack_range
+		&& rc_ret.final_tile.euclidean_dist <= game->player.attack_range
 		);
 	raycast_clean(&rc_ret);
 	return (hit);

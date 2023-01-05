@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:26:47 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/17 16:53:07 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:04:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	ft_print_raycast_result(t_raycast_return raycast_info)
 {
 	printf(YELLOW"---RAY-CAST-" CYAN"RET"RESET "---PRINT---\n"RESET);
-	ft_print_2d_point("hit_point", raycast_info.wall.hit_point);
-	ft_print_int_2d_point("square", raycast_info.wall.square);
-	if (raycast_info.wall.side == e_HORIZONTAL)
+	ft_print_2d_point("hit_point", raycast_info.final_tile.hit_point);
+	ft_print_int_2d_point("square", raycast_info.final_tile.square);
+	if (raycast_info.final_tile.side == e_HORIZONTAL)
 		printf(YELLOW "side is HORIZONTAL\n" RESET);
 	else
 		printf(YELLOW "side is VERTICAL\n" RESET);
-	printf(YELLOW"Euclidean distance is: %lf\n"RESET, raycast_info.wall.euclidean_dist);
-	printf(YELLOW"Perp distance is: %lf\n"RESET, raycast_info.wall.perp_dist);
+	printf(YELLOW"Euclidean distance is: %lf\n"RESET, raycast_info.final_tile.euclidean_dist);
+	printf(YELLOW"Perp distance is: %lf\n"RESET, raycast_info.final_tile.perp_dist);
 	printf("\n");
 }
 

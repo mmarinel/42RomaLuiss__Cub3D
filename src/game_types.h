@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 21:23:49 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:43:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ typedef enum e_ray_dir
 
 typedef struct s_rc_ret_data
 {
-	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall
+	t_2d_point		hit_point;//*	exact coordinate where we hit the square corresponding a wall (or final tile)
 	t_int_2d_point	square;
 	t_side			side;
 	t_2d_point		ray;
@@ -227,7 +227,7 @@ typedef struct s_spotted_door
 
 typedef struct s_raycast_return
 {
-	t_rc_ret_data	wall;
+	t_rc_ret_data	final_tile;
 	t_list			*doors;
 	t_spotted_enemy	spotted_enemy;
 	t_spotted_item	spotted_item;
