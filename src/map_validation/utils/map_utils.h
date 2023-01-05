@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 17:42:16 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:52:23 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../map_validation_types.h"
 
 # include "../../utils/utils_module.h"
-# include "../bonus/map_validation_bonus_module.h"
+# include "../bonus/map_validation_bon_module.h"
 
 # include "../../sys_includes.h"
 

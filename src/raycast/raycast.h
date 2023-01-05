@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/23 23:03:59 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:52:41 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "raycast_types.h"
 # include "../game_types.h"
 # include "../map_validation/utils/map_utils_module.h"
-# include "bonus/rc_bonus_module.h"
+# include "bonus/rc_bon_module.h"
 # include "utils/rc_utils_module.h"
 # include "../utils/utils_module.h"
 

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:24:17 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:51:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:51:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "../../../sys_includes.h"
 
-# include "bonus/in_game_keys_bonus_module.h"
+# include "bonus/in_game_keys_bon_module.h"
 # include "utils/in_game_key_utils_module.h"
 
 //*		player movement
