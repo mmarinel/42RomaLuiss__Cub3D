@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 20:44:17 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:40:26 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ t_bool		is_map_pos(
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );
 t_bool		is_item_map_char( char c );
+
+//*		keys
+t_bool	is_movement_key(t_key_state *key);
+t_bool	is_rotation_key(t_key_state *key);
 
 //*		geometry
 t_2d_point	ft_rotate(t_2d_point vector, float ray_angle);

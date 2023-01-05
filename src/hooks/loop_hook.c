@@ -6,13 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:22:02 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 18:49:24 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:36:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hooks.h"
-
-//*		end of static declarations
 
 int	loop_hook(t_game *game)
 {

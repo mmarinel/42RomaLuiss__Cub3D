@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/02 10:36:14 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:35:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	set_hooks(void *mlx, void *window, t_game *game)
 	mlx_hook(window, FocusOut, GenericEvent, leave_window, game);
 	mlx_hook(window, FocusIn, GenericEvent, enter_window, game);
 	mlx_hook(window, DestroyNotify, StructureNotifyMask, exit_game, game);
-	mlx_mouse_hook(window, mouse_click_hook, game);
+	if (BONUS)
+		mlx_mouse_hook(window, mouse_click_hook, game);
 	mlx_loop_hook(mlx, loop_hook, game);
 }

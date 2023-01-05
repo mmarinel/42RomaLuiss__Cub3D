@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   in_game_loop.c                                     :+:      :+:    :+:   */
+/*   in_game_loops_handler_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 10:59:49 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 13:47:39 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/01 19:41:51 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/05 13:51:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "in_game_loop.h"
+#include "in_game_loops_bonus.h"
 
-void	in_game_loop(t_game *game)
+void	in_game_loops_handler(t_game *game)
 {
-	in_game_keys_handler(game);
-	if (BONUS)
-	{
-		in_game_mouse_handler(game);
-		in_game_loops_handler(game);
-	}
+	west_angle_adjust(game);
+	player_recharge_mana(game);
+	player_enemy_collision_check(game);
+	player_item_collision_check(game);
+	enemies_anim_death(game);
+	clean_enemies(game);
+	clean_items(game);
+	move_enemies(game);
+	animate_doors(game);
 }
