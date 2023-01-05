@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 22:00:30 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:13:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # include "../sys_includes.h"
 
-void	draw_background(t_game *g);
+void	draw_background_mand(t_game *g);
 
 //*		hud
 void	render_minimap(t_list *rays, t_game *g);
@@ -57,12 +57,11 @@ void	render_items_bar(t_game *g);
 
 //******		bonuses
 
-//*		in_game
-void	render_game_next_frame(t_game *g);
-
 //*		in_menu
 void	render_menu_next_frame(t_game *g);
-void	render_end_next_frame(t_game *g);
+
+//*		in_game
+void	render_game_next_frame(t_game *g);
 
 void	draw_background_bonus(t_game *g);
 void	draw_sun(t_game *g);

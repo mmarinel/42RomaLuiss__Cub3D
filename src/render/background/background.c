@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:43:07 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 23:45:54 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:12:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	background_next_pixel(t_nxt_px_f_arg *nxt_px_f_arg);
 //*		end of static declarations
 
-void	draw_background(t_game *g)
+void	draw_background_mand(t_game *g)
 {
 	const size_t	horizon = floor((float)g->screen_handle.height / 2);
 	t_int_2d_point	vertices[2];

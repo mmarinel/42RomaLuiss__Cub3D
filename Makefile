@@ -189,7 +189,6 @@ SRC_NOPREFIX=\
 ./src/raycast/utils/rc_set.c\
 ./src/raycast/utils/rc_walk.c\
 ./src/render/render.c\
-./src/render/render_end.c\
 ./src/render/render_game.c\
 ./src/render/render_memory.c\
 ./src/render/render_menu.c\
