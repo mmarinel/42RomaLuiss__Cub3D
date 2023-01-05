@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:25:26 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 20:03:23 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:38:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,15 @@ static t_bool	rc_wall_hit(const void *_, const void *hit_flag);
 static void		rc_wall_init(void *rc_data, const void *pos, const void *ray);
 //*		end of static declarations
 
-
+/**
+ * @brief this function performs the standard raycast algorithm.
+ * It stops when a wall is hit and it takes track of the bonus data
+ * iff the [BONUS] MACRO is set.
+ * 
+ * @param game 
+ * @param ray the ray spawning from the player position.
+ * @return t_raycast_return 
+ */
 t_raycast_return	raycast_wall(
 	t_game *game, t_2d_point ray
 	)

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 20:03:52 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:55:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ static void	rc_set_bonus(
  * @brief this function casts a ray until it hits a wall
  * or provided test function gives true
  * 
+ * @param pos the position from where to start the raycast
+ * @param ray the ray spawning from the position 
+ * @param rc_handlers pointers to test and init functions
  * @param game 
- * @param ray_angle the angle the casted ray forms with the camera plane
- * @param test_f the additional stopping criteria for the raycast
  * @return t_raycast_return 
  */
 t_raycast_return	raycast_algorithm(

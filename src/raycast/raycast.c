@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 20:04:47 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:37:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ static t_int_2d_point		rc_endpoint_holder(const t_int_2d_point *given);
 //*		end of static declarations
 
 /**
- * @brief this function performs the raycast algorithm with the additional task
- * of checking if a particular tile has been reached other than a wall.
+ * @brief this function performs the raycast algorithm on a given position
+ * and with the additional task of checking if a particular tile
+ * has been reached other than a wall.
  * 
  * @param game 
- * @param pos 
- * @param ray 
+ * @param pos the position from where to execute the raycast.
+ * @param ray the ray spawning from the position
  * @param tile 
  * @return t_raycast_return 
  */

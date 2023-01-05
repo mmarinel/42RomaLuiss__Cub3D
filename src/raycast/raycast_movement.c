@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:33:50 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 20:04:17 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:43:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static void				rc_mov_init(void *rc_data, const void *pos, const void *ray);
 static t_2d_point		rcmov_endpoint_holder(const t_2d_point *given);
 //*		end of static declarations
 
+/**
+ * @brief this function performs the raycast algorithm along the line-path
+ * to go from one position to another.
+ * The direction of such line-path is taken as the ray spawning from
+ * the starting position.
+ * 
+ * @param old_pos the starting position on the map
+ * @param end_point the endpoint
+ * @param game 
+ * @return t_raycast_return 
+ */
 t_raycast_return	raycast_movement(
 	const t_2d_point *old_pos, const t_2d_point *end_point,
 	t_game *game

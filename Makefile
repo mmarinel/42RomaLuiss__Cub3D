@@ -179,10 +179,10 @@ SRC_NOPREFIX=\
 ./src/raycast/raycast_memory.c\
 ./src/raycast/raycast_movement.c\
 ./src/raycast/raycast_wall.c\
-./src/raycast/bonus/rc_bon_memory.c\
 ./src/raycast/bonus/rc_doors_bonus.c\
 ./src/raycast/bonus/rc_enemies_bonus.c\
 ./src/raycast/bonus/rc_items_bonus.c\
+./src/raycast/bonus/rc_memory_bonus.c\
 ./src/raycast/utils/rc_calc.c\
 ./src/raycast/utils/rc_debug.c\
 ./src/raycast/utils/rc_initialization.c\
