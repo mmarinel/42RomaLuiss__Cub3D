@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_chars_conditions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:49:24 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/04 11:17:30 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:01:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_utils.h"
+#include "game_utils.h"
 
 t_bool	is_player_map_char( char c )
 {

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_doors.c                                       :+:      :+:    :+:   */
+/*   scan_enemies_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 13:52:49 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/20 21:24:17 by earendil         ###   ########.fr       */
+/*   Created: 2022/12/20 14:04:24 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/05 14:15:17 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_init_bonus.h"
 
-void	scan_doors(t_game *game_ref)
+void	scan_enemies(t_game *game_ref)
 {
-	t_int_2d_point	pos;
+	t_2d_point		pos;
+	t_int_2d_point	tile_coordinate;
 	t_tile			cur_tile;
 
 	if (NULL == game_ref->map_handle.map)
@@ -25,12 +26,12 @@ void	scan_doors(t_game *game_ref)
 		pos.y = 0;
 		while (pos.y < (int)game_ref->map_handle.rows)
 		{
-			cur_tile = game_ref->map_handle.map[pos.y][pos.x];
-			if (is_door_map_char(cur_tile))
-				ft_lstadd_back(
-					&game_ref->doors,
-					ft_new_door_node(pos, cur_tile)
-					);
+			tile_coordinate = as_int_2dpt(&pos);
+			cur_tile = game_ref->map_handle.map\
+				[tile_coordinate.y]\
+				[tile_coordinate.x];
+			if (is_enemy_map_char(cur_tile))
+				ft_lstadd_back(&game_ref->enemies, ft_new_enemy_node(&pos));
 			pos.y++;
 		}
 		pos.x++;

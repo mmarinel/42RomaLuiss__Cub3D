@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/21 16:13:57 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:02:19 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ t_tile	**ft_map_init( size_t rows, size_t columns );
 //*		logic conditions
 t_bool	is_valid_map_char( char c );
 t_bool	is_player_found( void );
-
-//*		characters conditions
-t_bool	is_player_map_char( char c );
-t_bool	is_floor_map_char( char c );
-t_bool	is_wall_map_char( char c );
-t_bool	is_empty_map_char( char c );
 
 //*		attrs id conditions
 t_bool	is_attrs_char( const char *id );

@@ -6,11 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:28:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/01 14:35:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:14:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_init.h"
+
+static void	first_call_inits(t_game * game_ref, size_t width, size_t height);
+//*		end of static declarations
 
 t_bool	ft_game_init(
 			const char *map_path,
@@ -36,13 +39,17 @@ t_bool	ft_game_init(
 		}
 		map_reset(&game_ref->map_handle);
 		if (0 == calls)
-		{
-			set_rand();
-			game_set_mlx(game_ref, width, height);
-		}
+			first_call_inits(game_ref, width, height);
 		t_game_set(map_path, game_ref);
 		load_textures(game_ref, &error);
 	}
 	calls++;
 	return (error == e_false);
+}
+
+static void	first_call_inits(t_game * game_ref, size_t width, size_t height)
+{
+	if (BONUS)
+		set_rand();
+	game_set_mlx(game_ref, width, height);
 }

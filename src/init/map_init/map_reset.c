@@ -6,11 +6,11 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:30:14 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 15:07:36 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:56:49 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_validation.h"
+#include "../game_init.h"
 
 void	map_reset(t_map_holder *map_handle)
 {

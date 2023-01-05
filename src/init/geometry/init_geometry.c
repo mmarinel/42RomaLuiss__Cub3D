@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:28:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:33:31 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:08:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ void	game_set_inital_vectors( t_game *game_ref )
 	}
 }
 
+float	player_west_angle(t_game *game_ref)
+{
+	if (e_PLAYER_W == game_ref->map_handle.player_initial_dir)
+		return (0);
+	if (e_PLAYER_N == game_ref->map_handle.player_initial_dir)
+		return (M_PI / 2);
+	if (e_PLAYER_E == game_ref->map_handle.player_initial_dir)
+		return (M_PI);
+	if (e_PLAYER_S == game_ref->map_handle.player_initial_dir)
+		return (M_PI * 3.0f / 2);
+	return (-1);
+}
+
 static void	initial_pos_vector(
 	const size_t row,
 	const size_t col,
@@ -83,17 +96,4 @@ static void	initial_dir_vectors(
 		return;
 	*camera_plane = ft_rotate(*player_dir, M_PI / 2);
 	*camera_plane = ft_change_magnitude(*camera_plane, scaling_factor);
-}
-
-float	player_west_angle(t_game *game_ref)
-{
-	if (e_PLAYER_W == game_ref->map_handle.player_initial_dir)
-		return (0);
-	if (e_PLAYER_N == game_ref->map_handle.player_initial_dir)
-		return (M_PI / 2);
-	if (e_PLAYER_E == game_ref->map_handle.player_initial_dir)
-		return (M_PI);
-	if (e_PLAYER_S == game_ref->map_handle.player_initial_dir)
-		return (M_PI * 3.0f / 2);
-	return (-1);
 }

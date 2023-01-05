@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/02 10:23:59 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:57:47 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void	game_init_keys(t_game *game_ref);
 
 //*		map
 void	game_init_map( t_game *game_ref );
+void	map_reset(t_map_holder *map_handle);
 
 //*		menus
 void	game_init_menus(t_game *game_ref);
-
-//*		sys bonus
-void	set_rand(void);
 
 # endif

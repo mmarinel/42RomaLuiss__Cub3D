@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/02 10:32:22 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:01:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ t_bool		is_map_posf(
 t_bool		is_door_map_char( char c );
 t_bool		is_enemy_map_char( char c );
 t_bool		is_item_map_char( char c );
+t_bool		is_player_map_char( char c );
+t_bool		is_floor_map_char( char c );
+t_bool		is_wall_map_char( char c );
+t_bool		is_empty_map_char( char c );
 
 //*		menu
 t_bool	rect_button_focused(
