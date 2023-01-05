@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 19:23:49 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:41:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,41 +105,6 @@ static void	parse_row(
 	ft_fill_tile_row(map_handle, map, row_index, err_flag);
 }
 
-static t_bool	is_map_char_pos_valid(
-					t_map_holder *map_handle,
-					char **map,
-					size_t row_index, size_t col_index
-)
-{
-	if (is_floor_map_char(map[row_index][col_index])
-		|| is_player_map_char(map[row_index][col_index])
-		|| is_door_map_char(map[row_index][col_index])
-		|| is_enemy_map_char(map[row_index][col_index])
-		|| is_item_map_char(map[row_index][col_index])
-	)
-	{
-		if (
-			(row_index == 0
-				|| is_empty_map_char(map[row_index - 1][col_index])
-		)
-			|| (row_index == map_handle->rows - 1
-				|| is_empty_map_char(map[row_index + 1][col_index])
-			)
-			|| (col_index == 0
-				|| is_empty_map_char(map[row_index][col_index - 1])
-			)
-			|| (col_index == map_handle->columns - 1
-				|| is_empty_map_char(map[row_index][col_index + 1])
-			)
-		)
-			return (e_false);
-	}
-	// else if (BONUS && is_door_map_char(map[row_index][col_index])
-	// 		&& is_map_edge(map_handle, col_index, row_index))
-	// 		return (e_false);
-	return (e_true);
-}
-
 static void	ft_fill_tile_row(
 					t_map_holder *map_handle,
 					char **char_map,
@@ -169,4 +134,34 @@ static void	ft_fill_tile_row(
 		}
 		col += 1;
 	}
+}
+
+static t_bool	is_map_char_pos_valid(
+					t_map_holder *map_handle,
+					char **map,
+					size_t row_index, size_t col_index
+)
+{
+	if (is_floor_map_char(map[row_index][col_index])
+		|| is_player_map_char(map[row_index][col_index])
+		|| (BONUS && is_entity_map_char(map[row_index][col_index]))
+	)
+	{
+		if (
+			(row_index == 0
+				|| is_empty_map_char(map[row_index - 1][col_index])
+		)
+			|| (row_index == map_handle->rows - 1
+				|| is_empty_map_char(map[row_index + 1][col_index])
+			)
+			|| (col_index == 0
+				|| is_empty_map_char(map[row_index][col_index - 1])
+			)
+			|| (col_index == map_handle->columns - 1
+				|| is_empty_map_char(map[row_index][col_index + 1])
+			)
+		)
+			return (e_false);
+	}
+	return (e_true);
 }

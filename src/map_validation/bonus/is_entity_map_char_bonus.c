@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_bonus_module.h                      :+:      :+:    :+:   */
+/*   is_entity_map_char_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 13:22:39 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 17:36:41 by earendil         ###   ########.fr       */
+/*   Created: 2023/01/05 17:37:52 by earendil          #+#    #+#             */
+/*   Updated: 2023/01/05 17:39:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_BONUS_MODULE_H
-# define MAP_VALIDATION_BONUS_MODULE_H
+#include "map_validation_bonus.h"
 
-# include "../../types.h"
-# include "../../game_types.h"
-
-t_bool	is_entity_map_char(char c);
-
-#endif
+t_bool	is_entity_map_char(char c)
+{
+	return (
+		is_door_map_char(c)
+		|| is_enemy_map_char(c)
+		|| is_item_map_char(c)
+	);
+}

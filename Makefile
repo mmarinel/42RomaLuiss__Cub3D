@@ -166,6 +166,7 @@ SRC_NOPREFIX=\
 ./src/map_validation/map_content.c\
 ./src/map_validation/map_read.c\
 ./src/map_validation/validate.c\
+./src/map_validation/bonus/is_entity_map_char_bonus.c\
 ./src/map_validation/utils/attrs.c\
 ./src/map_validation/utils/atttrs_chars_conditions.c\
 ./src/map_validation/utils/map_chars_tracking.c\

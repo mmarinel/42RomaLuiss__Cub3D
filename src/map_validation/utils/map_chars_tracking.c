@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:16:59 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 19:06:05 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:43:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ t_bool	is_valid_map_char( char c )
 	}
 	if (is_floor_map_char(c)
 		|| is_wall_map_char(c)
-		|| (BONUS && is_door_map_char(c))
-		|| (BONUS && is_enemy_map_char(c))
-		|| (BONUS && is_item_map_char(c))
 		|| is_empty_map_char(c)
+		|| (BONUS && is_entity_map_char(c))
 		)
 	{
 		return (e_true);
