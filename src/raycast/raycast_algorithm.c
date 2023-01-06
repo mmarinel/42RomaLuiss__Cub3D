@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 20:55:29 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:57:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,9 @@ static void	rc_set_bonus(
 			rc_ret_set_doors(rc_data, rc_ret);
 		if (rc_data->process_bonus_items)
 			rc_ret_set_item(rc_data, rc_ret);
+	}
+	else
+	{
+		rc_ret->doors = NULL;
 	}
 }

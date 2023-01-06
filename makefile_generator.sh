@@ -37,10 +37,10 @@ MAKEFILE=Makefile;
 BACKUP_FILE="$MAKEFILE".copy;
 
 # initialized with headers at the root of src subfolder. (last command adds a line break (\) at the end of each name)
-INCLUDES=$(find ./src/*.h -name "*.h" 2>/dev/null | sed 's/\.h/\.h\\/g')" "
-INCLUDES+=$(find . -name "*.h" | grep "module" | sed 's/\.h/\.h\\/g')
+INCLUDES_ALL=$(find ./src/*.h -name "*.h" 2>/dev/null | sed 's/\.h/\.h\\/g')" "
+INCLUDES_ALL+=$(find . -name "*.h" | grep "module" | sed 's/\.h/\.h\\/g')
 # initialized with srcs at the root of src subfolder. (last command adds a line break (\) at the end of each name)
-SRC_NOPREFIX=$(find ./src/*.c -name "*.c" | sed 's/\.c/\.c\\/g')
+SRC_NOPREFIX_ALL=$(find ./src/*.c -name "*.c" | sed 's/\.c/\.c\\/g')
 # all the folders and subfolders of user defined libraries included in this project
 # find all those subfolders of src where a Makefile is present at the root. Then take this folder as well as all subfolders (except hidden ones),
 # remove the './' at the beginning, and separate each name with a new line
@@ -58,8 +58,8 @@ $RM .src_subdirs .usr_libs_dirs
 for dir in $SRC_SUBDIRS
 	do
 			# we need a redirection to stderr in the case this folder does not contain srcs per se, but just subfolders of srcs
-			SRC_NOPREFIX+=" "$(find ./"$dir"/*.c -name "*c" 2>/dev/null | sed 's/\.c/\.c\\/g')
-			INCLUDES+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
+			SRC_NOPREFIX_ALL+=" "$(find ./"$dir"/*.c -name "*c" 2>/dev/null | sed 's/\.c/\.c\\/g')
+			INCLUDES_ALL+=" "$(find ./"$dir"/*.h -name "*h" 2>/dev/null | sed 's/\.h/\.h\\/g')
 	done
 
 # taking all user library srcs
@@ -99,8 +99,20 @@ echo "# ************************************************************************
 #                                                                              #
 # **************************************************************************** #
 " > $BACKUP_FILE
+
+echo $INCLUDES_ALL | tr -s '[:blank:]' '\n' > includes_backup_file
+echo $SRC_NOPREFIX_ALL | tr -s '[:blank:]' '\n' > srcs_backup_file
+
+SRC_NOPREFIX=$(cat srcs_backup_file | grep -v "_bonus.c")
+SRC_NOPREFIX_BONUS=$SRC_NOPREFIX_ALL
+
+INCLUDES=$(cat includes_backup_file | grep -v "_bonus.h")
+INCLUDES_BONUS=$INCLUDES_ALL
+
 put "INCLUDES=\\" $INCLUDES $BACKUP_FILE
 put "SRC_NOPREFIX=\\" $SRC_NOPREFIX $BACKUP_FILE
+put "INCLUDES_BONUS=\\" $INCLUDES_BONUS $BACKUP_FILE
+put "SRC_NOPREFIX_BONUS=\\" $SRC_NOPREFIX_BONUS $BACKUP_FILE
 
 put "USR_LIBS=\\" $USR_LIBS $BACKUP_FILE
 echo 'SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")' >> $BACKUP_FILE && echo >> $BACKUP_FILE
@@ -111,3 +123,5 @@ awk "NR >= $MAKEFILE_OPS_BEGIN { print }" < $MAKEFILE >> $BACKUP_FILE
 
 mv $BACKUP_FILE $MAKEFILE
 $RM $BACKUP_FILE
+$RM includes_backup_file
+$RM srcs_backup_file
