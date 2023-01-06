@@ -60,4 +60,4 @@ cub3D
 .*
 
 #mlx
-!mlx_linux/**
+mlx_linux
