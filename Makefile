@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/06 18:12:26 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/06 19:30:01 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -453,9 +453,9 @@ CUB_OBJS_BONUS = $(addprefix $(CUB_OBJS_DIR)/, $(CUB_OBJS_NOPREFIX_BONUS))
 
 all:
 	@if [ $(shell find bin/ -name "*_bonus.o" 2>/dev/null | wc -l) -gt "0" ]; then \
-		make bonus; \
+		make --silent bonus; \
 	else \
-		make mandatory; \
+		make --silent mandatory; \
 	fi;
 
 mandatory:
@@ -468,7 +468,7 @@ mandatory:
 bonus:
 	@printf "\033[1;36mMaking Bonus part\n"
 	@echo "\033[0;37m"
-	$(MAKE) BONUS_FLAG="-DBONUS=1" "OBJS_CUB=$(CUB_OBJS_BONUS)" $(NAME)
+	@$(MAKE) --silent BONUS_FLAG="-DBONUS=1" "OBJS_CUB=$(CUB_OBJS_BONUS)" $(NAME)
 	@printf "\033[0;36mBonus part done\n"
 	@echo "\033[0;37m"
 
@@ -477,6 +477,8 @@ $(NAME): $(OBJS_CUB) $(SRC_USR_LIBS)
 	@echo "Objects Compiled..."
 	@make -C src/utils/libft
 	@echo "libft archive compiled...\n"
+	@make --silent -C mlx_linux 2>/dev/null
+	@echo "mlx compiled...\n"
 	@echo "linking compiled objects and libraries..."
 	$(CC) $(OBJS_CUB) $(CFLAGS) $(BONUS_FLAG) $(MLX_LINK_FLAGS) $(USRLIBS_FLAGS) -lm -o $(NAME)
 	@printf "\033[1m\033[32m$(NAME) Compiled!\n"
@@ -490,10 +492,13 @@ $(CUB_OBJS_DIR)/%.o: %.c $(INCLUDES_BONUS)
 	$(CC) -c $(CFLAGS) $(BONUS_FLAG) $(MLX_SRC_FLAGS) $< -o $@
 
 clean:
-	@printf "removing Object files...\n"
-	@$(RMF) $(CUB_OBJS_DIR)
+	@echo "destroying libft..."
 	@$(MAKE) --silent -C src/utils/libft fclean
-	@printf "\033[0;35mObject files removed!\n"
+	@echo "destroying mlx..."
+	@$(MAKE) --silent -C mlx_linux clean
+	@printf "destroying Usr Object files...\n"
+	@$(RMF) $(CUB_OBJS_DIR)
+	@printf "\033[0;35mAll Object files destroyed!\n"
 	@echo "\033[0;37m"
 
 fclean: clean
