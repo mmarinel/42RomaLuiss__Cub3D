@@ -58,3 +58,6 @@ dkms.conf
 cub3D
 
 .*
+
+#mlx
+!mlx_linux/**
