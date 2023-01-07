@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:14:51 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 17:07:52 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:34:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RC_UTILS_H
 
 # include "../raycast_types.h"
+
+# include "../../utils/utils_module.h"
 
 # include "../../sys_includes.h"
 
