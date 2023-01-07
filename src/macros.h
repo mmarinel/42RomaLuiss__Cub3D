@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/04 14:28:41 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:49:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@
 
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
+
+# define BOUND_KEYS 13
+
+# define W_INDEX 0
+# define A_INDEX 1
+# define S_INDEX 2
+# define D_INDEX 3
+# define SHIFT_INDEX 4
+# define UP_INDEX 5
+# define DOWN_INDEX 6
+# define RIGHT_INDEX 7
+# define LEFT_INDEX 8
+# define SPACE_INDEX 9
+# define E_INDEX 10
+# define ENTER_INDEX 11
+# define ESC_INDEX 12
 
 //*		66º...vision cone of our player (FOV - field of vision)
 # define FOV ( (11.0f / 30.0f) * M_PI )

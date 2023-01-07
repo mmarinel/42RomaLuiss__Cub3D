@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 11:31:43 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:48:26 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,22 @@ typedef struct s_door_texture {
 	t_data	closed;
 }	t_door_texture;
 
-# define BOUND_KEYS 13
-
-# define W_INDEX 0
-# define A_INDEX 1
-# define S_INDEX 2
-# define D_INDEX 3
-# define SHIFT_INDEX 4
-# define UP_INDEX 5
-# define DOWN_INDEX 6
-# define RIGHT_INDEX 7
-# define LEFT_INDEX 8
-# define SPACE_INDEX 9
-# define E_INDEX 10
-# define ENTER_INDEX 11
-# define ESC_INDEX 12
+typedef enum e_key
+{
+	e_UP_KEY = 65362,
+	e_DOWN_KEY = 65364,
+	e_RIGHT_KEY = 65363,
+	e_LEFT_KEY = 65361,
+	e_W_KEY = 119,
+	e_A_KEY = 97,
+	e_S_KEY = 115,
+	e_D_KEY = 100,
+	e_E_KEY = 101,
+	e_SPACE_KEY = 32,
+	e_ENTER_KEY = 65293,
+	e_ESC_KEY = 65307,
+	e_SHIFT_KEY = 65505,
+}	t_key;
 
 typedef struct s_key_state
 {
