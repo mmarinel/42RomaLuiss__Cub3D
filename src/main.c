@@ -6,12 +6,13 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:20:35 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:12:13 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "includes/sys_includes.h"
 
+# include "includes/X11_macros.h"
 # include "includes/macros.h"
 # include "includes/colors.h"
 
@@ -27,7 +28,6 @@
 static void	set_hooks(void *mlx, void *window, t_game *game);
 //*		end of static declarations
 
-//TODO isolare in un file apposito (in ogni sorgente .h (non module) dei bonus includi gli header illegali)
 int main(int argc, char const *argv[])
 {
 	t_game	game;
