@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:29:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 21:31:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:05:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IN_GAME_LOOPS_BONUS_H
 # define IN_GAME_LOOPS_BONUS_H
 
-# include "../../../types.h"
+# include "../../../basic_types.h"
 # include "../../../game_types.h"
 
 # include "../../../sys_includes.h"

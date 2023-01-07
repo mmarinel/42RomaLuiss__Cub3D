@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 22:51:42 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_INIT_H
 # define GAME_INIT_H
 
-# include "../types.h"
+# include "../basic_types.h"
 # include "../game_types.h"
 # include "../utils/utils_module.h"
 # include "../sys_includes.h"

@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:31:04 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/23 21:40:55 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:07:12 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTI_MATH_MODULE_H
 
 # include "uti_math_types.h"
-# include "../../types.h"
+# include "../../basic_types.h"
 
 //*		basic math
 float	flt_round(float nbr, size_t dec_places);

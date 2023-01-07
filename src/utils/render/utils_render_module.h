@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:15:06 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 14:47:55 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:07:20 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_RENDER_MODULE_H
 # define UTILS_RENDER_MODULE_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "../../game_types.h"
 
 //*		mlx holder

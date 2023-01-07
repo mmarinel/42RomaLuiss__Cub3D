@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:24:10 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/26 16:02:08 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REND_BONUS_H
 # define REND_BONUS_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "../../game_types.h"
 # include "../../raycast/raycast_types.h"
 # include "../render_types.h"

@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 15:01:29 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:07:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_UTILS_MODULE_H
 # define GAME_UTILS_MODULE_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "game_utils.h"
 
 //*		player

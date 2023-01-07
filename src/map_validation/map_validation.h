@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 22:51:58 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:28 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "map_validation_types.h"
 # include "../colors.h"
-# include "../types.h"
+# include "../basic_types.h"
 
 # include "../utils/utils_module.h"
 # include "utils/map_utils_module.h"

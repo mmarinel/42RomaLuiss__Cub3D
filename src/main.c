@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 13:35:28 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:04:37 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "macros.h"
 # include "colors.h"
 
-# include "types.h"
+# include "basic_types.h"
 # include "game_types.h"
 
 # include "init/game_init_module.h"

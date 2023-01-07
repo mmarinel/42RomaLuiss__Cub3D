@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:47:38 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/26 16:12:22 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:58 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "../../game_types.h"
 # include "../render_types.h"
 

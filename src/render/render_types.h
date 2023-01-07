@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 11:55:18 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:43 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_TYPES_H
 # define RENDER_TYPES_H
 
-# include "../types.h"
+# include "../basic_types.h"
 # include "../game_types.h"
 # include "../raycast/raycast_types.h"
 # include "../utils/math/uti_math_types.h"

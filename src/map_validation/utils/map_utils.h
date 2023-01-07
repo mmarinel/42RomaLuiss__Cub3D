@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 22:52:23 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:06:40 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_UTILS_H
 # define MAP_UTILS_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "../../utils/math/uti_math_types.h"
 # include "../map_validation_types.h"
 

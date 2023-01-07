@@ -6,17 +6,16 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/06 19:30:01 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/07 12:14:35 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDES=\
 ./src/colors.h\
 ./src/game_types.h\
-./src/includes.h\
 ./src/macros.h\
 ./src/sys_includes.h\
-./src/types.h\
+./src/basic_types.h\
 ./src/X11_macros.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
@@ -188,11 +187,10 @@ SRC_NOPREFIX=\
 INCLUDES_BONUS=\
 ./src/colors.h\
 ./src/game_types.h\
-./src/includes.h\
 ./src/macros.h\
 ./src/sys_includes_bonus.h\
 ./src/sys_includes.h\
-./src/types.h\
+./src/basic_types.h\
 ./src/X11_macros.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\

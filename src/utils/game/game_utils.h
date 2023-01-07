@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 13:40:26 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:07:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_UTILS_H
 # define GAME_UTILS_H
 
-# include "../../types.h"
+# include "../../basic_types.h"
 # include "../../game_types.h"
 # include "../../raycast/raycast_types.h"
 // # include "../../init/game_init_types.h"
