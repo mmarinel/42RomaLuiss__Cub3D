@@ -6,20 +6,21 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:14 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:28:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_INIT_H
 # define GAME_INIT_H
 
-# include "../basic_types.h"
-# include "../game_types.h"
-# include "../utils/utils_module.h"
-# include "../sys_includes.h"
-# include "../map_validation/map_validation_module.h"
+# include "../includes/basic_types.h"
+# include "../includes/game_types.h"
 # include "../utils/utils_module.h"
 
+# include "../includes/sys_includes.h"
+
+# include "../map_validation/map_validation_module.h"
+# include "../utils/utils_module.h"
 # include "utils/init_utils_module.h"
 # include "bonus/game_init_bon_module.h"
 

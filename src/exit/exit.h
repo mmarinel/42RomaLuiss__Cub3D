@@ -6,15 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:43:32 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:05:02 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:21:29 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXIT_H
 # define EXIT_H
 
-# include "../basic_types.h"
-# include "../game_types.h"
+# include "../includes/basic_types.h"
+# include "../includes/game_types.h"
 # include "../utils/utils_module.h"
 
 void	clean_game(t_game *game);

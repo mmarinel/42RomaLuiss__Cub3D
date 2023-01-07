@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:14:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 11:34:48 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:34:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "../../utils/utils_module.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		calculations
 float	perp_calc(

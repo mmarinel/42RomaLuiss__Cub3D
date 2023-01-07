@@ -6,20 +6,20 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:48:21 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:02 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:26:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IN_MENU_LOOP_BONUS_H
 # define IN_MENU_LOOP_BONUS_H
 
-# include "../../basic_types.h"
-# include "../../game_types.h"
+# include "../../includes/basic_types.h"
+# include "../../includes/game_types.h"
 
-# include "../../macros.h"
-# include "../../X11_macros.h"
+# include "../../includes/macros.h"
+# include "../../includes/X11_macros.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 # include "../../init/game_init_module.h"
 # include "../../exit/exit_module.h"

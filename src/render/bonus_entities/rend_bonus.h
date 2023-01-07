@@ -6,15 +6,15 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:24:10 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:53 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:37:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REND_BONUS_H
 # define REND_BONUS_H
 
-# include "../../basic_types.h"
-# include "../../game_types.h"
+# include "../../includes/basic_types.h"
+# include "../../includes/game_types.h"
 # include "../../raycast/raycast_types.h"
 # include "../render_types.h"
 
@@ -22,7 +22,7 @@
 # include "../textures/textures_module.h"
 # include "../../utils/utils_module.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		entities rendering (enemy and item)
 void	render_item(t_rendered_entity *item_data, t_game *g);

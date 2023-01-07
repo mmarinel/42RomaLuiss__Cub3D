@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:51:46 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 22:45:00 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:28:42 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_INIT_BONUS_MODULE_H
 # define GAME_INIT_BONUS_MODULE_H
 
-# include "../../game_types.h"
+# include "../../includes/game_types.h"
 
 //*		textures
 void	load_bonus_textures(t_game *game_ref, t_bool *err_flag);

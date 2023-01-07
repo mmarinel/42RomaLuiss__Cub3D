@@ -6,19 +6,20 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:33:54 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:26:21 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:39:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINE_DRAWING_H
 # define LINE_DRAWING_H
 
-# include "../../colors.h"
+# include "../../includes/colors.h"
+
 # include "../../utils/utils_module.h"
 # include "line_drawing_types.h"
 # include "../render.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		bresenham helper functions
 

@@ -6,21 +6,21 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:55:26 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:40 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:32:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_UTILS_H
 # define MAP_UTILS_H
 
-# include "../../basic_types.h"
+# include "../../includes/basic_types.h"
 # include "../../utils/math/uti_math_types.h"
 # include "../map_validation_types.h"
 
 # include "../../utils/utils_module.h"
 # include "../bonus/map_validation_bon_module.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		memory
 void	ft_free_map( t_tile ***map_ref, size_t rows );

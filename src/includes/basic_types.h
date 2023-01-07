@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:13:04 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:50:00 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include "macros.h"
 # include "X11_macros.h"
 
-# include "utils/libft/libft_module.h"
-
-# include "sys_includes.h"
+# include "../utils/libft/libft_module.h"
 
 # ifndef T_BOOL
 #  define T_BOOL

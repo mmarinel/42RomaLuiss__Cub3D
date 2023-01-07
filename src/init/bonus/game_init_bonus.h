@@ -6,18 +6,18 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:50:37 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:17 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:28:53 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_INIT_BONUS_H
 # define GAME_INIT_BONUS_H
 
-# include "../../basic_types.h"
-# include "../../game_types.h"
+# include "../../includes/basic_types.h"
+# include "../../includes/game_types.h"
 
-# include "../../sys_includes.h"
-# include "../../sys_includes_bonus.h"
+# include "../../includes/sys_includes.h"
+# include "../../includes/sys_includes_bonus.h"
 
 # include "../../utils/utils_module.h"
 

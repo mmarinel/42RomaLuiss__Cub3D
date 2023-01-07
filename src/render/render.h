@@ -6,18 +6,18 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:32:32 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:47 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:37:19 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include "../colors.h"
+# include "../includes/colors.h"
 
 # include "render_types.h"
-# include "../basic_types.h"
-# include "../game_types.h"
+# include "../includes/basic_types.h"
+# include "../includes/game_types.h"
 
 # include "../utils/utils_module.h"
 # include "textures/textures_module.h"
@@ -28,7 +28,7 @@
 # include "bonus_entities/rend_bon_module.h"
 # include "../utils/utils_module.h"
 
-# include "../sys_includes.h"
+# include "../includes/sys_includes.h"
 
 void	draw_background_mand(t_game *g);
 

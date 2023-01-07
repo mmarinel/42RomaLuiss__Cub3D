@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:23:05 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:26:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:29:48 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_UTILS_MODULE_H
 # define INIT_UTILS_MODULE_H
 
-# include "../../game_types.h"
+# include "../../includes/game_types.h"
 
 size_t	open_squared_texture(
 	const char *path, t_data *texture_data,

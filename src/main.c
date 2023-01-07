@@ -6,17 +6,17 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:42:01 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:04:37 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:20:35 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "sys_includes.h"
+# include "includes/sys_includes.h"
 
-# include "macros.h"
-# include "colors.h"
+# include "includes/macros.h"
+# include "includes/colors.h"
 
-# include "basic_types.h"
-# include "game_types.h"
+# include "includes/basic_types.h"
+# include "includes/game_types.h"
 
 # include "init/game_init_module.h"
 # include "hooks/hooks_module.h"

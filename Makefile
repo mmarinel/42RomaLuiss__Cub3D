@@ -6,17 +6,17 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/07 12:14:35 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/07 12:47:00 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDES=\
-./src/colors.h\
-./src/game_types.h\
-./src/macros.h\
-./src/sys_includes.h\
-./src/basic_types.h\
-./src/X11_macros.h\
+./src/includes/colors.h\
+./src/includes/game_types.h\
+./src/includes/macros.h\
+./src/includes/sys_includes.h\
+./src/includes/basic_types.h\
+./src/includes/X11_macros.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
 ./src/utils/render/utils_render_module.h\
@@ -185,13 +185,13 @@ SRC_NOPREFIX=\
 ./src/utils/simple_printf/printf_utils.c\
 
 INCLUDES_BONUS=\
-./src/colors.h\
-./src/game_types.h\
-./src/macros.h\
-./src/sys_includes_bonus.h\
-./src/sys_includes.h\
-./src/basic_types.h\
-./src/X11_macros.h\
+./src/includes/colors.h\
+./src/includes/game_types.h\
+./src/includes/macros.h\
+./src/includes/sys_includes_bonus.h\
+./src/includes/sys_includes.h\
+./src/includes/basic_types.h\
+./src/includes/X11_macros.h\
 ./src/utils/gnl/get_next_line_module.h\
 ./src/utils/libft/libft_module.h\
 ./src/utils/render/utils_render_module.h\

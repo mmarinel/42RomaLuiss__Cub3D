@@ -6,17 +6,17 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:12:31 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:24 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:30:32 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_VALIDATION_TYPES_H
 # define MAP_VALIDATION_TYPES_H
 
-# include "../basic_types.h"
+# include "../includes/basic_types.h"
 # include "../utils/math/uti_math_types.h"
 
-# include "../sys_includes.h"
+# include "../includes/sys_includes.h"
 
 typedef enum e_tile
 {

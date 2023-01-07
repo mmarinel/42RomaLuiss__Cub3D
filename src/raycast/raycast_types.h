@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:23 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 11:54:26 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:32:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCAST_TYPES_H
 
 # include "../utils/math/uti_math_types.h"
-# include "../game_types.h"
+# include "../includes/game_types.h"
 
 typedef t_bool(*rc_test_f)(const void *, const void *);
 typedef void(*rc_init_f)(void *, const void *, const void *);

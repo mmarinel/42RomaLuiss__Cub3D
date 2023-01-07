@@ -6,14 +6,14 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:05:17 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 21:16:51 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:32:36 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_MODULE_H
 # define RAYCAST_MODULE_H
 
-# include "../game_types.h"
+# include "../includes/game_types.h"
 # include "../utils/math/uti_math_types.h"
 
 //*		raycast

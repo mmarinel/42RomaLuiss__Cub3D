@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:04:00 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:48:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define GAME_TYPES_H
 
 # include "basic_types.h"
-# include "utils/math/uti_math_types.h"
-# include "map_validation/map_validation_types.h"
+# include "../utils/math/uti_math_types.h"
+# include "../map_validation/map_validation_types.h"
 
 typedef struct s_wall_texture {
 	t_data	north;

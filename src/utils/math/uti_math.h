@@ -6,20 +6,20 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:29:56 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:07:15 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:42:52 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTI_MATH_H
 # define UTI_MATH_H
 
-# include "../../macros.h"
-# include "../../colors.h"
+# include "../../includes/macros.h"
+# include "../../includes/colors.h"
 
 # include "uti_math_types.h"
-# include "../../basic_types.h"
+# include "../../includes/basic_types.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		basic math
 float	flt_round(float nbr, size_t dec_places);

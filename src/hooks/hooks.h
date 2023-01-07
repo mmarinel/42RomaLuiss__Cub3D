@@ -6,20 +6,20 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:15:46 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:05:10 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:22:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOKS_H
 # define HOOKS_H
 
-# include "../basic_types.h"
-# include "../game_types.h"
+# include "../includes/basic_types.h"
+# include "../includes/game_types.h"
 
-# include "../macros.h"
-# include "../X11_macros.h"
+# include "../includes/macros.h"
+# include "../includes/X11_macros.h"
 
-# include "../sys_includes.h"
+# include "../includes/sys_includes.h"
 
 # include "../exit/exit_module.h"
 # include "../utils/utils_module.h"

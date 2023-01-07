@@ -6,27 +6,24 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:12:53 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:07:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:41:06 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_UTILS_H
 # define GAME_UTILS_H
 
-# include "../../basic_types.h"
-# include "../../game_types.h"
+# include "../../includes/colors.h"
+
+# include "../../includes/basic_types.h"
+# include "../../includes/game_types.h"
 # include "../../raycast/raycast_types.h"
-// # include "../../init/game_init_types.h"
-// # include "../../map_validation/map_validation_types.h"
-// # include "../../raycast/raycast_types.h"
-// # include "../../render/render_types.h"
-# include "../../colors.h"
 
 # include "../../raycast/raycast_module.h"
 # include "../libft/libft_module.h"
 # include "../utils_module.h"
 
-# include "../../sys_includes.h"
+# include "../../includes/sys_includes.h"
 
 //*		player
 t_bool	is_free_pos(t_game *g, t_2d_point pt);

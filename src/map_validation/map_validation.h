@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:52:28 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:06:28 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:30:55 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define MAP_VALIDATION_H
 
 # include "map_validation_types.h"
-# include "../colors.h"
-# include "../basic_types.h"
+# include "../includes/colors.h"
+# include "../includes/basic_types.h"
 
 # include "../utils/utils_module.h"
 # include "utils/map_utils_module.h"
 # include "bonus/map_validation_bon_module.h"
 
-# include "../sys_includes.h"
+# include "../includes/sys_includes.h"
 
 # define MAP_FILE_EXTENSION ".cub"
 # define ERROR_SIG "Error\n"

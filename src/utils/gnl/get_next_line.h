@@ -6,14 +6,16 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:14:58 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:26:56 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:50:51 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "../../sys_includes.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
