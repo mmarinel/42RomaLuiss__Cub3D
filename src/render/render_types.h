@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/26 15:56:28 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:55:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include "../game_types.h"
 # include "../raycast/raycast_types.h"
 # include "../utils/math/uti_math_types.h"
+
+typedef enum e_entity
+{
+	e_ENT_DOOR,
+	e_ENT_ENEMY,
+	e_ENT_ITEM,
+}	t_entity;
 
 /**
  * @brief an entity (enemy or item) is spotted multiple times

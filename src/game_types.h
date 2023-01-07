@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 11:48:26 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:59:15 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 # include "types.h"
 # include "utils/math/uti_math_types.h"
 # include "map_validation/map_validation_types.h"
-
-typedef struct s_screen_holder
-{
-	void	*mlx;
-	void	*window;
-	t_data	frame_data;
-	size_t	width;
-	size_t	height;
-}	t_screen_holder;
 
 typedef struct s_wall_texture {
 	t_data	north;
@@ -38,6 +29,40 @@ typedef struct s_door_texture {
 	t_data	ajar;
 	t_data	closed;
 }	t_door_texture;
+
+typedef struct s_game_textures
+{
+	t_bool			loaded;
+	t_wall_texture	wall;
+	t_door_texture	door;
+	t_data			background;
+	t_data			sun[SUN_FRAMES];
+	t_data			enemy[2];
+	t_data			item;
+	t_data			menu[2];
+	t_data			game_over[2];
+	t_data			game_win[2];
+}	t_game_textures;
+
+typedef struct s_menu
+{
+	t_bool			in_initial_menu;
+	t_bool			in_end_menu;
+	int				menu_screen;
+	t_int_2d_point	newg_btn_top_left;
+	t_int_2d_point	newg_btn_bottom_right;
+	t_int_2d_point	exit_btn_top_left;
+	t_int_2d_point	exit_btn_bottom_right;
+}	t_menu;
+
+typedef struct s_screen_holder
+{
+	void	*mlx;
+	void	*window;
+	t_data	frame_data;
+	size_t	width;
+	size_t	height;
+}	t_screen_holder;
 
 typedef enum e_key
 {
@@ -66,22 +91,6 @@ typedef struct s_key_state_map
 {
 	t_key_state		keys[BOUND_KEYS];
 }	t_key_state_map;
-
-typedef enum e_side
-{
-	e_HORIZONTAL,
-	e_VERTICAL,
-	e_SIDE_NONE
-}	t_side;
-
-# define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
-
-typedef enum e_entity
-{
-	e_ENT_DOOR,
-	e_ENT_ENEMY,
-	e_ENT_ITEM,
-}	t_entity;
 
 typedef struct s_enemy
 {
@@ -140,31 +149,6 @@ typedef struct s_player
 	t_2d_point	dir;
 	t_2d_point	camera_plane;
 }	t_player;
-
-typedef struct s_game_textures
-{
-	t_bool			loaded;
-	t_wall_texture	wall;
-	t_door_texture	door;
-	t_data			background;
-	t_data			sun[SUN_FRAMES];
-	t_data			enemy[2];
-	t_data			item;
-	t_data			menu[2];
-	t_data			game_over[2];
-	t_data			game_win[2];
-}	t_game_textures;
-
-typedef struct s_menu
-{
-	t_bool			in_initial_menu;
-	t_bool			in_end_menu;
-	int				menu_screen;
-	t_int_2d_point	newg_btn_top_left;
-	t_int_2d_point	newg_btn_bottom_right;
-	t_int_2d_point	exit_btn_top_left;
-	t_int_2d_point	exit_btn_bottom_right;
-}	t_menu;
 
 typedef struct s_game
 {

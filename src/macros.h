@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 11:49:15 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:54:03 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 
 # define SUN_FRAMES 19
 
+# define ENEMIES_DEFAULT_COLLISION_RADIUS 2.0f
 # define ENEMY_DIE_ANIM_FRAMES 32
 
 # define DOOR_OPENING_DELAY_FRAMES 12
