@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:14:58 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 17:41:01 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:25:29 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_fill_tile_row(
 					char **char_map,
 					size_t row_index,
 					t_bool *err_flag
-				);
+					);
 //* end of static declarations
 
 t_bool	is_map_content_ok( int map_fd, t_map_holder *map_holder)
@@ -70,11 +70,11 @@ static void	parse_map( t_map_holder *map_handle, char **map,
 
 /**
  * @brief if map_handle is NULL, static variables are reset.
- * 
- * @param map_handle 
- * @param map 
- * @param row_index 
- * @param err_flag 
+ *
+ * @param map_handle
+ * @param map
+ * @param row_index
+ * @param err_flag
  */
 static void	parse_row(
 	t_map_holder *map_handle,

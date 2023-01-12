@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils_module.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:09 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/31 18:16:22 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:32:17 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	read_texture_attr(char **ref, const char *path);
 
 //*		logic conditions
 t_bool	is_map_edge(
-	const t_map_holder *map_handle,
-	int x, int y
-	);
+			const t_map_holder *map_handle,
+			int x, int y
+			);
 t_bool	is_valid_map_char( char c );
 t_bool	map_fields_complete( t_map_holder *map_handle );
 t_bool	is_player_found( void );

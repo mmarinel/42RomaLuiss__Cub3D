@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_attributes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:08:21 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 18:17:13 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:12:54 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,7 @@ static void	parse_rgb_item( int *item_ref, const char *channel,
 				t_bool *err_flag )
 {
 	if (ft_isdigit_string(channel))
-	{
 		*item_ref = ft_atoi(channel);
-		// printf(YELLOW"rgb component is %d\n"RESET, *item_ref);
-	}
 	else
 	{
 		*item_ref = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_tile_map_trim.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:11:48 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/10 08:38:13 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:33:02 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	ft_effective_rows(t_map_holder *map_handle)
 	return (effective_rows);
 }
 
-static void		ft_fill_trim(t_tile **trimmed, size_t effective_rows,
+static void	ft_fill_trim(t_tile **trimmed, size_t effective_rows,
 					t_map_holder *map_handle)
 {
 	t_tile	**map;
@@ -65,7 +65,9 @@ static void		ft_fill_trim(t_tile **trimmed, size_t effective_rows,
 	{
 		if (e_false == ft_empty_row(map[map_row], map_handle->columns))
 		{
-			ft_copy_row(trimmed, trimmed_row, map[map_row], map_handle->columns);
+			ft_copy_row(
+				trimmed, trimmed_row, map[map_row], map_handle->columns
+				);
 			trimmed_row++;
 		}
 		map_row++;

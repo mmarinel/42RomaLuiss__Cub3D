@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_chars_tracking.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:16:59 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 17:43:04 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:31:45 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static t_bool	player_tracker(char c);
  * @brief this functions returns true iff [c] is a valid map character.
  * Valid map characters are wall, floor and player characters,
  * with the player characters been excluded when player has already been found.
- * 
- * @param c 
- * @return t_bool 
+ *
+ * @param c
+ * @return t_bool
  */
 t_bool	is_valid_map_char( char c )
 {
@@ -39,7 +39,7 @@ t_bool	is_valid_map_char( char c )
 		|| is_wall_map_char(c)
 		|| is_empty_map_char(c)
 		|| (BONUS && is_entity_map_char(c))
-		)
+	)
 	{
 		return (e_true);
 	}
@@ -60,9 +60,9 @@ void	forget_player(void)
  * @brief This function returns true iff player has already been found.
  * That means if a previous call to this function was successful
  * or the given input is a player map character.
- * 
+ *
  * @param c a map character
- * @return t_bool 
+ * @return t_bool
  */
 t_bool	player_tracker(char c)
 {
