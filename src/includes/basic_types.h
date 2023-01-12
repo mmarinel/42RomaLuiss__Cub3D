@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_types.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:50:00 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:43:12 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef struct s_data
 
 typedef struct s_color
 {
-	int	red;
-	int	green;
-	int	blue;
+	int		red;
+	int		green;
+	int		blue;
 	double	alpha;
 }	t_color;
 # endif

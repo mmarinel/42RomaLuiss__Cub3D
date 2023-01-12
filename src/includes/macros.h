@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 11:54:03 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:58:22 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define ESC_INDEX 12
 
 //*		66º...vision cone of our player (FOV - field of vision)
-# define FOV ( (11.0f / 30.0f) * M_PI )
+# define FOV 0.11671f
 
 # define INITIAL_ROT_ANGLE 0.104533f
 # define MAX_ROT_ANGLE 0.314159f
@@ -64,7 +64,7 @@
 # define DOOR_OPENING_DELAY_FRAMES 12
 
 # define ITEM_ANIM_FRAMES 16
-# define ITEM_ANIM_FRAME_STEP (ITEM_ANIM_FRAMES / 2)
+# define ITEM_ANIM_FRAME_STEP 8
 
 //*		menus
 
@@ -75,15 +75,14 @@
 
 # define UHD_BAR_HEIGHT 5
 
-# define UHD_HP_VERT_OFFS (0					+	0 * UHD_BAR_HEIGHT)
-# define UHD_MANA_VERT_OFFS (UHD_HP_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
-# define UHD_ITEM_VERT_OFFS (UHD_MANA_VERT_OFFS	+	2 * UHD_BAR_HEIGHT)
+# define UHD_HP_VERT_OFFS 0
+# define UHD_MANA_VERT_OFFS 10
+# define UHD_ITEM_VERT_OFFS 20
 
 # define MMP_OFFSET (15)
 # define MMP_WIDTH (500)
 # define MMP_HEIGHT (200)
 # define MMP_BORDER_WIDTH (10)
 # define MMP_TILE_WIDTH (5)
-
 
 #endif
