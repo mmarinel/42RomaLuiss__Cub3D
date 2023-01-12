@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/31 14:48:31 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:36:55 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	t_screen_holder_clean(t_game *game)
 		);
 	mlx_destroy_window(
 		game->screen_handle.mlx, game->screen_handle.window
-	);
+		);
 	mlx_destroy_display(game->screen_handle.mlx);
 	free(game->screen_handle.mlx);
 }
