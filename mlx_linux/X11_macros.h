@@ -6,12 +6,9 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:41:40 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 16:58:39 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:36:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef X11_MACROS_H
-# define X11_MACROS_H
 
 //*		Mouse events (self written)
 # define LEFT_CLICK 1
@@ -91,5 +88,3 @@
 #define PropertyChangeMask			(1L<<22)
 #define ColormapChangeMask			(1L<<23)
 #define OwnerGrabButtonMask			(1L<<24)
-
-#endif
