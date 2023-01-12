@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:28 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 13:25:59 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:02:30 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,20 @@ size_t	open_texture(
 	)
 {
 	texture_data->img = mlx_xpm_file_to_image(
-		game_ref->screen_handle.mlx,
-		(char *)path,
-		&texture_data->width, &texture_data->height
-	);
+			game_ref->screen_handle.mlx,
+			(char *)path,
+			&texture_data->width, &texture_data->height
+			);
 	if (texture_data->img)
-		texture_data->addr = mlx_get_data_addr(
-			texture_data->img,
-			&texture_data->bits_per_pixel,
-			&texture_data->line_length, &texture_data->endian
-		);
+			texture_data->addr = mlx_get_data_addr(
+				texture_data->img,
+				&texture_data->bits_per_pixel,
+				&texture_data->line_length, &texture_data->endian
+				);
 	if (NULL == texture_data->img
 		|| NULL == texture_data->addr
 	)
 		*err_flag = e_true;
-
 	if (!texture_data->img || !texture_data->addr)
 		printf(RED "NULL\n" RESET);
 	else
@@ -47,22 +46,21 @@ size_t	open_squared_texture(
 	)
 {
 	texture_data->img = mlx_xpm_file_to_image(
-		game_ref->screen_handle.mlx,
-		(char *)path,
-		&texture_data->width, &texture_data->height
-	);
+			game_ref->screen_handle.mlx,
+			(char *)path,
+			&texture_data->width, &texture_data->height
+			);
 	if (texture_data->img)
 		texture_data->addr = mlx_get_data_addr(
-			texture_data->img,
-			&texture_data->bits_per_pixel,
-			&texture_data->line_length, &texture_data->endian
-		);
+				texture_data->img,
+				&texture_data->bits_per_pixel,
+				&texture_data->line_length, &texture_data->endian
+				);
 	if (NULL == texture_data->img
 		|| NULL == texture_data->addr
 		|| texture_data->width != texture_data->height
 	)
 		*err_flag = e_true;
-
 	if (!texture_data->img || !texture_data->addr)
 		printf(RED "NULL\n" RESET);
 	else

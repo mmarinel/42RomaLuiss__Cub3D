@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:26:27 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:28:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:04:23 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,4 @@ void	map_reset(t_map_holder *map_handle);
 //*		menus
 void	game_init_menus(t_game *game_ref);
 
-# endif
+#endif

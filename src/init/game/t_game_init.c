@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/04 14:28:22 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:37:38 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	t_game_set(const char *map_path, t_game *game_ref)
 	game_ref->player.hp = 100;
 	game_ref->player.mana = 100;
 	game_ref->player.attack_damage = 10;
-	game_ref->player.attack_range = (3.0f / 2) * ENEMIES_DEFAULT_COLLISION_RADIUS + 1;
+	game_ref->player.attack_range
+		= (3.0f / 2) * ENEMIES_DEFAULT_COLLISION_RADIUS + 1;
 	game_ref->player.action_range = 1.0f + 1;
 	game_ref->player.step_size = 0.4f;
 	game_ref->player.step_ampl = 0;
-	game_ref->player.acceleration = 0.25f;//*	when 16 frames (8 frames per sec on avg) have passed: step_size * (1 + step_ampl) = 2 tiles
+	game_ref->player.acceleration = 0.25f;
 	game_ref->player.attacking = e_false;
 	game_ref->player.running = e_false;
 	game_ref->player.enemy_colliding = e_false;

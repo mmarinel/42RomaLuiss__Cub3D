@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_geometry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:28:02 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 14:08:01 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:41:54 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_init.h"
 
 static void	initial_pos_vector(
-	const size_t row,
-	const size_t col,
-	t_game *game_ref
-	);
+				const size_t row,
+				const size_t col,
+				t_game *game_ref
+				);
 static void	initial_dir_vectors(
-	t_tile inital_dir,
-	t_2d_point *player_dir, t_2d_point *camera_plane
-			);
+				t_tile inital_dir,
+				t_2d_point *player_dir, t_2d_point *camera_plane
+				);
 //*		end of static declarations
 
 void	game_set_inital_vectors( t_game *game_ref )
@@ -33,7 +33,7 @@ void	game_set_inital_vectors( t_game *game_ref )
 	initial_dir_vectors(
 		game_ref->map_handle.player_initial_dir,
 		&game_ref->player.dir, &game_ref->player.camera_plane
-	);
+		);
 	row = 0;
 	while (row < game_ref->map_handle.rows)
 	{
@@ -93,7 +93,7 @@ static void	initial_dir_vectors(
 	else if (e_PLAYER_E == inital_dir)
 		*player_dir = ft_get_new_2dpt(-1, 0);
 	else
-		return;
+		return ;
 	*camera_plane = ft_rotate(*player_dir, M_PI / 2);
 	*camera_plane = ft_change_magnitude(*camera_plane, scaling_factor);
 }
