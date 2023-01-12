@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:15:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/10 19:57:00 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:17:16 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ t_bres_line_type	bres_get_type(t_int_2d_point vfirst, t_int_2d_point vlast,
 	const int	delta_y = vlast.y - vfirst.y;
 	int			sign;
 
-	sign = get_angular_coefficient_sign(delta_x, delta_y,
-				norm_delta_x, norm_delta_y);
+	sign = get_angular_coefficient_sign(
+			delta_x, delta_y,
+			norm_delta_x, norm_delta_y
+			);
 	if (norm_delta_y <= norm_delta_x)
 	{
 		if (1 == sign)
@@ -49,47 +51,23 @@ void	bres_put_next_px(
 		canvas_data,
 		ft_get_pixel_offset(canvas_data, *arg->cur_px),
 		(*next_pixel_f)(arg)
-	);
-	// t_color	color = (t_color){ *( (int *)row->texture + row->img_offset ), 0, 0, 0.0f};
-	// t_color	fake = (t_color){0, 0, 255, 0.0f};
-
-	// printf("%d %d %d\n",
-	// 	color.red,
-	// 	color.green,
-	// 	color.blue
-	// );
-	// printf("mlx_color: %zu\n", ft_get_mlx_color(color));
-	// exit(0);
-	// (void) color;
-	// (void) fake;
-	// (void) img_data;
-	// (void) cur_point;
-	// (void) row;
-	//**
-	// ft_put_px_to_image(
-	// 	img_data,
-	// 	ft_get_pixel_offset(*img_data, cur_point),
-	// 	color
-	// );
-	//*
-	//!		FOR TESTING PURPOSES
-	// row->img_offset = (row->img_offset + 1) % row->len;
-	// return (*row);
+		);
 }
 
 t_bool	bres_eol(t_int_2d_point cur_point, t_int_2d_point vlast,
 			t_bres_line_type bres_type)
 {
-	// if (cur_point.y < 0 || cur_point.y >= 760 || cur_point.x < 0)
-	// 	return (e_true);
-	if (e_BRES_LOW_POS ==  bres_type || e_BRES_LOW_NEG == bres_type)
+	if (e_BRES_LOW_POS == bres_type || e_BRES_LOW_NEG == bres_type)
 		return (cur_point.x == vlast.x);
 	else
 		return (cur_point.y == vlast.y);
 }
 
-t_int_2d_point		bres_next_point(int d_k,
-					t_int_2d_point cur_point, t_bres_line_type bres_type)
+t_int_2d_point	bres_next_point(
+					int d_k,
+					t_int_2d_point cur_point,
+					t_bres_line_type bres_type
+					)
 {
 	if (e_BRES_LOW_POS == bres_type || e_BRES_LOW_NEG == bres_type)
 	{

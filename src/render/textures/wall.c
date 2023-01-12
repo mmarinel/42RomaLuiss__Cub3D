@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:01:43 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 19:59:54 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:57:40 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,17 @@ t_column_info	get_wall_column_info(
 	return ((t_column_info){
 		rendered_size,
 		gap,
-		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
 		get_wall_texture(g, &rc_ret->final_tile),
 		&g->\
 		screen_handle.frame_data,
 		get_texture_column(&rc_ret->final_tile),
 		scaling_factor,
 		e_true
-		}
+	}
 	);
 }
 
-t_data *get_wall_texture(t_game *game, const t_rc_ret_data *rc_ret_data)
+t_data	*get_wall_texture(t_game *game, const t_rc_ret_data *rc_ret_data)
 {
 	if (e_VERTICAL == rc_ret_data->side)
 	{

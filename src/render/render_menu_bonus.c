@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_menu_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:44:18 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 23:10:05 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:35:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_menu_next_frame(t_game *g)
 		g->screen_handle.mlx, g->screen_handle.window,
 		get_menu(g)[g->menu.menu_screen].img,
 		0, 0
-	);
+		);
 }
 
 static t_data	*get_menu(t_game *g)

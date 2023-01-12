@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:41:07 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 21:28:19 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:35:19 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	draw_background(t_game *g);
 static void	rc_draw(
-	size_t col,
-	t_list **entities, t_list **rays,
-	t_game *game
-	);
+				size_t col,
+				t_list **entities, t_list **rays,
+				t_game *game
+				);
 static void	bonus_draw(t_list *entities, t_list *rays, t_game *g);
 static void	render_column(
-	size_t column,
-	t_game *g,
-	const t_raycast_return *rc_ret
-	);
+				size_t column,
+				t_game *g,
+				const t_raycast_return *rc_ret
+				);
 //*		end of static declarations
 
 void	render_game_next_frame(t_game *g)
@@ -31,7 +31,7 @@ void	render_game_next_frame(t_game *g)
 	size_t	col;
 	t_list	*entities;
 	t_list	*rays;
-	
+
 	mlx_clear_window(g->screen_handle.mlx, g->screen_handle.window);
 	draw_background(g);
 	entities = NULL;
@@ -91,21 +91,20 @@ static void	render_column(
 	)
 {
 	const size_t			wall_size = roundf(
-		g->screen_handle.height / rc_ret->final_tile.perp_dist
-	);
-	const float				gap = ( 
-		((float)g->screen_handle.height - wall_size) / 2.0f
-	);
+			g->screen_handle.height / rc_ret->final_tile.perp_dist
+			);
+	const float				gap = (
+			((float)g->screen_handle.height - wall_size) / 2.0f
+			);
 	const t_column_info		col_info = get_wall_column_info(
-		wall_size, gap, rc_ret, g
-		);
+			wall_size, gap, rc_ret, g
+			);
 	t_int_2d_point			endpoint[2];
-	
+
 	endpoint[0] = endpoint_clip((t_int_2d_point){column, gap});
-	endpoint[1] = endpoint_clip((t_int_2d_point){
-		column, gap + (wall_size - 1)
-		}
-	);
+	endpoint[1] = endpoint_clip(
+			(t_int_2d_point){column, gap + (wall_size - 1)}
+			);
 	if (0 == wall_size)
 		return ;
 	else
@@ -113,7 +112,7 @@ static void	render_column(
 			endpoint,
 			&g->screen_handle.frame_data,
 			nearest_neighbour, &(t_nxt_px_f_arg){&col_info, NULL}
-		);
+			);
 }
 
 static void	bonus_draw(t_list *entities, t_list *rays, t_game *g)

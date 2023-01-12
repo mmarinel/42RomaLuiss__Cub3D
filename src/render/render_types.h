@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:28:34 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:36:50 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:36:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ typedef struct s_rendered_entity
 	t_entity	which;
 	size_t		entity_size;
 	float		min_perp_dist;
-	//*				average of the two below
 	size_t		mid_screen_col;
-	//*				column of the first ray to hit the entity
 	size_t		first_screen_col;
-	//*				column of the last ray to hit the entity
 	size_t		last_screen_col;
 }	t_rendered_entity;
 
@@ -52,7 +49,6 @@ typedef struct s_column_info
 {
 	const size_t			rendered_height;
 	const size_t			gap;
-	const t_raycast_return	*rc_ret;
 	const t_data			*texture;
 	t_data					*frame;
 	const size_t			texture_column;

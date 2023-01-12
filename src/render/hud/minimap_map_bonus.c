@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_map.c                                      :+:      :+:    :+:   */
+/*   minimap_map_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:09:13 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/04 20:08:58 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:33:43 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../render.h"
 
 static void	mmp_draw_tile(
-	const t_int_2d_point *mmp_px,
-	const t_int_2d_point *player_mmp_px,
-	t_game *g
-	);
+				const t_int_2d_point *mmp_px,
+				const t_int_2d_point *player_mmp_px,
+				t_game *g
+				);
 static void	draw_mmp_wall(
-	const t_int_2d_point *mmp_px,
-	t_game *g
-	);
+				const t_int_2d_point *mmp_px,
+				t_game *g
+				);
 static void	draw_mmp_player_box(
-	const t_int_2d_point *mmp_px,
-	t_game *g
-	);
+				const t_int_2d_point *mmp_px,
+				t_game *g
+				);
 static void	draw_enemy_box(
-	const t_int_2d_point *mmp_px,
-	t_game *g
-	);
+				const t_int_2d_point *mmp_px,
+				t_game *g
+				);
 //*		end of static declarations
 
 void	mmp_draw_map(
@@ -86,17 +86,16 @@ static void	draw_mmp_wall(
 	t_game *g
 	)
 {
-	const t_color	wall_col = (t_color){5, 26, 59, 1};;
-
+	const t_color	wall_col = (t_color){5, 26, 59, 1};
 
 	ft_put_px_to_image(
 		&g->screen_handle.frame_data,
 		ft_get_pixel_offset(
 			&g->screen_handle.frame_data,
 			*mmp_px
-		),
+			),
 		wall_col
-	);
+		);
 }
 
 static void	draw_enemy_box(
@@ -106,15 +105,14 @@ static void	draw_enemy_box(
 {
 	const t_color	box_col = (t_color){255, 0, 0, 1};
 
-
 	ft_put_px_to_image(
 		&g->screen_handle.frame_data,
 		ft_get_pixel_offset(
 			&g->screen_handle.frame_data,
 			*mmp_px
-		),
+			),
 		box_col
-	);
+		);
 }
 
 static void	draw_mmp_player_box(
@@ -125,15 +123,13 @@ static void	draw_mmp_player_box(
 	const t_color	box_col = (t_color){214, 4, 158, 1};
 	static int		calls = 0;
 
-
 	calls += 1;
-	// printf("player printed %d times\n", calls);
 	ft_put_px_to_image(
 		&g->screen_handle.frame_data,
 		ft_get_pixel_offset(
 			&g->screen_handle.frame_data,
 			*mmp_px
-		),
+			),
 		box_col
-	);
+		);
 }

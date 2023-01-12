@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_rays.c                                     :+:      :+:    :+:   */
+/*   minimap_rays_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:20:19 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 19:48:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:39:45 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../render.h"
 
 static void	render_minimap_ray(
-	const t_raycast_return *rc_ret,
-	const t_int_2d_point *mmp_bottom_left,
-	t_game *g
-	);
+				const t_raycast_return *rc_ret,
+				const t_int_2d_point *mmp_bottom_left,
+				t_game *g
+				);
 static void	mmp_draw_ray(
-	const t_int_2d_point *player_mmp_px,
-	const t_int_2d_point *wall_mmp_px,
-	t_game *g
-	);
+				const t_int_2d_point *player_mmp_px,
+				const t_int_2d_point *wall_mmp_px,
+				t_game *g
+				);
 static int	mmp_ray_next_pixel(t_nxt_px_f_arg *f_arg);
 //*		end of static declarations
 
 void	mmp_draw_rays(
-	t_list *rays,
-	const t_int_2d_point *mmp_bottom_left,
-	t_game *g
-	)
+			t_list *rays,
+			const t_int_2d_point *mmp_bottom_left,
+			t_game *g
+			)
 {
 	t_list	*cur;
 
@@ -49,25 +49,23 @@ static void	render_minimap_ray(
 {
 	const t_int_2d_point	player_map_pos = as_int_2dpt(&g->player.pos);
 	const t_int_2d_point	player_mmp_px = mmp_px_clip(
-		mmp_bottom_left,
-		&(t_int_2d_point){
-				mmp_bottom_left->x + MMP_WIDTH / 2,
-				mmp_bottom_left->y - MMP_HEIGHT / 2,
-			}
-	);
+			mmp_bottom_left,
+			&(t_int_2d_point){
+			mmp_bottom_left->x + MMP_WIDTH / 2,
+			mmp_bottom_left->y - MMP_HEIGHT / 2,
+		}
+			);
 	const t_int_2d_point	wall_mmp_px = mmp_px_clip(
-		mmp_bottom_left,
-		&(t_int_2d_point){
-			player_mmp_px.x
-				+ MMP_TILE_WIDTH * (
-					(rc_ret->final_tile.hit_point.x - player_map_pos.x)
+			mmp_bottom_left,
+			&(t_int_2d_point){
+			player_mmp_px.x + MMP_TILE_WIDTH * (
+				(rc_ret->final_tile.hit_point.x - player_map_pos.x)
 				),
-			player_mmp_px.y
-				+ MMP_TILE_WIDTH * (
-					(rc_ret->final_tile.hit_point.y - player_map_pos.y)
+			player_mmp_px.y + MMP_TILE_WIDTH * (
+				(rc_ret->final_tile.hit_point.y - player_map_pos.y)
 				),
-			}
-	);
+		}
+			);
 
 	mmp_draw_ray(&player_mmp_px, &wall_mmp_px, g);
 }
@@ -82,16 +80,16 @@ static void	mmp_draw_ray(
 
 	bresenham_plot(
 		(t_int_2d_point[2]){
-			*player_mmp_px,
-			*wall_mmp_px
-		},
+		*player_mmp_px,
+		*wall_mmp_px
+	},
 		&g->screen_handle.frame_data,
 		mmp_ray_next_pixel,
 		&(t_nxt_px_f_arg){
-			&ray_color,
-			NULL
-		}
-	);
+		&ray_color,
+		NULL
+	}
+		);
 }
 
 static int	mmp_ray_next_pixel(t_nxt_px_f_arg *f_arg)

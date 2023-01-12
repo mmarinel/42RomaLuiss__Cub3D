@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:47:10 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/07 12:39:35 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:56:13 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # include "../../includes/sys_includes.h"
 
-t_data *get_wall_texture(t_game *game, const t_rc_ret_data *rc_ret_data);
+t_data	*get_wall_texture(t_game *game, const t_rc_ret_data *rc_ret_data);
 size_t	get_texture_column(const t_rc_ret_data *rc_ret_data);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_background.c                               :+:      :+:    :+:   */
+/*   minimap_background_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:22:49 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/28 16:29:13 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:17:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	mmp_draw_background(
 				ft_get_pixel_offset(
 					&g->screen_handle.frame_data,
 					(t_int_2d_point){
-						px.x + mmp_bottom_left->x,
-						px.y + mmp_bottom_left->y - MMP_HEIGHT + 1
-						}
+					px.x + mmp_bottom_left->x,
+					px.y + mmp_bottom_left->y - MMP_HEIGHT + 1
+				}
 					),
 				mmp_background_col
-			);
+				);
 			px.y += 1;
 		}
 		px.x += 1;

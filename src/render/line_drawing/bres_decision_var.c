@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 11:43:15 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/11/20 12:31:07 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:06:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	bres_update_decision_var(t_bres_line_type bres_type, int d_k,
 	if (e_BRES_LOW_POS == bres_type || e_BRES_LOW_NEG == bres_type)
 	{
 		if (d_k >= 0)
-			d_k += (2 * (delta_y  - delta_x));
+			d_k += (2 * (delta_y - delta_x));
 		else
 			d_k += (2 * delta_y);
 		return (d_k);
@@ -40,7 +40,7 @@ int	bres_update_decision_var(t_bres_line_type bres_type, int d_k,
 		if (d_k >= 0)
 			d_k -= (2 * delta_x);
 		else
-			d_k -= (2 * (delta_x  - delta_y));
+			d_k -= (2 * (delta_x - delta_y));
 		return (d_k);
 	}
 }

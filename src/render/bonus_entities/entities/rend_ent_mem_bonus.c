@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   rend_ent_mem_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 00:05:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/26 02:06:54 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:46:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rend_bonus.h"
 
 static void	update_enemy_list(
-	t_list **list,
-	const t_raycast_return *rc_ret,
-	size_t screen_col
-	);
+				t_list **list,
+				const t_raycast_return *rc_ret,
+				size_t screen_col
+				);
 static void	update_item_list(
-	t_list **list,
-	const t_raycast_return *rc_ret,
-	size_t screen_col
-	);
-static void		entity_update_cols(
-	t_rendered_entity *rend_entity, const size_t screen_col
-	);
+				t_list **list,
+				const t_raycast_return *rc_ret,
+				size_t screen_col
+				);
+static void	entity_update_cols(
+				t_rendered_entity *rend_entity, const size_t screen_col
+				);
 //*		end of static declarations
 
 t_list	*ft_new_rend_entity_node(
@@ -121,7 +121,7 @@ static void	update_item_list(
 	}
 }
 
-static void		entity_update_cols(
+static void	entity_update_cols(
 	t_rendered_entity *rend_entity, const size_t screen_col
 	)
 {
@@ -129,5 +129,5 @@ static void		entity_update_cols(
 	rend_entity->mid_screen_col = (
 			(rend_entity->first_screen_col + rend_entity->last_screen_col)
 			/ 2.0f
-		);
+			);
 }

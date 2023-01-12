@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_clipping.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 12:45:11 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/29 12:58:40 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:04:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@ t_int_2d_point	endpoint_clip(t_int_2d_point endpoint)
 		endpoint.y = 0;
 	else if (endpoint.y >= SCREEN_HEIGHT)
 		endpoint.y = SCREEN_HEIGHT - 1;
-	
 	return (endpoint);
 }

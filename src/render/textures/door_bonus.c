@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 00:14:02 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/22 00:15:06 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:51:28 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ t_column_info	get_door_column_info(
 	return ((t_column_info){
 		rendered_size,
 		gap,
-		NULL,//TODO			RIMUOVERE in t_column_info		!!!!!!!!!!!!!!!!!!!!!!!
 		door_texture,
 		&g->\
 		screen_handle.frame_data,
 		get_texture_column(&door_data->rc_data),
 		scaling_factor,
 		draw_shadow
-		}
-	);
+	}
+		);
 }
 
 static t_data	*get_door_texture(const t_spotted_door *door_data, t_game *g)
