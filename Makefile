@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/12 12:02:45 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/12 18:33:40 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,7 +151,6 @@ SRC_NOPREFIX=\
 ./src/render/render_game.c\
 ./src/render/render_memory.c\
 ./src/render/background/background.c\
-./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bresenham.c\
@@ -379,7 +378,6 @@ SRC_NOPREFIX_BONUS=\
 ./src/render/hud/minimap_border_bonus.c\
 ./src/render/hud/minimap_map_bonus.c\
 ./src/render/hud/minimap_rays_bonus.c\
-./src/render/line_drawing/bres_backup.c\
 ./src/render/line_drawing/bres_decision_var.c\
 ./src/render/line_drawing/bres_endpoints.c\
 ./src/render/line_drawing/bresenham.c\

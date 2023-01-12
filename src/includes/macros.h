@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:40:38 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 12:58:22 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:32:50 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define ESC_INDEX 12
 
 //*		66º...vision cone of our player (FOV - field of vision)
-# define FOV 0.11671f
+# define FOV 1.15191730632f
 
 # define INITIAL_ROT_ANGLE 0.104533f
 # define MAX_ROT_ANGLE 0.314159f
