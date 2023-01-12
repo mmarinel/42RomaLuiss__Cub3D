@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:43:30 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 11:37:38 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:48:39 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	t_game_init(t_game *game_ref)
 	game_init_menus(game_ref);
 }
 
+//*	acceleration:	0.25 IMPLIES==> when 16 frames (8 frames per sec on avg)
+//*					have passed: step_size * (1 + step_ampl) = 2 tiles
 void	t_game_set(const char *map_path, t_game *game_ref)
 {
 	set_lvls(map_path, game_ref);

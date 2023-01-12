@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:17:27 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 11:34:06 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:47:38 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	load_enemy_textures(t_game *game_ref, t_bool *err_flag);
 static void	load_item_textures(t_game *game_ref, t_bool *err_flag);
 static void	load_door_textures(t_game *game_ref, t_bool *err_flag);
 static void	load_background_textures(t_game *game_ref, t_bool *err_flag);
-//*		end	of static declarations
+//*		end of static declarations
 
 void	load_bonus_textures(t_game *game_ref, t_bool *err_flag)
 {
