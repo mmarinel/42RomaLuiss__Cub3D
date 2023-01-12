@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/07 12:47:00 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/12 12:02:45 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,7 +144,6 @@ SRC_NOPREFIX=\
 ./src/raycast/raycast_movement.c\
 ./src/raycast/raycast_wall.c\
 ./src/raycast/utils/rc_calc.c\
-./src/raycast/utils/rc_debug.c\
 ./src/raycast/utils/rc_initialization.c\
 ./src/raycast/utils/rc_set.c\
 ./src/raycast/utils/rc_walk.c\
@@ -357,7 +356,6 @@ SRC_NOPREFIX_BONUS=\
 ./src/raycast/bonus/rc_items_bonus.c\
 ./src/raycast/bonus/rc_memory_bonus.c\
 ./src/raycast/utils/rc_calc.c\
-./src/raycast/utils/rc_debug.c\
 ./src/raycast/utils/rc_initialization.c\
 ./src/raycast/utils/rc_set.c\
 ./src/raycast/utils/rc_walk.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_algorithm.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 11:47:36 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:01:05 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_raycast_return	raycast_algorithm(
 		else
 			rc_process_bonus(&rc_data, pos, ray, game);
 	}
-	rc_ret_set_data(&rc_data, &rc_ret.final_tile, pos, ray);
+	rc_ret_set_data(&rc_ret.final_tile, &rc_data, pos, ray);
 	rc_set_bonus(&rc_data, &rc_ret);
 	return (rc_ret);
 }
