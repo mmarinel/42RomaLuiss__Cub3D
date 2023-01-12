@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:03:29 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 20:37:35 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:44:00 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param _ unused. Present only for compatibility reasons
  * @return t_bool 
  */
-static t_bool				rc_tile_reached(const void *rc_data, const void *_);
+static t_bool			rc_tile_reached(const void *rc_data, const void *_);
 /**
  * @brief this function provides the initialization criteria
  * for the raycast function.
@@ -32,8 +32,10 @@ static t_bool				rc_tile_reached(const void *rc_data, const void *_);
  * @param pos 
  * @param ray 
  */
-static void					rc_init(void *rc_data, const void *pos, const void *ray);
-static t_int_2d_point		rc_endpoint_holder(const t_int_2d_point *given);
+static void				rc_init(
+							void *rc_data, const void *pos, const void *ray
+							);
+static t_int_2d_point	rc_endpoint_holder(const t_int_2d_point *given);
 //*		end of static declarations
 
 /**
@@ -55,7 +57,7 @@ t_raycast_return	raycast(
 {
 	const t_rc_handlers	rc_handlers = (t_rc_handlers){
 		rc_tile_reached, rc_init
-		};
+	};
 
 	rc_endpoint_holder(&tile);
 	return (raycast_algorithm(&pos, &ray, rc_handlers, game));
@@ -63,9 +65,9 @@ t_raycast_return	raycast(
 
 static void	rc_init(void *rc_data, const void *pos, const void *ray)
 {
-	t_raycast_data		*__rc_data = (t_raycast_data *)rc_data;
-	const t_2d_point	*__pos = (const t_2d_point *)pos;
-	const t_2d_point	*__ray = (const t_2d_point *)ray;
+	t_raycast_data *const	__rc_data = (t_raycast_data *)rc_data;
+	const t_2d_point		*__pos = (const t_2d_point *)pos;
+	const t_2d_point		*__ray = (const t_2d_point *)ray;
 
 	ft_ray_data_init(__rc_data, __pos, __ray);
 	__rc_data->process_bonus_doors = e_true;
@@ -79,7 +81,8 @@ static t_bool	rc_tile_reached(const void *rc_data, const void *_)
 	const t_int_2d_point	endtile = rc_endpoint_holder(NULL);
 
 	if (_)
-	{}
+	{
+	}
 	return (
 		ft_int_2d_point_equals(&__rc_data->cur_sq, &endtile)
 	);

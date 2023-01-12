@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   rc_doors_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:50:25 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 12:57:03 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:31:54 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rc_bonus.h"
 
 static void	scan_door_on_previous_tile(
-	t_raycast_data *rc_data,
-	const t_2d_point *pos, const t_2d_point *ray,
-	t_game *game
-	);
+				t_raycast_data *rc_data,
+				const t_2d_point *pos, const t_2d_point *ray,
+				t_game *game
+				);
 static void	add_door(
-	t_raycast_data *rc_data,
-	const t_2d_point *pos, const t_2d_point *ray,
-	t_game *game
-	);
+				t_raycast_data *rc_data,
+				const t_2d_point *pos, const t_2d_point *ray,
+				t_game *game
+				);
 //*		end of static declarations
 
 void	rc_ret_set_doors(
-	const t_raycast_data* rc_data,
-	t_raycast_return *rc_ret
-	)
+			const t_raycast_data *rc_data,
+			t_raycast_return *rc_ret
+			)
 {
 	rc_ret->doors = rc_data->doors;
 }
@@ -47,7 +47,7 @@ void	rc_scan_door(
 	)
 {
 	const t_int_2d_point	cur_square = rc_data->cur_sq;
-	t_tile					**const map = game->map_handle.map;
+	t_tile **const			map = game->map_handle.map;
 	t_list					*door_node;
 
 	scan_door_on_previous_tile(rc_data, pos, ray, game);
@@ -58,8 +58,8 @@ void	rc_scan_door(
 		if (door_node && door_node->content
 			&& e_false == door_front_side(
 				((t_door *)door_node->content)->type, rc_data->side
-				)
 			)
+		)
 			rc_data->door_obstacle = e_true;
 		else
 			add_door(rc_data, pos, ray, game);
@@ -80,7 +80,7 @@ static void	scan_door_on_previous_tile(
 	t_game *game
 	)
 {
-	t_tile					**const map = game->map_handle.map;
+	t_tile **const			map = game->map_handle.map;
 	t_list					*door_node;
 
 	if (is_door_map_char(map[rc_data->prev_sq.y][rc_data->prev_sq.x]))
@@ -90,8 +90,8 @@ static void	scan_door_on_previous_tile(
 			&& e_false == door_front_side(
 				((t_door *)door_node->content)->type,
 				rc_data->side
-				)
 			)
+		)
 			rc_data->door_obstacle = e_true;
 		else if (is_floor_map_char(map[rc_data->cur_sq.y][rc_data->cur_sq.x]))
 			add_door(rc_data, pos, ray, game);

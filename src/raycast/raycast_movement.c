@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_movement.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:33:50 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 20:43:17 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:53:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
  * @param _ unused. Present only for compatibility reasons
  * @return t_bool 
  */
-static t_bool			rc_mov_endpoint_reached(const void *rc_data, const void *_);
+static t_bool			rc_mov_endpoint_reached(
+							const void *rc_data, const void *_
+							);
 /**
  * @brief this function provides the initialization criteria
  * for the raycast_movement function.
@@ -32,7 +34,9 @@ static t_bool			rc_mov_endpoint_reached(const void *rc_data, const void *_);
  * @param pos 
  * @param ray 
  */
-static void				rc_mov_init(void *rc_data, const void *pos, const void *ray);
+static void				rc_mov_init(
+							void *rc_data, const void *pos, const void *ray
+							);
 static t_2d_point		rcmov_endpoint_holder(const t_2d_point *given);
 //*		end of static declarations
 
@@ -54,13 +58,13 @@ t_raycast_return	raycast_movement(
 {
 	const t_rc_handlers	rc_handlers = (t_rc_handlers){
 		rc_mov_endpoint_reached, rc_mov_init
-		};
+	};
 	const t_2d_point	mov_dir = ft_vec_normalize(
-		ft_vec_sum(
-			ft_vec_opposite(*old_pos),
-			*end_point
-		)
-	);
+			ft_vec_sum(
+				ft_vec_opposite(*old_pos),
+				*end_point
+				)
+			);
 
 	rcmov_endpoint_holder(end_point);
 	return (raycast_algorithm(old_pos, &mov_dir, rc_handlers, game));
@@ -68,9 +72,9 @@ t_raycast_return	raycast_movement(
 
 static void	rc_mov_init(void *rc_data, const void *pos, const void *ray)
 {
-	t_raycast_data		*__rc_data = (t_raycast_data *)rc_data;
-	const t_2d_point	*__pos = (const t_2d_point *)pos;
-	const t_2d_point	*__ray = (const t_2d_point *)ray;
+	t_raycast_data *const	__rc_data = (t_raycast_data *)rc_data;
+	const t_2d_point		*__pos = (const t_2d_point *)pos;
+	const t_2d_point		*__ray = (const t_2d_point *)ray;
 
 	ft_ray_data_init(__rc_data, __pos, __ray);
 	__rc_data->process_bonus_doors = e_true;
@@ -85,7 +89,8 @@ static t_bool	rc_mov_endpoint_reached(const void *rc_data, const void *_)
 	const t_int_2d_point	endtile = as_int_2dpt(&endpoint);
 
 	if (_)
-	{}
+	{
+	}
 	return (
 		ft_int_2d_point_equals(&__rc_data->cur_sq, &endtile)
 	);

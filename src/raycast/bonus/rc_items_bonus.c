@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   rc_items_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 20:07:18 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/24 20:21:33 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:35:51 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rc_bonus.h"
 
 static t_spotted_item	spot_item(
-			const t_raycast_data *rc_data,
-			const t_int_2d_point *pos,
-			t_game *game
-			);
+							const t_raycast_data *rc_data,
+							const t_int_2d_point *pos,
+							t_game *game
+							);
 //*		end of static declarations
 
 void	rc_ret_set_item(
-	const t_raycast_data* rc_data,
+	const t_raycast_data *rc_data,
 	t_raycast_return *rc_ret
 	)
 {
@@ -42,10 +42,10 @@ void	rc_scan_item(
 		last_door = NULL;
 	if (NULL == last_door || last_door->door_ref->status != e_DOOR_CLOSED)
 		rc_data->spotted_item = spot_item(
-			rc_data,
-			&rc_data->cur_sq,
-			game
-		);
+				rc_data,
+				&rc_data->cur_sq,
+				game
+				);
 }
 
 static t_spotted_item	spot_item(
@@ -59,8 +59,8 @@ static t_spotted_item	spot_item(
 	else
 		return (
 			(t_spotted_item){
-				get_item(pos, game),
-				perp_calc(euclid_calc(rc_data), rc_data)
-				}
+			get_item(pos, game),
+			perp_calc(euclid_calc(rc_data), rc_data)
+		}
 		);
 }

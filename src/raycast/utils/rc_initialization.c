@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_initialization.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:25:05 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/24 20:50:51 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:12:37 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_ray_data_init(t_raycast_data *rc_data,
 	rc_data->delta_y = (float)1 / ft_flt_abs(rc_data->ray_dir.y);
 	rc_data->step_x = ft_ray_step_size(rc_data->ray_dir.x);
 	rc_data->step_y = ft_ray_step_size(rc_data->ray_dir.y);
-	rc_data->cur_sq.x = (int) (pos->x);
-	rc_data->cur_sq.y = (int) (pos->y);
+	rc_data->cur_sq.x = (int)pos->x;
+	rc_data->cur_sq.y = (int)pos->y;
 	rc_data->prev_sq = rc_data->cur_sq;
 	rc_data->dist_nhp_through_x = ft_initial_delta(pos->x, rc_data->ray_dir.x);
 	rc_data->dist_nhp_through_y = ft_initial_delta(pos->y, rc_data->ray_dir.y);
@@ -44,20 +44,16 @@ static float	ft_initial_delta(float p_ax_pos, float p_dir_ax_pos)
 
 	sq_ax_pos = (int) p_ax_pos;
 	if (p_dir_ax_pos > 0)
-	{//*						can be inf !!!
-		p_ax_pos =
-			// = flt_round(
-				((float) sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos);//,
-				// FLT_PRECISION
-			// );
+	{
+		p_ax_pos = (
+				((float) sq_ax_pos + 1 - p_ax_pos) / ft_flt_abs(p_dir_ax_pos)
+				);
 	}
 	else if (p_dir_ax_pos < 0)
-	{//*					CANNOT be inf !!!
-		p_ax_pos =
-			// = flt_round(
-				((float) p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos);//,
-				// FLT_PRECISION
-			// );
+	{
+		p_ax_pos = (
+				((float) p_ax_pos - sq_ax_pos) / ft_flt_abs(p_dir_ax_pos)
+				);
 	}
 	else
 		p_ax_pos = INFINITY;

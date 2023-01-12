@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_algorithm.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:52:45 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/06 12:57:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:47:36 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
  * @return t_bool true iff the wall-side of a door has been hit
  */
 static void	rc_process_bonus(
-	t_raycast_data *rc_data,
-	const t_2d_point *pos, const t_2d_point *ray,
-	t_game *game
-	);
+				t_raycast_data *rc_data,
+				const t_2d_point *pos, const t_2d_point *ray,
+				t_game *game
+				);
 static void	rc_set_bonus(
-	const t_raycast_data *rc_data, t_raycast_return *rc_ret
-	);
+				const t_raycast_data *rc_data, t_raycast_return *rc_ret
+				);
 //*		end of static declarations
 
 /**
@@ -59,8 +59,8 @@ t_raycast_return	raycast_algorithm(
 	{
 		rc_data.prev_sq = rc_data.cur_sq;
 		ft_walk_through_nhp(&rc_data);
-		if (e_WALL == game->map_handle\
-				.map[rc_data.cur_sq.y][rc_data.cur_sq.x]
+		if (e_WALL == game->map_handle.\
+				map[rc_data.cur_sq.y][rc_data.cur_sq.x]
 			)
 			hit = e_true;
 		else

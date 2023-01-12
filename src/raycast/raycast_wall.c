@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:25:26 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 20:38:38 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:57:24 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ t_raycast_return	raycast_wall(
 	t_game *game, t_2d_point ray
 	)
 {
-	const t_rc_handlers	rc_handlers = (t_rc_handlers){rc_wall_hit, rc_wall_init};
+	const t_rc_handlers	rc_handlers = (t_rc_handlers){
+		rc_wall_hit, rc_wall_init
+	};
 
 	return (raycast_algorithm(&game->player.pos, &ray, rc_handlers, game));
 }
 
 static void	rc_wall_init(void *rc_data, const void *pos, const void *ray)
 {
-	t_raycast_data		*__rc_data = (t_raycast_data *)rc_data;
-	const t_2d_point	*__pos = (const t_2d_point *)pos;
-	const t_2d_point	*__ray = (const t_2d_point *)ray;
+	t_raycast_data *const	__rc_data = (t_raycast_data *)rc_data;
+	const t_2d_point		*__pos = (const t_2d_point *)pos;
+	const t_2d_point		*__ray = (const t_2d_point *)ray;
 
 	ft_ray_data_init(__rc_data, __pos, __ray);
 	__rc_data->process_bonus_doors = e_true;
@@ -69,6 +71,7 @@ static t_bool	rc_wall_hit(const void *_, const void *hit_flag)
 	const t_bool	*__hit_flag = (const t_bool *)hit_flag;
 
 	if (_)
-	{}
+	{
+	}
 	return (e_true == *__hit_flag);
 }

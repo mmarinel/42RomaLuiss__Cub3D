@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_calc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:15:49 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/17 14:17:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:07:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ float	euclid_calc(
 				)
 {
 	const float	dist_nhp_through_x = get_dist_across(
-		rc_data->dist_nhp_through_x, rc_data->delta_x
-		);
+			rc_data->dist_nhp_through_x, rc_data->delta_x
+			);
 	const float	dist_nhp_through_y = get_dist_across(
-		rc_data->dist_nhp_through_y, rc_data->delta_y
-		);
+			rc_data->dist_nhp_through_y, rc_data->delta_y
+			);
 
 	if (rc_data->side == e_VERTICAL)
 		return (dist_nhp_through_x);
