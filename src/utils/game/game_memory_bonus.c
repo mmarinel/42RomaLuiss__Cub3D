@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_memory_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 08:15:44 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/05 20:00:46 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:19:48 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*ft_new_door_node(t_int_2d_point pos, t_tile type)
 t_list	*ft_new_enemy_node(const t_2d_point *pos)
 {
 	const size_t	die_anim_frames = ENEMY_DIE_ANIM_FRAMES;
-	const float		alignment = 0.5f;//*	was 0.1f
+	const float		alignment = 0.5f;
 	t_enemy			*enemy;
 
 	enemy = (t_enemy *) malloc(sizeof(t_enemy));
@@ -47,7 +47,7 @@ t_list	*ft_new_enemy_node(const t_2d_point *pos)
 
 t_list	*ft_new_item_node(const t_2d_point *pos)
 {
-	const float		alignment = 0.5f;//*	was 0.1f
+	const float		alignment = 0.5f;
 	t_item			*item;
 
 	item = (t_item *) malloc(sizeof(t_item));

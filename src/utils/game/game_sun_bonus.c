@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game_sun_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:53:19 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/21 23:53:28 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:29:04 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
 
 //*		(FOV):(screen_width)	=	(west_ax_angle):(shift)
-//*	
+//*
 //*		shift = (west_ax_angle / FOV) * (screen_width)
 int	west_axis_angle_to_px_shift(t_game *g)
 {
@@ -43,9 +43,9 @@ int	west_axis_angle_to_px_shift(t_game *g)
 //*			WE WANT the sun to be shifted half the width of the screen
 //*			when we look it from position (x, 0) with x any
 //*		)
-//*	
+//*
 //*		(rows / 2):(screen_width / 2)	=	(dist):(shift)
-//*	
+//*
 //*		shift = dist * (screen_width / rows)
 int	west_middle_point_dist_to_px_shift(t_game *g)
 {
@@ -56,7 +56,7 @@ int	west_middle_point_dist_to_px_shift(t_game *g)
 		roundf(
 			west_middle_pt_distance * (
 				(float)g->screen_handle.width / g->map_handle.rows
-				)
 			)
-		);
+		)
+	);
 }

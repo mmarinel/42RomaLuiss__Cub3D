@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   game_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:14 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 20:04:44 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:26:30 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_utils.h"
 
 static t_bool	wall_collision(
-	const t_int_2d_point *next_tile,
-	const t_raycast_return *rc_return,
-	t_game *g
-	);
+					const t_int_2d_point *next_tile,
+					const t_raycast_return *rc_return,
+					t_game *g
+					);
 static t_bool	door_collision(
-	const t_int_2d_point *next_tile,
-	const t_raycast_return *rc_return
-	);
+					const t_int_2d_point *next_tile,
+					const t_raycast_return *rc_return
+					);
 //*		end of static declarations
 
 t_bool	is_free_pos(t_game *g, t_2d_point pt)
@@ -35,8 +35,8 @@ t_bool	is_free_pos(t_game *g, t_2d_point pt)
 t_2d_point	ray_for_column(size_t screen_column, t_game *g)
 {
 	t_2d_point	ray;
-	const float	dilatation_factor =
-			((2.0f * screen_column) / (g->screen_handle.width - 1.0f)) - 1.0f;
+	const float	dilatation_factor
+		= ((2.0f * screen_column) / (g->screen_handle.width - 1.0f)) - 1.0f;
 
 	ray.x = g->player.dir.x + dilatation_factor * g->player.camera_plane.x;
 	ray.y = g->player.dir.y + dilatation_factor * g->player.camera_plane.y;
@@ -60,9 +60,9 @@ t_bool	is_traversable_pos(
 	{
 		rc_ret = raycast_movement(old_pos, next_pos, g);
 		occluded = (
-			wall_collision(&next_tile, &rc_ret, g)
-			|| door_collision(&next_tile, &rc_ret)
-		);
+				wall_collision(&next_tile, &rc_ret, g)
+				|| door_collision(&next_tile, &rc_ret)
+				);
 		raycast_clean(&rc_ret);
 		return (e_false == occluded);
 	}
@@ -76,8 +76,9 @@ static t_bool	wall_collision(
 {
 	return (
 		is_wall_map_char(g->map_handle.map[next_tile->y][next_tile->x])
-		|| e_false  == ft_int_2d_point_equals(
-			next_tile, &rc_return->final_tile.square
+		|| e_false == ft_int_2d_point_equals
+			(
+				next_tile, &rc_return->final_tile.square
 			)
 	);
 }
@@ -86,9 +87,7 @@ static t_bool	door_collision(
 	const t_int_2d_point *next_tile,
 	const t_raycast_return *rc_return
 	)
-{(void)next_tile;
-	return (
-		(BONUS && e_true == rc_return->final_tile.door_obstacle)
-		// (BONUS && e_true == door_obstacle_through_dir(rc_return->doors, next_tile))
-	);
+{
+	(void)next_tile;
+	return ((BONUS && e_true == rc_return->final_tile.door_obstacle));
 }
