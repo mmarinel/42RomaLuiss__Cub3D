@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_border_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 20:48:07 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 15:31:28 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:30:25 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	mmp_border_draw_vertical_frames(
 		mmp_start->y
 	};
 	const t_int_2d_point	bottom_right = (t_int_2d_point){
-		mmp_start->x + MMP_WIDTH + MMP_BORDER_WIDTH - 1,
+		mmp_start->x + MMP_WIDTH,
 		mmp_start->y
 	};
 	const t_int_2d_point	top_left = (t_int_2d_point){
@@ -67,7 +67,7 @@ void	mmp_border_draw_vertical_frames(
 		mmp_start->y - MMP_HEIGHT - MMP_BORDER_WIDTH + 1
 	};
 	const t_int_2d_point	top_right = (t_int_2d_point){
-		mmp_start->x + MMP_WIDTH + MMP_BORDER_WIDTH - 1,
+		mmp_start->x + MMP_WIDTH,
 		mmp_start->y - MMP_HEIGHT - MMP_BORDER_WIDTH + 1
 	};
 
