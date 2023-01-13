@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/12 18:33:40 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/13 11:29:16 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -435,7 +435,7 @@ MLX_LINK_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 
 RMF = /bin/rm -rf
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3
 
 
 CUB_OBJS_DIR = bin
