@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_types.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:20:44 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 12:43:12 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:03:19 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data
 	int		endian;
 	int		width;
 	int		height;
+	t_bool	loaded;
 }	t_data;
 
 # ifndef T_COLOR

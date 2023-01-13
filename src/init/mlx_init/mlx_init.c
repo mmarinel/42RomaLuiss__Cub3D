@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:38:37 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 11:45:00 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:14:14 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	game_set_mlx( t_game *game_ref, size_t width, size_t height )
 	game_ref->screen_handle.height = height;
 	game_ref->screen_handle.frame_data.width = width;
 	game_ref->screen_handle.frame_data.height = height;
-	mlx_holder_set(&game_ref->screen_handle);
 }

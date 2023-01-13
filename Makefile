@@ -6,7 +6,7 @@
 #    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/13 11:29:16 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/13 15:49:40 by earendil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,7 +174,7 @@ SRC_NOPREFIX=\
 ./src/utils/math/vec_memory.c\
 ./src/utils/math/vectorial_ops.c\
 ./src/utils/math/vec_to_vec_ops.c\
-./src/utils/render/mlx_holder.c\
+./src/utils/render/mlx_memory.c\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/rgb.c\
 ./src/utils/render/squared_texture_clipper.c\
@@ -417,7 +417,7 @@ SRC_NOPREFIX_BONUS=\
 ./src/utils/math/vec_memory.c\
 ./src/utils/math/vectorial_ops.c\
 ./src/utils/math/vec_to_vec_ops.c\
-./src/utils/render/mlx_holder.c\
+./src/utils/render/mlx_memory.c\
 ./src/utils/render/mlx_utils_imgs.c\
 ./src/utils/render/rgb.c\
 ./src/utils/render/squared_texture_clipper.c\

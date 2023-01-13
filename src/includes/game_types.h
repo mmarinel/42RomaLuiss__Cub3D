@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:48:55 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:03:04 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_door_texture {
 
 typedef struct s_game_textures
 {
-	t_bool			loaded;
 	t_wall_texture	wall;
 	t_door_texture	door;
 	t_data			background;

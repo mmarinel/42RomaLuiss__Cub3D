@@ -6,7 +6,7 @@
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:15:06 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/07 12:43:13 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:17:01 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include "../../includes/basic_types.h"
 # include "../../includes/game_types.h"
 
-//*		mlx holder
-void	mlx_holder_set(const t_screen_holder *screen_holder);
-size_t	mlx_holder_max_offset( void );
+//*		mlx memory
+int	ft_mlx_destroy_image(void *mlx_ptr, t_data *img_data);
 
 //*		textures clipper
 size_t	textures_pt_clip(int coordinate);

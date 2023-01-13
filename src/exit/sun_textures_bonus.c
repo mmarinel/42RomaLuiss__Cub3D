@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sun_textures_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 17:39:04 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 12:38:11 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:22:45 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,92 +28,92 @@ void	sun_texture_clean(t_game *game)
 
 static void	clean_first_batch(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[0].img
+		&game->textures.sun[0]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[1].img
+		&game->textures.sun[1]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[2].img
+		&game->textures.sun[2]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[3].img
+		&game->textures.sun[3]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[4].img
+		&game->textures.sun[4]
 		);
 }
 
 static void	clean_second_batch(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[5].img
+		&game->textures.sun[5]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[6].img
+		&game->textures.sun[6]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[7].img
+		&game->textures.sun[7]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[8].img
+		&game->textures.sun[8]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[9].img
+		&game->textures.sun[9]
 		);
 }
 
 static void	clean_third_batch(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[10].img
+		&game->textures.sun[10]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[11].img
+		&game->textures.sun[11]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[12].img
+		&game->textures.sun[12]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[13].img
+		&game->textures.sun[13]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[14].img
+		&game->textures.sun[14]
 		);
 }
 
 static void	clean_fourth_batch(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[15].img
+		&game->textures.sun[15]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[16].img
+		&game->textures.sun[16]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[17].img
+		&game->textures.sun[17]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.sun[18].img
+		&game->textures.sun[18]
 		);
 }

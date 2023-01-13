@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_clean.c                                   :+:      :+:    :+:   */
+/*   mlx_memory.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 17:30:11 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 15:24:46 by earendil         ###   ########.fr       */
+/*   Created: 2022/11/20 16:06:08 by mmarinel          #+#    #+#             */
+/*   Updated: 2023/01/13 15:49:18 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit.h"
+#include "utils_render.h"
 
-void	wall_texture_clean(t_game *game)
+int	ft_mlx_destroy_image(void *mlx_ptr, t_data *img_data)
 {
-	ft_mlx_destroy_image(
-		game->screen_handle.mlx,
-		&game->textures.wall.north
-		);
-	ft_mlx_destroy_image(
-		game->screen_handle.mlx,
-		&game->textures.wall.south
-		);
-	ft_mlx_destroy_image(
-		game->screen_handle.mlx,
-		&game->textures.wall.east
-		);
-	ft_mlx_destroy_image(
-		game->screen_handle.mlx,
-		&game->textures.wall.west
-		);
+	if (e_false == img_data->loaded)
+		return (1);
+	else
+		return (mlx_destroy_image(mlx_ptr, img_data->img));
 }

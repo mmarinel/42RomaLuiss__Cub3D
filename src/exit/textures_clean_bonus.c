@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_clean_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 17:34:12 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 12:40:32 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:24:02 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,72 @@
 
 void	door_texture_clean(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.door.open.img
+		&game->textures.door.open
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.door.ajar.img
+		&game->textures.door.ajar
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.door.closed.img
+		&game->textures.door.closed
 		);
 }
 
 void	background_texture_clean(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.background.img
+		&game->textures.background
 		);
 }
 
 void	enemy_texture_clean(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.enemy[0].img
+		&game->textures.enemy[0]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.enemy[1].img
+		&game->textures.enemy[1]
 		);
 }
 
 void	item_texture_clean(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.item.img
+		&game->textures.item
 		);
 }
 
 void	menu_texture_clean(t_game *game)
 {
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.menu[MENU_NEWG].img
+		&game->textures.menu[MENU_NEWG]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.menu[MENU_EXIT].img
+		&game->textures.menu[MENU_EXIT]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.game_over[MENU_NEWG].img
+		&game->textures.game_over[MENU_NEWG]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.game_over[MENU_EXIT].img
+		&game->textures.game_over[MENU_EXIT]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.game_win[MENU_NEWG].img
+		&game->textures.game_win[MENU_NEWG]
 		);
-	mlx_destroy_image(
+	ft_mlx_destroy_image(
 		game->screen_handle.mlx,
-		game->textures.game_win[MENU_EXIT].img
+		&game->textures.game_win[MENU_EXIT]
 		);
 }
