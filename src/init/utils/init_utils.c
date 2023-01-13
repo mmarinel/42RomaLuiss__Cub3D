@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:25:28 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 15:38:34 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:57:41 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_utils.h"
 
 static void	load_image(
-	const char *path, t_data *texture_data,
-	t_game *game_ref
-	);
+				const char *path, t_data *texture_data,
+				t_game *game_ref
+				);
 //*		end of static declarations
 
 size_t	open_texture(

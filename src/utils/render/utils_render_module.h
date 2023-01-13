@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_module.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:15:06 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 15:17:01 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:58:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../../includes/game_types.h"
 
 //*		mlx memory
-int	ft_mlx_destroy_image(void *mlx_ptr, t_data *img_data);
+int		ft_mlx_destroy_image(void *mlx_ptr, t_data *img_data);
 
 //*		textures clipper
 size_t	textures_pt_clip(int coordinate);
