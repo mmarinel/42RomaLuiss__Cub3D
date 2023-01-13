@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   SPACE_key_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 09:15:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:51:44 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "in_game_keys_bonus.h"
 
 static void		attack(t_game *game);
-static void		reset_attack(t_game *game);
 static void		attack_enemies(t_game *game);
 static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game);
 static void		enemy_take_damage(t_enemy *enemy, t_game *game);
@@ -21,12 +20,11 @@ static void		enemy_take_damage(t_enemy *enemy, t_game *game);
 
 void	in_game_space_key(t_key_state *key, t_game *game)
 {
-
 	if (game->player.mana > 0
 		&& (KeyPress == key->state || game->mouse_clicked))
 		attack(game);
 	else
-		reset_attack(game);
+		game->player.attacking = e_false;
 }
 
 static void	attack(t_game *game)
@@ -36,11 +34,6 @@ static void	attack(t_game *game)
 	game->player.attacking = e_true;
 	game->player.mana -= cost;
 	attack_enemies(game);
-}
-
-static void	reset_attack(t_game *game)
-{
-	game->player.attacking = e_false;
 }
 
 static void	attack_enemies(t_game *game)
@@ -70,10 +63,9 @@ static t_bool	enemy_hit(t_enemy *enemy, float ray_angle, t_game *game)
 
 	rc_ret = raycast(game, game->player.pos, ray, enemy_tile);
 	hit = (
-		ft_int_2d_point_equals(&enemy_tile, &rc_ret.final_tile.square)
-		// && e_false == door_obstacle_through_dir(rc_ret.doors, NULL)
-		&& rc_ret.final_tile.euclidean_dist <= game->player.attack_range
-		);
+			ft_int_2d_point_equals(&enemy_tile, &rc_ret.final_tile.square)
+			&& rc_ret.final_tile.euclidean_dist <= game->player.attack_range
+			);
 	raycast_clean(&rc_ret);
 	return (hit);
 }

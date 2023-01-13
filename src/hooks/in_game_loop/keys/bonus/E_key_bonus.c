@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   E_key_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:23:29 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 19:21:50 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:48:34 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ static t_bool	door_reached(t_door *door, float ray_angle, t_game *game)
 		return (e_false);
 	first_spotted_door = first_spotted_door_node->content;
 	reached = (
-		first_spotted_door && first_spotted_door->door_ref
-		&& ft_int_2d_point_equals(
-			&first_spotted_door->door_ref->pos, &door->pos
-			)
-		&& first_spotted_door->\
-			rc_data.euclidean_dist <= game->player.action_range
-	);
+			first_spotted_door && first_spotted_door->door_ref
+			&& ft_int_2d_point_equals(
+				&first_spotted_door->door_ref->pos, &door->pos
+				)
+			&& first_spotted_door->\
+				rc_data.euclidean_dist <= game->player.action_range
+			);
 	raycast_clean(&rc_ret);
 	return (reached);
 }
 
-static void		open_close_door(t_door *door)
+static void	open_close_door(t_door *door)
 {
 	if (e_DOOR_CLOSED == door->status
 		|| e_DOOR_OPEN == door->status)

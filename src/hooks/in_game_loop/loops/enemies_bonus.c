@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemies_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/04 17:33:15 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:56:56 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,16 @@ static void	change_enemy_pos(t_enemy *enemy, t_game *game)
 				ft_change_magnitude(
 					dist_v, enemy->step_size * ampl(&dist_v, enemy)
 					)
-			),
+				),
 			game
-		);
+			);
 	const t_int_2d_point	next_tile = as_int_2dpt(&new_pos);
 	t_enemy					*other;
-	
+
 	other = (t_enemy *) ft_lstfind_cont(game->enemies, enemy_pos, &next_tile);
 	if (is_traversable_pos(game, &enemy->pos, &new_pos)
 		&& (NULL == other || ft_2d_point_equals(&other->pos, &enemy->pos))
-		)
+	)
 	{
 		enemy->pos = new_pos;
 	}

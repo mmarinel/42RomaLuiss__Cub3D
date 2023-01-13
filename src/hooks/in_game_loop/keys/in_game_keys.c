@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   in_game_keys.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:54:05 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 13:40:40 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:45:06 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "in_game_keys.h"
+#include "in_game_keys.h"
 
 static void	route_key(t_key_state *key, t_game *game);
 //*		end of static declarations

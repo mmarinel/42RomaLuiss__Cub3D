@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:19:50 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/01 17:17:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:43:58 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int	key_press_hook(int key_code, t_game *game)
 {
 	const int	key_index = get_key_index(key_code, game);
 
-	// printf("key pressed: %d\n", key_code);
-	// printf("key index: %d\n", key_index);
-	// exit(0);
 	if (e_false == game->in_focus || (-1) == key_index)
 		return (0);
 	else if (e_ESC_KEY == key_code)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:45:01 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 23:01:12 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:54:21 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ t_2d_point	new_player_pos(
 	while (e_true)
 	{
 		new_pos = ft_vec_sum(
-			game->player.pos,
-			ft_vec_prod(direction, player_step_size * (player_step_ampl + 1))
-			);
+				game->player.pos,
+				ft_vec_prod(
+					direction, player_step_size * (player_step_ampl + 1)
+					)
+				);
 		if (is_map_posf(&game->map_handle, &new_pos)
 			&& is_free_pos(game, new_pos))
 			return (new_pos);
@@ -54,5 +56,5 @@ static t_2d_point	new_player_pos_direction(t_key key_pressed, t_game *game)
 	else if (e_D_KEY == key_pressed)
 		return (ft_rotate(game->player.dir, M_PI / 2));
 	else
-		return ((t_2d_point){0,0});
+		return ((t_2d_point){0, 0});
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:27:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/02 10:16:09 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:57:18 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	player_item_collision_check(t_game *game)
 		item = item_node->content;
 		if (game->player.hp < 100)
 			game->player.hp += ceil(
-				(100 - game->player.hp) * 10.0f / 100.0f
-				);
+					(100 - game->player.hp) * 10.0f / 100.0f
+					);
 		else
 			game->player.attack_damage += 5.0f;
 		game->player.picked_items += 1;

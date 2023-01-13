@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_key.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:55:27 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/05 13:50:32 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:45:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	rot_key_pressed(t_key_state *key, t_game *game)
 	const int	west_shift = get_west_shift(key);
 
 	game->player.west_angle += (west_shift) * game->unit_rot_angle;
-	game->player\
-		.dir = ft_rotate(game->player.dir, rot_angle);
-	game->player\
-		.camera_plane = ft_rotate(game->player.camera_plane, rot_angle);
+	game->player.\
+		dir = ft_rotate(game->player.dir, rot_angle);
+	game->player.\
+		camera_plane = ft_rotate(game->player.camera_plane, rot_angle);
 	if (game->unit_rot_angle < MAX_ROT_ANGLE)
 		game->unit_rot_angle += ROT_ANGLE_INCREMENT;
 }
