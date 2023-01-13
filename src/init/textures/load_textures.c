@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:34:41 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 11:58:30 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:57:09 by earendil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	load_textures(t_game *game_ref, t_bool *err_flag)
 		textures_clipper_init(no_tx_sz);
 	if (BONUS)
 		load_bonus_textures(game_ref, err_flag);
-	game_ref->textures.loaded = e_true;
+	if (e_false == *err_flag)
+		game_ref->textures.loaded = e_true;
 }
