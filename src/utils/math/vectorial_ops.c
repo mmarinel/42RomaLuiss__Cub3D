@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectorial_ops.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:45:24 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/19 18:09:10 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:50:35 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_2d_point	ft_matrix_multiplication(t_2d_matrix matrix, t_2d_point vector)
 	t_2d_point	product;
 
 	product.x = ft_dot_product(
-		matrix.row_1,
-		vector
-	);
+			matrix.row_1,
+			vector
+			);
 	product.y = ft_dot_product(
-		matrix.row_2,
-		vector
-	);
+			matrix.row_2,
+			vector
+			);
 	return (product);
 }
 

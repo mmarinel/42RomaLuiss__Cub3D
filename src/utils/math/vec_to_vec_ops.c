@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_to_vec_ops.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:47:06 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/16 22:49:04 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:49:52 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_2d_point	ft_vec_sum(t_2d_point v1, t_2d_point v2)
 
 	sum.x = v1.x + v2.x;
 	sum.y = v1.y + v2.y;
-
 	return (sum);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:42:16 by mmarinel          #+#    #+#             */
-/*   Updated: 2023/01/12 13:39:10 by alazzari         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:41:57 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void				ft_put_nbr_base(long long num, const char *base,
 
 //* lists and maps
 t_list				*ft_lstnew(void *(*clone)(void *), void *content);
-void				ft_lstadd_front(t_list **lst, t_list *new);
-void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstadd_front(t_list **lst, t_list *_new);
+void				ft_lstadd_back(t_list **lst, t_list *_new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 int					ft_lstsize(t_list *lst);

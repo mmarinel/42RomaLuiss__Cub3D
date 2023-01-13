@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   squared_texture_clipper.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:18:07 by earendil          #+#    #+#             */
-/*   Updated: 2022/12/30 14:39:18 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:53:51 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	textures_pt_clip(int coordinate)
 		return (coordinate);
 }
 
-size_t	get_textures_size()
+size_t	get_textures_size(void)
 {
 	return (textures_pt_clipper(e_TEXTURE_CLIPPER_GET, -1));
 }

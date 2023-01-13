@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_holder.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alazzari <alazzari@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 16:06:08 by mmarinel          #+#    #+#             */
-/*   Updated: 2022/12/30 14:26:57 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:52:48 by alazzari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@ static size_t	mlx_window_holder(
 	const t_screen_holder *screen_holder
 	)
 {
-	// static size_t	win_width = 0;
-	// static size_t	win_height = 0;
 	static size_t	win_max_offset = 0;
 
 	if (e_MLX_HOLDER_SET == opcode && screen_holder)
 	{
-		// win_width = screen_holder->width;
-		// win_height = screen_holder->height;
 		win_max_offset
 			= screen_holder->height * screen_holder->frame_data.line_length;
 	}
@@ -32,8 +28,6 @@ static size_t	mlx_window_holder(
 	{
 		return (win_max_offset);
 	}
-	//* if (...other opcodes)
-	//* ..default
 	return (win_max_offset);
 }
 
