@@ -10,7 +10,7 @@ Both Bonus and Mandatory part are implemented in our project.
 
 grade 125/100
 
-![](readme_files/demos/Cubdemo.gif)
+![](readme-files/demos/Cubdemo.gif)
 
 
 ## How to run it
