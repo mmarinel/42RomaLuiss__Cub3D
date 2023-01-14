@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 10:56:56 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/14 11:28:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,45 @@ static size_t	ampl(const t_2d_point *dist_v, t_enemy *enemy);
 
 void	move_enemies(t_game *game)
 {
+	static int	frame = 0;
+	const int	anim_clock = 3;
 	t_list	*cur;
 
-	cur = game->enemies;
-	while (cur)
+	frame = (frame + 1) % anim_clock;
+	if (0 == frame)
 	{
-		if (((t_enemy *)cur->content)->health
-			&& e_false == enemy_colliding(cur->content, &game->player.pos)
-		)
-			change_enemy_pos(cur->content, game);
-		cur = cur->next;
+		cur = game->enemies;
+		while (cur)
+		{
+			if (((t_enemy *)cur->content)->health
+				&& e_false == enemy_colliding(cur->content, &game->player.pos)
+			)
+				change_enemy_pos(cur->content, game);
+			cur = cur->next;
+		}
 	}
 }
 
 void	enemies_anim_death(t_game *game)
 {
+	static int	frame = 0;
+	const int	anim_clock = 3;
 	t_list	*cur;
 
-	cur = game->enemies;
-	while (cur)
+	frame = (frame + 1) % anim_clock;
+	if (0 == frame)
 	{
-		if (0 == ((t_enemy *)cur->content)->health)
+		cur = game->enemies;
+		while (cur)
 		{
-			((t_enemy *)cur->content)->die_anim_frames -= 1;
-			if (0 == ((t_enemy *)cur->content)->die_anim_frames)
-				((t_enemy *)cur->content)->alive = e_false;
+			if (0 == ((t_enemy *)cur->content)->health)
+			{
+				((t_enemy *)cur->content)->die_anim_frames -= 1;
+				if (0 == ((t_enemy *)cur->content)->die_anim_frames)
+					((t_enemy *)cur->content)->alive = e_false;
+			}
+			cur = cur->next;
 		}
-		cur = cur->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:58:58 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 10:58:17 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/14 11:02:47 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	in_game_mouse_handler(t_game *game)
 	t_int_2d_point			mouse_pos;
 	float					rot_angle;
 
-	mlx_mouse_get_pos(game->screen_handle.mlx, game->screen_handle.window,
-		&mouse_pos.x, &mouse_pos.y
-		);
+	mlx_mouse_get_pos(game->screen_handle.window, &mouse_pos.x, &mouse_pos.y);
 	if (ft_int_2d_point_equals(&prev_pos, &(t_int_2d_point){-1, -1}))
 		prev_pos = mouse_pos;
 	else if (mouse_pos.x < 0 || mouse_pos.x >= SCREEN_WIDTH)
@@ -72,5 +70,7 @@ static float	get_rot_angle(
 		else
 			rot_angle = (2 * M_PI - main_axis_angle);
 	}
+	else
+		rot_angle = 0;
 	return (rot_angle);
 }

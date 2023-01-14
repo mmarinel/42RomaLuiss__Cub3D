@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:44:15 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 15:03:31 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/14 11:33:04 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static void	t_screen_holder_clean(t_game *game)
 	mlx_destroy_window(
 		game->screen_handle.mlx, game->screen_handle.window
 		);
-	mlx_destroy_display(game->screen_handle.mlx);
-	free(game->screen_handle.mlx);
 }
 
 static void	textures_clean(t_game *game)

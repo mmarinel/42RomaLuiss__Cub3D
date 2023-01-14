@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/13 15:49:40 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/14 11:41:27 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -426,16 +426,18 @@ SRC_NOPREFIX_BONUS=\
 ./src/utils/simple_printf/printf_utils.c\
 
 NAME=cub3D
+USR_LIBS=./src/utils/libft
 
 SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 USRLIBS_FLAGS=-L./src/utils/libft -lft
 
 MLX_SRC_FLAGS = -Imlx
-MLX_LINK_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX_LINK_FLAGS = ./libmlx.dylib -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 RMF = /bin/rm -rf
 CC = @gcc
-CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx_linux -O3
+# CFLAGS = -Wall -Werror -Wextra -Imlx -O3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -Imlx -O3
 
 
 CUB_OBJS_DIR = bin
@@ -471,7 +473,7 @@ $(NAME): $(OBJS_CUB) $(SRC_USR_LIBS)
 	@echo "Objects Compiled..."
 	@make -C src/utils/libft
 	@echo "libft archive compiled...\n"
-	@make --silent -C mlx_linux 2>/dev/null
+	@make --silent -C mlx 2>/dev/null && mv mlx/libmlx.dylib .
 	@echo "mlx compiled...\n"
 	@echo "linking compiled objects and libraries..."
 	$(CC) $(OBJS_CUB) $(CFLAGS) $(BONUS_FLAG) $(MLX_LINK_FLAGS) $(USRLIBS_FLAGS) -lm -o $(NAME)
@@ -489,7 +491,7 @@ clean:
 	@echo "destroying libft..."
 	@$(MAKE) --silent -C src/utils/libft fclean
 	@echo "destroying mlx..."
-	@$(MAKE) --silent -C mlx_linux clean
+	@$(MAKE) --silent -C mlx clean
 	@printf "destroying Usr Object files...\n"
 	@$(RMF) $(CUB_OBJS_DIR)
 	@printf "\033[0;35mAll Object files destroyed!\n"

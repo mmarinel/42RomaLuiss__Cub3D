@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:55:31 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 10:59:46 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/14 11:02:19 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	in_menu_mouse_handler(t_game *game)
 	static t_int_2d_point	prev = (t_int_2d_point){-1, -1};
 	t_int_2d_point			px;
 
-	mlx_mouse_get_pos(
-		game->screen_handle.mlx, game->screen_handle.window,
-		&px.x, &px.y
-		);
+	mlx_mouse_get_pos(game->screen_handle.window, &px.x, &px.y);
 	if (e_false == ft_int_2d_point_equals(&prev, &px))
 	{
 		if (rect_button_focused(&px,

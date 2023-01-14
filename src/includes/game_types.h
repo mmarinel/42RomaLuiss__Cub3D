@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_types.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: earendil <earendil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:40:51 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/13 15:03:04 by earendil         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:58:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,19 @@ typedef struct s_screen_holder
 
 typedef enum e_key
 {
-	e_UP_KEY = 65362,
-	e_DOWN_KEY = 65364,
-	e_RIGHT_KEY = 65363,
-	e_LEFT_KEY = 65361,
-	e_W_KEY = 119,
-	e_A_KEY = 97,
-	e_S_KEY = 115,
-	e_D_KEY = 100,
-	e_E_KEY = 101,
-	e_SPACE_KEY = 32,
-	e_ENTER_KEY = 65293,
-	e_ESC_KEY = 65307,
-	e_SHIFT_KEY = 65505,
+	e_UP_KEY = 126,
+	e_DOWN_KEY = 125,
+	e_RIGHT_KEY = 124,
+	e_LEFT_KEY = 123,
+	e_W_KEY = 13,
+	e_A_KEY = 0,
+	e_S_KEY = 1,
+	e_D_KEY = 2,
+	e_E_KEY = 14,
+	e_SPACE_KEY = 49,
+	e_ENTER_KEY = 36,
+	e_ESC_KEY = 53,
+	e_SHIFT_KEY = 257,
 }	t_key;
 
 typedef struct s_key_state

@@ -6,13 +6,13 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:41:40 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/12 17:35:02 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:51:53 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef X11_MACROS_H
 # define X11_MACROS_H
 
-# include "../../mlx_linux/X11_macros.h"
+# include "../../mlx/X11_macros.h"
 
 #endif
