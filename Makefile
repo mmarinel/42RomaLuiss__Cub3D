@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: earendil <earendil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 19:06:19 by earendil          #+#    #+#              #
-#    Updated: 2023/01/13 15:49:40 by earendil         ###   ########.fr        #
+#    Updated: 2023/01/14 18:51:16 by mmarinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -426,6 +426,7 @@ SRC_NOPREFIX_BONUS=\
 ./src/utils/simple_printf/printf_utils.c\
 
 NAME=cub3D
+USR_LIBS=./src/utils/libft
 
 SRC_USR_LIBS=$(shell find $(USR_LIBS) -name "*.c")
 USRLIBS_FLAGS=-L./src/utils/libft -lft
