@@ -6,7 +6,7 @@
 /*   By: mmarinel <mmarinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:19:15 by earendil          #+#    #+#             */
-/*   Updated: 2023/01/14 11:28:04 by mmarinel         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:23:02 by mmarinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	move_enemies(t_game *game)
 {
 	static int	frame = 0;
 	const int	anim_clock = 3;
-	t_list	*cur;
+	t_list		*cur;
 
 	frame = (frame + 1) % anim_clock;
 	if (0 == frame)
@@ -41,7 +41,7 @@ void	enemies_anim_death(t_game *game)
 {
 	static int	frame = 0;
 	const int	anim_clock = 3;
-	t_list	*cur;
+	t_list		*cur;
 
 	frame = (frame + 1) % anim_clock;
 	if (0 == frame)
