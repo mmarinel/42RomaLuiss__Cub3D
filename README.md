@@ -37,15 +37,15 @@ Play the game!
 $> ./cub3D map/<map-of-your-choice>
 ```
 
-Disclaimer!</br>
-If you want to make the bonus-part executable and already have mandatory-part one,</br>
+**Disclaimer**</br>
+If you want to make the bonus-part executable and already have the mandatory-part one,</br>
 Remake the project with
 ```
 $> make reb		-("re" rule for the bonus part)
 ```
 (that is because, even if the mandatory objects are available, they are compiled with the bonus flag set to "0"; so they will never call the bonus-part object files).
 
-</br>And vice-versa if you want to make the mandatory-part executable while already having the bonus-part one
+</br>And vice-versa, if you want to make the mandatory-part executable while already having the bonus-part one
 ```
 $> make re
 ```
